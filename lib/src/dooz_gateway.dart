@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:json_rpc_2/json_rpc_2.dart';
 import 'package:dooz_gateway_sdk/src/models/notify_state.dart';
 import 'package:dooz_gateway_sdk/src/models/gateway_response.dart';
@@ -10,12 +12,6 @@ import 'package:web_socket_channel/io.dart';
 /// Create an [DoozGateway] which allow you to control your gateway
 /// {@endtemplate}
 class DoozGateway {
-  /// The host of the gateway
-  String host;
-
-  /// The port of the gateway
-  int port;
-
   Peer _peer;
 
   final _notifyStateController = StreamController<NotifyState>.broadcast();
@@ -27,24 +23,51 @@ class DoozGateway {
 
   /// Connect to the gateway.
   ///
-  /// This [id] corresponde to your gateway id
-  Future<void> connect(String id) async {
-    if (host == null) {
+  /// [id] corresponds to your gateway id.
+  ///
+  /// By default, it will attempt a connection on the given remote host. If [overWAN] is set to `false`, it will attempt a connection on `DOOZ-OOPLA.local` to use LAN connection.
+  Future<void> connect(
+    String host,
+    String id, {
+    bool overWAN = true,
+    int port,
+  }) async {
+    if (host == null && overWAN) {
       throw ArgumentError.notNull('host');
-    }
-    if (port == null) {
-      throw ArgumentError.notNull('port');
     }
     if (id == null || id.isEmpty) {
       throw ArgumentError('Please provide a gateway ID.');
     }
+    final _host = overWAN ? host : localGatewayHost;
 
-    print('attempting connection..');
-    final socket = IOWebSocketChannel.connect(
-      Uri.parse('wss://$host:$port/v1/$id'),
+    print('attempting connection on $_host:${port ?? defaultGatewayPort}');
+    //https://gitter.im/dart-lang/sdk?at=5aaf11336f8b4b994640bdfd
+    final s = await SecureSocket.connect(
+      _host,
+      port ?? defaultGatewayPort,
+      onBadCertificate: (certificate) {
+        print('bad cert !');
+        print('------- CERT DATA -------');
+        print('startValidity ${certificate.startValidity}');
+        print('endValidity ${certificate.endValidity}');
+        print('issuer ${certificate.issuer}');
+        print('subject ${certificate.subject}');
+        print('--------------------------');
+        print('attempting LAN access: ${!overWAN}');
+        if (!overWAN) {
+          print('ignoring because LAN connection...');
+        }
+        return !overWAN;
+      },
     );
 
-    _peer = Peer(socket.cast<String>());
+    final socket = WebSocket.fromUpgradedSocket(
+      s,
+      serverSide: false,
+    );
+    final channel = IOWebSocketChannel(socket);
+
+    _peer = Peer(channel.cast<String>());
 
     _registerMethods();
 
@@ -61,8 +84,13 @@ class DoozGateway {
     print('done ! listening...');
   }
 
-  /// Destroy the WSS connection by calling `close` method on the [Peer].
-  Future<void> disconnect() => _peer.close();
+  /// Destroy the WSS connection by calling `close` method on the [Peer] object.
+  Future<void> disconnect() async {
+    print('closing connection...');
+    await _peer.close();
+    _peer = null;
+    print('done !');
+  }
 
   void _registerMethods() {
     _peer.registerMethod(
@@ -81,16 +109,20 @@ class DoozGateway {
     );
   }
 
-  /// Use this to authenticate yourself on the gateway by using **Firebase** credentials.
+  void _checkPeerInitialized() {
+    if (_peer == null) {
+      throw ArgumentError('Please use connect() before use other method');
+    }
+  }
+
+  /// Use this to authenticate yourself on the gateway by using the given credentials.
   ///
-  /// `login` is the **Firebase** login of the app's user and `password` the corresponding password.
+  /// [login] is either the Firebase login of the app's user or the gateway user login (available on the product's notice) and [password] is the corresponding password.
   Future<bool> authenticate(
     final String login,
     final String password,
   ) async {
-    if (_peer == null) {
-      throw ArgumentError('Please use connect() before use other method');
-    }
+    _checkPeerInitialized();
     if (login == null || login.isEmpty) {
       throw ArgumentError('login must not be null or empty');
     }
@@ -111,6 +143,7 @@ class DoozGateway {
 
   /// Set the [level] of the device at [address]
   Future<StateResponse> setState(final String address, final int level) async {
+    _checkPeerInitialized();
     final _result = await _peer.sendRequest(
       'set',
       {
@@ -127,6 +160,7 @@ class DoozGateway {
 
   /// Get the state of a device from it's [address]
   Future<StateResponse> getState(final String address) async {
+    _checkPeerInitialized();
     final _result = await _peer.sendRequest(
       'get',
       {
@@ -143,6 +177,7 @@ class DoozGateway {
   /// Set the config value of a device
   Future<SetConfigResponse> setConfig(
       final String address, final String value) async {
+    _checkPeerInitialized();
     final _result = await _peer.sendRequest(
       'set_config',
       {
@@ -159,6 +194,7 @@ class DoozGateway {
 
   /// Toggle a device
   Future<SetToggleResponse> toggle(final String address) async {
+    _checkPeerInitialized();
     final _result = await _peer.sendRequest(
       'toggle',
       {
