@@ -8,18 +8,26 @@ part of 'notify_state.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+NotifyState _$NotifyStateFromJson(Map<String, dynamic> json) {
+  return _NotifyState.fromJson(json);
+}
 
 /// @nodoc
 class _$NotifyStateTearOff {
   const _$NotifyStateTearOff();
 
 // ignore: unused_element
-  _NotifyState call(String address, int level, DateTime timestamp) {
+  _NotifyState call(String address, int level, int timestamp) {
     return _NotifyState(
       address,
       level,
       timestamp,
     );
+  }
+
+// ignore: unused_element
+  NotifyState fromJson(Map<String, Object> json) {
+    return NotifyState.fromJson(json);
   }
 }
 
@@ -31,8 +39,10 @@ const $NotifyState = _$NotifyStateTearOff();
 mixin _$NotifyState {
   String get address;
   int get level;
-  DateTime get timestamp;
+  int get timestamp;
 
+  Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $NotifyStateCopyWith<NotifyState> get copyWith;
 }
 
@@ -41,7 +51,7 @@ abstract class $NotifyStateCopyWith<$Res> {
   factory $NotifyStateCopyWith(
           NotifyState value, $Res Function(NotifyState) then) =
       _$NotifyStateCopyWithImpl<$Res>;
-  $Res call({String address, int level, DateTime timestamp});
+  $Res call({String address, int level, int timestamp});
 }
 
 /// @nodoc
@@ -61,8 +71,7 @@ class _$NotifyStateCopyWithImpl<$Res> implements $NotifyStateCopyWith<$Res> {
     return _then(_value.copyWith(
       address: address == freezed ? _value.address : address as String,
       level: level == freezed ? _value.level : level as int,
-      timestamp:
-          timestamp == freezed ? _value.timestamp : timestamp as DateTime,
+      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
 }
@@ -96,10 +105,12 @@ class __$NotifyStateCopyWithImpl<$Res> extends _$NotifyStateCopyWithImpl<$Res>
     return _then(_NotifyState(
       address == freezed ? _value.address : address as String,
       level == freezed ? _value.level : level as int,
-      timestamp == freezed ? _value.timestamp : timestamp as DateTime,
+      timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
 }
+
+@JsonSerializable()
 
 /// @nodoc
 class _$_NotifyState implements _NotifyState {
@@ -108,12 +119,15 @@ class _$_NotifyState implements _NotifyState {
         assert(level != null),
         assert(timestamp != null);
 
+  factory _$_NotifyState.fromJson(Map<String, dynamic> json) =>
+      _$_$_NotifyStateFromJson(json);
+
   @override
   final String address;
   @override
   final int level;
   @override
-  final DateTime timestamp;
+  final int timestamp;
 
   @override
   String toString() {
@@ -141,21 +155,31 @@ class _$_NotifyState implements _NotifyState {
       const DeepCollectionEquality().hash(level) ^
       const DeepCollectionEquality().hash(timestamp);
 
+  @JsonKey(ignore: true)
   @override
   _$NotifyStateCopyWith<_NotifyState> get copyWith =>
       __$NotifyStateCopyWithImpl<_NotifyState>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_NotifyStateToJson(this);
+  }
 }
 
 abstract class _NotifyState implements NotifyState {
-  const factory _NotifyState(String address, int level, DateTime timestamp) =
+  const factory _NotifyState(String address, int level, int timestamp) =
       _$_NotifyState;
+
+  factory _NotifyState.fromJson(Map<String, dynamic> json) =
+      _$_NotifyState.fromJson;
 
   @override
   String get address;
   @override
   int get level;
   @override
-  DateTime get timestamp;
+  int get timestamp;
   @override
+  @JsonKey(ignore: true)
   _$NotifyStateCopyWith<_NotifyState> get copyWith;
 }

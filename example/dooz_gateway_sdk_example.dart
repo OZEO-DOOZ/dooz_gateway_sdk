@@ -1,22 +1,38 @@
 import 'package:dooz_gateway_sdk/dooz_gateway_sdk.dart';
 
 void main() async {
+  // instantiate gateway object
   final gateway = DoozGateway();
-
-  await gateway.connect('56f4633e-9075-44c1-8a12-f140361b3901');
-
+  // listen to mesh statuses received on the gateway
   gateway.notifyState.listen(print);
-
-  final authResult = await gateway.authenticate(
-      'Dooz Gateway default user', 'Default P@ssw0rd!');
-  print('authResult: $authResult');
-
-  final setResult = await gateway.setState('000A', 100);
-  print(setResult);
-
-  final toggleResponse = await gateway.toggle('000A');
-  print(toggleResponse);
-
-  final getResponse = await gateway.getState('000A');
-  print(getResponse);
+  // initiate wss two-way communication over WAN
+  await gateway.connect(
+    _gatewayID,
+    overWAN: true,
+    host: _host,
+  );
+  try {
+    // authenticate the gateway on server
+    var authResult = await gateway.authenticate(
+      _serverUser,
+      _serverPassword,
+    );
+    if (authResult.status == 'OK') {
+      print('Successfully authenticated using user\'s creds !');
+    } else {
+      // print('Server auth failed... fallback to local auth');
+      // await gateway.disconnect();
+      // await gateway.connect(_gatewayID);
+      // authResult = await gateway.authenticate(_gatewayUser, _gatewayPassword);
+      // if (authResult) {
+      //   print('Successfully authenticated using gateway creds !');
+      // } else {
+      print('could not succeed in gateway auth...');
+      // }
+    }
+  } catch (e) {
+    print('caught error...$e');
+  }
+  // close wss connection on the gateway
+  await gateway.disconnect();
 }
