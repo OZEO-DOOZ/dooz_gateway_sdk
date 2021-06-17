@@ -83,7 +83,7 @@ abstract class _$NotifyStateCopyWith<$Res>
           _NotifyState value, $Res Function(_NotifyState) then) =
       __$NotifyStateCopyWithImpl<$Res>;
   @override
-  $Res call({String address, int level, int timestamp});
+  $Res call({String address, int level, DateTime timestamp});
 }
 
 /// @nodoc
