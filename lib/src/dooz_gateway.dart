@@ -214,14 +214,8 @@ class DoozGateway {
     _checkPeerInitialized();
     final _result = await _peer.sendRequest(
       'toggle',
-      {
-        'address': address,
-      },
+      {'address': address},
     ) as Map<String, dynamic>;
-    return SetToggleResponse(
-      _result['address'] as String,
-      _result['level'] as int,
-      _result['timestamp'] as int,
-    );
+    return SetToggleResponse.fromJson(_result);
   }
 }

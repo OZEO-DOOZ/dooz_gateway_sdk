@@ -19,6 +19,8 @@ void main() async {
     );
     if (authResult.status == 'OK') {
       print('Successfully authenticated using user\'s creds !');
+      var toggleResponse = await gateway.toggle(_output0);
+      print(toggleResponse);
     } else {
       // print('Server auth failed... fallback to local auth');
       // await gateway.disconnect();
@@ -33,6 +35,8 @@ void main() async {
   } catch (e) {
     print('caught error...$e');
   }
+  await Future<void>.delayed(
+      const Duration(seconds: 10)); // wait for notifications from mesh
   // close wss connection on the gateway
   await gateway.disconnect();
 }

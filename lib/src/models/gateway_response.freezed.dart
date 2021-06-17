@@ -45,10 +45,13 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  SetToggleResponse toggle(String address, int level, int timestamp) {
+  SetToggleResponse toggle(
+      String address, int level, int target, int remaining, int timestamp) {
     return SetToggleResponse(
       address,
       level,
+      target,
+      remaining,
       timestamp,
     );
   }
@@ -72,13 +75,16 @@ mixin _$GatewayResponse {
   TResult when<TResult extends Object>({
     @required TResult state(String address, int level, int timestamp),
     @required TResult config(String address, String value, int timestamp),
-    @required TResult toggle(String address, int level, int timestamp),
+    @required
+        TResult toggle(String address, int level, int target, int remaining,
+            int timestamp),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult state(String address, int level, int timestamp),
     TResult config(String address, String value, int timestamp),
-    TResult toggle(String address, int level, int timestamp),
+    TResult toggle(
+        String address, int level, int target, int remaining, int timestamp),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -218,7 +224,9 @@ class _$StateResponse implements StateResponse {
   TResult when<TResult extends Object>({
     @required TResult state(String address, int level, int timestamp),
     @required TResult config(String address, String value, int timestamp),
-    @required TResult toggle(String address, int level, int timestamp),
+    @required
+        TResult toggle(String address, int level, int target, int remaining,
+            int timestamp),
   }) {
     assert(state != null);
     assert(config != null);
@@ -231,7 +239,8 @@ class _$StateResponse implements StateResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult state(String address, int level, int timestamp),
     TResult config(String address, String value, int timestamp),
-    TResult toggle(String address, int level, int timestamp),
+    TResult toggle(
+        String address, int level, int target, int remaining, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -382,7 +391,9 @@ class _$SetConfigResponse implements SetConfigResponse {
   TResult when<TResult extends Object>({
     @required TResult state(String address, int level, int timestamp),
     @required TResult config(String address, String value, int timestamp),
-    @required TResult toggle(String address, int level, int timestamp),
+    @required
+        TResult toggle(String address, int level, int target, int remaining,
+            int timestamp),
   }) {
     assert(state != null);
     assert(config != null);
@@ -395,7 +406,8 @@ class _$SetConfigResponse implements SetConfigResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult state(String address, int level, int timestamp),
     TResult config(String address, String value, int timestamp),
-    TResult toggle(String address, int level, int timestamp),
+    TResult toggle(
+        String address, int level, int target, int remaining, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -463,7 +475,8 @@ abstract class $SetToggleResponseCopyWith<$Res>
           SetToggleResponse value, $Res Function(SetToggleResponse) then) =
       _$SetToggleResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String address, int level, int timestamp});
+  $Res call(
+      {String address, int level, int target, int remaining, int timestamp});
 }
 
 /// @nodoc
@@ -481,11 +494,15 @@ class _$SetToggleResponseCopyWithImpl<$Res>
   $Res call({
     Object address = freezed,
     Object level = freezed,
+    Object target = freezed,
+    Object remaining = freezed,
     Object timestamp = freezed,
   }) {
     return _then(SetToggleResponse(
       address == freezed ? _value.address : address as String,
       level == freezed ? _value.level : level as int,
+      target == freezed ? _value.target : target as int,
+      remaining == freezed ? _value.remaining : remaining as int,
       timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
@@ -495,9 +512,12 @@ class _$SetToggleResponseCopyWithImpl<$Res>
 
 /// @nodoc
 class _$SetToggleResponse implements SetToggleResponse {
-  const _$SetToggleResponse(this.address, this.level, this.timestamp)
+  const _$SetToggleResponse(
+      this.address, this.level, this.target, this.remaining, this.timestamp)
       : assert(address != null),
         assert(level != null),
+        assert(target != null),
+        assert(remaining != null),
         assert(timestamp != null);
 
   factory _$SetToggleResponse.fromJson(Map<String, dynamic> json) =>
@@ -508,11 +528,15 @@ class _$SetToggleResponse implements SetToggleResponse {
   @override
   final int level;
   @override
+  final int target;
+  @override
+  final int remaining;
+  @override
   final int timestamp;
 
   @override
   String toString() {
-    return 'GatewayResponse.toggle(address: $address, level: $level, timestamp: $timestamp)';
+    return 'GatewayResponse.toggle(address: $address, level: $level, target: $target, remaining: $remaining, timestamp: $timestamp)';
   }
 
   @override
@@ -524,6 +548,11 @@ class _$SetToggleResponse implements SetToggleResponse {
                     .equals(other.address, address)) &&
             (identical(other.level, level) ||
                 const DeepCollectionEquality().equals(other.level, level)) &&
+            (identical(other.target, target) ||
+                const DeepCollectionEquality().equals(other.target, target)) &&
+            (identical(other.remaining, remaining) ||
+                const DeepCollectionEquality()
+                    .equals(other.remaining, remaining)) &&
             (identical(other.timestamp, timestamp) ||
                 const DeepCollectionEquality()
                     .equals(other.timestamp, timestamp)));
@@ -534,6 +563,8 @@ class _$SetToggleResponse implements SetToggleResponse {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(level) ^
+      const DeepCollectionEquality().hash(target) ^
+      const DeepCollectionEquality().hash(remaining) ^
       const DeepCollectionEquality().hash(timestamp);
 
   @JsonKey(ignore: true)
@@ -546,12 +577,14 @@ class _$SetToggleResponse implements SetToggleResponse {
   TResult when<TResult extends Object>({
     @required TResult state(String address, int level, int timestamp),
     @required TResult config(String address, String value, int timestamp),
-    @required TResult toggle(String address, int level, int timestamp),
+    @required
+        TResult toggle(String address, int level, int target, int remaining,
+            int timestamp),
   }) {
     assert(state != null);
     assert(config != null);
     assert(toggle != null);
-    return toggle(address, level, timestamp);
+    return toggle(address, level, target, remaining, timestamp);
   }
 
   @override
@@ -559,12 +592,13 @@ class _$SetToggleResponse implements SetToggleResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult state(String address, int level, int timestamp),
     TResult config(String address, String value, int timestamp),
-    TResult toggle(String address, int level, int timestamp),
+    TResult toggle(
+        String address, int level, int target, int remaining, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (toggle != null) {
-      return toggle(address, level, timestamp);
+      return toggle(address, level, target, remaining, timestamp);
     }
     return orElse();
   }
@@ -604,7 +638,8 @@ class _$SetToggleResponse implements SetToggleResponse {
 }
 
 abstract class SetToggleResponse implements GatewayResponse {
-  const factory SetToggleResponse(String address, int level, int timestamp) =
+  const factory SetToggleResponse(
+          String address, int level, int target, int remaining, int timestamp) =
       _$SetToggleResponse;
 
   factory SetToggleResponse.fromJson(Map<String, dynamic> json) =
@@ -613,6 +648,8 @@ abstract class SetToggleResponse implements GatewayResponse {
   @override
   String get address;
   int get level;
+  int get target;
+  int get remaining;
   @override
   int get timestamp;
   @override
