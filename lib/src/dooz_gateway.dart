@@ -3,8 +3,7 @@ import 'dart:io';
 
 import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:json_rpc_2/json_rpc_2.dart';
-import 'package:dooz_gateway_sdk/src/models/notify_state.dart';
-import 'package:dooz_gateway_sdk/src/models/gateway_response.dart';
+import 'package:dooz_gateway_sdk/src/models/models.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -100,9 +99,7 @@ class DoozGateway {
           NotifyState(
             parameters['address'].asString,
             parameters['level'].asInt,
-            DateTime.fromMillisecondsSinceEpoch(
-              (parameters['timestamp'].asInt),
-            ),
+            parameters['timestamp'].asInt,
           ),
         );
       },
@@ -124,21 +121,30 @@ class DoozGateway {
   ) async {
     _checkPeerInitialized();
     if (login == null || login.isEmpty) {
-      throw ArgumentError('login must not be null or empty');
+      throw ArgumentError('login must not be null nor empty');
     }
     if (password == null || password.isEmpty) {
-      throw ArgumentError('password must not be null or empty');
+      throw ArgumentError('password must not be null nor empty');
     }
     print('about to send request \'authenticate\'');
-    final _result = await _peer.sendRequest(
-      'authenticate',
-      {
-        'login': login,
-        'password': password,
-      },
-    ) as Map<String, dynamic>;
+    final _result = AuthResponse.fromJson(await _peer
+        .sendRequest(
+          'authenticate',
+          {
+            'login': login,
+            'password': password,
+          },
+        )
+        .timeout(kGatewayRequestTimeout)
+        .catchError(
+          (Object e) => {
+            'status': 'refused',
+            'timestamp': 1623915207604,
+          },
+          test: (Object e) => e is TimeoutException,
+        ) as Map<String, dynamic>);
     print('answered !\n$_result');
-    return _result['status'] == 'OK';
+    return _result.status == 'OK';
   }
 
   /// Set the [level] of the device at [address]
@@ -154,7 +160,7 @@ class DoozGateway {
     return StateResponse(
       _result['address'] as String,
       _result['level'] as int,
-      DateTime.fromMillisecondsSinceEpoch((_result['timestamp'] as int)),
+      _result['timestamp'] as int,
     );
   }
 
@@ -170,7 +176,7 @@ class DoozGateway {
     return StateResponse(
       _result['address'] as String,
       _result['level'] as int,
-      DateTime.fromMillisecondsSinceEpoch((_result['timestamp'] as int)),
+      _result['timestamp'] as int,
     );
   }
 
@@ -188,7 +194,7 @@ class DoozGateway {
     return SetConfigResponse(
       _result['address'] as String,
       _result['value'] as String,
-      DateTime.fromMillisecondsSinceEpoch((_result['timestamp'] as int) * 1000),
+      _result['timestamp'] as int,
     );
   }
 
@@ -204,7 +210,7 @@ class DoozGateway {
     return SetToggleResponse(
       _result['address'] as String,
       _result['level'] as int,
-      DateTime.fromMillisecondsSinceEpoch((_result['timestamp'] as int)),
+      _result['timestamp'] as int,
     );
   }
 }
