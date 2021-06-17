@@ -5,26 +5,30 @@ void main() async {
   final gateway = DoozGateway();
   // listen to mesh statuses received on the gateway
   gateway.notifyState.listen(print);
-  // initiate wss two-way communication
-  await gateway.connect(_host, _gatewayID);
+  // initiate wss two-way communication over WAN
+  await gateway.connect(
+    _gatewayID,
+    overWAN: true,
+    host: _host,
+  );
   try {
-    // authenticate the gateway on firebase
+    // authenticate the gateway on server
     var authResult = await gateway.authenticate(
-      _firebaseUser,
-      _firebasePassword,
+      _serverUser,
+      _serverPassword,
     );
-    if (authResult) {
-      print('Successfully authenticated using firebase creds !');
+    if (authResult.status == 'OK') {
+      print('Successfully authenticated using user\'s creds !');
     } else {
-      print('Firebase auth failed... fallback to local auth');
-      await gateway.disconnect();
-      await gateway.connect(_host, _gatewayID, overWAN: false);
-      authResult = await gateway.authenticate(_gatewayUser, _gatewayPassword);
-      if (authResult) {
-        print('Successfully authenticated using gateway creds !');
-      } else {
-        print('could not succeed in gateway auth...');
-      }
+      // print('Server auth failed... fallback to local auth');
+      // await gateway.disconnect();
+      // await gateway.connect(_gatewayID);
+      // authResult = await gateway.authenticate(_gatewayUser, _gatewayPassword);
+      // if (authResult) {
+      //   print('Successfully authenticated using gateway creds !');
+      // } else {
+      print('could not succeed in gateway auth...');
+      // }
     }
   } catch (e) {
     print('caught error...$e');

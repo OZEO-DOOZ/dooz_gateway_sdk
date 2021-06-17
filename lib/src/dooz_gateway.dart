@@ -24,47 +24,59 @@ class DoozGateway {
   ///
   /// [id] corresponds to your gateway id.
   ///
-  /// By default, it will attempt a connection on the given remote host. If [overWAN] is set to `false`, it will attempt a connection on `DOOZ-OOPLA.local` to use LAN connection.
+  /// By default, it will attempt a connection on `DOOZ-OOPLA.local` to use LAN connection.
+  /// If [overWAN] is set to `true`, it will attempt a connection on the given remote host.
   Future<void> connect(
-    String host,
     String id, {
-    bool overWAN = true,
+    bool overWAN = false,
+    String host,
     int port,
   }) async {
-    if (host == null && overWAN) {
-      throw ArgumentError.notNull('host');
-    }
     if (id == null || id.isEmpty) {
       throw ArgumentError('Please provide a gateway ID.');
+    }
+    if (host == null && overWAN) {
+      throw ArgumentError('host muse not be null when using WAN connection');
     }
     final _host = overWAN ? host : localGatewayHost;
 
     print('attempting connection on $_host:${port ?? defaultGatewayPort}');
-    //https://gitter.im/dart-lang/sdk?at=5aaf11336f8b4b994640bdfd
-    final s = await SecureSocket.connect(
-      _host,
-      port ?? defaultGatewayPort,
-      onBadCertificate: (certificate) {
-        print('bad cert !');
-        print('------- CERT DATA -------');
-        print('startValidity ${certificate.startValidity}');
-        print('endValidity ${certificate.endValidity}');
-        print('issuer ${certificate.issuer}');
-        print('subject ${certificate.subject}');
-        print('--------------------------');
-        print('attempting LAN access: ${!overWAN}');
-        if (!overWAN) {
-          print('ignoring because LAN connection...');
-        }
-        return !overWAN;
-      },
-    );
+    WebSocket gatewaySocket;
+    if (overWAN) {
+      gatewaySocket = await WebSocket.connect(
+        'wss://$_host:${port ?? defaultGatewayPort}/v1/$id',
+      );
+    } else {
+      // need to use other connection method to be able to handle bad certificate (self-signed)
+      throw UnimplementedError('need to find a way to pass the API path');
+      //https://gitter.im/dart-lang/sdk?at=5aaf11336f8b4b994640bdfd
+      // final s = await SecureSocket.connect(
+      //   _host,
+      //   port ?? defaultGatewayPort,
+      //   onBadCertificate: (certificate) {
+      //     print('bad cert !');
+      //     print('------- CERT DATA -------');
+      //     print('startValidity ${certificate.startValidity}');
+      //     print('endValidity ${certificate.endValidity}');
+      //     print('issuer ${certificate.issuer}');
+      //     print('subject ${certificate.subject}');
+      //     print('--------------------------');
+      //     print('attempting LAN access: ${!overWAN}');
+      //     if (!overWAN) {
+      //       print('ignoring because LAN connection...');
+      //     }
+      //     return !overWAN;
+      //   },
+      // );
+      // print('remoteAddress ${s.remoteAddress}');
 
-    final socket = WebSocket.fromUpgradedSocket(
-      s,
-      serverSide: false,
-    );
-    final channel = IOWebSocketChannel(socket);
+      // gatewaySocket = WebSocket.fromUpgradedSocket(
+      //   s,
+      //   serverSide: false,
+      // );
+    }
+
+    final channel = IOWebSocketChannel(gatewaySocket);
 
     _peer = Peer(channel.cast<String>());
 
@@ -114,8 +126,8 @@ class DoozGateway {
 
   /// Use this to authenticate yourself on the gateway by using the given credentials.
   ///
-  /// [login] is either the Firebase login of the app's user or the gateway user login (available on the product's notice) and [password] is the corresponding password.
-  Future<bool> authenticate(
+  /// [login] is either the user's login for the DooZ app or the gateway user login (available on the product's notice) and [password] is the corresponding password.
+  Future<AuthResponse> authenticate(
     final String login,
     final String password,
   ) async {
@@ -127,7 +139,7 @@ class DoozGateway {
       throw ArgumentError('password must not be null nor empty');
     }
     print('about to send request \'authenticate\'');
-    final _result = AuthResponse.fromJson(await _peer
+    final _result = await _peer
         .sendRequest(
           'authenticate',
           {
@@ -139,12 +151,11 @@ class DoozGateway {
         .catchError(
           (Object e) => {
             'status': 'refused',
-            'timestamp': 1623915207604,
+            'timestamp': 0,
           },
           test: (Object e) => e is TimeoutException,
-        ) as Map<String, dynamic>);
-    print('answered !\n$_result');
-    return _result.status == 'OK';
+        ) as Map<String, dynamic>;
+    return AuthResponse.fromJson(_result);
   }
 
   /// Set the [level] of the device at [address]
