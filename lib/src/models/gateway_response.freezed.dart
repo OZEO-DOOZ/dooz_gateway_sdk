@@ -8,13 +8,26 @@ part of 'gateway_response.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+GatewayResponse _$GatewayResponseFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType'] as String) {
+    case 'state':
+      return StateResponse.fromJson(json);
+    case 'config':
+      return SetConfigResponse.fromJson(json);
+    case 'toggle':
+      return SetToggleResponse.fromJson(json);
+
+    default:
+      throw FallThroughError();
+  }
+}
 
 /// @nodoc
 class _$GatewayResponseTearOff {
   const _$GatewayResponseTearOff();
 
 // ignore: unused_element
-  StateResponse state(String address, int level, DateTime timestamp) {
+  StateResponse state(String address, int level, int timestamp) {
     return StateResponse(
       address,
       level,
@@ -23,7 +36,7 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  SetConfigResponse config(String address, String value, DateTime timestamp) {
+  SetConfigResponse config(String address, String value, int timestamp) {
     return SetConfigResponse(
       address,
       value,
@@ -32,12 +45,17 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  SetToggleResponse toggle(String address, int level, DateTime timestamp) {
+  SetToggleResponse toggle(String address, int level, int timestamp) {
     return SetToggleResponse(
       address,
       level,
       timestamp,
     );
+  }
+
+// ignore: unused_element
+  GatewayResponse fromJson(Map<String, Object> json) {
+    return GatewayResponse.fromJson(json);
   }
 }
 
@@ -48,35 +66,36 @@ const $GatewayResponse = _$GatewayResponseTearOff();
 /// @nodoc
 mixin _$GatewayResponse {
   String get address;
-  DateTime get timestamp;
+  int get timestamp;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result state(String address, int level, DateTime timestamp),
-    @required Result config(String address, String value, DateTime timestamp),
-    @required Result toggle(String address, int level, DateTime timestamp),
+  TResult when<TResult extends Object>({
+    @required TResult state(String address, int level, int timestamp),
+    @required TResult config(String address, String value, int timestamp),
+    @required TResult toggle(String address, int level, int timestamp),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result state(String address, int level, DateTime timestamp),
-    Result config(String address, String value, DateTime timestamp),
-    Result toggle(String address, int level, DateTime timestamp),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult state(String address, int level, int timestamp),
+    TResult config(String address, String value, int timestamp),
+    TResult toggle(String address, int level, int timestamp),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result state(StateResponse value),
-    @required Result config(SetConfigResponse value),
-    @required Result toggle(SetToggleResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult state(StateResponse value),
+    @required TResult config(SetConfigResponse value),
+    @required TResult toggle(SetToggleResponse value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result state(StateResponse value),
-    Result config(SetConfigResponse value),
-    Result toggle(SetToggleResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult state(StateResponse value),
+    TResult config(SetConfigResponse value),
+    TResult toggle(SetToggleResponse value),
+    @required TResult orElse(),
   });
-
+  Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $GatewayResponseCopyWith<GatewayResponse> get copyWith;
 }
 
@@ -85,7 +104,7 @@ abstract class $GatewayResponseCopyWith<$Res> {
   factory $GatewayResponseCopyWith(
           GatewayResponse value, $Res Function(GatewayResponse) then) =
       _$GatewayResponseCopyWithImpl<$Res>;
-  $Res call({String address, DateTime timestamp});
+  $Res call({String address, int timestamp});
 }
 
 /// @nodoc
@@ -104,8 +123,7 @@ class _$GatewayResponseCopyWithImpl<$Res>
   }) {
     return _then(_value.copyWith(
       address: address == freezed ? _value.address : address as String,
-      timestamp:
-          timestamp == freezed ? _value.timestamp : timestamp as DateTime,
+      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
 }
@@ -117,7 +135,7 @@ abstract class $StateResponseCopyWith<$Res>
           StateResponse value, $Res Function(StateResponse) then) =
       _$StateResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String address, int level, DateTime timestamp});
+  $Res call({String address, int level, int timestamp});
 }
 
 /// @nodoc
@@ -140,10 +158,12 @@ class _$StateResponseCopyWithImpl<$Res>
     return _then(StateResponse(
       address == freezed ? _value.address : address as String,
       level == freezed ? _value.level : level as int,
-      timestamp == freezed ? _value.timestamp : timestamp as DateTime,
+      timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
 }
+
+@JsonSerializable()
 
 /// @nodoc
 class _$StateResponse implements StateResponse {
@@ -152,12 +172,15 @@ class _$StateResponse implements StateResponse {
         assert(level != null),
         assert(timestamp != null);
 
+  factory _$StateResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$StateResponseFromJson(json);
+
   @override
   final String address;
   @override
   final int level;
   @override
-  final DateTime timestamp;
+  final int timestamp;
 
   @override
   String toString() {
@@ -185,16 +208,17 @@ class _$StateResponse implements StateResponse {
       const DeepCollectionEquality().hash(level) ^
       const DeepCollectionEquality().hash(timestamp);
 
+  @JsonKey(ignore: true)
   @override
   $StateResponseCopyWith<StateResponse> get copyWith =>
       _$StateResponseCopyWithImpl<StateResponse>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result state(String address, int level, DateTime timestamp),
-    @required Result config(String address, String value, DateTime timestamp),
-    @required Result toggle(String address, int level, DateTime timestamp),
+  TResult when<TResult extends Object>({
+    @required TResult state(String address, int level, int timestamp),
+    @required TResult config(String address, String value, int timestamp),
+    @required TResult toggle(String address, int level, int timestamp),
   }) {
     assert(state != null);
     assert(config != null);
@@ -204,11 +228,11 @@ class _$StateResponse implements StateResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result state(String address, int level, DateTime timestamp),
-    Result config(String address, String value, DateTime timestamp),
-    Result toggle(String address, int level, DateTime timestamp),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult state(String address, int level, int timestamp),
+    TResult config(String address, String value, int timestamp),
+    TResult toggle(String address, int level, int timestamp),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (state != null) {
@@ -219,10 +243,10 @@ class _$StateResponse implements StateResponse {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result state(StateResponse value),
-    @required Result config(SetConfigResponse value),
-    @required Result toggle(SetToggleResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult state(StateResponse value),
+    @required TResult config(SetConfigResponse value),
+    @required TResult toggle(SetToggleResponse value),
   }) {
     assert(state != null);
     assert(config != null);
@@ -232,11 +256,11 @@ class _$StateResponse implements StateResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result state(StateResponse value),
-    Result config(SetConfigResponse value),
-    Result toggle(SetToggleResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult state(StateResponse value),
+    TResult config(SetConfigResponse value),
+    TResult toggle(SetToggleResponse value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (state != null) {
@@ -244,18 +268,27 @@ class _$StateResponse implements StateResponse {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$StateResponseToJson(this)..['runtimeType'] = 'state';
+  }
 }
 
 abstract class StateResponse implements GatewayResponse {
-  const factory StateResponse(String address, int level, DateTime timestamp) =
+  const factory StateResponse(String address, int level, int timestamp) =
       _$StateResponse;
+
+  factory StateResponse.fromJson(Map<String, dynamic> json) =
+      _$StateResponse.fromJson;
 
   @override
   String get address;
   int get level;
   @override
-  DateTime get timestamp;
+  int get timestamp;
   @override
+  @JsonKey(ignore: true)
   $StateResponseCopyWith<StateResponse> get copyWith;
 }
 
@@ -266,7 +299,7 @@ abstract class $SetConfigResponseCopyWith<$Res>
           SetConfigResponse value, $Res Function(SetConfigResponse) then) =
       _$SetConfigResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String address, String value, DateTime timestamp});
+  $Res call({String address, String value, int timestamp});
 }
 
 /// @nodoc
@@ -289,10 +322,12 @@ class _$SetConfigResponseCopyWithImpl<$Res>
     return _then(SetConfigResponse(
       address == freezed ? _value.address : address as String,
       value == freezed ? _value.value : value as String,
-      timestamp == freezed ? _value.timestamp : timestamp as DateTime,
+      timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
 }
+
+@JsonSerializable()
 
 /// @nodoc
 class _$SetConfigResponse implements SetConfigResponse {
@@ -301,12 +336,15 @@ class _$SetConfigResponse implements SetConfigResponse {
         assert(value != null),
         assert(timestamp != null);
 
+  factory _$SetConfigResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$SetConfigResponseFromJson(json);
+
   @override
   final String address;
   @override
   final String value;
   @override
-  final DateTime timestamp;
+  final int timestamp;
 
   @override
   String toString() {
@@ -334,16 +372,17 @@ class _$SetConfigResponse implements SetConfigResponse {
       const DeepCollectionEquality().hash(value) ^
       const DeepCollectionEquality().hash(timestamp);
 
+  @JsonKey(ignore: true)
   @override
   $SetConfigResponseCopyWith<SetConfigResponse> get copyWith =>
       _$SetConfigResponseCopyWithImpl<SetConfigResponse>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result state(String address, int level, DateTime timestamp),
-    @required Result config(String address, String value, DateTime timestamp),
-    @required Result toggle(String address, int level, DateTime timestamp),
+  TResult when<TResult extends Object>({
+    @required TResult state(String address, int level, int timestamp),
+    @required TResult config(String address, String value, int timestamp),
+    @required TResult toggle(String address, int level, int timestamp),
   }) {
     assert(state != null);
     assert(config != null);
@@ -353,11 +392,11 @@ class _$SetConfigResponse implements SetConfigResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result state(String address, int level, DateTime timestamp),
-    Result config(String address, String value, DateTime timestamp),
-    Result toggle(String address, int level, DateTime timestamp),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult state(String address, int level, int timestamp),
+    TResult config(String address, String value, int timestamp),
+    TResult toggle(String address, int level, int timestamp),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (config != null) {
@@ -368,10 +407,10 @@ class _$SetConfigResponse implements SetConfigResponse {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result state(StateResponse value),
-    @required Result config(SetConfigResponse value),
-    @required Result toggle(SetToggleResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult state(StateResponse value),
+    @required TResult config(SetConfigResponse value),
+    @required TResult toggle(SetToggleResponse value),
   }) {
     assert(state != null);
     assert(config != null);
@@ -381,11 +420,11 @@ class _$SetConfigResponse implements SetConfigResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result state(StateResponse value),
-    Result config(SetConfigResponse value),
-    Result toggle(SetToggleResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult state(StateResponse value),
+    TResult config(SetConfigResponse value),
+    TResult toggle(SetToggleResponse value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (config != null) {
@@ -393,18 +432,27 @@ class _$SetConfigResponse implements SetConfigResponse {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$SetConfigResponseToJson(this)..['runtimeType'] = 'config';
+  }
 }
 
 abstract class SetConfigResponse implements GatewayResponse {
-  const factory SetConfigResponse(
-      String address, String value, DateTime timestamp) = _$SetConfigResponse;
+  const factory SetConfigResponse(String address, String value, int timestamp) =
+      _$SetConfigResponse;
+
+  factory SetConfigResponse.fromJson(Map<String, dynamic> json) =
+      _$SetConfigResponse.fromJson;
 
   @override
   String get address;
   String get value;
   @override
-  DateTime get timestamp;
+  int get timestamp;
   @override
+  @JsonKey(ignore: true)
   $SetConfigResponseCopyWith<SetConfigResponse> get copyWith;
 }
 
@@ -415,7 +463,7 @@ abstract class $SetToggleResponseCopyWith<$Res>
           SetToggleResponse value, $Res Function(SetToggleResponse) then) =
       _$SetToggleResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String address, int level, DateTime timestamp});
+  $Res call({String address, int level, int timestamp});
 }
 
 /// @nodoc
@@ -438,10 +486,12 @@ class _$SetToggleResponseCopyWithImpl<$Res>
     return _then(SetToggleResponse(
       address == freezed ? _value.address : address as String,
       level == freezed ? _value.level : level as int,
-      timestamp == freezed ? _value.timestamp : timestamp as DateTime,
+      timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
 }
+
+@JsonSerializable()
 
 /// @nodoc
 class _$SetToggleResponse implements SetToggleResponse {
@@ -450,12 +500,15 @@ class _$SetToggleResponse implements SetToggleResponse {
         assert(level != null),
         assert(timestamp != null);
 
+  factory _$SetToggleResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$SetToggleResponseFromJson(json);
+
   @override
   final String address;
   @override
   final int level;
   @override
-  final DateTime timestamp;
+  final int timestamp;
 
   @override
   String toString() {
@@ -483,16 +536,17 @@ class _$SetToggleResponse implements SetToggleResponse {
       const DeepCollectionEquality().hash(level) ^
       const DeepCollectionEquality().hash(timestamp);
 
+  @JsonKey(ignore: true)
   @override
   $SetToggleResponseCopyWith<SetToggleResponse> get copyWith =>
       _$SetToggleResponseCopyWithImpl<SetToggleResponse>(this, _$identity);
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result state(String address, int level, DateTime timestamp),
-    @required Result config(String address, String value, DateTime timestamp),
-    @required Result toggle(String address, int level, DateTime timestamp),
+  TResult when<TResult extends Object>({
+    @required TResult state(String address, int level, int timestamp),
+    @required TResult config(String address, String value, int timestamp),
+    @required TResult toggle(String address, int level, int timestamp),
   }) {
     assert(state != null);
     assert(config != null);
@@ -502,11 +556,11 @@ class _$SetToggleResponse implements SetToggleResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result state(String address, int level, DateTime timestamp),
-    Result config(String address, String value, DateTime timestamp),
-    Result toggle(String address, int level, DateTime timestamp),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult state(String address, int level, int timestamp),
+    TResult config(String address, String value, int timestamp),
+    TResult toggle(String address, int level, int timestamp),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (toggle != null) {
@@ -517,10 +571,10 @@ class _$SetToggleResponse implements SetToggleResponse {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result state(StateResponse value),
-    @required Result config(SetConfigResponse value),
-    @required Result toggle(SetToggleResponse value),
+  TResult map<TResult extends Object>({
+    @required TResult state(StateResponse value),
+    @required TResult config(SetConfigResponse value),
+    @required TResult toggle(SetToggleResponse value),
   }) {
     assert(state != null);
     assert(config != null);
@@ -530,11 +584,11 @@ class _$SetToggleResponse implements SetToggleResponse {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result state(StateResponse value),
-    Result config(SetConfigResponse value),
-    Result toggle(SetToggleResponse value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult state(StateResponse value),
+    TResult config(SetConfigResponse value),
+    TResult toggle(SetToggleResponse value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (toggle != null) {
@@ -542,17 +596,26 @@ class _$SetToggleResponse implements SetToggleResponse {
     }
     return orElse();
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$SetToggleResponseToJson(this)..['runtimeType'] = 'toggle';
+  }
 }
 
 abstract class SetToggleResponse implements GatewayResponse {
-  const factory SetToggleResponse(
-      String address, int level, DateTime timestamp) = _$SetToggleResponse;
+  const factory SetToggleResponse(String address, int level, int timestamp) =
+      _$SetToggleResponse;
+
+  factory SetToggleResponse.fromJson(Map<String, dynamic> json) =
+      _$SetToggleResponse.fromJson;
 
   @override
   String get address;
   int get level;
   @override
-  DateTime get timestamp;
+  int get timestamp;
   @override
+  @JsonKey(ignore: true)
   $SetToggleResponseCopyWith<SetToggleResponse> get copyWith;
 }
