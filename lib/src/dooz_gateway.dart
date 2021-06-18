@@ -200,8 +200,8 @@ class DoozGateway {
       throw ArgumentError('address must be a four digit hexadecimal String');
     }
     final parsedAddress = int.parse(address, radix: 16);
-    if (utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress)) {
+    if (!(utils.isValidUnicastAddress(parsedAddress) ||
+        utils.isValidGroupAddress(parsedAddress))) {
       throw ArgumentError('address must be a valid unicast or group address');
     }
     if (level == null) {
@@ -238,8 +238,8 @@ class DoozGateway {
       throw ArgumentError('address must be a four digit hexadecimal String');
     }
     final parsedAddress = int.parse(address, radix: 16);
-    if (utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress)) {
+    if (!(utils.isValidUnicastAddress(parsedAddress) ||
+        utils.isValidGroupAddress(parsedAddress))) {
       throw ArgumentError('address must be a valid unicast or group address');
     }
     return GetStateResponse.fromJson(await _sendRequest(
@@ -257,7 +257,7 @@ class DoozGateway {
       throw ArgumentError('address must be a four digit hexadecimal String');
     }
     final parsedAddress = int.parse(address, radix: 16);
-    if (utils.isValidUnicastAddress(parsedAddress)) {
+    if (!utils.isValidUnicastAddress(parsedAddress)) {
       throw ArgumentError(
           'address must be a valid unicast address (groups not supported)');
     }
