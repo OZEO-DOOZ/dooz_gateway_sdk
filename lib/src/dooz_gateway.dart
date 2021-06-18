@@ -238,11 +238,12 @@ class DoozGateway {
 
   /// Toggle a device
   Future<SetToggleResponse> toggle(final String address) async {
-    _checkPeerInitialized();
-    final _result = await _peer.sendRequest(
+    if (int.parse(address, radix: 16) >= meshGroupsMinAddress) {
+      throw UnsupportedError('Toggle command is not supported for groups');
+    }
+    return SetToggleResponse.fromJson(await _sendRequest(
       'toggle',
-      {'address': address},
-    ) as Map<String, dynamic>;
-    return SetToggleResponse.fromJson(_result);
+      <String, dynamic>{'address': address},
+    ));
   }
 }
