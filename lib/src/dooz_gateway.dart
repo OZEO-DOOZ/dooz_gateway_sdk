@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:dooz_gateway_sdk/src/constants.dart';
+import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
+import 'package:json_rpc_2/error_code.dart';
 import 'package:json_rpc_2/json_rpc_2.dart';
 import 'package:dooz_gateway_sdk/src/models/models.dart';
 import 'package:pedantic/pedantic.dart';
@@ -120,7 +122,44 @@ class DoozGateway {
 
   void _checkPeerInitialized() {
     if (_peer == null) {
-      throw ArgumentError('Please use connect() before use other method');
+      throw OoplaNotConnectedError();
+    }
+  }
+
+  Future<Map<String, dynamic>> _sendRequest(
+    String method,
+    Map<String, dynamic> params,
+  ) async {
+    _checkPeerInitialized();
+    final _requestResult = await _peer
+        .sendRequest(method, params)
+        .timeout(kGatewayRequestTimeout)
+        .catchError(_onRequestError) as Map<String, dynamic>;
+    return _requestResult;
+  }
+
+  void _onRequestError(Object error) {
+    if (error is TimeoutException) {
+      throw OoplaRequestTimeout();
+    } else if (error is RpcException) {
+      switch (error.code) {
+        case PARSE_ERROR:
+        case INVALID_REQUEST:
+        case METHOD_NOT_FOUND:
+        case INVALID_PARAMS:
+        case INTERNAL_ERROR:
+        case SERVER_ERROR:
+          throw RpcSpecError(error.code, error.message, data: error.data);
+          break;
+        case defaultErrorCode:
+          throw OoplaApiError(error.code, error.message);
+          break;
+        default:
+          throw RpcUnknownError(error.code, error.message, data: error.data);
+          break;
+      }
+    } else {
+      throw FallThroughError();
     }
   }
 
@@ -131,31 +170,19 @@ class DoozGateway {
     final String login,
     final String password,
   ) async {
-    _checkPeerInitialized();
     if (login == null || login.isEmpty) {
       throw ArgumentError('login must not be null nor empty');
     }
     if (password == null || password.isEmpty) {
       throw ArgumentError('password must not be null nor empty');
     }
-    print('about to send request \'authenticate\'');
-    final _result = await _peer
-        .sendRequest(
-          'authenticate',
-          {
-            'login': login,
-            'password': password,
-          },
-        )
-        .timeout(kGatewayRequestTimeout)
-        .catchError(
-          (Object e) => {
-            'status': 'refused',
-            'timestamp': 0,
-          },
-          test: (Object e) => e is TimeoutException,
-        ) as Map<String, dynamic>;
-    return AuthResponse.fromJson(_result);
+    return AuthResponse.fromJson(await _sendRequest(
+      'authenticate',
+      <String, dynamic>{
+        'login': login,
+        'password': password,
+      },
+    ));
   }
 
   /// Set the [level] of the device at [address]
