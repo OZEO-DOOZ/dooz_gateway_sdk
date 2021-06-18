@@ -41,13 +41,10 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  GetStateResponse getState(String address, dynamic level, dynamic target,
-      int remaining, int timestamp) {
+  GetStateResponse getState(String address, dynamic level, int timestamp) {
     return GetStateResponse(
       address,
       level,
-      target,
-      remaining,
       timestamp,
     );
   }
@@ -93,9 +90,7 @@ mixin _$GatewayResponse {
     @required
         TResult setState(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required
-        TResult getState(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+    @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
@@ -105,8 +100,7 @@ mixin _$GatewayResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult setState(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
-    TResult getState(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
+    TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
     TResult setConfig(String address, String value, int timestamp),
@@ -275,9 +269,7 @@ class _$SetStateResponse implements SetStateResponse {
     @required
         TResult setState(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required
-        TResult getState(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+    @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
@@ -295,8 +287,7 @@ class _$SetStateResponse implements SetStateResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult setState(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
-    TResult getState(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
+    TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
     TResult setConfig(String address, String value, int timestamp),
@@ -372,12 +363,7 @@ abstract class $GetStateResponseCopyWith<$Res>
           GetStateResponse value, $Res Function(GetStateResponse) then) =
       _$GetStateResponseCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String address,
-      dynamic level,
-      dynamic target,
-      int remaining,
-      int timestamp});
+  $Res call({String address, dynamic level, int timestamp});
 }
 
 /// @nodoc
@@ -395,15 +381,11 @@ class _$GetStateResponseCopyWithImpl<$Res>
   $Res call({
     Object address = freezed,
     Object level = freezed,
-    Object target = freezed,
-    Object remaining = freezed,
     Object timestamp = freezed,
   }) {
     return _then(GetStateResponse(
       address == freezed ? _value.address : address as String,
       level == freezed ? _value.level : level as dynamic,
-      target == freezed ? _value.target : target as dynamic,
-      remaining == freezed ? _value.remaining : remaining as int,
       timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
@@ -413,12 +395,9 @@ class _$GetStateResponseCopyWithImpl<$Res>
 
 /// @nodoc
 class _$GetStateResponse implements GetStateResponse {
-  const _$GetStateResponse(
-      this.address, this.level, this.target, this.remaining, this.timestamp)
+  const _$GetStateResponse(this.address, this.level, this.timestamp)
       : assert(address != null),
         assert(level != null),
-        assert(target != null),
-        assert(remaining != null),
         assert(timestamp != null);
 
   factory _$GetStateResponse.fromJson(Map<String, dynamic> json) =>
@@ -428,16 +407,12 @@ class _$GetStateResponse implements GetStateResponse {
   final String address;
   @override
   final dynamic level;
-  @override
-  final dynamic target;
-  @override
-  final int remaining;
-  @override
+  @override /* dynamic target, int remaining, */
   final int timestamp;
 
   @override
   String toString() {
-    return 'GatewayResponse.getState(address: $address, level: $level, target: $target, remaining: $remaining, timestamp: $timestamp)';
+    return 'GatewayResponse.getState(address: $address, level: $level, timestamp: $timestamp)';
   }
 
   @override
@@ -449,11 +424,6 @@ class _$GetStateResponse implements GetStateResponse {
                     .equals(other.address, address)) &&
             (identical(other.level, level) ||
                 const DeepCollectionEquality().equals(other.level, level)) &&
-            (identical(other.target, target) ||
-                const DeepCollectionEquality().equals(other.target, target)) &&
-            (identical(other.remaining, remaining) ||
-                const DeepCollectionEquality()
-                    .equals(other.remaining, remaining)) &&
             (identical(other.timestamp, timestamp) ||
                 const DeepCollectionEquality()
                     .equals(other.timestamp, timestamp)));
@@ -464,8 +434,6 @@ class _$GetStateResponse implements GetStateResponse {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(address) ^
       const DeepCollectionEquality().hash(level) ^
-      const DeepCollectionEquality().hash(target) ^
-      const DeepCollectionEquality().hash(remaining) ^
       const DeepCollectionEquality().hash(timestamp);
 
   @JsonKey(ignore: true)
@@ -479,9 +447,7 @@ class _$GetStateResponse implements GetStateResponse {
     @required
         TResult setState(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required
-        TResult getState(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+    @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
@@ -491,7 +457,7 @@ class _$GetStateResponse implements GetStateResponse {
     assert(getState != null);
     assert(toggle != null);
     assert(setConfig != null);
-    return getState(address, level, target, remaining, timestamp);
+    return getState(address, level, timestamp);
   }
 
   @override
@@ -499,8 +465,7 @@ class _$GetStateResponse implements GetStateResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult setState(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
-    TResult getState(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
+    TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
     TResult setConfig(String address, String value, int timestamp),
@@ -508,7 +473,7 @@ class _$GetStateResponse implements GetStateResponse {
   }) {
     assert(orElse != null);
     if (getState != null) {
-      return getState(address, level, target, remaining, timestamp);
+      return getState(address, level, timestamp);
     }
     return orElse();
   }
@@ -551,8 +516,8 @@ class _$GetStateResponse implements GetStateResponse {
 }
 
 abstract class GetStateResponse implements GatewayResponse {
-  const factory GetStateResponse(String address, dynamic level, dynamic target,
-      int remaining, int timestamp) = _$GetStateResponse;
+  const factory GetStateResponse(String address, dynamic level, int timestamp) =
+      _$GetStateResponse;
 
   factory GetStateResponse.fromJson(Map<String, dynamic> json) =
       _$GetStateResponse.fromJson;
@@ -560,9 +525,7 @@ abstract class GetStateResponse implements GatewayResponse {
   @override
   String get address;
   dynamic get level;
-  dynamic get target;
-  int get remaining;
-  @override
+  @override /* dynamic target, int remaining, */
   int get timestamp;
   @override
   @JsonKey(ignore: true)
@@ -683,9 +646,7 @@ class _$SetToggleResponse implements SetToggleResponse {
     @required
         TResult setState(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required
-        TResult getState(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+    @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
@@ -703,8 +664,7 @@ class _$SetToggleResponse implements SetToggleResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult setState(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
-    TResult getState(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
+    TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
     TResult setConfig(String address, String value, int timestamp),
@@ -864,9 +824,7 @@ class _$SetConfigResponse implements SetConfigResponse {
     @required
         TResult setState(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required
-        TResult getState(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+    @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
@@ -884,8 +842,7 @@ class _$SetConfigResponse implements SetConfigResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult setState(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
-    TResult getState(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
+    TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
     TResult setConfig(String address, String value, int timestamp),
