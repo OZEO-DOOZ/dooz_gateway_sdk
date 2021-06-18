@@ -243,8 +243,10 @@ class DoozGateway {
         utils.isValidGroupAddress(parsedAddress)) {
       throw ArgumentError('address must be a valid unicast or group address');
     }
-    return GetStateResponse.fromJson(
-        await _sendRequest('get', <String, dynamic>{'address': address}));
+    return GetStateResponse.fromJson(await _sendRequest(
+      'get',
+      <String, dynamic>{'address': address},
+    ));
   }
 
   /// Toggle a device
