@@ -3,12 +3,12 @@ import 'dart:io';
 
 import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
+import 'package:dooz_gateway_sdk/src/models/models.dart';
+import 'package:dooz_gateway_sdk/src/utils/utils.dart' as utils;
 import 'package:json_rpc_2/error_code.dart';
 import 'package:json_rpc_2/json_rpc_2.dart';
-import 'package:dooz_gateway_sdk/src/models/models.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:web_socket_channel/io.dart';
-import 'package:dooz_gateway_sdk/src/utils/utils.dart' as utils;
 
 /// {@template dooz_gateway_contructor}
 /// Create an [DoozGateway] which allow you to control your gateway
