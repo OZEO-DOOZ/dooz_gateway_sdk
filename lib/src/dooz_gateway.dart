@@ -136,7 +136,6 @@ class DoozGateway {
         .sendRequest(method, params)
         .timeout(kGatewayRequestTimeout)
         .catchError(_onRequestError) as Map<String, dynamic>;
-    print(_requestResult);
     return _requestResult;
   }
 

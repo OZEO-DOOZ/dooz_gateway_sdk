@@ -70,24 +70,32 @@ void main() async {
 
 void _testScenario(DoozGateway gateway) async {
   // ------ TOGGLE TESTS ------
-  var toggleResponse = await gateway.toggle(_output0);
+  var toggleResponse = await gateway.toggle(_dimmerOutput);
   print(toggleResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
-  toggleResponse = await gateway.toggle(_output0);
+  toggleResponse = await gateway.toggle(_dimmerOutput);
   print(toggleResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
 
   // ------- SET TESTS --------
   // send set 50%
-  var setResponse = await gateway.setState(_output0, 50);
+  var setResponse = await gateway.setState(_dimmerOutput, 50);
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   // send set 'on'
-  setResponse = await gateway.setState(_output0, 'on');
+  setResponse = await gateway.setState(_dimmerOutput, 'on');
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   // send set 'off'
-  setResponse = await gateway.setState(_output0, 'off');
+  setResponse = await gateway.setState(_dimmerOutput, 'off');
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
+  // send set 70%
+  setResponse = await gateway.setState(_dimmerOutput, 70);
+  print(setResponse);
+  await Future<void>.delayed(const Duration(seconds: 2));
+  // send get
+  final getResponse = await gateway.getState(_dimmerOutput);
+  print(getResponse);
+  await Future<void>.delayed(const Duration(seconds: 10));
 }
