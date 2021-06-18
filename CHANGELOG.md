@@ -1,3 +1,10 @@
+## 0.0.3
+
+This release introduces :
+
+- the `set_log_priority` method
+- _TODO_
+
 ## 0.0.2
 
 This release introduces :
