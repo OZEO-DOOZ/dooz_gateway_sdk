@@ -238,6 +238,9 @@ class DoozGateway {
 
   /// Toggle a device
   Future<SetToggleResponse> toggle(final String address) async {
+    if (address == null) {
+      throw ArgumentError.notNull('address');
+    }
     if (int.parse(address, radix: 16) >= meshGroupsMinAddress) {
       throw UnsupportedError('Toggle command is not supported for groups');
     }
