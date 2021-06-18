@@ -1,6 +1,13 @@
 ## 0.0.2
 
-- Supports toggle, set and get methods.
+This release introduces :
+
+- the `toggle` method
+- the `set` method
+- the `get` method
+- an update example script to test these out on two differents element addresses via unicast
+- enhanced error handling based on JSON-RPC spec + custom ooPLA errors
+- enhanced arguments checks
 
 ## 0.0.1
 
