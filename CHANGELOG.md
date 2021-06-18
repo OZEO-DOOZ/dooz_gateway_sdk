@@ -1,6 +1,6 @@
 ## 0.0.2
 
-- Supports toggle and set methods.
+- Supports toggle, set and get methods.
 
 ## 0.0.1
 
