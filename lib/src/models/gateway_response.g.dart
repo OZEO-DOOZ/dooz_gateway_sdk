@@ -6,18 +6,57 @@ part of 'gateway_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$StateResponse _$_$StateResponseFromJson(Map<String, dynamic> json) {
-  return _$StateResponse(
+_$SetStateResponse _$_$SetStateResponseFromJson(Map<String, dynamic> json) {
+  return _$SetStateResponse(
     json['address'] as String,
-    json['level'] as int,
+    json['level'],
+    json['target'],
+    json['remaining'] as int,
     json['timestamp'] as int,
   );
 }
 
-Map<String, dynamic> _$_$StateResponseToJson(_$StateResponse instance) =>
+Map<String, dynamic> _$_$SetStateResponseToJson(_$SetStateResponse instance) =>
     <String, dynamic>{
       'address': instance.address,
       'level': instance.level,
+      'target': instance.target,
+      'remaining': instance.remaining,
+      'timestamp': instance.timestamp,
+    };
+
+_$GetStateResponse _$_$GetStateResponseFromJson(Map<String, dynamic> json) {
+  return _$GetStateResponse(
+    json['address'] as String,
+    json['level'],
+    json['timestamp'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$GetStateResponseToJson(_$GetStateResponse instance) =>
+    <String, dynamic>{
+      'address': instance.address,
+      'level': instance.level,
+      'timestamp': instance.timestamp,
+    };
+
+_$SetToggleResponse _$_$SetToggleResponseFromJson(Map<String, dynamic> json) {
+  return _$SetToggleResponse(
+    json['address'] as String,
+    json['level'],
+    json['target'],
+    json['remaining'] as int,
+    json['timestamp'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$SetToggleResponseToJson(
+        _$SetToggleResponse instance) =>
+    <String, dynamic>{
+      'address': instance.address,
+      'level': instance.level,
+      'target': instance.target,
+      'remaining': instance.remaining,
       'timestamp': instance.timestamp,
     };
 
@@ -34,21 +73,5 @@ Map<String, dynamic> _$_$SetConfigResponseToJson(
     <String, dynamic>{
       'address': instance.address,
       'value': instance.value,
-      'timestamp': instance.timestamp,
-    };
-
-_$SetToggleResponse _$_$SetToggleResponseFromJson(Map<String, dynamic> json) {
-  return _$SetToggleResponse(
-    json['address'] as String,
-    json['level'] as int,
-    json['timestamp'] as int,
-  );
-}
-
-Map<String, dynamic> _$_$SetToggleResponseToJson(
-        _$SetToggleResponse instance) =>
-    <String, dynamic>{
-      'address': instance.address,
-      'level': instance.level,
       'timestamp': instance.timestamp,
     };
