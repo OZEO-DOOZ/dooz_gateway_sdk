@@ -8,6 +8,7 @@ import 'package:json_rpc_2/json_rpc_2.dart';
 import 'package:dooz_gateway_sdk/src/models/models.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:web_socket_channel/io.dart';
+import 'package:dooz_gateway_sdk/src/utils/utils.dart' as utils;
 
 /// {@template dooz_gateway_contructor}
 /// Create an [DoozGateway] which allow you to control your gateway
@@ -99,10 +100,14 @@ class DoozGateway {
 
   /// Destroy the WSS connection by calling `close` method on the [Peer] object.
   Future<void> disconnect() async {
-    print('closing connection...');
-    await _peer.close();
-    _peer = null;
-    print('done !');
+    if (_peer != null) {
+      print('closing connection...');
+      await _peer.close();
+      _peer = null;
+      print('done !');
+    } else {
+      print('socket is not opened');
+    }
   }
 
   void _registerMethods() {
@@ -110,11 +115,7 @@ class DoozGateway {
       'notify_state',
       (Parameters parameters) {
         _notifyStateController.add(
-          NotifyState(
-            parameters['address'].asString,
-            parameters['level'].asInt,
-            parameters['timestamp'].asInt,
-          ),
+          NotifyState.fromJson(parameters.asMap as Map<String, dynamic>),
         );
       },
     );
@@ -135,6 +136,7 @@ class DoozGateway {
         .sendRequest(method, params)
         .timeout(kGatewayRequestTimeout)
         .catchError(_onRequestError) as Map<String, dynamic>;
+    print(_requestResult);
     return _requestResult;
   }
 
@@ -186,36 +188,82 @@ class DoozGateway {
   }
 
   /// Set the [level] of the device at [address]
-  Future<StateResponse> setState(final String address, final int level) async {
-    _checkPeerInitialized();
-    final _result = await _peer.sendRequest(
+  Future<SetStateResponse> setState(
+    final String address,
+    final dynamic level, {
+    final int delay = 0,
+    final int transition = 0,
+  }) async {
+    if (address == null || address.isEmpty) {
+      throw ArgumentError('address must not be null nor empty');
+    }
+    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
+      throw ArgumentError('address must be a four digit hexadecimal String');
+    }
+    final parsedAddress = int.parse(address, radix: 16);
+    if (utils.isValidUnicastAddress(parsedAddress) ||
+        utils.isValidGroupAddress(parsedAddress)) {
+      throw ArgumentError('address must be a valid unicast or group address');
+    }
+    if (level == null) {
+      throw ArgumentError.notNull('level');
+    }
+    if (level is int) {
+      if (level < 0 || level > 100) {
+        throw ArgumentError('level must be between 0 and 100');
+      }
+    } else if (level is String) {
+      if (level != 'on' && level != 'off') {
+        throw ArgumentError('level as String must be either \'on\' or \'off\'');
+      }
+    } else {
+      throw UnsupportedError('level must be either of int or String type');
+    }
+    return SetStateResponse.fromJson(await _sendRequest(
       'set',
-      {
+      <String, dynamic>{
         'address': address,
         'level': level,
+        'delay_ms': delay,
+        'transition_ms': transition,
       },
-    ) as Map<String, dynamic>;
-    return StateResponse(
-      _result['address'] as String,
-      _result['level'] as int,
-      _result['timestamp'] as int,
-    );
+    ));
   }
 
-  /// Get the state of a device from it's [address]
-  Future<StateResponse> getState(final String address) async {
-    _checkPeerInitialized();
-    final _result = await _peer.sendRequest(
-      'get',
-      {
-        'address': address,
-      },
-    ) as Map<String, dynamic>;
-    return StateResponse(
-      _result['address'] as String,
-      _result['level'] as int,
-      _result['timestamp'] as int,
-    );
+  /// Get the state of a device from its [address]
+  Future<GetStateResponse> getState(final String address) async {
+    if (address == null || address.isEmpty) {
+      throw ArgumentError('address must not be null nor empty');
+    }
+    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
+      throw ArgumentError('address must be a four digit hexadecimal String');
+    }
+    final parsedAddress = int.parse(address, radix: 16);
+    if (utils.isValidUnicastAddress(parsedAddress) ||
+        utils.isValidGroupAddress(parsedAddress)) {
+      throw ArgumentError('address must be a valid unicast or group address');
+    }
+    return GetStateResponse.fromJson(
+        await _sendRequest('get', <String, dynamic>{'address': address}));
+  }
+
+  /// Toggle a device
+  Future<SetToggleResponse> toggle(final String address) async {
+    if (address == null || address.isEmpty) {
+      throw ArgumentError('address must not be null nor empty');
+    }
+    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
+      throw ArgumentError('address must be a four digit hexadecimal String');
+    }
+    final parsedAddress = int.parse(address, radix: 16);
+    if (utils.isValidUnicastAddress(parsedAddress)) {
+      throw ArgumentError(
+          'address must be a valid unicast address (groups not supported)');
+    }
+    return SetToggleResponse.fromJson(await _sendRequest(
+      'toggle',
+      <String, dynamic>{'address': address},
+    ));
   }
 
   /// Set the config value of a device

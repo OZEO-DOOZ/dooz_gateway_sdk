@@ -34,24 +34,60 @@ void main() async {
     if (authResult.status == 'OK') {
       print(
           'Successfully authenticated using user\'s creds after $authTries tries!');
-      var toggleResponse = await gateway.toggle(_output0);
-      print(toggleResponse);
-      await Future<void>.delayed(
-          const Duration(seconds: 10)); // wait for notifications from mesh
+      await _testScenario(gateway);
     } else {
-      // print('Server auth failed... fallback to local auth');
-      // await gateway.disconnect();
-      // await gateway.connect(_gatewayID);
-      // authResult = await gateway.authenticate(_gatewayUser, _gatewayPassword);
-      // if (authResult) {
-      //   print('Successfully authenticated using gateway creds !');
-      // } else {
-      print('could not succeed in gateway auth...');
-      // }
+      print('Server auth failed... fallback to local auth');
+      await gateway.disconnect();
+      await gateway.connect(_gatewayID);
+      authTries = 0;
+      do {
+        authResult = await gateway
+            .authenticate(
+              _gatewayUser,
+              _gatewayPassword,
+            )
+            .catchError(
+              (Object e) => AuthResponse('refused', 0),
+              test: (e) => e is OoplaRequestTimeout,
+            );
+        print(authResult);
+        authTries++;
+        if (authResult.status == 'OK' || authResult.timestamp == 0) break;
+      } while (authTries < 3);
+      if (authResult.status == 'OK') {
+        print('Successfully authenticated using gateway creds !');
+        await _testScenario(gateway);
+      } else {
+        print('could not succeed in gateway auth...');
+      }
     }
   } catch (e) {
     print('caught error...$e');
   }
   // close wss connection on the gateway
   await gateway.disconnect();
+}
+
+void _testScenario(DoozGateway gateway) async {
+  // ------ TOGGLE TESTS ------
+  var toggleResponse = await gateway.toggle(_output0);
+  print(toggleResponse);
+  await Future<void>.delayed(const Duration(seconds: 2));
+  toggleResponse = await gateway.toggle(_output0);
+  print(toggleResponse);
+  await Future<void>.delayed(const Duration(seconds: 2));
+
+  // ------- SET TESTS --------
+  // send set 50%
+  var setResponse = await gateway.setState(_output0, 50);
+  print(setResponse);
+  await Future<void>.delayed(const Duration(seconds: 2));
+  // send set 'on'
+  setResponse = await gateway.setState(_output0, 'on');
+  print(setResponse);
+  await Future<void>.delayed(const Duration(seconds: 2));
+  // send set 'off'
+  setResponse = await gateway.setState(_output0, 'off');
+  print(setResponse);
+  await Future<void>.delayed(const Duration(seconds: 2));
 }

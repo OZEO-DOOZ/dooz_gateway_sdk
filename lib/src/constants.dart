@@ -9,5 +9,13 @@ const int defaultErrorCode = 1;
 // ----------------------------------
 
 // ------- BLE Mesh constants -------
-const int meshGroupsMinAddress = 0xC000;
+const int meshUnassignedAddress = 0x0000;
+const int meshStartUnicastAddress = 0x0001;
+const int meshEndUnicastAddress = 0x7FFF;
+const int meshStartGroupAddress = 0xC000;
+const int meshEndGroupAddress = 0xFEFF;
+const int meshAllProxiesAddress = 0xFFFC;
+const int meshAllFriendsAddress = 0xFFFD;
+const int meshAllRelaysAddress = 0xFFFE;
+const int meshAllNodesAddress = 0xFFFF;
 // ----------------------------------
