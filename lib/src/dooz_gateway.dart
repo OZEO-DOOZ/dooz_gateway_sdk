@@ -309,6 +309,22 @@ class DoozGateway {
     return ModulesVersionsResponse.fromJson(await _sendRequest('get_versions'));
   }
 
+  Future<GetLogsResponse> getLogs({
+    LogLevel priority = LogLevel.warning,
+  }) async {
+    if (priority == null) {
+      throw ArgumentError.notNull('priority');
+    }
+    return GetLogsResponse.fromJson(await _sendRequest(
+      'get_logs',
+      params: <String, dynamic>{'priority': priority.index},
+    ));
+  }
+
+  Future<ClearLogsResponse> clearLogs() async {
+    return ClearLogsResponse.fromJson(await _sendRequest('clear_logs'));
+  }
+
   Future<RebootResponse> rebootGateway() async {
     return RebootResponse.fromJson(await _sendRequest('reboot'));
   }

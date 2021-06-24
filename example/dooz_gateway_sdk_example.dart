@@ -1,4 +1,5 @@
 import 'package:dooz_gateway_sdk/dooz_gateway_sdk.dart';
+import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
 import 'package:dooz_gateway_sdk/src/models/models.dart';
 
@@ -77,6 +78,12 @@ void _testAdminScenario(DoozGateway gateway) async {
   print(versionsResponse);
   versionsResponse = await gateway.getModulesVersion();
   print(versionsResponse);
+  var getLogsResponse = await gateway.getLogs(priority: LogLevel.debug);
+  print(getLogsResponse);
+  final clearLogsResponse = await gateway.clearLogs();
+  print(clearLogsResponse);
+  getLogsResponse = await gateway.getLogs(priority: LogLevel.debug);
+  print(getLogsResponse);
   final rebootResponse = await gateway.rebootGateway();
   print(rebootResponse);
 }
