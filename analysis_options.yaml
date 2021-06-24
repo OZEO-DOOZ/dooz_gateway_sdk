@@ -10,8 +10,9 @@ include: package:pedantic/analysis_options.yaml
 #     - camel_case_types
 
 analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+  exclude:
+    - lib/src/models/*.freezed.dart
+    - lib/src/models/*.g.dart
   errors:
     invalid_use_of_visible_for_testing_member: error
   strong-mode:
