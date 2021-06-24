@@ -34,7 +34,8 @@ void main() async {
     if (authResult.status == 'OK') {
       print(
           'Successfully authenticated using user\'s creds after $authTries tries!');
-      await _testScenario(gateway);
+      // await _testControlsScenario(gateway);
+      await _testAdminScenario(gateway);
     } else {
       print('Server auth failed... fallback to local auth');
       await gateway.disconnect();
@@ -56,7 +57,8 @@ void main() async {
       } while (authTries < 3);
       if (authResult.status == 'OK') {
         print('Successfully authenticated using gateway creds !');
-        await _testScenario(gateway);
+        // await _testControlsScenario(gateway);
+        await _testAdminScenario(gateway);
       } else {
         print('could not succeed in gateway auth...');
       }
@@ -68,7 +70,14 @@ void main() async {
   await gateway.disconnect();
 }
 
-void _testScenario(DoozGateway gateway) async {
+void _testAdminScenario(DoozGateway gateway) async {
+  final swVersion = await gateway.getSoftwareVersion();
+  print(swVersion);
+  final hwVersion = await gateway.getHardwareVersion();
+  print(hwVersion);
+}
+
+void _testControlsScenario(DoozGateway gateway) async {
   // ------ TOGGLE TESTS ------
   // DIMMER
   print('toggle $_dimmerOutput');

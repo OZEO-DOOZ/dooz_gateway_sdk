@@ -186,6 +186,8 @@ class DoozGateway {
     ));
   }
 
+  // -------- Control the network --------
+
   /// Set the [level] of the device at [address]
   Future<SetStateResponse> setState(
     final String address,
@@ -284,4 +286,24 @@ class DoozGateway {
       _result['timestamp'] as int,
     );
   }
+  // -------------------------------------
+
+  // --------- Manage the gateway --------
+
+  /// Get ooPLA's **software** version
+  Future<SoftwareVersionResponse> getSoftwareVersion() async {
+    return SoftwareVersionResponse.fromJson(
+        await _sendRequest('get_version', <String, dynamic>{}));
+  }
+
+  /// Get ooPLA's **hardware** version
+  Future<HardwareVersionResponse> getHardwareVersion() async {
+    // TODO remove this transformation once fix is implemented on ooPLA's side
+    final _hardwareVersionResponse =
+        await _sendRequest('get_hw_version', <String, dynamic>{});
+    return HardwareVersionResponse.fromJson(
+      <String, dynamic>{'hw_version': _hardwareVersionResponse['hw version']},
+    );
+  }
+  // -------------------------------------
 }
