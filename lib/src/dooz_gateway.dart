@@ -128,9 +128,9 @@ class DoozGateway {
   }
 
   Future<Map<String, dynamic>> _sendRequest(
-    String method,
-    Map<String, dynamic> params,
-  ) async {
+    String method, {
+    Map<String, dynamic> params = const <String, dynamic>{},
+  }) async {
     _checkPeerInitialized();
     final _requestResult = await _peer
         .sendRequest(method, params)
@@ -179,7 +179,7 @@ class DoozGateway {
     }
     return AuthResponse.fromJson(await _sendRequest(
       'authenticate',
-      <String, dynamic>{
+      params: <String, dynamic>{
         'login': login,
         'password': password,
       },
@@ -222,7 +222,7 @@ class DoozGateway {
     }
     return SetStateResponse.fromJson(await _sendRequest(
       'set',
-      <String, dynamic>{
+      params: <String, dynamic>{
         'address': address,
         'level': level,
         'delay_ms': delay,
@@ -246,7 +246,7 @@ class DoozGateway {
     }
     return GetStateResponse.fromJson(await _sendRequest(
       'get',
-      <String, dynamic>{'address': address},
+      params: <String, dynamic>{'address': address},
     ));
   }
 
@@ -265,7 +265,7 @@ class DoozGateway {
     }
     return SetToggleResponse.fromJson(await _sendRequest(
       'toggle',
-      <String, dynamic>{'address': address},
+      params: <String, dynamic>{'address': address},
     ));
   }
 
@@ -292,15 +292,13 @@ class DoozGateway {
 
   /// Get ooPLA's **software** version
   Future<SoftwareVersionResponse> getSoftwareVersion() async {
-    return SoftwareVersionResponse.fromJson(
-        await _sendRequest('get_version', <String, dynamic>{}));
+    return SoftwareVersionResponse.fromJson(await _sendRequest('get_version'));
   }
 
   /// Get ooPLA's **hardware** version
   Future<HardwareVersionResponse> getHardwareVersion() async {
     // TODO remove this transformation once fix is implemented on ooPLA's side
-    final _hardwareVersionResponse =
-        await _sendRequest('get_hw_version', <String, dynamic>{});
+    final _hardwareVersionResponse = await _sendRequest('get_hw_version');
     return HardwareVersionResponse.fromJson(
       <String, dynamic>{'hw_version': _hardwareVersionResponse['hw version']},
     );
@@ -308,8 +306,11 @@ class DoozGateway {
 
   /// Get ooPLA's modules versions
   Future<ModulesVersionsResponse> getModulesVersion() async {
-    return ModulesVersionsResponse.fromJson(
-        await _sendRequest('get_versions', <String, dynamic>{}));
+    return ModulesVersionsResponse.fromJson(await _sendRequest('get_versions'));
+  }
+
+  Future<RebootResponse> rebootGateway() async {
+    return RebootResponse.fromJson(await _sendRequest('reboot'));
   }
   // -------------------------------------
 }
