@@ -32,17 +32,19 @@ Map<String, dynamic> _$_$HardwareVersionResponseToJson(
       'hw_version': instance.hw_version,
     };
 
-_$OtherVersionsResponse _$_$OtherVersionsResponseFromJson(
+_$ModulesVersionsResponse _$_$ModulesVersionsResponseFromJson(
     Map<String, dynamic> json) {
-  return _$OtherVersionsResponse(
-    (json['versions'] as Map<String, dynamic>)?.map(
-      (k, e) => MapEntry(k, e as String),
-    ),
+  return _$ModulesVersionsResponse(
+    (json['versions'] as List)
+        ?.map((e) => (e as Map<String, dynamic>)?.map(
+              (k, e) => MapEntry(k, e as String),
+            ))
+        ?.toList(),
   );
 }
 
-Map<String, dynamic> _$_$OtherVersionsResponseToJson(
-        _$OtherVersionsResponse instance) =>
+Map<String, dynamic> _$_$ModulesVersionsResponseToJson(
+        _$ModulesVersionsResponse instance) =>
     <String, dynamic>{
       'versions': instance.versions,
     };

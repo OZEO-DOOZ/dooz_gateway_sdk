@@ -14,8 +14,8 @@ GetVersionsResponse _$GetVersionsResponseFromJson(Map<String, dynamic> json) {
       return SoftwareVersionResponse.fromJson(json);
     case 'hardware':
       return HardwareVersionResponse.fromJson(json);
-    case 'others':
-      return OtherVersionsResponse.fromJson(json);
+    case 'modules':
+      return ModulesVersionsResponse.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -41,8 +41,8 @@ class _$GetVersionsResponseTearOff {
   }
 
 // ignore: unused_element
-  OtherVersionsResponse others(Map<String, String> versions) {
-    return OtherVersionsResponse(
+  ModulesVersionsResponse modules(List<Map<String, String>> versions) {
+    return ModulesVersionsResponse(
       versions,
     );
   }
@@ -63,26 +63,26 @@ mixin _$GetVersionsResponse {
   TResult when<TResult extends Object>({
     @required TResult software(String version),
     @required TResult hardware(String hw_version),
-    @required TResult others(Map<String, String> versions),
+    @required TResult modules(List<Map<String, String>> versions),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult software(String version),
     TResult hardware(String hw_version),
-    TResult others(Map<String, String> versions),
+    TResult modules(List<Map<String, String>> versions),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult software(SoftwareVersionResponse value),
     @required TResult hardware(HardwareVersionResponse value),
-    @required TResult others(OtherVersionsResponse value),
+    @required TResult modules(ModulesVersionsResponse value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult software(SoftwareVersionResponse value),
     TResult hardware(HardwareVersionResponse value),
-    TResult others(OtherVersionsResponse value),
+    TResult modules(ModulesVersionsResponse value),
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
@@ -174,11 +174,11 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
   TResult when<TResult extends Object>({
     @required TResult software(String version),
     @required TResult hardware(String hw_version),
-    @required TResult others(Map<String, String> versions),
+    @required TResult modules(List<Map<String, String>> versions),
   }) {
     assert(software != null);
     assert(hardware != null);
-    assert(others != null);
+    assert(modules != null);
     return software(version);
   }
 
@@ -187,7 +187,7 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult software(String version),
     TResult hardware(String hw_version),
-    TResult others(Map<String, String> versions),
+    TResult modules(List<Map<String, String>> versions),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -202,11 +202,11 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
   TResult map<TResult extends Object>({
     @required TResult software(SoftwareVersionResponse value),
     @required TResult hardware(HardwareVersionResponse value),
-    @required TResult others(OtherVersionsResponse value),
+    @required TResult modules(ModulesVersionsResponse value),
   }) {
     assert(software != null);
     assert(hardware != null);
-    assert(others != null);
+    assert(modules != null);
     return software(this);
   }
 
@@ -215,7 +215,7 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
   TResult maybeMap<TResult extends Object>({
     TResult software(SoftwareVersionResponse value),
     TResult hardware(HardwareVersionResponse value),
-    TResult others(OtherVersionsResponse value),
+    TResult modules(ModulesVersionsResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -314,11 +314,11 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
   TResult when<TResult extends Object>({
     @required TResult software(String version),
     @required TResult hardware(String hw_version),
-    @required TResult others(Map<String, String> versions),
+    @required TResult modules(List<Map<String, String>> versions),
   }) {
     assert(software != null);
     assert(hardware != null);
-    assert(others != null);
+    assert(modules != null);
     return hardware(hw_version);
   }
 
@@ -327,7 +327,7 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult software(String version),
     TResult hardware(String hw_version),
-    TResult others(Map<String, String> versions),
+    TResult modules(List<Map<String, String>> versions),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -342,11 +342,11 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
   TResult map<TResult extends Object>({
     @required TResult software(SoftwareVersionResponse value),
     @required TResult hardware(HardwareVersionResponse value),
-    @required TResult others(OtherVersionsResponse value),
+    @required TResult modules(ModulesVersionsResponse value),
   }) {
     assert(software != null);
     assert(hardware != null);
-    assert(others != null);
+    assert(modules != null);
     return hardware(this);
   }
 
@@ -355,7 +355,7 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
   TResult maybeMap<TResult extends Object>({
     TResult software(SoftwareVersionResponse value),
     TResult hardware(HardwareVersionResponse value),
-    TResult others(OtherVersionsResponse value),
+    TResult modules(ModulesVersionsResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -385,30 +385,32 @@ abstract class HardwareVersionResponse implements GetVersionsResponse {
 }
 
 /// @nodoc
-abstract class $OtherVersionsResponseCopyWith<$Res> {
-  factory $OtherVersionsResponseCopyWith(OtherVersionsResponse value,
-          $Res Function(OtherVersionsResponse) then) =
-      _$OtherVersionsResponseCopyWithImpl<$Res>;
-  $Res call({Map<String, String> versions});
+abstract class $ModulesVersionsResponseCopyWith<$Res> {
+  factory $ModulesVersionsResponseCopyWith(ModulesVersionsResponse value,
+          $Res Function(ModulesVersionsResponse) then) =
+      _$ModulesVersionsResponseCopyWithImpl<$Res>;
+  $Res call({List<Map<String, String>> versions});
 }
 
 /// @nodoc
-class _$OtherVersionsResponseCopyWithImpl<$Res>
+class _$ModulesVersionsResponseCopyWithImpl<$Res>
     extends _$GetVersionsResponseCopyWithImpl<$Res>
-    implements $OtherVersionsResponseCopyWith<$Res> {
-  _$OtherVersionsResponseCopyWithImpl(
-      OtherVersionsResponse _value, $Res Function(OtherVersionsResponse) _then)
-      : super(_value, (v) => _then(v as OtherVersionsResponse));
+    implements $ModulesVersionsResponseCopyWith<$Res> {
+  _$ModulesVersionsResponseCopyWithImpl(ModulesVersionsResponse _value,
+      $Res Function(ModulesVersionsResponse) _then)
+      : super(_value, (v) => _then(v as ModulesVersionsResponse));
 
   @override
-  OtherVersionsResponse get _value => super._value as OtherVersionsResponse;
+  ModulesVersionsResponse get _value => super._value as ModulesVersionsResponse;
 
   @override
   $Res call({
     Object versions = freezed,
   }) {
-    return _then(OtherVersionsResponse(
-      versions == freezed ? _value.versions : versions as Map<String, String>,
+    return _then(ModulesVersionsResponse(
+      versions == freezed
+          ? _value.versions
+          : versions as List<Map<String, String>>,
     ));
   }
 }
@@ -416,24 +418,24 @@ class _$OtherVersionsResponseCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$OtherVersionsResponse implements OtherVersionsResponse {
-  const _$OtherVersionsResponse(this.versions) : assert(versions != null);
+class _$ModulesVersionsResponse implements ModulesVersionsResponse {
+  const _$ModulesVersionsResponse(this.versions) : assert(versions != null);
 
-  factory _$OtherVersionsResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$OtherVersionsResponseFromJson(json);
+  factory _$ModulesVersionsResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$ModulesVersionsResponseFromJson(json);
 
   @override
-  final Map<String, String> versions;
+  final List<Map<String, String>> versions;
 
   @override
   String toString() {
-    return 'GetVersionsResponse.others(versions: $versions)';
+    return 'GetVersionsResponse.modules(versions: $versions)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is OtherVersionsResponse &&
+        (other is ModulesVersionsResponse &&
             (identical(other.versions, versions) ||
                 const DeepCollectionEquality()
                     .equals(other.versions, versions)));
@@ -445,8 +447,8 @@ class _$OtherVersionsResponse implements OtherVersionsResponse {
 
   @JsonKey(ignore: true)
   @override
-  $OtherVersionsResponseCopyWith<OtherVersionsResponse> get copyWith =>
-      _$OtherVersionsResponseCopyWithImpl<OtherVersionsResponse>(
+  $ModulesVersionsResponseCopyWith<ModulesVersionsResponse> get copyWith =>
+      _$ModulesVersionsResponseCopyWithImpl<ModulesVersionsResponse>(
           this, _$identity);
 
   @override
@@ -454,12 +456,12 @@ class _$OtherVersionsResponse implements OtherVersionsResponse {
   TResult when<TResult extends Object>({
     @required TResult software(String version),
     @required TResult hardware(String hw_version),
-    @required TResult others(Map<String, String> versions),
+    @required TResult modules(List<Map<String, String>> versions),
   }) {
     assert(software != null);
     assert(hardware != null);
-    assert(others != null);
-    return others(versions);
+    assert(modules != null);
+    return modules(versions);
   }
 
   @override
@@ -467,12 +469,12 @@ class _$OtherVersionsResponse implements OtherVersionsResponse {
   TResult maybeWhen<TResult extends Object>({
     TResult software(String version),
     TResult hardware(String hw_version),
-    TResult others(Map<String, String> versions),
+    TResult modules(List<Map<String, String>> versions),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (others != null) {
-      return others(versions);
+    if (modules != null) {
+      return modules(versions);
     }
     return orElse();
   }
@@ -482,12 +484,12 @@ class _$OtherVersionsResponse implements OtherVersionsResponse {
   TResult map<TResult extends Object>({
     @required TResult software(SoftwareVersionResponse value),
     @required TResult hardware(HardwareVersionResponse value),
-    @required TResult others(OtherVersionsResponse value),
+    @required TResult modules(ModulesVersionsResponse value),
   }) {
     assert(software != null);
     assert(hardware != null);
-    assert(others != null);
-    return others(this);
+    assert(modules != null);
+    return modules(this);
   }
 
   @override
@@ -495,30 +497,30 @@ class _$OtherVersionsResponse implements OtherVersionsResponse {
   TResult maybeMap<TResult extends Object>({
     TResult software(SoftwareVersionResponse value),
     TResult hardware(HardwareVersionResponse value),
-    TResult others(OtherVersionsResponse value),
+    TResult modules(ModulesVersionsResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (others != null) {
-      return others(this);
+    if (modules != null) {
+      return modules(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$OtherVersionsResponseToJson(this)..['runtimeType'] = 'others';
+    return _$_$ModulesVersionsResponseToJson(this)..['runtimeType'] = 'modules';
   }
 }
 
-abstract class OtherVersionsResponse implements GetVersionsResponse {
-  const factory OtherVersionsResponse(Map<String, String> versions) =
-      _$OtherVersionsResponse;
+abstract class ModulesVersionsResponse implements GetVersionsResponse {
+  const factory ModulesVersionsResponse(List<Map<String, String>> versions) =
+      _$ModulesVersionsResponse;
 
-  factory OtherVersionsResponse.fromJson(Map<String, dynamic> json) =
-      _$OtherVersionsResponse.fromJson;
+  factory ModulesVersionsResponse.fromJson(Map<String, dynamic> json) =
+      _$ModulesVersionsResponse.fromJson;
 
-  Map<String, String> get versions;
+  List<Map<String, String>> get versions;
   @JsonKey(ignore: true)
-  $OtherVersionsResponseCopyWith<OtherVersionsResponse> get copyWith;
+  $ModulesVersionsResponseCopyWith<ModulesVersionsResponse> get copyWith;
 }

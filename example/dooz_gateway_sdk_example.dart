@@ -71,10 +71,12 @@ void main() async {
 }
 
 void _testAdminScenario(DoozGateway gateway) async {
-  final swVersion = await gateway.getSoftwareVersion();
-  print(swVersion);
-  final hwVersion = await gateway.getHardwareVersion();
-  print(hwVersion);
+  GetVersionsResponse adminResponse = await gateway.getSoftwareVersion();
+  print(adminResponse);
+  adminResponse = await gateway.getHardwareVersion();
+  print(adminResponse);
+  adminResponse = await gateway.getModulesVersion();
+  print(adminResponse);
 }
 
 void _testControlsScenario(DoozGateway gateway) async {

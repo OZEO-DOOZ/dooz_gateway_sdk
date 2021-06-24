@@ -11,8 +11,8 @@ abstract class GetVersionsResponse with _$GetVersionsResponse {
   const factory GetVersionsResponse.hardware(String hw_version) =
       HardwareVersionResponse;
 
-  const factory GetVersionsResponse.others(Map<String, String> versions) =
-      OtherVersionsResponse;
+  const factory GetVersionsResponse.modules(
+      List<Map<String, String>> versions) = ModulesVersionsResponse;
 
   factory GetVersionsResponse.fromJson(Map<String, dynamic> json) =>
       _$GetVersionsResponseFromJson(json);

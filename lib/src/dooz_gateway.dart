@@ -305,5 +305,11 @@ class DoozGateway {
       <String, dynamic>{'hw_version': _hardwareVersionResponse['hw version']},
     );
   }
+
+  /// Get ooPLA's modules versions
+  Future<ModulesVersionsResponse> getModulesVersion() async {
+    return ModulesVersionsResponse.fromJson(
+        await _sendRequest('get_versions', <String, dynamic>{}));
+  }
   // -------------------------------------
 }
