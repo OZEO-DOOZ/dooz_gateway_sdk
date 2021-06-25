@@ -128,9 +128,9 @@ class DoozGateway {
   }
 
   Future<Map<String, dynamic>> _sendRequest(
-    String method,
-    Map<String, dynamic> params,
-  ) async {
+    String method, {
+    Map<String, dynamic> params = const <String, dynamic>{},
+  }) async {
     _checkPeerInitialized();
     final _requestResult = await _peer
         .sendRequest(method, params)
@@ -179,12 +179,14 @@ class DoozGateway {
     }
     return AuthResponse.fromJson(await _sendRequest(
       'authenticate',
-      <String, dynamic>{
+      params: <String, dynamic>{
         'login': login,
         'password': password,
       },
     ));
   }
+
+  // -------- Control the network --------
 
   /// Set the [level] of the device at [address]
   Future<SetStateResponse> setState(
@@ -220,7 +222,7 @@ class DoozGateway {
     }
     return SetStateResponse.fromJson(await _sendRequest(
       'set',
-      <String, dynamic>{
+      params: <String, dynamic>{
         'address': address,
         'level': level,
         'delay_ms': delay,
@@ -244,7 +246,7 @@ class DoozGateway {
     }
     return GetStateResponse.fromJson(await _sendRequest(
       'get',
-      <String, dynamic>{'address': address},
+      params: <String, dynamic>{'address': address},
     ));
   }
 
@@ -263,7 +265,7 @@ class DoozGateway {
     }
     return SetToggleResponse.fromJson(await _sendRequest(
       'toggle',
-      <String, dynamic>{'address': address},
+      params: <String, dynamic>{'address': address},
     ));
   }
 
@@ -284,4 +286,83 @@ class DoozGateway {
       _result['timestamp'] as int,
     );
   }
+  // -------------------------------------
+
+  // --------- Manage the gateway --------
+
+  /// Get ooPLA's **software** version
+  Future<SoftwareVersionResponse> getSoftwareVersion() async {
+    return SoftwareVersionResponse.fromJson(await _sendRequest('get_version'));
+  }
+
+  /// Get ooPLA's **hardware** version
+  Future<HardwareVersionResponse> getHardwareVersion() async {
+    // TODO remove this transformation once fix is implemented on ooPLA's side
+    final _hardwareVersionResponse = await _sendRequest('get_hw_version');
+    return HardwareVersionResponse.fromJson(
+      <String, dynamic>{'hw_version': _hardwareVersionResponse['hw version']},
+    );
+  }
+
+  /// Get ooPLA's modules versions
+  Future<ModulesVersionsResponse> getModulesVersion() async {
+    return ModulesVersionsResponse.fromJson(await _sendRequest('get_versions'));
+  }
+
+  /// Set logs priority for the chosen sotfware module at the given [LogLevel].
+  ///
+  /// Defaults to settings the given [LogLevel] to `all` modules.
+  ///
+  /// Available modules are :
+  /// - Gateway
+  /// - Backend socket
+  /// - BT HAL
+  /// - Config
+  /// - LUT
+  /// - MQ
+  /// - Request parser
+  /// - Socket server
+  Future<SetLogPriorityResponse> setLogLevel(
+    LogLevel priority, {
+    String module = 'all',
+  }) async {
+    if (priority == null) {
+      throw ArgumentError.notNull('priority');
+    }
+    if (module == null) {
+      throw ArgumentError.notNull('module');
+    }
+    return SetLogPriorityResponse.fromJson(await _sendRequest(
+      'set_log_priority',
+      params: <String, dynamic>{'module': module, 'priority': priority.index},
+    ));
+  }
+
+  /// Get log journal entries at the given [LogLevel]
+  Future<GetLogsResponse> getLogs({
+    LogLevel priority = LogLevel.warning,
+  }) async {
+    if (priority == null) {
+      throw ArgumentError.notNull('priority');
+    }
+    return GetLogsResponse.fromJson(await _sendRequest(
+      'get_logs',
+      params: <String, dynamic>{'priority': priority.index},
+    ));
+  }
+
+  /// Clear ooPLA's log journal.
+  ///
+  /// One may check the [ClearLogsResponse] `status` value to check if it has been successfully executed
+  Future<ClearLogsResponse> clearLogs() async {
+    return ClearLogsResponse.fromJson(await _sendRequest('clear_logs'));
+  }
+
+  /// Reboot ooPLA.
+  ///
+  /// One may check the [RebootResponse] `status` value to check if it has been successfully executed
+  Future<RebootResponse> rebootGateway() async {
+    return RebootResponse.fromJson(await _sendRequest('reboot'));
+  }
+  // -------------------------------------
 }

@@ -1,4 +1,5 @@
 import 'package:dooz_gateway_sdk/dooz_gateway_sdk.dart';
+import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
 import 'package:dooz_gateway_sdk/src/models/models.dart';
 
@@ -34,7 +35,8 @@ void main() async {
     if (authResult.status == 'OK') {
       print(
           'Successfully authenticated using user\'s creds after $authTries tries!');
-      await _testScenario(gateway);
+      // await _testControlsScenario(gateway);
+      await _testAdminScenario(gateway);
     } else {
       print('Server auth failed... fallback to local auth');
       await gateway.disconnect();
@@ -56,7 +58,8 @@ void main() async {
       } while (authTries < 3);
       if (authResult.status == 'OK') {
         print('Successfully authenticated using gateway creds !');
-        await _testScenario(gateway);
+        // await _testControlsScenario(gateway);
+        await _testAdminScenario(gateway);
       } else {
         print('could not succeed in gateway auth...');
       }
@@ -68,7 +71,28 @@ void main() async {
   await gateway.disconnect();
 }
 
-void _testScenario(DoozGateway gateway) async {
+void _testAdminScenario(DoozGateway gateway) async {
+  // ----- VERSIONS TESTS -----
+  GetVersionsResponse versionsResponse = await gateway.getSoftwareVersion();
+  print(versionsResponse);
+  versionsResponse = await gateway.getHardwareVersion();
+  print(versionsResponse);
+  versionsResponse = await gateway.getModulesVersion();
+  print(versionsResponse);
+
+  // ------- LOGS TESTS -------
+  LogManagementResponse logsResponse =
+      await gateway.setLogLevel(LogLevel.debug);
+  print(logsResponse);
+  logsResponse = await gateway.getLogs(priority: LogLevel.emergency);
+  print(logsResponse);
+  logsResponse = await gateway.clearLogs();
+  print(logsResponse);
+  logsResponse = await gateway.getLogs(priority: LogLevel.debug);
+  print(logsResponse);
+}
+
+void _testControlsScenario(DoozGateway gateway) async {
   // ------ TOGGLE TESTS ------
   // DIMMER
   print('toggle $_dimmerOutput');
