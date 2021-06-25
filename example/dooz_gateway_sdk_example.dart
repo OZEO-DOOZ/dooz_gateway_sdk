@@ -72,20 +72,24 @@ void main() async {
 }
 
 void _testAdminScenario(DoozGateway gateway) async {
+  // ----- VERSIONS TESTS -----
   GetVersionsResponse versionsResponse = await gateway.getSoftwareVersion();
   print(versionsResponse);
   versionsResponse = await gateway.getHardwareVersion();
   print(versionsResponse);
   versionsResponse = await gateway.getModulesVersion();
   print(versionsResponse);
-  var getLogsResponse = await gateway.getLogs(priority: LogLevel.debug);
-  print(getLogsResponse);
-  final clearLogsResponse = await gateway.clearLogs();
-  print(clearLogsResponse);
-  getLogsResponse = await gateway.getLogs(priority: LogLevel.debug);
-  print(getLogsResponse);
-  final rebootResponse = await gateway.rebootGateway();
-  print(rebootResponse);
+
+  // ------- LOGS TESTS -------
+  LogManagementResponse logsResponse =
+      await gateway.getLogs(priority: LogLevel.debug);
+  print(logsResponse);
+  logsResponse = await gateway.clearLogs();
+  print(logsResponse);
+  logsResponse = await gateway.getLogs(priority: LogLevel.debug);
+  print(logsResponse);
+  // final rebootResponse = await gateway.rebootGateway();
+  // print(rebootResponse);
 }
 
 void _testControlsScenario(DoozGateway gateway) async {

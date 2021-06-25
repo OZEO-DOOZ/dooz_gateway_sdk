@@ -309,6 +309,7 @@ class DoozGateway {
     return ModulesVersionsResponse.fromJson(await _sendRequest('get_versions'));
   }
 
+  /// Get log journal entries at the given [LogLevel]
   Future<GetLogsResponse> getLogs({
     LogLevel priority = LogLevel.warning,
   }) async {
@@ -321,10 +322,16 @@ class DoozGateway {
     ));
   }
 
+  /// Clear ooPLA's log journal.
+  ///
+  /// One may check the [ClearLogsResponse] `status` value to check if it has been successfully executed
   Future<ClearLogsResponse> clearLogs() async {
     return ClearLogsResponse.fromJson(await _sendRequest('clear_logs'));
   }
 
+  /// Reboot ooPLA.
+  ///
+  /// One may check the [RebootResponse] `status` value to check if it has been successfully executed
   Future<RebootResponse> rebootGateway() async {
     return RebootResponse.fromJson(await _sendRequest('reboot'));
   }
