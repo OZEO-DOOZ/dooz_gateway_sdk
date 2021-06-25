@@ -19,3 +19,15 @@ const int meshAllFriendsAddress = 0xFFFD;
 const int meshAllRelaysAddress = 0xFFFE;
 const int meshAllNodesAddress = 0xFFFF;
 // ----------------------------------
+
+/// These are the defined log levels in ooPLA's software
+enum LogLevel {
+  emergency,
+  alert,
+  critical,
+  error,
+  warning,
+  notice,
+  info,
+  debug,
+}
