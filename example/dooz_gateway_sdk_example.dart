@@ -82,14 +82,14 @@ void _testAdminScenario(DoozGateway gateway) async {
 
   // ------- LOGS TESTS -------
   LogManagementResponse logsResponse =
-      await gateway.getLogs(priority: LogLevel.debug);
+      await gateway.setLogLevel(LogLevel.debug);
+  print(logsResponse);
+  logsResponse = await gateway.getLogs(priority: LogLevel.emergency);
   print(logsResponse);
   logsResponse = await gateway.clearLogs();
   print(logsResponse);
   logsResponse = await gateway.getLogs(priority: LogLevel.debug);
   print(logsResponse);
-  // final rebootResponse = await gateway.rebootGateway();
-  // print(rebootResponse);
 }
 
 void _testControlsScenario(DoozGateway gateway) async {

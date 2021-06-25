@@ -11,6 +11,8 @@ T _$identity<T>(T value) => value;
 LogManagementResponse _$LogManagementResponseFromJson(
     Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
+    case 'setLogPriority':
+      return SetLogPriorityResponse.fromJson(json);
     case 'getLogs':
       return GetLogsResponse.fromJson(json);
     case 'clearLogs':
@@ -24,6 +26,14 @@ LogManagementResponse _$LogManagementResponseFromJson(
 /// @nodoc
 class _$LogManagementResponseTearOff {
   const _$LogManagementResponseTearOff();
+
+// ignore: unused_element
+  SetLogPriorityResponse setLogPriority(String status, int timestamp) {
+    return SetLogPriorityResponse(
+      status,
+      timestamp,
+    );
+  }
 
 // ignore: unused_element
   GetLogsResponse getLogs(List<Map<String, dynamic>> logs, int timestamp) {
@@ -57,22 +67,26 @@ mixin _$LogManagementResponse {
 
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult setLogPriority(String status, int timestamp),
     @required TResult getLogs(List<Map<String, dynamic>> logs, int timestamp),
     @required TResult clearLogs(String status, int timestamp),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult setLogPriority(String status, int timestamp),
     TResult getLogs(List<Map<String, dynamic>> logs, int timestamp),
     TResult clearLogs(String status, int timestamp),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult setLogPriority(SetLogPriorityResponse value),
     @required TResult getLogs(GetLogsResponse value),
     @required TResult clearLogs(ClearLogsResponse value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult setLogPriority(SetLogPriorityResponse value),
     TResult getLogs(GetLogsResponse value),
     TResult clearLogs(ClearLogsResponse value),
     @required TResult orElse(),
@@ -107,6 +121,161 @@ class _$LogManagementResponseCopyWithImpl<$Res>
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
+}
+
+/// @nodoc
+abstract class $SetLogPriorityResponseCopyWith<$Res>
+    implements $LogManagementResponseCopyWith<$Res> {
+  factory $SetLogPriorityResponseCopyWith(SetLogPriorityResponse value,
+          $Res Function(SetLogPriorityResponse) then) =
+      _$SetLogPriorityResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({String status, int timestamp});
+}
+
+/// @nodoc
+class _$SetLogPriorityResponseCopyWithImpl<$Res>
+    extends _$LogManagementResponseCopyWithImpl<$Res>
+    implements $SetLogPriorityResponseCopyWith<$Res> {
+  _$SetLogPriorityResponseCopyWithImpl(SetLogPriorityResponse _value,
+      $Res Function(SetLogPriorityResponse) _then)
+      : super(_value, (v) => _then(v as SetLogPriorityResponse));
+
+  @override
+  SetLogPriorityResponse get _value => super._value as SetLogPriorityResponse;
+
+  @override
+  $Res call({
+    Object status = freezed,
+    Object timestamp = freezed,
+  }) {
+    return _then(SetLogPriorityResponse(
+      status == freezed ? _value.status : status as String,
+      timestamp == freezed ? _value.timestamp : timestamp as int,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$SetLogPriorityResponse implements SetLogPriorityResponse {
+  const _$SetLogPriorityResponse(this.status, this.timestamp)
+      : assert(status != null),
+        assert(timestamp != null);
+
+  factory _$SetLogPriorityResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$SetLogPriorityResponseFromJson(json);
+
+  @override
+  final String status;
+  @override
+  final int timestamp;
+
+  @override
+  String toString() {
+    return 'LogManagementResponse.setLogPriority(status: $status, timestamp: $timestamp)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SetLogPriorityResponse &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality()
+                    .equals(other.timestamp, timestamp)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(timestamp);
+
+  @JsonKey(ignore: true)
+  @override
+  $SetLogPriorityResponseCopyWith<SetLogPriorityResponse> get copyWith =>
+      _$SetLogPriorityResponseCopyWithImpl<SetLogPriorityResponse>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult setLogPriority(String status, int timestamp),
+    @required TResult getLogs(List<Map<String, dynamic>> logs, int timestamp),
+    @required TResult clearLogs(String status, int timestamp),
+  }) {
+    assert(setLogPriority != null);
+    assert(getLogs != null);
+    assert(clearLogs != null);
+    return setLogPriority(status, timestamp);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult setLogPriority(String status, int timestamp),
+    TResult getLogs(List<Map<String, dynamic>> logs, int timestamp),
+    TResult clearLogs(String status, int timestamp),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (setLogPriority != null) {
+      return setLogPriority(status, timestamp);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult setLogPriority(SetLogPriorityResponse value),
+    @required TResult getLogs(GetLogsResponse value),
+    @required TResult clearLogs(ClearLogsResponse value),
+  }) {
+    assert(setLogPriority != null);
+    assert(getLogs != null);
+    assert(clearLogs != null);
+    return setLogPriority(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult setLogPriority(SetLogPriorityResponse value),
+    TResult getLogs(GetLogsResponse value),
+    TResult clearLogs(ClearLogsResponse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (setLogPriority != null) {
+      return setLogPriority(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$SetLogPriorityResponseToJson(this)
+      ..['runtimeType'] = 'setLogPriority';
+  }
+}
+
+abstract class SetLogPriorityResponse implements LogManagementResponse {
+  const factory SetLogPriorityResponse(String status, int timestamp) =
+      _$SetLogPriorityResponse;
+
+  factory SetLogPriorityResponse.fromJson(Map<String, dynamic> json) =
+      _$SetLogPriorityResponse.fromJson;
+
+  String get status;
+  @override
+  int get timestamp;
+  @override
+  @JsonKey(ignore: true)
+  $SetLogPriorityResponseCopyWith<SetLogPriorityResponse> get copyWith;
 }
 
 /// @nodoc
@@ -188,9 +357,11 @@ class _$GetLogsResponse implements GetLogsResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult setLogPriority(String status, int timestamp),
     @required TResult getLogs(List<Map<String, dynamic>> logs, int timestamp),
     @required TResult clearLogs(String status, int timestamp),
   }) {
+    assert(setLogPriority != null);
     assert(getLogs != null);
     assert(clearLogs != null);
     return getLogs(logs, timestamp);
@@ -199,6 +370,7 @@ class _$GetLogsResponse implements GetLogsResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult setLogPriority(String status, int timestamp),
     TResult getLogs(List<Map<String, dynamic>> logs, int timestamp),
     TResult clearLogs(String status, int timestamp),
     @required TResult orElse(),
@@ -213,9 +385,11 @@ class _$GetLogsResponse implements GetLogsResponse {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult setLogPriority(SetLogPriorityResponse value),
     @required TResult getLogs(GetLogsResponse value),
     @required TResult clearLogs(ClearLogsResponse value),
   }) {
+    assert(setLogPriority != null);
     assert(getLogs != null);
     assert(clearLogs != null);
     return getLogs(this);
@@ -224,6 +398,7 @@ class _$GetLogsResponse implements GetLogsResponse {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult setLogPriority(SetLogPriorityResponse value),
     TResult getLogs(GetLogsResponse value),
     TResult clearLogs(ClearLogsResponse value),
     @required TResult orElse(),
@@ -335,9 +510,11 @@ class _$ClearLogsResponse implements ClearLogsResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult setLogPriority(String status, int timestamp),
     @required TResult getLogs(List<Map<String, dynamic>> logs, int timestamp),
     @required TResult clearLogs(String status, int timestamp),
   }) {
+    assert(setLogPriority != null);
     assert(getLogs != null);
     assert(clearLogs != null);
     return clearLogs(status, timestamp);
@@ -346,6 +523,7 @@ class _$ClearLogsResponse implements ClearLogsResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult setLogPriority(String status, int timestamp),
     TResult getLogs(List<Map<String, dynamic>> logs, int timestamp),
     TResult clearLogs(String status, int timestamp),
     @required TResult orElse(),
@@ -360,9 +538,11 @@ class _$ClearLogsResponse implements ClearLogsResponse {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult setLogPriority(SetLogPriorityResponse value),
     @required TResult getLogs(GetLogsResponse value),
     @required TResult clearLogs(ClearLogsResponse value),
   }) {
+    assert(setLogPriority != null);
     assert(getLogs != null);
     assert(clearLogs != null);
     return clearLogs(this);
@@ -371,6 +551,7 @@ class _$ClearLogsResponse implements ClearLogsResponse {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult setLogPriority(SetLogPriorityResponse value),
     TResult getLogs(GetLogsResponse value),
     TResult clearLogs(ClearLogsResponse value),
     @required TResult orElse(),

@@ -309,6 +309,35 @@ class DoozGateway {
     return ModulesVersionsResponse.fromJson(await _sendRequest('get_versions'));
   }
 
+  /// Set logs priority for the chosen sotfware module at the given [LogLevel].
+  ///
+  /// Defaults to settings the given [LogLevel] to `all` modules.
+  ///
+  /// Available modules are :
+  /// - Gateway
+  /// - Backend socket
+  /// - BT HAL
+  /// - Config
+  /// - LUT
+  /// - MQ
+  /// - Request parser
+  /// - Socket server
+  Future<SetLogPriorityResponse> setLogLevel(
+    LogLevel priority, {
+    String module = 'all',
+  }) async {
+    if (priority == null) {
+      throw ArgumentError.notNull('priority');
+    }
+    if (module == null) {
+      throw ArgumentError.notNull('module');
+    }
+    return SetLogPriorityResponse.fromJson(await _sendRequest(
+      'set_log_priority',
+      params: <String, dynamic>{'module': module, 'priority': priority.index},
+    ));
+  }
+
   /// Get log journal entries at the given [LogLevel]
   Future<GetLogsResponse> getLogs({
     LogLevel priority = LogLevel.warning,
