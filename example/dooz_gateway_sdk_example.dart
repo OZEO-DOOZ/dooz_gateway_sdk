@@ -76,13 +76,34 @@ void main() async {
   await gateway.disconnect();
 }
 
-Future _testScript(DoozGateway gateway) async {
+Future<void> _testScript(DoozGateway gateway) async {
   await _testLogs(gateway);
   await _testVersions(gateway);
   await _testControls(gateway);
 }
 
-Future _testControls(DoozGateway gateway) async {
+Future<void> _testLogs(DoozGateway gateway) async {
+  print('------------- LOGS -------------');
+  print('applying debug level for every ooPLA\'s logs...');
+  print(await gateway.setLogLevel(LogLevel.debug));
+  print('--------------------------------\n');
+}
+
+Future<void> _testVersions(DoozGateway gateway) async {
+  print('----------- VERSIONS -----------');
+  final softwareVersionResponse = await gateway.getSoftwareVersion();
+  print('ooPLA\'s software version is v${softwareVersionResponse.version}');
+  final hardwareVersionResponse = await gateway.getHardwareVersion();
+  print('ooPLA\'s hardware version is v${hardwareVersionResponse.hw_version}');
+  final modulesVersionsResponse = await gateway.getModulesVersion();
+  for (final moduleVersion in modulesVersionsResponse.versions) {
+    print(
+        'ooPLA\'s ${moduleVersion.keys.first} version is v${moduleVersion.values.first}');
+  }
+  print('--------------------------------\n');
+}
+
+Future<void> _testControls(DoozGateway gateway) async {
   print('------------ CONTROLS ------------');
   final firstDooblv = await _searchADooblv(gateway);
   if (firstDooblv != null) {
@@ -93,7 +114,28 @@ Future _testControls(DoozGateway gateway) async {
   print('--------------------------------\n');
 }
 
-Future _playWithDooblv(
+Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
+  final discover = await gateway.discover();
+  MapEntry<String, dynamic> firstDooblv;
+  for (final discoveredNode in discover.mesh.entries) {
+    if (discoveredNode.value['type'] == 0x0A) {
+      print('found a DooBLV in network !');
+      dynamic confState = discoveredNode.value['conf state'];
+      if (confState != 'CONFIGURED') {
+        print(
+            'but it is not reported as configured...(conf state : ${confState})');
+      } else {
+        firstDooblv = discoveredNode;
+      }
+    } else {
+      print(
+          'found node with id ${discoveredNode.value['type']} at address ${discoveredNode.key}');
+    }
+  }
+  return firstDooblv;
+}
+
+Future<void> _playWithDooblv(
     MapEntry<String, dynamic> firstDooblv, DoozGateway gateway) async {
   final dooblvUnicast = firstDooblv.key;
   print(
@@ -117,6 +159,78 @@ Future _playWithDooblv(
   await _revertIoConfigs(ioConfigs, gateway, dooblvUnicast);
   ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
   print(ioConfigs);
+}
+
+Future<void> _lightsToX(DoozGateway gateway, String firstLightAddress,
+    String secondLightAddress, int level) async {
+  print('send set 50% to $firstLightAddress');
+  var setResponse = await gateway.sendLevel(firstLightAddress, level);
+  print(setResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set 50% to $secondLightAddress');
+  setResponse = await gateway.sendLevel(secondLightAddress, level);
+  print(setResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+}
+
+Future<void> _shutDownDooblv(DoozGateway gateway, String firstLightAddress,
+    String secondLightAddress) async {
+  print('send off to $firstLightAddress');
+  var setResponse = await gateway.sendLevel(firstLightAddress, 'off');
+  print(setResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send off to $secondLightAddress');
+  setResponse = await gateway.sendLevel(secondLightAddress, 'off');
+  print(setResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+}
+
+Future<void> _lightsRawLevels(DoozGateway gateway, String firstLightAddress,
+    String secondLightAddress) async {
+  final max = 32767.toRadixString(16);
+  final min = (-32000).toRadixString(16);
+  print('send set ${max}h to $firstLightAddress');
+  var setRawResponse = await gateway.sendRaw(firstLightAddress, max);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set ${max}h to $secondLightAddress');
+  setRawResponse = await gateway.sendRaw(secondLightAddress, max);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set ${min}h to $firstLightAddress');
+  setRawResponse = await gateway.sendRaw(firstLightAddress, min);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set ${min}h to $secondLightAddress');
+  setRawResponse = await gateway.sendRaw(secondLightAddress, min);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+}
+
+Future<Map<int, Map<String, int>>> _getIoConfigs(
+    DoozGateway gateway, String dooblvUnicast) async {
+  final ioConfigs = {
+    0: <String, int>{'input': -1, 'output': -1},
+    1: <String, int>{'input': -1, 'output': -1},
+  };
+  final r = Random();
+  var getConfig = await gateway.getConfig(dooblvUnicast, 0, 1,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[0]['output'] = getConfig.value;
+  getConfig = await gateway.getConfig(dooblvUnicast, 0, 2,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[0]['input'] = getConfig.value;
+  getConfig = await gateway.getConfig(dooblvUnicast, 1, 1,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[1]['output'] = getConfig.value;
+  getConfig = await gateway.getConfig(dooblvUnicast, 1, 2,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[1]['input'] = getConfig.value;
+  return ioConfigs;
 }
 
 Future<void> _revertIoConfigs(Map<int, Map<String, int>> ioConfigs,
@@ -152,118 +266,4 @@ Future<void> _revertIoConfigs(Map<int, Map<String, int>> ioConfigs,
         break;
     }
   }
-}
-
-Future<Map<int, Map<String, int>>> _getIoConfigs(
-    DoozGateway gateway, String dooblvUnicast) async {
-  final ioConfigs = {
-    0: <String, int>{'input': -1, 'output': -1},
-    1: <String, int>{'input': -1, 'output': -1},
-  };
-  final r = Random();
-  var getConfig = await gateway.getConfig(dooblvUnicast, 0, 1,
-      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
-  print(getConfig);
-  ioConfigs[0]['output'] = getConfig.value;
-  getConfig = await gateway.getConfig(dooblvUnicast, 0, 2,
-      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
-  print(getConfig);
-  ioConfigs[0]['input'] = getConfig.value;
-  getConfig = await gateway.getConfig(dooblvUnicast, 1, 1,
-      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
-  print(getConfig);
-  ioConfigs[1]['output'] = getConfig.value;
-  getConfig = await gateway.getConfig(dooblvUnicast, 1, 2,
-      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
-  print(getConfig);
-  ioConfigs[1]['input'] = getConfig.value;
-  return ioConfigs;
-}
-
-Future<void> _lightsRawLevels(DoozGateway gateway, String firstLightAddress,
-    String secondLightAddress) async {
-  final max = 32767.toRadixString(16);
-  final min = (-32000).toRadixString(16);
-  print('send set ${max}h to $firstLightAddress');
-  var setRawResponse = await gateway.sendRaw(firstLightAddress, max);
-  print(setRawResponse);
-  await Future<void>.delayed(const Duration(milliseconds: 500));
-  print('send set ${max}h to $secondLightAddress');
-  setRawResponse = await gateway.sendRaw(secondLightAddress, max);
-  print(setRawResponse);
-  await Future<void>.delayed(const Duration(milliseconds: 500));
-  print('send set ${min}h to $firstLightAddress');
-  setRawResponse = await gateway.sendRaw(firstLightAddress, min);
-  print(setRawResponse);
-  await Future<void>.delayed(const Duration(milliseconds: 500));
-  print('send set ${min}h to $secondLightAddress');
-  setRawResponse = await gateway.sendRaw(secondLightAddress, min);
-  print(setRawResponse);
-  await Future<void>.delayed(const Duration(milliseconds: 500));
-}
-
-Future<void> _lightsToX(DoozGateway gateway, String firstLightAddress,
-    String secondLightAddress, int level) async {
-  print('send set 50% to $firstLightAddress');
-  var setResponse = await gateway.sendLevel(firstLightAddress, level);
-  print(setResponse);
-  await Future<void>.delayed(const Duration(milliseconds: 500));
-  print('send set 50% to $secondLightAddress');
-  setResponse = await gateway.sendLevel(secondLightAddress, level);
-  print(setResponse);
-  await Future<void>.delayed(const Duration(milliseconds: 500));
-}
-
-Future<void> _shutDownDooblv(DoozGateway gateway, String firstLightAddress,
-    String secondLightAddress) async {
-  print('send off to $firstLightAddress');
-  var setResponse = await gateway.sendLevel(firstLightAddress, 'off');
-  print(setResponse);
-  await Future<void>.delayed(const Duration(milliseconds: 500));
-  print('send off to $secondLightAddress');
-  setResponse = await gateway.sendLevel(secondLightAddress, 'off');
-  print(setResponse);
-  await Future<void>.delayed(const Duration(milliseconds: 500));
-}
-
-Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
-  final discover = await gateway.discover();
-  MapEntry<String, dynamic> firstDooblv;
-  for (final discoveredNode in discover.mesh.entries) {
-    if (discoveredNode.value['type'] == 0x0A) {
-      print('found a DooBLV in network !');
-      dynamic confState = discoveredNode.value['conf state'];
-      if (confState != 'CONFIGURED') {
-        print(
-            'but it is not reported as configured...(conf state : ${confState})');
-      } else {
-        firstDooblv = discoveredNode;
-      }
-    } else {
-      print(
-          'found node with id ${discoveredNode.value['type']} at address ${discoveredNode.key}');
-    }
-  }
-  return firstDooblv;
-}
-
-Future<void> _testVersions(DoozGateway gateway) async {
-  print('----------- VERSIONS -----------');
-  final softwareVersionResponse = await gateway.getSoftwareVersion();
-  print('ooPLA\'s software version is v${softwareVersionResponse.version}');
-  final hardwareVersionResponse = await gateway.getHardwareVersion();
-  print('ooPLA\'s hardware version is v${hardwareVersionResponse.hw_version}');
-  final modulesVersionsResponse = await gateway.getModulesVersion();
-  for (final moduleVersion in modulesVersionsResponse.versions) {
-    print(
-        'ooPLA\'s ${moduleVersion.keys.first} version is v${moduleVersion.values.first}');
-  }
-  print('--------------------------------\n');
-}
-
-Future<void> _testLogs(DoozGateway gateway) async {
-  print('------------- LOGS -------------');
-  print('applying debug level for every ooPLA\'s logs...');
-  print(await gateway.setLogLevel(LogLevel.debug));
-  print('--------------------------------\n');
 }
