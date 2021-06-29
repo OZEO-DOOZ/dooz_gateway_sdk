@@ -186,6 +186,43 @@ class DoozGateway {
       },
     ));
   }
+  // ------------- Discoveries -----------
+
+  /// Get ooPLA's network topology
+  Future<DiscoverResponse> discover() async =>
+      DiscoverResponse.fromJson(await _sendRequest('discover'));
+
+  /// Get room ids
+  Future<GetRoomsResponse> getRooms() async =>
+      GetRoomsResponse.fromJson(await _sendRequest('get_rooms'));
+
+  /// Get nodes in the given room name
+  ///
+  /// TODO build response's freezed model
+  Future<Map<String, dynamic>> getNodesInRoomName(String roomName) async {
+    if (roomName.isBlank) {
+      throw ArgumentError('roomName must not be blank');
+    }
+    return await _sendRequest(
+      'get_room',
+      params: <String, dynamic>{'room_name': roomName},
+    );
+  }
+
+  /// Get nodes in the given room ID
+  Future<Map<String, dynamic>> getNodesInRoomID(String roomID) async {
+    if (roomID.isBlank) {
+      throw ArgumentError('roomID must not be blank');
+    }
+    throw UnimplementedError(
+        'as of SDK v0.0.4 and ooPLA v1.0.77, this method is not supported');
+    return await _sendRequest(
+      'get_room',
+      params: <String, dynamic>{'room_id': roomID},
+    );
+  }
+
+  // -------------------------------------
 
   // -------- Control the network --------
 
