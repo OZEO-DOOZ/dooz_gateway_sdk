@@ -4,6 +4,7 @@ This release introduces :
 
 - the `discover` method to get the network topology in which ooPLA is
 - the `get_rooms` method to get the list of room names chosen by DooZ app house's owner
+- the `get_room` method to get the list of nodes in the given room
 
 ## 0.0.3
 
