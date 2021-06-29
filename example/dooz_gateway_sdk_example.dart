@@ -36,7 +36,8 @@ void main() async {
       print(
           'Successfully authenticated using user\'s creds after $authTries tries!');
       // await _testControlsScenario(gateway);
-      await _testAdminScenario(gateway);
+      // await _testAdminScenario(gateway);
+      await _testDiscoveries(gateway);
     } else {
       print('Server auth failed... fallback to local auth');
       await gateway.disconnect();
@@ -60,6 +61,7 @@ void main() async {
         print('Successfully authenticated using gateway creds !');
         // await _testControlsScenario(gateway);
         await _testAdminScenario(gateway);
+        await _testDiscoveries(gateway);
       } else {
         print('could not succeed in gateway auth...');
       }
@@ -69,6 +71,19 @@ void main() async {
   }
   // close wss connection on the gateway
   await gateway.disconnect();
+}
+
+void _testDiscoveries(DoozGateway gateway) async {
+  // ----- DISCOVER TEST -----
+  print(await gateway.discover());
+
+  // ----- GETROOMS TEST -----
+  final getRoomsResponse = await gateway.getRooms();
+  print(getRoomsResponse);
+
+  // ------ GETROOM TESTS -----
+  print(await gateway.getNodesInRoomName('Cuisine'));
+  print(await gateway.getNodesInRoomID(getRoomsResponse.rooms.first));
 }
 
 void _testAdminScenario(DoozGateway gateway) async {
