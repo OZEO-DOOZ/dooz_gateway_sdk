@@ -5,6 +5,7 @@ import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
 import 'package:dooz_gateway_sdk/src/models/models.dart';
 import 'package:dooz_gateway_sdk/src/utils/utils.dart' as utils;
+import 'package:dooz_gateway_sdk/src/utils/extensions.dart';
 import 'package:json_rpc_2/error_code.dart';
 import 'package:json_rpc_2/json_rpc_2.dart';
 import 'package:pedantic/pedantic.dart';
@@ -171,11 +172,11 @@ class DoozGateway {
     final String login,
     final String password,
   ) async {
-    if (login == null || login.isEmpty) {
-      throw ArgumentError('login must not be null nor empty');
+    if (login.isBlank) {
+      throw ArgumentError('login must not be blank');
     }
-    if (password == null || password.isEmpty) {
-      throw ArgumentError('password must not be null nor empty');
+    if (password.isBlank) {
+      throw ArgumentError('password must not be blank');
     }
     return AuthResponse.fromJson(await _sendRequest(
       'authenticate',
@@ -185,6 +186,43 @@ class DoozGateway {
       },
     ));
   }
+  // ------------- Discoveries -----------
+
+  /// Get ooPLA's network topology
+  Future<DiscoverResponse> discover() async =>
+      DiscoverResponse.fromJson(await _sendRequest('discover'));
+
+  /// Get room ids
+  Future<GetRoomsResponse> getRooms() async =>
+      GetRoomsResponse.fromJson(await _sendRequest('get_rooms'));
+
+  /// Get nodes in the given room name
+  ///
+  /// TODO build response's freezed model
+  Future<Map<String, dynamic>> getNodesInRoomName(String roomName) async {
+    if (roomName.isBlank) {
+      throw ArgumentError('roomName must not be blank');
+    }
+    return await _sendRequest(
+      'get_room',
+      params: <String, dynamic>{'room_name': roomName},
+    );
+  }
+
+  /// Get nodes in the given room ID
+  Future<Map<String, dynamic>> getNodesInRoomID(String roomID) async {
+    if (roomID.isBlank) {
+      throw ArgumentError('roomID must not be blank');
+    }
+    throw UnimplementedError(
+        'as of SDK v0.0.4 and ooPLA v1.0.77, this method is not supported');
+    return await _sendRequest(
+      'get_room',
+      params: <String, dynamic>{'room_id': roomID},
+    );
+  }
+
+  // -------------------------------------
 
   // -------- Control the network --------
 
@@ -195,8 +233,8 @@ class DoozGateway {
     final int delay = 0,
     final int transition = 0,
   }) async {
-    if (address == null || address.isEmpty) {
-      throw ArgumentError('address must not be null nor empty');
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
     }
     if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
       throw ArgumentError('address must be a four digit hexadecimal String');
@@ -274,8 +312,8 @@ class DoozGateway {
 
   /// Get the state of a device from its [address]
   Future<GetStateResponse> getState(final String address) async {
-    if (address == null || address.isEmpty) {
-      throw ArgumentError('address must not be null nor empty');
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
     }
     if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
       throw ArgumentError('address must be a four digit hexadecimal String');
@@ -293,8 +331,8 @@ class DoozGateway {
 
   /// Toggle a device
   Future<SetToggleResponse> toggle(final String address) async {
-    if (address == null || address.isEmpty) {
-      throw ArgumentError('address must not be null nor empty');
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
     }
     if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
       throw ArgumentError('address must be a four digit hexadecimal String');
@@ -370,8 +408,8 @@ class DoozGateway {
     if (priority == null) {
       throw ArgumentError.notNull('priority');
     }
-    if (module == null) {
-      throw ArgumentError.notNull('module');
+    if (module.isBlank) {
+      throw ArgumentError('module must not be blank');
     }
     return SetLogPriorityResponse.fromJson(await _sendRequest(
       'set_log_priority',
