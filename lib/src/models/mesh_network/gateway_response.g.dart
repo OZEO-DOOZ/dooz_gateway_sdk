@@ -78,18 +78,25 @@ Map<String, dynamic> _$_$SetToggleResponseToJson(
       'timestamp': instance.timestamp,
     };
 
-_$SetConfigResponse _$_$SetConfigResponseFromJson(Map<String, dynamic> json) {
-  return _$SetConfigResponse(
+_$MagicConfigResponse _$_$MagicConfigResponseFromJson(
+    Map<String, dynamic> json) {
+  return _$MagicConfigResponse(
     json['address'] as String,
-    json['value'] as String,
+    json['io'] as int,
+    json['index'] as int,
+    json['value'] as int,
+    json['correlation'] as int,
     json['timestamp'] as int,
   );
 }
 
-Map<String, dynamic> _$_$SetConfigResponseToJson(
-        _$SetConfigResponse instance) =>
+Map<String, dynamic> _$_$MagicConfigResponseToJson(
+        _$MagicConfigResponse instance) =>
     <String, dynamic>{
       'address': instance.address,
+      'io': instance.io,
+      'index': instance.index,
       'value': instance.value,
+      'correlation': instance.correlation,
       'timestamp': instance.timestamp,
     };

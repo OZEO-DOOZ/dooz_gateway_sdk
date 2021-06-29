@@ -106,40 +106,77 @@ Future _playWithDooblv(
       lightElements.every((dynamic element) =>
           element['output conf'] == 0 || element['output conf'] == 1),
       'the elements are not configured as lights...');
-  // light up elements
-  // final firstLightAddress = lightElements.first['address'] as String;
-  // final secondLightAddress = lightElements.last['address'] as String;
-  // await _lightsToX(gateway, firstLightAddress, secondLightAddress, 50);
-  // await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
-  // await _lightsRawLevels(gateway, firstLightAddress, secondLightAddress);
-  // await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
-  final ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
+  final firstLightAddress = lightElements.first['address'] as String;
+  final secondLightAddress = lightElements.last['address'] as String;
+  await _lightsToX(gateway, firstLightAddress, secondLightAddress, 50);
+  await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
+  await _lightsRawLevels(gateway, firstLightAddress, secondLightAddress);
+  await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
+  var ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
   print(ioConfigs);
+  await _revertIoConfigs(ioConfigs, gateway, dooblvUnicast);
+  ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
+  print(ioConfigs);
+}
+
+Future<void> _revertIoConfigs(Map<int, Map<String, int>> ioConfigs,
+    DoozGateway gateway, String dooblvUnicast) async {
+  final r = Random();
+  for (final ioConfig in ioConfigs.entries) {
+    switch (ioConfig.value['input']) {
+      case 0:
+        print(
+            'input ${ioConfig.key} is configured as switch, changing to push...');
+        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 2, 1,
+            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        break;
+      case 1:
+        print(
+            'input ${ioConfig.key} is configured as push, changing to switch...');
+        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 2, 0,
+            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        break;
+    }
+    switch (ioConfig.value['output']) {
+      case 0:
+        print(
+            'output ${ioConfig.key} is configured as onoff, changing to dimmer...');
+        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 1, 1,
+            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        break;
+      case 1:
+        print(
+            'output ${ioConfig.key} is configured as dimmer, changing to onoff...');
+        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 1, 0,
+            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        break;
+    }
+  }
 }
 
 Future<Map<int, Map<String, int>>> _getIoConfigs(
     DoozGateway gateway, String dooblvUnicast) async {
   final ioConfigs = {
     0: <String, int>{'input': -1, 'output': -1},
-    1: <String, int>{'input': -1, 'output': -1}
+    1: <String, int>{'input': -1, 'output': -1},
   };
   final r = Random();
   var getConfig = await gateway.getConfig(dooblvUnicast, 0, 1,
       int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[0]['input'] = getConfig['value'] as int;
+  ioConfigs[0]['output'] = getConfig.value;
   getConfig = await gateway.getConfig(dooblvUnicast, 0, 2,
       int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[0]['output'] = getConfig['value'] as int;
+  ioConfigs[0]['input'] = getConfig.value;
   getConfig = await gateway.getConfig(dooblvUnicast, 1, 1,
       int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[1]['input'] = getConfig['value'] as int;
+  ioConfigs[1]['output'] = getConfig.value;
   getConfig = await gateway.getConfig(dooblvUnicast, 1, 2,
       int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[1]['output'] = getConfig['value'] as int;
+  ioConfigs[1]['input'] = getConfig.value;
   return ioConfigs;
 }
 

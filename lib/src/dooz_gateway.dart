@@ -359,7 +359,7 @@ class DoozGateway {
   }
 
   /// Set the config value of a device
-  Future<Map<String, dynamic>> setConfig(
+  Future<MagicConfigResponse> setConfig(
     final String address,
     final int io,
     final int index,
@@ -367,7 +367,7 @@ class DoozGateway {
     final int correlation, {
     int version = 2,
   }) async {
-    return await _sendRequest(
+    return MagicConfigResponse.fromJson(await _sendRequest(
       'set_config',
       params: <String, dynamic>{
         'address': address,
@@ -377,17 +377,17 @@ class DoozGateway {
         'correlation': correlation,
         'version': version,
       },
-    );
+    ));
   }
 
   /// Get the config value of a device
-  Future<Map<String, dynamic>> getConfig(
+  Future<MagicConfigResponse> getConfig(
     final String address,
     final int io,
     final int index,
     final int correlation,
   ) async {
-    return await _sendRequest(
+    return MagicConfigResponse.fromJson(await _sendRequest(
       'get_config',
       params: <String, dynamic>{
         'address': address,
@@ -395,7 +395,7 @@ class DoozGateway {
         'index': index,
         'correlation': correlation,
       },
-    );
+    ));
   }
   // -------------------------------------
 

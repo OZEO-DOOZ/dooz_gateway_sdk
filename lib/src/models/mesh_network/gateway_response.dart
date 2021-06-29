@@ -20,8 +20,8 @@ abstract class GatewayResponse with _$GatewayResponse {
   const factory GatewayResponse.toggle(String address, dynamic level,
       dynamic target, int remaining, int timestamp) = SetToggleResponse;
 
-  const factory GatewayResponse.setConfig(
-      String address, String value, int timestamp) = SetConfigResponse;
+  const factory GatewayResponse.magicConfig(String address, int io, int index,
+      int value, int correlation, int timestamp) = MagicConfigResponse;
 
   factory GatewayResponse.fromJson(Map<String, dynamic> json) =>
       _$GatewayResponseFromJson(json);

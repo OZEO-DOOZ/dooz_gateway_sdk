@@ -18,8 +18,8 @@ GatewayResponse _$GatewayResponseFromJson(Map<String, dynamic> json) {
       return GetStateResponse.fromJson(json);
     case 'toggle':
       return SetToggleResponse.fromJson(json);
-    case 'setConfig':
-      return SetConfigResponse.fromJson(json);
+    case 'magicConfig':
+      return MagicConfigResponse.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -75,10 +75,14 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  SetConfigResponse setConfig(String address, String value, int timestamp) {
-    return SetConfigResponse(
+  MagicConfigResponse magicConfig(String address, int io, int index, int value,
+      int correlation, int timestamp) {
+    return MagicConfigResponse(
       address,
+      io,
+      index,
       value,
+      correlation,
       timestamp,
     );
   }
@@ -110,7 +114,9 @@ mixin _$GatewayResponse {
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required TResult setConfig(String address, String value, int timestamp),
+    @required
+        TResult magicConfig(String address, int io, int index, int value,
+            int correlation, int timestamp),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -121,7 +127,8 @@ mixin _$GatewayResponse {
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
-    TResult setConfig(String address, String value, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value,
+        int correlation, int timestamp),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -130,7 +137,7 @@ mixin _$GatewayResponse {
     @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
-    @required TResult setConfig(SetConfigResponse value),
+    @required TResult magicConfig(MagicConfigResponse value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -138,7 +145,7 @@ mixin _$GatewayResponse {
     TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
-    TResult setConfig(SetConfigResponse value),
+    TResult magicConfig(MagicConfigResponse value),
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
@@ -296,13 +303,15 @@ class _$SendLevelResponse implements SendLevelResponse {
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required TResult setConfig(String address, String value, int timestamp),
+    @required
+        TResult magicConfig(String address, int io, int index, int value,
+            int correlation, int timestamp),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
+    assert(magicConfig != null);
     return sendLevel(address, level, target, remaining, timestamp);
   }
 
@@ -316,7 +325,8 @@ class _$SendLevelResponse implements SendLevelResponse {
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
-    TResult setConfig(String address, String value, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value,
+        int correlation, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -333,13 +343,13 @@ class _$SendLevelResponse implements SendLevelResponse {
     @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
-    @required TResult setConfig(SetConfigResponse value),
+    @required TResult magicConfig(MagicConfigResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
+    assert(magicConfig != null);
     return sendLevel(this);
   }
 
@@ -350,7 +360,7 @@ class _$SendLevelResponse implements SendLevelResponse {
     TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
-    TResult setConfig(SetConfigResponse value),
+    TResult magicConfig(MagicConfigResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -493,13 +503,15 @@ class _$SendRawResponse implements SendRawResponse {
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required TResult setConfig(String address, String value, int timestamp),
+    @required
+        TResult magicConfig(String address, int io, int index, int value,
+            int correlation, int timestamp),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
+    assert(magicConfig != null);
     return sendRaw(address, raw, target_raw, timestamp);
   }
 
@@ -513,7 +525,8 @@ class _$SendRawResponse implements SendRawResponse {
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
-    TResult setConfig(String address, String value, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value,
+        int correlation, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -530,13 +543,13 @@ class _$SendRawResponse implements SendRawResponse {
     @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
-    @required TResult setConfig(SetConfigResponse value),
+    @required TResult magicConfig(MagicConfigResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
+    assert(magicConfig != null);
     return sendRaw(this);
   }
 
@@ -547,7 +560,7 @@ class _$SendRawResponse implements SendRawResponse {
     TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
-    TResult setConfig(SetConfigResponse value),
+    TResult magicConfig(MagicConfigResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -680,13 +693,15 @@ class _$GetStateResponse implements GetStateResponse {
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required TResult setConfig(String address, String value, int timestamp),
+    @required
+        TResult magicConfig(String address, int io, int index, int value,
+            int correlation, int timestamp),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
+    assert(magicConfig != null);
     return getState(address, level, timestamp);
   }
 
@@ -700,7 +715,8 @@ class _$GetStateResponse implements GetStateResponse {
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
-    TResult setConfig(String address, String value, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value,
+        int correlation, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -717,13 +733,13 @@ class _$GetStateResponse implements GetStateResponse {
     @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
-    @required TResult setConfig(SetConfigResponse value),
+    @required TResult magicConfig(MagicConfigResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
+    assert(magicConfig != null);
     return getState(this);
   }
 
@@ -734,7 +750,7 @@ class _$GetStateResponse implements GetStateResponse {
     TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
-    TResult setConfig(SetConfigResponse value),
+    TResult magicConfig(MagicConfigResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -888,13 +904,15 @@ class _$SetToggleResponse implements SetToggleResponse {
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required TResult setConfig(String address, String value, int timestamp),
+    @required
+        TResult magicConfig(String address, int io, int index, int value,
+            int correlation, int timestamp),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
+    assert(magicConfig != null);
     return toggle(address, level, target, remaining, timestamp);
   }
 
@@ -908,7 +926,8 @@ class _$SetToggleResponse implements SetToggleResponse {
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
-    TResult setConfig(String address, String value, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value,
+        int correlation, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -925,13 +944,13 @@ class _$SetToggleResponse implements SetToggleResponse {
     @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
-    @required TResult setConfig(SetConfigResponse value),
+    @required TResult magicConfig(MagicConfigResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
+    assert(magicConfig != null);
     return toggle(this);
   }
 
@@ -942,7 +961,7 @@ class _$SetToggleResponse implements SetToggleResponse {
     TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
-    TResult setConfig(SetConfigResponse value),
+    TResult magicConfig(MagicConfigResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -978,35 +997,47 @@ abstract class SetToggleResponse implements GatewayResponse {
 }
 
 /// @nodoc
-abstract class $SetConfigResponseCopyWith<$Res>
+abstract class $MagicConfigResponseCopyWith<$Res>
     implements $GatewayResponseCopyWith<$Res> {
-  factory $SetConfigResponseCopyWith(
-          SetConfigResponse value, $Res Function(SetConfigResponse) then) =
-      _$SetConfigResponseCopyWithImpl<$Res>;
+  factory $MagicConfigResponseCopyWith(
+          MagicConfigResponse value, $Res Function(MagicConfigResponse) then) =
+      _$MagicConfigResponseCopyWithImpl<$Res>;
   @override
-  $Res call({String address, String value, int timestamp});
+  $Res call(
+      {String address,
+      int io,
+      int index,
+      int value,
+      int correlation,
+      int timestamp});
 }
 
 /// @nodoc
-class _$SetConfigResponseCopyWithImpl<$Res>
+class _$MagicConfigResponseCopyWithImpl<$Res>
     extends _$GatewayResponseCopyWithImpl<$Res>
-    implements $SetConfigResponseCopyWith<$Res> {
-  _$SetConfigResponseCopyWithImpl(
-      SetConfigResponse _value, $Res Function(SetConfigResponse) _then)
-      : super(_value, (v) => _then(v as SetConfigResponse));
+    implements $MagicConfigResponseCopyWith<$Res> {
+  _$MagicConfigResponseCopyWithImpl(
+      MagicConfigResponse _value, $Res Function(MagicConfigResponse) _then)
+      : super(_value, (v) => _then(v as MagicConfigResponse));
 
   @override
-  SetConfigResponse get _value => super._value as SetConfigResponse;
+  MagicConfigResponse get _value => super._value as MagicConfigResponse;
 
   @override
   $Res call({
     Object address = freezed,
+    Object io = freezed,
+    Object index = freezed,
     Object value = freezed,
+    Object correlation = freezed,
     Object timestamp = freezed,
   }) {
-    return _then(SetConfigResponse(
+    return _then(MagicConfigResponse(
       address == freezed ? _value.address : address as String,
-      value == freezed ? _value.value : value as String,
+      io == freezed ? _value.io : io as int,
+      index == freezed ? _value.index : index as int,
+      value == freezed ? _value.value : value as int,
+      correlation == freezed ? _value.correlation : correlation as int,
       timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
   }
@@ -1015,36 +1046,53 @@ class _$SetConfigResponseCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$SetConfigResponse implements SetConfigResponse {
-  const _$SetConfigResponse(this.address, this.value, this.timestamp)
+class _$MagicConfigResponse implements MagicConfigResponse {
+  const _$MagicConfigResponse(this.address, this.io, this.index, this.value,
+      this.correlation, this.timestamp)
       : assert(address != null),
+        assert(io != null),
+        assert(index != null),
         assert(value != null),
+        assert(correlation != null),
         assert(timestamp != null);
 
-  factory _$SetConfigResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$SetConfigResponseFromJson(json);
+  factory _$MagicConfigResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$MagicConfigResponseFromJson(json);
 
   @override
   final String address;
   @override
-  final String value;
+  final int io;
+  @override
+  final int index;
+  @override
+  final int value;
+  @override
+  final int correlation;
   @override
   final int timestamp;
 
   @override
   String toString() {
-    return 'GatewayResponse.setConfig(address: $address, value: $value, timestamp: $timestamp)';
+    return 'GatewayResponse.magicConfig(address: $address, io: $io, index: $index, value: $value, correlation: $correlation, timestamp: $timestamp)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SetConfigResponse &&
+        (other is MagicConfigResponse &&
             (identical(other.address, address) ||
                 const DeepCollectionEquality()
                     .equals(other.address, address)) &&
+            (identical(other.io, io) ||
+                const DeepCollectionEquality().equals(other.io, io)) &&
+            (identical(other.index, index) ||
+                const DeepCollectionEquality().equals(other.index, index)) &&
             (identical(other.value, value) ||
                 const DeepCollectionEquality().equals(other.value, value)) &&
+            (identical(other.correlation, correlation) ||
+                const DeepCollectionEquality()
+                    .equals(other.correlation, correlation)) &&
             (identical(other.timestamp, timestamp) ||
                 const DeepCollectionEquality()
                     .equals(other.timestamp, timestamp)));
@@ -1054,13 +1102,16 @@ class _$SetConfigResponse implements SetConfigResponse {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(io) ^
+      const DeepCollectionEquality().hash(index) ^
       const DeepCollectionEquality().hash(value) ^
+      const DeepCollectionEquality().hash(correlation) ^
       const DeepCollectionEquality().hash(timestamp);
 
   @JsonKey(ignore: true)
   @override
-  $SetConfigResponseCopyWith<SetConfigResponse> get copyWith =>
-      _$SetConfigResponseCopyWithImpl<SetConfigResponse>(this, _$identity);
+  $MagicConfigResponseCopyWith<MagicConfigResponse> get copyWith =>
+      _$MagicConfigResponseCopyWithImpl<MagicConfigResponse>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1075,14 +1126,16 @@ class _$SetConfigResponse implements SetConfigResponse {
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
-    @required TResult setConfig(String address, String value, int timestamp),
+    @required
+        TResult magicConfig(String address, int io, int index, int value,
+            int correlation, int timestamp),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
-    return setConfig(address, value, timestamp);
+    assert(magicConfig != null);
+    return magicConfig(address, io, index, value, correlation, timestamp);
   }
 
   @override
@@ -1095,12 +1148,13 @@ class _$SetConfigResponse implements SetConfigResponse {
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
-    TResult setConfig(String address, String value, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value,
+        int correlation, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (setConfig != null) {
-      return setConfig(address, value, timestamp);
+    if (magicConfig != null) {
+      return magicConfig(address, io, index, value, correlation, timestamp);
     }
     return orElse();
   }
@@ -1112,14 +1166,14 @@ class _$SetConfigResponse implements SetConfigResponse {
     @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
-    @required TResult setConfig(SetConfigResponse value),
+    @required TResult magicConfig(MagicConfigResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
-    assert(setConfig != null);
-    return setConfig(this);
+    assert(magicConfig != null);
+    return magicConfig(this);
   }
 
   @override
@@ -1129,35 +1183,38 @@ class _$SetConfigResponse implements SetConfigResponse {
     TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
-    TResult setConfig(SetConfigResponse value),
+    TResult magicConfig(MagicConfigResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (setConfig != null) {
-      return setConfig(this);
+    if (magicConfig != null) {
+      return magicConfig(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$SetConfigResponseToJson(this)..['runtimeType'] = 'setConfig';
+    return _$_$MagicConfigResponseToJson(this)..['runtimeType'] = 'magicConfig';
   }
 }
 
-abstract class SetConfigResponse implements GatewayResponse {
-  const factory SetConfigResponse(String address, String value, int timestamp) =
-      _$SetConfigResponse;
+abstract class MagicConfigResponse implements GatewayResponse {
+  const factory MagicConfigResponse(String address, int io, int index,
+      int value, int correlation, int timestamp) = _$MagicConfigResponse;
 
-  factory SetConfigResponse.fromJson(Map<String, dynamic> json) =
-      _$SetConfigResponse.fromJson;
+  factory MagicConfigResponse.fromJson(Map<String, dynamic> json) =
+      _$MagicConfigResponse.fromJson;
 
   @override
   String get address;
-  String get value;
+  int get io;
+  int get index;
+  int get value;
+  int get correlation;
   @override
   int get timestamp;
   @override
   @JsonKey(ignore: true)
-  $SetConfigResponseCopyWith<SetConfigResponse> get copyWith;
+  $MagicConfigResponseCopyWith<MagicConfigResponse> get copyWith;
 }
