@@ -5,6 +5,7 @@ import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
 import 'package:dooz_gateway_sdk/src/models/models.dart';
 import 'package:dooz_gateway_sdk/src/utils/utils.dart' as utils;
+import 'package:dooz_gateway_sdk/src/utils/extensions.dart';
 import 'package:json_rpc_2/error_code.dart';
 import 'package:json_rpc_2/json_rpc_2.dart';
 import 'package:pedantic/pedantic.dart';
@@ -171,11 +172,11 @@ class DoozGateway {
     final String login,
     final String password,
   ) async {
-    if (login == null || login.isEmpty) {
-      throw ArgumentError('login must not be null nor empty');
+    if (login.isBlank) {
+      throw ArgumentError('login must not be blank');
     }
-    if (password == null || password.isEmpty) {
-      throw ArgumentError('password must not be null nor empty');
+    if (password.isBlank) {
+      throw ArgumentError('password must not be blank');
     }
     return AuthResponse.fromJson(await _sendRequest(
       'authenticate',
@@ -195,8 +196,8 @@ class DoozGateway {
     final int delay = 0,
     final int transition = 0,
   }) async {
-    if (address == null || address.isEmpty) {
-      throw ArgumentError('address must not be null nor empty');
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
     }
     if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
       throw ArgumentError('address must be a four digit hexadecimal String');
@@ -233,8 +234,8 @@ class DoozGateway {
 
   /// Get the state of a device from its [address]
   Future<GetStateResponse> getState(final String address) async {
-    if (address == null || address.isEmpty) {
-      throw ArgumentError('address must not be null nor empty');
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
     }
     if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
       throw ArgumentError('address must be a four digit hexadecimal String');
@@ -252,8 +253,8 @@ class DoozGateway {
 
   /// Toggle a device
   Future<SetToggleResponse> toggle(final String address) async {
-    if (address == null || address.isEmpty) {
-      throw ArgumentError('address must not be null nor empty');
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
     }
     if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
       throw ArgumentError('address must be a four digit hexadecimal String');
@@ -329,8 +330,8 @@ class DoozGateway {
     if (priority == null) {
       throw ArgumentError.notNull('priority');
     }
-    if (module == null) {
-      throw ArgumentError.notNull('module');
+    if (module.isBlank) {
+      throw ArgumentError('module must not be blank');
     }
     return SetLogPriorityResponse.fromJson(await _sendRequest(
       'set_log_priority',
