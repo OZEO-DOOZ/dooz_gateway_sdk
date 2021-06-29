@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dooz_gateway_sdk/dooz_gateway_sdk.dart';
 import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
@@ -15,6 +17,7 @@ void main() async {
     host: _host,
   );
   try {
+    print('------------- AUTH -------------');
     // authenticate the gateway on server
     AuthResponse authResult;
     var authTries = 0;
@@ -28,16 +31,16 @@ void main() async {
             (Object e) => AuthResponse('refused', 0),
             test: (e) => e is OoplaRequestTimeout,
           );
-      print(authResult);
       authTries++;
-      if (authResult.status == 'OK' || authResult.timestamp == 0) break;
+      print('try #$authTries : $authResult');
+      if (authResult.status == 'OK') break;
     } while (authTries < 3);
-    if (authResult.status == 'OK') {
+    final authSuccess = authResult.status == 'OK';
+    if (authSuccess) {
       print(
           'Successfully authenticated using user\'s creds after $authTries tries!');
-      // await _testControlsScenario(gateway);
-      // await _testAdminScenario(gateway);
-      await _testDiscoveries(gateway);
+      print('--------------------------------\n');
+      await _testScript(gateway);
     } else {
       print('Server auth failed... fallback to local auth');
       await gateway.disconnect();
@@ -59,11 +62,11 @@ void main() async {
       } while (authTries < 3);
       if (authResult.status == 'OK') {
         print('Successfully authenticated using gateway creds !');
-        // await _testControlsScenario(gateway);
-        await _testAdminScenario(gateway);
-        await _testDiscoveries(gateway);
+        print('--------------------------------\n');
+        await _testScript(gateway);
       } else {
         print('could not succeed in gateway auth...');
+        print('--------------------------------\n');
       }
     }
   } catch (e) {
@@ -73,110 +76,194 @@ void main() async {
   await gateway.disconnect();
 }
 
-void _testDiscoveries(DoozGateway gateway) async {
-  // ----- DISCOVER TEST -----
-  print(await gateway.discover());
-
-  // ----- GETROOMS TEST -----
-  final getRoomsResponse = await gateway.getRooms();
-  print(getRoomsResponse);
-
-  // ------ GETROOM TESTS -----
-  print(await gateway.getNodesInRoomName('Cuisine'));
-  print(await gateway.getNodesInRoomID(getRoomsResponse.rooms.first));
+Future<void> _testScript(DoozGateway gateway) async {
+  await _testLogs(gateway);
+  await _testVersions(gateway);
+  await _testControls(gateway);
 }
 
-void _testAdminScenario(DoozGateway gateway) async {
-  // ----- VERSIONS TESTS -----
-  GetVersionsResponse versionsResponse = await gateway.getSoftwareVersion();
-  print(versionsResponse);
-  versionsResponse = await gateway.getHardwareVersion();
-  print(versionsResponse);
-  versionsResponse = await gateway.getModulesVersion();
-  print(versionsResponse);
-
-  // ------- LOGS TESTS -------
-  LogManagementResponse logsResponse =
-      await gateway.setLogLevel(LogLevel.debug);
-  print(logsResponse);
-  logsResponse = await gateway.getLogs(priority: LogLevel.emergency);
-  print(logsResponse);
-  logsResponse = await gateway.clearLogs();
-  print(logsResponse);
-  logsResponse = await gateway.getLogs(priority: LogLevel.debug);
-  print(logsResponse);
+Future<void> _testLogs(DoozGateway gateway) async {
+  print('------------- LOGS -------------');
+  print('applying debug level for every ooPLA\'s logs...');
+  print(await gateway.setLogLevel(LogLevel.debug));
+  print('--------------------------------\n');
 }
 
-void _testControlsScenario(DoozGateway gateway) async {
-  // ------ TOGGLE TESTS ------
-  // DIMMER
-  print('toggle $_dimmerOutput');
-  var toggleResponse = await gateway.toggle(_dimmerOutput);
-  print(toggleResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('toggle $_dimmerOutput');
-  toggleResponse = await gateway.toggle(_dimmerOutput);
-  print(toggleResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  // ONOFF
-  print('toggle $_onOffOutput');
-  toggleResponse = await gateway.toggle(_onOffOutput);
-  print(toggleResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('toggle $_onOffOutput');
-  toggleResponse = await gateway.toggle(_onOffOutput);
-  print(toggleResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
+Future<void> _testVersions(DoozGateway gateway) async {
+  print('----------- VERSIONS -----------');
+  final softwareVersionResponse = await gateway.getSoftwareVersion();
+  print('ooPLA\'s software version is v${softwareVersionResponse.version}');
+  final hardwareVersionResponse = await gateway.getHardwareVersion();
+  print('ooPLA\'s hardware version is v${hardwareVersionResponse.hw_version}');
+  final modulesVersionsResponse = await gateway.getModulesVersion();
+  for (final moduleVersion in modulesVersionsResponse.versions) {
+    print(
+        'ooPLA\'s ${moduleVersion.keys.first} version is v${moduleVersion.values.first}');
+  }
+  print('--------------------------------\n');
+}
 
-  // ------- SET TESTS --------
-  // DIMMER
-  print('send set 50% to $_dimmerOutput');
-  var setResponse = await gateway.setState(_dimmerOutput, 50);
-  print(setResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('send set on to $_dimmerOutput');
-  setResponse = await gateway.setState(_dimmerOutput, 'on');
-  print(setResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('send set off to $_dimmerOutput');
-  setResponse = await gateway.setState(_dimmerOutput, 'off');
-  print(setResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('send set 70% to $_dimmerOutput');
-  setResponse = await gateway.setState(_dimmerOutput, 70);
-  print(setResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('send get to $_dimmerOutput');
-  var getResponse = await gateway.getState(_dimmerOutput);
-  print(getResponse);
-  // ONOFF
-  print('send set 50% to $_onOffOutput');
-  setResponse = await gateway.setState(_onOffOutput, 50);
-  print(setResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('send set on to $_onOffOutput');
-  setResponse = await gateway.setState(_onOffOutput, 'on');
-  print(setResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('send set off to $_onOffOutput');
-  setResponse = await gateway.setState(_onOffOutput, 'off');
-  print(setResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('send set 70% to $_onOffOutput');
-  setResponse = await gateway.setState(_onOffOutput, 70);
-  print(setResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('send get to $_onOffOutput');
-  getResponse = await gateway.getState(_onOffOutput);
-  print(getResponse);
+Future<void> _testControls(DoozGateway gateway) async {
+  print('------------ CONTROLS ------------');
+  final firstDooblv = await _searchADooblv(gateway);
+  if (firstDooblv != null) {
+    await _playWithDooblv(firstDooblv, gateway);
+  } else {
+    print('did not find any configured dooblv in the current discovered n/w');
+  }
+  print('--------------------------------\n');
+}
 
-  // shut down lights
-  print('send toggle to $_dimmerOutput');
-  toggleResponse = await gateway.toggle(_dimmerOutput);
-  print(toggleResponse);
-  await Future<void>.delayed(const Duration(seconds: 2));
-  print('send toggle to $_onOffOutput');
-  toggleResponse = await gateway.toggle(_onOffOutput);
-  print(toggleResponse);
-  await Future<void>.delayed(const Duration(seconds: 10));
+Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
+  final discover = await gateway.discover();
+  MapEntry<String, dynamic> firstDooblv;
+  for (final discoveredNode in discover.mesh.entries) {
+    if (discoveredNode.value['type'] == 0x0A) {
+      print('found a DooBLV in network !');
+      dynamic confState = discoveredNode.value['conf state'];
+      if (confState != 'CONFIGURED') {
+        print(
+            'but it is not reported as configured...(conf state : ${confState})');
+      } else {
+        firstDooblv = discoveredNode;
+      }
+    } else {
+      print(
+          'found node with id ${discoveredNode.value['type']} at address ${discoveredNode.key}');
+    }
+  }
+  return firstDooblv;
+}
+
+Future<void> _playWithDooblv(
+    MapEntry<String, dynamic> firstDooblv, DoozGateway gateway) async {
+  final dooblvUnicast = firstDooblv.key;
+  print(
+      'discover returned a dooblv at unicast $dooblvUnicast ! Let\'s play :D');
+  final elements = firstDooblv.value['nodes'] as List;
+  assert(elements.length == 4,
+      'the json structure for dooblv\'s elements is not as expected');
+  final lightElements = elements.getRange(0, 2);
+  assert(
+      lightElements.every((dynamic element) =>
+          element['output conf'] == 0 || element['output conf'] == 1),
+      'the elements are not configured as lights...');
+  final firstLightAddress = lightElements.first['address'] as String;
+  final secondLightAddress = lightElements.last['address'] as String;
+  await _lightsToX(gateway, firstLightAddress, secondLightAddress, 50);
+  await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
+  await _lightsRawLevels(gateway, firstLightAddress, secondLightAddress);
+  await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
+  var ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
+  print(ioConfigs);
+  await _revertIoConfigs(ioConfigs, gateway, dooblvUnicast);
+  ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
+  print(ioConfigs);
+}
+
+Future<void> _lightsToX(DoozGateway gateway, String firstLightAddress,
+    String secondLightAddress, int level) async {
+  print('send set 50% to $firstLightAddress');
+  var setResponse = await gateway.sendLevel(firstLightAddress, level);
+  print(setResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set 50% to $secondLightAddress');
+  setResponse = await gateway.sendLevel(secondLightAddress, level);
+  print(setResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+}
+
+Future<void> _shutDownDooblv(DoozGateway gateway, String firstLightAddress,
+    String secondLightAddress) async {
+  print('send off to $firstLightAddress');
+  var setResponse = await gateway.sendLevel(firstLightAddress, 'off');
+  print(setResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send off to $secondLightAddress');
+  setResponse = await gateway.sendLevel(secondLightAddress, 'off');
+  print(setResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+}
+
+Future<void> _lightsRawLevels(DoozGateway gateway, String firstLightAddress,
+    String secondLightAddress) async {
+  final max = 32767.toRadixString(16);
+  final min = (-32000).toRadixString(16);
+  print('send set ${max}h to $firstLightAddress');
+  var setRawResponse = await gateway.sendRaw(firstLightAddress, max);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set ${max}h to $secondLightAddress');
+  setRawResponse = await gateway.sendRaw(secondLightAddress, max);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set ${min}h to $firstLightAddress');
+  setRawResponse = await gateway.sendRaw(firstLightAddress, min);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set ${min}h to $secondLightAddress');
+  setRawResponse = await gateway.sendRaw(secondLightAddress, min);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+}
+
+Future<Map<int, Map<String, int>>> _getIoConfigs(
+    DoozGateway gateway, String dooblvUnicast) async {
+  final ioConfigs = {
+    0: <String, int>{'input': -1, 'output': -1},
+    1: <String, int>{'input': -1, 'output': -1},
+  };
+  final r = Random();
+  var getConfig = await gateway.getConfig(dooblvUnicast, 0, 1,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[0]['output'] = getConfig.value;
+  getConfig = await gateway.getConfig(dooblvUnicast, 0, 2,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[0]['input'] = getConfig.value;
+  getConfig = await gateway.getConfig(dooblvUnicast, 1, 1,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[1]['output'] = getConfig.value;
+  getConfig = await gateway.getConfig(dooblvUnicast, 1, 2,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[1]['input'] = getConfig.value;
+  return ioConfigs;
+}
+
+Future<void> _revertIoConfigs(Map<int, Map<String, int>> ioConfigs,
+    DoozGateway gateway, String dooblvUnicast) async {
+  final r = Random();
+  for (final ioConfig in ioConfigs.entries) {
+    switch (ioConfig.value['input']) {
+      case 0:
+        print(
+            'input ${ioConfig.key} is configured as switch, changing to push...');
+        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 2, 1,
+            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        break;
+      case 1:
+        print(
+            'input ${ioConfig.key} is configured as push, changing to switch...');
+        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 2, 0,
+            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        break;
+    }
+    switch (ioConfig.value['output']) {
+      case 0:
+        print(
+            'output ${ioConfig.key} is configured as onoff, changing to dimmer...');
+        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 1, 1,
+            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        break;
+      case 1:
+        print(
+            'output ${ioConfig.key} is configured as dimmer, changing to onoff...');
+        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 1, 0,
+            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        break;
+    }
+  }
 }

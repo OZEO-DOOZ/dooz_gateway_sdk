@@ -133,10 +133,13 @@ class DoozGateway {
     Map<String, dynamic> params = const <String, dynamic>{},
   }) async {
     _checkPeerInitialized();
+    final stopwatch = Stopwatch()..start();
     final _requestResult = await _peer
         .sendRequest(method, params)
         .timeout(kGatewayRequestTimeout)
         .catchError(_onRequestError) as Map<String, dynamic>;
+    stopwatch.stop();
+    print('request "$method" answered in ${stopwatch.elapsedMilliseconds}ms');
     return _requestResult;
   }
 
@@ -226,8 +229,8 @@ class DoozGateway {
 
   // -------- Control the network --------
 
-  /// Set the [level] of the device at [address]
-  Future<SetStateResponse> setState(
+  /// Send the [level] to the device at [address]
+  Future<SendLevelResponse> sendLevel(
     final String address,
     final dynamic level, {
     final int delay = 0,
@@ -258,13 +261,64 @@ class DoozGateway {
     } else {
       throw UnsupportedError('level must be either of int or String type');
     }
-    return SetStateResponse.fromJson(await _sendRequest(
+    return SendLevelResponse.fromJson(await _sendRequest(
       'set',
       params: <String, dynamic>{
         'address': address,
         'level': level,
         'delay_ms': delay,
         'transition_ms': transition,
+      },
+    ));
+  }
+
+  /// Send the [raw] level to the device at [address]
+  Future<SendRawResponse> sendRaw(
+    final String address,
+    final dynamic raw, {
+    final int delay = 0,
+    final int transition = 0,
+  }) async {
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
+    }
+    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
+      throw ArgumentError('address must be a four digit hexadecimal String');
+    }
+    final parsedAddress = int.parse(address, radix: 16);
+    if (!(utils.isValidUnicastAddress(parsedAddress) ||
+        utils.isValidGroupAddress(parsedAddress))) {
+      throw ArgumentError('address must be a valid unicast or group address');
+    }
+    if (raw == null) {
+      throw ArgumentError.notNull('raw');
+    }
+    dynamic _raw = raw;
+    if (raw is int) {
+      if (raw < -32768 || raw > 32767) {
+        throw ArgumentError('raw must be between -32768 and 32767');
+      }
+    } else if (raw is String) {
+      if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(raw)) {
+        throw ArgumentError('raw must be a four digit hexadecimal String');
+      }
+      final parsedRaw = int.parse(raw, radix: 16);
+      if (parsedRaw < -32768 || parsedRaw > 32767) {
+        throw ArgumentError('raw must be between -32768 and 32767');
+      }
+      if (parsedRaw < 0) {
+        print(
+            'cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
+        _raw = parsedRaw;
+      }
+    } else {
+      throw UnsupportedError('raw must be either of int or String type');
+    }
+    return SendRawResponse.fromJson(await _sendRequest(
+      'set',
+      params: <String, dynamic>{
+        'address': address,
+        'raw': _raw,
       },
     ));
   }
@@ -308,21 +362,43 @@ class DoozGateway {
   }
 
   /// Set the config value of a device
-  Future<SetConfigResponse> setConfig(
-      final String address, final String value) async {
-    _checkPeerInitialized();
-    final _result = await _peer.sendRequest(
+  Future<MagicConfigResponse> setConfig(
+    final String address,
+    final int io,
+    final int index,
+    final int value,
+    final int correlation, {
+    int version = 2,
+  }) async {
+    return MagicConfigResponse.fromJson(await _sendRequest(
       'set_config',
-      {
+      params: <String, dynamic>{
         'address': address,
+        'io': io,
+        'index': index,
         'value': value,
+        'correlation': correlation,
+        'version': version,
       },
-    ) as Map<String, dynamic>;
-    return SetConfigResponse(
-      _result['address'] as String,
-      _result['value'] as String,
-      _result['timestamp'] as int,
-    );
+    ));
+  }
+
+  /// Get the config value of a device
+  Future<MagicConfigResponse> getConfig(
+    final String address,
+    final int io,
+    final int index,
+    final int correlation,
+  ) async {
+    return MagicConfigResponse.fromJson(await _sendRequest(
+      'get_config',
+      params: <String, dynamic>{
+        'address': address,
+        'io': io,
+        'index': index,
+        'correlation': correlation,
+      },
+    ));
   }
   // -------------------------------------
 

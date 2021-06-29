@@ -6,8 +6,8 @@ part of 'gateway_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SetStateResponse _$_$SetStateResponseFromJson(Map<String, dynamic> json) {
-  return _$SetStateResponse(
+_$SendLevelResponse _$_$SendLevelResponseFromJson(Map<String, dynamic> json) {
+  return _$SendLevelResponse(
     json['address'] as String,
     json['level'],
     json['target'],
@@ -16,12 +16,30 @@ _$SetStateResponse _$_$SetStateResponseFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$SetStateResponseToJson(_$SetStateResponse instance) =>
+Map<String, dynamic> _$_$SendLevelResponseToJson(
+        _$SendLevelResponse instance) =>
     <String, dynamic>{
       'address': instance.address,
       'level': instance.level,
       'target': instance.target,
       'remaining': instance.remaining,
+      'timestamp': instance.timestamp,
+    };
+
+_$SendRawResponse _$_$SendRawResponseFromJson(Map<String, dynamic> json) {
+  return _$SendRawResponse(
+    json['address'] as String,
+    json['raw'],
+    json['target_raw'],
+    json['timestamp'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$SendRawResponseToJson(_$SendRawResponse instance) =>
+    <String, dynamic>{
+      'address': instance.address,
+      'raw': instance.raw,
+      'target_raw': instance.target_raw,
       'timestamp': instance.timestamp,
     };
 
@@ -60,18 +78,25 @@ Map<String, dynamic> _$_$SetToggleResponseToJson(
       'timestamp': instance.timestamp,
     };
 
-_$SetConfigResponse _$_$SetConfigResponseFromJson(Map<String, dynamic> json) {
-  return _$SetConfigResponse(
+_$MagicConfigResponse _$_$MagicConfigResponseFromJson(
+    Map<String, dynamic> json) {
+  return _$MagicConfigResponse(
     json['address'] as String,
-    json['value'] as String,
+    json['io'] as int,
+    json['index'] as int,
+    json['value'] as int,
+    json['correlation'] as int,
     json['timestamp'] as int,
   );
 }
 
-Map<String, dynamic> _$_$SetConfigResponseToJson(
-        _$SetConfigResponse instance) =>
+Map<String, dynamic> _$_$MagicConfigResponseToJson(
+        _$MagicConfigResponse instance) =>
     <String, dynamic>{
       'address': instance.address,
+      'io': instance.io,
+      'index': instance.index,
       'value': instance.value,
+      'correlation': instance.correlation,
       'timestamp': instance.timestamp,
     };
