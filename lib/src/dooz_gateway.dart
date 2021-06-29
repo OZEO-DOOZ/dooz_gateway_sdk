@@ -133,10 +133,13 @@ class DoozGateway {
     Map<String, dynamic> params = const <String, dynamic>{},
   }) async {
     _checkPeerInitialized();
+    final stopwatch = Stopwatch()..start();
     final _requestResult = await _peer
         .sendRequest(method, params)
         .timeout(kGatewayRequestTimeout)
         .catchError(_onRequestError) as Map<String, dynamic>;
+    stopwatch.stop();
+    print('request "$method" answered in ${stopwatch.elapsedMilliseconds}ms');
     return _requestResult;
   }
 
