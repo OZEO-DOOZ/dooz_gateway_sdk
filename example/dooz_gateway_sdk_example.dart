@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dooz_gateway_sdk/dooz_gateway_sdk.dart';
 import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
@@ -105,12 +107,40 @@ Future _playWithDooblv(
           element['output conf'] == 0 || element['output conf'] == 1),
       'the elements are not configured as lights...');
   // light up elements
-  final firstLightAddress = lightElements.first['address'] as String;
-  final secondLightAddress = lightElements.last['address'] as String;
-  await _lightsToX(gateway, firstLightAddress, secondLightAddress, 50);
-  await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
-  await _lightsRawLevels(gateway, firstLightAddress, secondLightAddress);
-  await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
+  // final firstLightAddress = lightElements.first['address'] as String;
+  // final secondLightAddress = lightElements.last['address'] as String;
+  // await _lightsToX(gateway, firstLightAddress, secondLightAddress, 50);
+  // await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
+  // await _lightsRawLevels(gateway, firstLightAddress, secondLightAddress);
+  // await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
+  final ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
+  print(ioConfigs);
+}
+
+Future<Map<int, Map<String, int>>> _getIoConfigs(
+    DoozGateway gateway, String dooblvUnicast) async {
+  final ioConfigs = {
+    0: <String, int>{'input': -1, 'output': -1},
+    1: <String, int>{'input': -1, 'output': -1}
+  };
+  final r = Random();
+  var getConfig = await gateway.getConfig(dooblvUnicast, 0, 1,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[0]['input'] = getConfig['value'] as int;
+  getConfig = await gateway.getConfig(dooblvUnicast, 0, 2,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[0]['output'] = getConfig['value'] as int;
+  getConfig = await gateway.getConfig(dooblvUnicast, 1, 1,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[1]['input'] = getConfig['value'] as int;
+  getConfig = await gateway.getConfig(dooblvUnicast, 1, 2,
+      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  print(getConfig);
+  ioConfigs[1]['output'] = getConfig['value'] as int;
+  return ioConfigs;
 }
 
 Future<void> _lightsRawLevels(DoozGateway gateway, String firstLightAddress,
@@ -165,7 +195,7 @@ Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
   for (final discoveredNode in discover.mesh.entries) {
     if (discoveredNode.value['type'] == 0x0A) {
       print('found a DooBLV in network !');
-      final confState = discoveredNode.value['conf state'] as String;
+      dynamic confState = discoveredNode.value['conf state'];
       if (confState != 'CONFIGURED') {
         print(
             'but it is not reported as configured...(conf state : ${confState})');

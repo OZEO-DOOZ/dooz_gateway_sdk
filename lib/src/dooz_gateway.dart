@@ -359,20 +359,42 @@ class DoozGateway {
   }
 
   /// Set the config value of a device
-  Future<SetConfigResponse> setConfig(
-      final String address, final String value) async {
-    _checkPeerInitialized();
-    final _result = await _peer.sendRequest(
+  Future<Map<String, dynamic>> setConfig(
+    final String address,
+    final int io,
+    final int index,
+    final int value,
+    final int correlation, {
+    int version = 2,
+  }) async {
+    return await _sendRequest(
       'set_config',
-      {
+      params: <String, dynamic>{
         'address': address,
+        'io': io,
+        'index': index,
         'value': value,
+        'correlation': correlation,
+        'version': version,
       },
-    ) as Map<String, dynamic>;
-    return SetConfigResponse(
-      _result['address'] as String,
-      _result['value'] as String,
-      _result['timestamp'] as int,
+    );
+  }
+
+  /// Get the config value of a device
+  Future<Map<String, dynamic>> getConfig(
+    final String address,
+    final int io,
+    final int index,
+    final int correlation,
+  ) async {
+    return await _sendRequest(
+      'get_config',
+      params: <String, dynamic>{
+        'address': address,
+        'io': io,
+        'index': index,
+        'correlation': correlation,
+      },
     );
   }
   // -------------------------------------
