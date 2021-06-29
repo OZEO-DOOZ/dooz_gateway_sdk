@@ -194,7 +194,7 @@ Future<void> _testVersions(DoozGateway gateway) async {
   print('--------------------------------\n');
 }
 
-Future _testLogs(DoozGateway gateway) async {
+Future<void> _testLogs(DoozGateway gateway) async {
   print('------------- LOGS -------------');
   print('applying debug level for every ooPLA\'s logs...');
   print(await gateway.setLogLevel(LogLevel.debug));
