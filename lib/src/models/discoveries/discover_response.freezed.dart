@@ -17,8 +17,8 @@ class _$DiscoverResponseTearOff {
   const _$DiscoverResponseTearOff();
 
 // ignore: unused_element
-  _DiscoverResponse call(
-      Map<String, dynamic> mesh, String status, int timestamp) {
+  _DiscoverResponse call(Map<String, /* DiscoveredNode */ dynamic> mesh,
+      String status, int timestamp) {
     return _DiscoverResponse(
       mesh,
       status,
@@ -38,7 +38,7 @@ const $DiscoverResponse = _$DiscoverResponseTearOff();
 
 /// @nodoc
 mixin _$DiscoverResponse {
-  Map<String, dynamic> get mesh;
+  Map<String, /* DiscoveredNode */ dynamic> get mesh;
   String get status;
   int get timestamp;
 
@@ -52,7 +52,10 @@ abstract class $DiscoverResponseCopyWith<$Res> {
   factory $DiscoverResponseCopyWith(
           DiscoverResponse value, $Res Function(DiscoverResponse) then) =
       _$DiscoverResponseCopyWithImpl<$Res>;
-  $Res call({Map<String, dynamic> mesh, String status, int timestamp});
+  $Res call(
+      {Map<String, /* DiscoveredNode */ dynamic> mesh,
+      String status,
+      int timestamp});
 }
 
 /// @nodoc
@@ -71,7 +74,9 @@ class _$DiscoverResponseCopyWithImpl<$Res>
     Object timestamp = freezed,
   }) {
     return _then(_value.copyWith(
-      mesh: mesh == freezed ? _value.mesh : mesh as Map<String, dynamic>,
+      mesh: mesh == freezed
+          ? _value.mesh
+          : mesh as Map<String, /* DiscoveredNode */ dynamic>,
       status: status == freezed ? _value.status : status as String,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
@@ -85,7 +90,10 @@ abstract class _$DiscoverResponseCopyWith<$Res>
           _DiscoverResponse value, $Res Function(_DiscoverResponse) then) =
       __$DiscoverResponseCopyWithImpl<$Res>;
   @override
-  $Res call({Map<String, dynamic> mesh, String status, int timestamp});
+  $Res call(
+      {Map<String, /* DiscoveredNode */ dynamic> mesh,
+      String status,
+      int timestamp});
 }
 
 /// @nodoc
@@ -106,7 +114,9 @@ class __$DiscoverResponseCopyWithImpl<$Res>
     Object timestamp = freezed,
   }) {
     return _then(_DiscoverResponse(
-      mesh == freezed ? _value.mesh : mesh as Map<String, dynamic>,
+      mesh == freezed
+          ? _value.mesh
+          : mesh as Map<String, /* DiscoveredNode */ dynamic>,
       status == freezed ? _value.status : status as String,
       timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
@@ -126,7 +136,7 @@ class _$_DiscoverResponse implements _DiscoverResponse {
       _$_$_DiscoverResponseFromJson(json);
 
   @override
-  final Map<String, dynamic> mesh;
+  final Map<String, /* DiscoveredNode */ dynamic> mesh;
   @override
   final String status;
   @override
@@ -170,14 +180,15 @@ class _$_DiscoverResponse implements _DiscoverResponse {
 
 abstract class _DiscoverResponse implements DiscoverResponse {
   const factory _DiscoverResponse(
-          Map<String, dynamic> mesh, String status, int timestamp) =
-      _$_DiscoverResponse;
+      Map<String, /* DiscoveredNode */ dynamic> mesh,
+      String status,
+      int timestamp) = _$_DiscoverResponse;
 
   factory _DiscoverResponse.fromJson(Map<String, dynamic> json) =
       _$_DiscoverResponse.fromJson;
 
   @override
-  Map<String, dynamic> get mesh;
+  Map<String, /* DiscoveredNode */ dynamic> get mesh;
   @override
   String get status;
   @override
