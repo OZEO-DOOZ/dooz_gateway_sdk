@@ -276,8 +276,8 @@ class DoozGateway {
     final int delay = 0,
     final int transition = 0,
   }) async {
-    if (address == null || address.isEmpty) {
-      throw ArgumentError('address must not be null nor empty');
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
     }
     if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
       throw ArgumentError('address must be a four digit hexadecimal String');
