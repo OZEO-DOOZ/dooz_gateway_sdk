@@ -10,8 +10,10 @@ part of 'gateway_response.dart';
 T _$identity<T>(T value) => value;
 GatewayResponse _$GatewayResponseFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
-    case 'setState':
-      return SetStateResponse.fromJson(json);
+    case 'sendLevel':
+      return SendLevelResponse.fromJson(json);
+    case 'sendRaw':
+      return SendRawResponse.fromJson(json);
     case 'getState':
       return GetStateResponse.fromJson(json);
     case 'toggle':
@@ -29,13 +31,24 @@ class _$GatewayResponseTearOff {
   const _$GatewayResponseTearOff();
 
 // ignore: unused_element
-  SetStateResponse setState(String address, dynamic level, dynamic target,
+  SendLevelResponse sendLevel(String address, dynamic level, dynamic target,
       int remaining, int timestamp) {
-    return SetStateResponse(
+    return SendLevelResponse(
       address,
       level,
       target,
       remaining,
+      timestamp,
+    );
+  }
+
+// ignore: unused_element
+  SendRawResponse sendRaw(
+      String address, dynamic raw, dynamic target_raw, int timestamp) {
+    return SendRawResponse(
+      address,
+      raw,
+      target_raw,
       timestamp,
     );
   }
@@ -88,8 +101,11 @@ mixin _$GatewayResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult setState(String address, dynamic level, dynamic target,
+        TResult sendLevel(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
+    @required
+        TResult sendRaw(
+            String address, dynamic raw, dynamic target_raw, int timestamp),
     @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
@@ -98,8 +114,10 @@ mixin _$GatewayResponse {
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult setState(String address, dynamic level, dynamic target,
+    TResult sendLevel(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
+    TResult sendRaw(
+        String address, dynamic raw, dynamic target_raw, int timestamp),
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
@@ -108,14 +126,16 @@ mixin _$GatewayResponse {
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult setState(SetStateResponse value),
+    @required TResult sendLevel(SendLevelResponse value),
+    @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
     @required TResult setConfig(SetConfigResponse value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult setState(SetStateResponse value),
+    TResult sendLevel(SendLevelResponse value),
+    TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
     TResult setConfig(SetConfigResponse value),
@@ -156,11 +176,11 @@ class _$GatewayResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $SetStateResponseCopyWith<$Res>
+abstract class $SendLevelResponseCopyWith<$Res>
     implements $GatewayResponseCopyWith<$Res> {
-  factory $SetStateResponseCopyWith(
-          SetStateResponse value, $Res Function(SetStateResponse) then) =
-      _$SetStateResponseCopyWithImpl<$Res>;
+  factory $SendLevelResponseCopyWith(
+          SendLevelResponse value, $Res Function(SendLevelResponse) then) =
+      _$SendLevelResponseCopyWithImpl<$Res>;
   @override
   $Res call(
       {String address,
@@ -171,15 +191,15 @@ abstract class $SetStateResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class _$SetStateResponseCopyWithImpl<$Res>
+class _$SendLevelResponseCopyWithImpl<$Res>
     extends _$GatewayResponseCopyWithImpl<$Res>
-    implements $SetStateResponseCopyWith<$Res> {
-  _$SetStateResponseCopyWithImpl(
-      SetStateResponse _value, $Res Function(SetStateResponse) _then)
-      : super(_value, (v) => _then(v as SetStateResponse));
+    implements $SendLevelResponseCopyWith<$Res> {
+  _$SendLevelResponseCopyWithImpl(
+      SendLevelResponse _value, $Res Function(SendLevelResponse) _then)
+      : super(_value, (v) => _then(v as SendLevelResponse));
 
   @override
-  SetStateResponse get _value => super._value as SetStateResponse;
+  SendLevelResponse get _value => super._value as SendLevelResponse;
 
   @override
   $Res call({
@@ -189,7 +209,7 @@ class _$SetStateResponseCopyWithImpl<$Res>
     Object remaining = freezed,
     Object timestamp = freezed,
   }) {
-    return _then(SetStateResponse(
+    return _then(SendLevelResponse(
       address == freezed ? _value.address : address as String,
       level == freezed ? _value.level : level as dynamic,
       target == freezed ? _value.target : target as dynamic,
@@ -202,8 +222,8 @@ class _$SetStateResponseCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$SetStateResponse implements SetStateResponse {
-  const _$SetStateResponse(
+class _$SendLevelResponse implements SendLevelResponse {
+  const _$SendLevelResponse(
       this.address, this.level, this.target, this.remaining, this.timestamp)
       : assert(address != null),
         assert(level != null),
@@ -211,8 +231,8 @@ class _$SetStateResponse implements SetStateResponse {
         assert(remaining != null),
         assert(timestamp != null);
 
-  factory _$SetStateResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$SetStateResponseFromJson(json);
+  factory _$SendLevelResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$SendLevelResponseFromJson(json);
 
   @override
   final String address;
@@ -227,13 +247,13 @@ class _$SetStateResponse implements SetStateResponse {
 
   @override
   String toString() {
-    return 'GatewayResponse.setState(address: $address, level: $level, target: $target, remaining: $remaining, timestamp: $timestamp)';
+    return 'GatewayResponse.sendLevel(address: $address, level: $level, target: $target, remaining: $remaining, timestamp: $timestamp)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SetStateResponse &&
+        (other is SendLevelResponse &&
             (identical(other.address, address) ||
                 const DeepCollectionEquality()
                     .equals(other.address, address)) &&
@@ -260,33 +280,39 @@ class _$SetStateResponse implements SetStateResponse {
 
   @JsonKey(ignore: true)
   @override
-  $SetStateResponseCopyWith<SetStateResponse> get copyWith =>
-      _$SetStateResponseCopyWithImpl<SetStateResponse>(this, _$identity);
+  $SendLevelResponseCopyWith<SendLevelResponse> get copyWith =>
+      _$SendLevelResponseCopyWithImpl<SendLevelResponse>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult setState(String address, dynamic level, dynamic target,
+        TResult sendLevel(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
+    @required
+        TResult sendRaw(
+            String address, dynamic raw, dynamic target_raw, int timestamp),
     @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
     @required TResult setConfig(String address, String value, int timestamp),
   }) {
-    assert(setState != null);
+    assert(sendLevel != null);
+    assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
     assert(setConfig != null);
-    return setState(address, level, target, remaining, timestamp);
+    return sendLevel(address, level, target, remaining, timestamp);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult setState(String address, dynamic level, dynamic target,
+    TResult sendLevel(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
+    TResult sendRaw(
+        String address, dynamic raw, dynamic target_raw, int timestamp),
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
@@ -294,8 +320,8 @@ class _$SetStateResponse implements SetStateResponse {
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (setState != null) {
-      return setState(address, level, target, remaining, timestamp);
+    if (sendLevel != null) {
+      return sendLevel(address, level, target, remaining, timestamp);
     }
     return orElse();
   }
@@ -303,46 +329,49 @@ class _$SetStateResponse implements SetStateResponse {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult setState(SetStateResponse value),
+    @required TResult sendLevel(SendLevelResponse value),
+    @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
     @required TResult setConfig(SetConfigResponse value),
   }) {
-    assert(setState != null);
+    assert(sendLevel != null);
+    assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
     assert(setConfig != null);
-    return setState(this);
+    return sendLevel(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult setState(SetStateResponse value),
+    TResult sendLevel(SendLevelResponse value),
+    TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
     TResult setConfig(SetConfigResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (setState != null) {
-      return setState(this);
+    if (sendLevel != null) {
+      return sendLevel(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$SetStateResponseToJson(this)..['runtimeType'] = 'setState';
+    return _$_$SendLevelResponseToJson(this)..['runtimeType'] = 'sendLevel';
   }
 }
 
-abstract class SetStateResponse implements GatewayResponse {
-  const factory SetStateResponse(String address, dynamic level, dynamic target,
-      int remaining, int timestamp) = _$SetStateResponse;
+abstract class SendLevelResponse implements GatewayResponse {
+  const factory SendLevelResponse(String address, dynamic level, dynamic target,
+      int remaining, int timestamp) = _$SendLevelResponse;
 
-  factory SetStateResponse.fromJson(Map<String, dynamic> json) =
-      _$SetStateResponse.fromJson;
+  factory SendLevelResponse.fromJson(Map<String, dynamic> json) =
+      _$SendLevelResponse.fromJson;
 
   @override
   String get address;
@@ -353,7 +382,204 @@ abstract class SetStateResponse implements GatewayResponse {
   int get timestamp;
   @override
   @JsonKey(ignore: true)
-  $SetStateResponseCopyWith<SetStateResponse> get copyWith;
+  $SendLevelResponseCopyWith<SendLevelResponse> get copyWith;
+}
+
+/// @nodoc
+abstract class $SendRawResponseCopyWith<$Res>
+    implements $GatewayResponseCopyWith<$Res> {
+  factory $SendRawResponseCopyWith(
+          SendRawResponse value, $Res Function(SendRawResponse) then) =
+      _$SendRawResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({String address, dynamic raw, dynamic target_raw, int timestamp});
+}
+
+/// @nodoc
+class _$SendRawResponseCopyWithImpl<$Res>
+    extends _$GatewayResponseCopyWithImpl<$Res>
+    implements $SendRawResponseCopyWith<$Res> {
+  _$SendRawResponseCopyWithImpl(
+      SendRawResponse _value, $Res Function(SendRawResponse) _then)
+      : super(_value, (v) => _then(v as SendRawResponse));
+
+  @override
+  SendRawResponse get _value => super._value as SendRawResponse;
+
+  @override
+  $Res call({
+    Object address = freezed,
+    Object raw = freezed,
+    Object target_raw = freezed,
+    Object timestamp = freezed,
+  }) {
+    return _then(SendRawResponse(
+      address == freezed ? _value.address : address as String,
+      raw == freezed ? _value.raw : raw as dynamic,
+      target_raw == freezed ? _value.target_raw : target_raw as dynamic,
+      timestamp == freezed ? _value.timestamp : timestamp as int,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$SendRawResponse implements SendRawResponse {
+  const _$SendRawResponse(
+      this.address, this.raw, this.target_raw, this.timestamp)
+      : assert(address != null),
+        assert(raw != null),
+        assert(target_raw != null),
+        assert(timestamp != null);
+
+  factory _$SendRawResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$SendRawResponseFromJson(json);
+
+  @override
+  final String address;
+  @override
+  final dynamic raw;
+  @override
+  final dynamic target_raw;
+  @override
+  final int timestamp;
+
+  @override
+  String toString() {
+    return 'GatewayResponse.sendRaw(address: $address, raw: $raw, target_raw: $target_raw, timestamp: $timestamp)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SendRawResponse &&
+            (identical(other.address, address) ||
+                const DeepCollectionEquality()
+                    .equals(other.address, address)) &&
+            (identical(other.raw, raw) ||
+                const DeepCollectionEquality().equals(other.raw, raw)) &&
+            (identical(other.target_raw, target_raw) ||
+                const DeepCollectionEquality()
+                    .equals(other.target_raw, target_raw)) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality()
+                    .equals(other.timestamp, timestamp)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(address) ^
+      const DeepCollectionEquality().hash(raw) ^
+      const DeepCollectionEquality().hash(target_raw) ^
+      const DeepCollectionEquality().hash(timestamp);
+
+  @JsonKey(ignore: true)
+  @override
+  $SendRawResponseCopyWith<SendRawResponse> get copyWith =>
+      _$SendRawResponseCopyWithImpl<SendRawResponse>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult sendLevel(String address, dynamic level, dynamic target,
+            int remaining, int timestamp),
+    @required
+        TResult sendRaw(
+            String address, dynamic raw, dynamic target_raw, int timestamp),
+    @required TResult getState(String address, dynamic level, int timestamp),
+    @required
+        TResult toggle(String address, dynamic level, dynamic target,
+            int remaining, int timestamp),
+    @required TResult setConfig(String address, String value, int timestamp),
+  }) {
+    assert(sendLevel != null);
+    assert(sendRaw != null);
+    assert(getState != null);
+    assert(toggle != null);
+    assert(setConfig != null);
+    return sendRaw(address, raw, target_raw, timestamp);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult sendLevel(String address, dynamic level, dynamic target,
+        int remaining, int timestamp),
+    TResult sendRaw(
+        String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(String address, dynamic level, int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining,
+        int timestamp),
+    TResult setConfig(String address, String value, int timestamp),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sendRaw != null) {
+      return sendRaw(address, raw, target_raw, timestamp);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult sendLevel(SendLevelResponse value),
+    @required TResult sendRaw(SendRawResponse value),
+    @required TResult getState(GetStateResponse value),
+    @required TResult toggle(SetToggleResponse value),
+    @required TResult setConfig(SetConfigResponse value),
+  }) {
+    assert(sendLevel != null);
+    assert(sendRaw != null);
+    assert(getState != null);
+    assert(toggle != null);
+    assert(setConfig != null);
+    return sendRaw(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult sendLevel(SendLevelResponse value),
+    TResult sendRaw(SendRawResponse value),
+    TResult getState(GetStateResponse value),
+    TResult toggle(SetToggleResponse value),
+    TResult setConfig(SetConfigResponse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (sendRaw != null) {
+      return sendRaw(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$SendRawResponseToJson(this)..['runtimeType'] = 'sendRaw';
+  }
+}
+
+abstract class SendRawResponse implements GatewayResponse {
+  const factory SendRawResponse(
+          String address, dynamic raw, dynamic target_raw, int timestamp) =
+      _$SendRawResponse;
+
+  factory SendRawResponse.fromJson(Map<String, dynamic> json) =
+      _$SendRawResponse.fromJson;
+
+  @override
+  String get address;
+  dynamic get raw;
+  dynamic get target_raw;
+  @override
+  int get timestamp;
+  @override
+  @JsonKey(ignore: true)
+  $SendRawResponseCopyWith<SendRawResponse> get copyWith;
 }
 
 /// @nodoc
@@ -445,15 +671,19 @@ class _$GetStateResponse implements GetStateResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult setState(String address, dynamic level, dynamic target,
+        TResult sendLevel(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
+    @required
+        TResult sendRaw(
+            String address, dynamic raw, dynamic target_raw, int timestamp),
     @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
     @required TResult setConfig(String address, String value, int timestamp),
   }) {
-    assert(setState != null);
+    assert(sendLevel != null);
+    assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
     assert(setConfig != null);
@@ -463,8 +693,10 @@ class _$GetStateResponse implements GetStateResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult setState(String address, dynamic level, dynamic target,
+    TResult sendLevel(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
+    TResult sendRaw(
+        String address, dynamic raw, dynamic target_raw, int timestamp),
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
@@ -481,12 +713,14 @@ class _$GetStateResponse implements GetStateResponse {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult setState(SetStateResponse value),
+    @required TResult sendLevel(SendLevelResponse value),
+    @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
     @required TResult setConfig(SetConfigResponse value),
   }) {
-    assert(setState != null);
+    assert(sendLevel != null);
+    assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
     assert(setConfig != null);
@@ -496,7 +730,8 @@ class _$GetStateResponse implements GetStateResponse {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult setState(SetStateResponse value),
+    TResult sendLevel(SendLevelResponse value),
+    TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
     TResult setConfig(SetConfigResponse value),
@@ -644,15 +879,19 @@ class _$SetToggleResponse implements SetToggleResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult setState(String address, dynamic level, dynamic target,
+        TResult sendLevel(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
+    @required
+        TResult sendRaw(
+            String address, dynamic raw, dynamic target_raw, int timestamp),
     @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
     @required TResult setConfig(String address, String value, int timestamp),
   }) {
-    assert(setState != null);
+    assert(sendLevel != null);
+    assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
     assert(setConfig != null);
@@ -662,8 +901,10 @@ class _$SetToggleResponse implements SetToggleResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult setState(String address, dynamic level, dynamic target,
+    TResult sendLevel(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
+    TResult sendRaw(
+        String address, dynamic raw, dynamic target_raw, int timestamp),
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
@@ -680,12 +921,14 @@ class _$SetToggleResponse implements SetToggleResponse {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult setState(SetStateResponse value),
+    @required TResult sendLevel(SendLevelResponse value),
+    @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
     @required TResult setConfig(SetConfigResponse value),
   }) {
-    assert(setState != null);
+    assert(sendLevel != null);
+    assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
     assert(setConfig != null);
@@ -695,7 +938,8 @@ class _$SetToggleResponse implements SetToggleResponse {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult setState(SetStateResponse value),
+    TResult sendLevel(SendLevelResponse value),
+    TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
     TResult setConfig(SetConfigResponse value),
@@ -822,15 +1066,19 @@ class _$SetConfigResponse implements SetConfigResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult setState(String address, dynamic level, dynamic target,
+        TResult sendLevel(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
+    @required
+        TResult sendRaw(
+            String address, dynamic raw, dynamic target_raw, int timestamp),
     @required TResult getState(String address, dynamic level, int timestamp),
     @required
         TResult toggle(String address, dynamic level, dynamic target,
             int remaining, int timestamp),
     @required TResult setConfig(String address, String value, int timestamp),
   }) {
-    assert(setState != null);
+    assert(sendLevel != null);
+    assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
     assert(setConfig != null);
@@ -840,8 +1088,10 @@ class _$SetConfigResponse implements SetConfigResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult setState(String address, dynamic level, dynamic target,
+    TResult sendLevel(String address, dynamic level, dynamic target,
         int remaining, int timestamp),
+    TResult sendRaw(
+        String address, dynamic raw, dynamic target_raw, int timestamp),
     TResult getState(String address, dynamic level, int timestamp),
     TResult toggle(String address, dynamic level, dynamic target, int remaining,
         int timestamp),
@@ -858,12 +1108,14 @@ class _$SetConfigResponse implements SetConfigResponse {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult setState(SetStateResponse value),
+    @required TResult sendLevel(SendLevelResponse value),
+    @required TResult sendRaw(SendRawResponse value),
     @required TResult getState(GetStateResponse value),
     @required TResult toggle(SetToggleResponse value),
     @required TResult setConfig(SetConfigResponse value),
   }) {
-    assert(setState != null);
+    assert(sendLevel != null);
+    assert(sendRaw != null);
     assert(getState != null);
     assert(toggle != null);
     assert(setConfig != null);
@@ -873,7 +1125,8 @@ class _$SetConfigResponse implements SetConfigResponse {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult setState(SetStateResponse value),
+    TResult sendLevel(SendLevelResponse value),
+    TResult sendRaw(SendRawResponse value),
     TResult getState(GetStateResponse value),
     TResult toggle(SetToggleResponse value),
     TResult setConfig(SetConfigResponse value),

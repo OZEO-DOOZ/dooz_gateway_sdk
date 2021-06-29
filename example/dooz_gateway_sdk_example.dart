@@ -116,19 +116,19 @@ void _testControlsScenario(DoozGateway gateway) async {
   // ------- SET TESTS --------
   // DIMMER
   print('send set 50% to $_dimmerOutput');
-  var setResponse = await gateway.setState(_dimmerOutput, 50);
+  var setResponse = await gateway.sendLevel(_dimmerOutput, 50);
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   print('send set on to $_dimmerOutput');
-  setResponse = await gateway.setState(_dimmerOutput, 'on');
+  setResponse = await gateway.sendLevel(_dimmerOutput, 'on');
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   print('send set off to $_dimmerOutput');
-  setResponse = await gateway.setState(_dimmerOutput, 'off');
+  setResponse = await gateway.sendLevel(_dimmerOutput, 'off');
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   print('send set 70% to $_dimmerOutput');
-  setResponse = await gateway.setState(_dimmerOutput, 70);
+  setResponse = await gateway.sendLevel(_dimmerOutput, 70);
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   print('send get to $_dimmerOutput');
@@ -136,19 +136,19 @@ void _testControlsScenario(DoozGateway gateway) async {
   print(getResponse);
   // ONOFF
   print('send set 50% to $_onOffOutput');
-  setResponse = await gateway.setState(_onOffOutput, 50);
+  setResponse = await gateway.sendLevel(_onOffOutput, 50);
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   print('send set on to $_onOffOutput');
-  setResponse = await gateway.setState(_onOffOutput, 'on');
+  setResponse = await gateway.sendLevel(_onOffOutput, 'on');
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   print('send set off to $_onOffOutput');
-  setResponse = await gateway.setState(_onOffOutput, 'off');
+  setResponse = await gateway.sendLevel(_onOffOutput, 'off');
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   print('send set 70% to $_onOffOutput');
-  setResponse = await gateway.setState(_onOffOutput, 70);
+  setResponse = await gateway.sendLevel(_onOffOutput, 70);
   print(setResponse);
   await Future<void>.delayed(const Duration(seconds: 2));
   print('send get to $_onOffOutput');

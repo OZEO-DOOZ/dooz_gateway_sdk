@@ -188,8 +188,8 @@ class DoozGateway {
 
   // -------- Control the network --------
 
-  /// Set the [level] of the device at [address]
-  Future<SetStateResponse> setState(
+  /// Send the [level] to the device at [address]
+  Future<SendLevelResponse> sendLevel(
     final String address,
     final dynamic level, {
     final int delay = 0,
@@ -220,13 +220,54 @@ class DoozGateway {
     } else {
       throw UnsupportedError('level must be either of int or String type');
     }
-    return SetStateResponse.fromJson(await _sendRequest(
+    return SendLevelResponse.fromJson(await _sendRequest(
       'set',
       params: <String, dynamic>{
         'address': address,
         'level': level,
         'delay_ms': delay,
         'transition_ms': transition,
+      },
+    ));
+  }
+
+  /// Send the [raw] level to the device at [address]
+  Future<SendRawResponse> sendRaw(
+    final String address,
+    final dynamic raw, {
+    final int delay = 0,
+    final int transition = 0,
+  }) async {
+    if (address == null || address.isEmpty) {
+      throw ArgumentError('address must not be null nor empty');
+    }
+    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
+      throw ArgumentError('address must be a four digit hexadecimal String');
+    }
+    final parsedAddress = int.parse(address, radix: 16);
+    if (!(utils.isValidUnicastAddress(parsedAddress) ||
+        utils.isValidGroupAddress(parsedAddress))) {
+      throw ArgumentError('address must be a valid unicast or group address');
+    }
+    if (raw == null) {
+      throw ArgumentError.notNull('raw');
+    }
+    if (raw is int) {
+      if (raw < -32768 || raw > 32767) {
+        throw ArgumentError('raw must be between 32768 and 32767');
+      }
+    } else if (raw is String) {
+      if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(raw)) {
+        throw ArgumentError('raw must be a four digit hexadecimal String');
+      }
+    } else {
+      throw UnsupportedError('raw must be either of int or String type');
+    }
+    return SendRawResponse.fromJson(await _sendRequest(
+      'set',
+      params: <String, dynamic>{
+        'address': address,
+        'raw': raw,
       },
     ));
   }

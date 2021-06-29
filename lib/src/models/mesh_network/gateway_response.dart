@@ -5,8 +5,12 @@ part 'gateway_response.g.dart';
 
 @freezed
 abstract class GatewayResponse with _$GatewayResponse {
-  const factory GatewayResponse.setState(String address, dynamic level,
-      dynamic target, int remaining, int timestamp) = SetStateResponse;
+  const factory GatewayResponse.sendLevel(String address, dynamic level,
+      dynamic target, int remaining, int timestamp) = SendLevelResponse;
+
+  const factory GatewayResponse.sendRaw(
+          String address, dynamic raw, dynamic target_raw, int timestamp) =
+      SendRawResponse;
 
   const factory GatewayResponse.getState(
       String address,
