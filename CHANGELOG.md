@@ -1,3 +1,11 @@
+## 0.1.0
+
+This release introduces :
+
+- the `set` method using raw level (-32k/+32k)
+- the `set_config` method
+- the `get_config` method
+
 ## 0.0.4
 
 This release introduces :
