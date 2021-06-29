@@ -290,13 +290,23 @@ class DoozGateway {
     if (raw == null) {
       throw ArgumentError.notNull('raw');
     }
+    dynamic _raw = raw;
     if (raw is int) {
       if (raw < -32768 || raw > 32767) {
-        throw ArgumentError('raw must be between 32768 and 32767');
+        throw ArgumentError('raw must be between -32768 and 32767');
       }
     } else if (raw is String) {
       if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(raw)) {
         throw ArgumentError('raw must be a four digit hexadecimal String');
+      }
+      final parsedRaw = int.parse(raw, radix: 16);
+      if (parsedRaw < -32768 || parsedRaw > 32767) {
+        throw ArgumentError('raw must be between -32768 and 32767');
+      }
+      if (parsedRaw < 0) {
+        print(
+            'cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
+        _raw = parsedRaw;
       }
     } else {
       throw UnsupportedError('raw must be either of int or String type');
@@ -305,7 +315,7 @@ class DoozGateway {
       'set',
       params: <String, dynamic>{
         'address': address,
-        'raw': raw,
+        'raw': _raw,
       },
     ));
   }

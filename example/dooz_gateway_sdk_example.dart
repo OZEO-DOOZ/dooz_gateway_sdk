@@ -38,10 +38,7 @@ void main() async {
       print(
           'Successfully authenticated using user\'s creds after $authTries tries!');
       print('--------------------------------\n');
-
-      await _testLogs(gateway);
-      await _testVersions(gateway);
-      await _testControls(gateway);
+      await _testScript(gateway);
     } else {
       print('Server auth failed... fallback to local auth');
       await gateway.disconnect();
@@ -64,9 +61,7 @@ void main() async {
       if (authResult.status == 'OK') {
         print('Successfully authenticated using gateway creds !');
         print('--------------------------------\n');
-
-        await _testLogs(gateway);
-        await _testVersions(gateway);
+        await _testScript(gateway);
       } else {
         print('could not succeed in gateway auth...');
         print('--------------------------------\n');
@@ -77,6 +72,12 @@ void main() async {
   }
   // close wss connection on the gateway
   await gateway.disconnect();
+}
+
+Future _testScript(DoozGateway gateway) async {
+  await _testLogs(gateway);
+  await _testVersions(gateway);
+  await _testControls(gateway);
 }
 
 Future _testControls(DoozGateway gateway) async {
@@ -96,7 +97,6 @@ Future _playWithDooblv(
   print(
       'discover returned a dooblv at unicast $dooblvUnicast ! Let\'s play :D');
   final elements = firstDooblv.value['nodes'] as List;
-  print(elements);
   assert(elements.length == 4,
       'the json structure for dooblv\'s elements is not as expected');
   final lightElements = elements.getRange(0, 2);
@@ -107,22 +107,56 @@ Future _playWithDooblv(
   // light up elements
   final firstLightAddress = lightElements.first['address'] as String;
   final secondLightAddress = lightElements.last['address'] as String;
+  await _lightsToX(gateway, firstLightAddress, secondLightAddress, 50);
+  await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
+  await _lightsRawLevels(gateway, firstLightAddress, secondLightAddress);
+  await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
+}
+
+Future<void> _lightsRawLevels(DoozGateway gateway, String firstLightAddress,
+    String secondLightAddress) async {
+  final max = 32767.toRadixString(16);
+  final min = (-32000).toRadixString(16);
+  print('send set ${max}h to $firstLightAddress');
+  var setRawResponse = await gateway.sendRaw(firstLightAddress, max);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set ${max}h to $secondLightAddress');
+  setRawResponse = await gateway.sendRaw(secondLightAddress, max);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set ${min}h to $firstLightAddress');
+  setRawResponse = await gateway.sendRaw(firstLightAddress, min);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+  print('send set ${min}h to $secondLightAddress');
+  setRawResponse = await gateway.sendRaw(secondLightAddress, min);
+  print(setRawResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
+}
+
+Future<void> _lightsToX(DoozGateway gateway, String firstLightAddress,
+    String secondLightAddress, int level) async {
   print('send set 50% to $firstLightAddress');
-  var setResponse = await gateway.sendLevel(firstLightAddress, 50);
+  var setResponse = await gateway.sendLevel(firstLightAddress, level);
   print(setResponse);
   await Future<void>.delayed(const Duration(milliseconds: 500));
   print('send set 50% to $secondLightAddress');
-  setResponse = await gateway.sendLevel(secondLightAddress, 50);
+  setResponse = await gateway.sendLevel(secondLightAddress, level);
   print(setResponse);
   await Future<void>.delayed(const Duration(milliseconds: 500));
-  // shut down
-  print('send set off to $firstLightAddress');
-  setResponse = await gateway.sendLevel(firstLightAddress, 'off');
+}
+
+Future<void> _shutDownDooblv(DoozGateway gateway, String firstLightAddress,
+    String secondLightAddress) async {
+  print('send off to $firstLightAddress');
+  var setResponse = await gateway.sendLevel(firstLightAddress, 'off');
   print(setResponse);
   await Future<void>.delayed(const Duration(milliseconds: 500));
-  print('send set off to $secondLightAddress');
+  print('send off to $secondLightAddress');
   setResponse = await gateway.sendLevel(secondLightAddress, 'off');
   print(setResponse);
+  await Future<void>.delayed(const Duration(milliseconds: 500));
 }
 
 Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
@@ -146,7 +180,7 @@ Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
   return firstDooblv;
 }
 
-Future _testVersions(DoozGateway gateway) async {
+Future<void> _testVersions(DoozGateway gateway) async {
   print('----------- VERSIONS -----------');
   final softwareVersionResponse = await gateway.getSoftwareVersion();
   print('ooPLA\'s software version is v${softwareVersionResponse.version}');
