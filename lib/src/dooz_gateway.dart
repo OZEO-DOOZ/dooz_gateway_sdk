@@ -24,7 +24,7 @@ class DoozGateway {
 
   Stream<NotifyState> get notifyState => _notifyStateController.stream;
 
-  bool get isConnected => !_peer.isClosed;
+  bool get isConnected => _peer != null && !_peer.isClosed;
 
   /// Connect to the gateway.
   ///
