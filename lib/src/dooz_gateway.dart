@@ -24,6 +24,8 @@ class DoozGateway {
 
   Stream<NotifyState> get notifyState => _notifyStateController.stream;
 
+  bool get isConnected => !_peer.isClosed;
+
   /// Connect to the gateway.
   ///
   /// [id] corresponds to your gateway id.
