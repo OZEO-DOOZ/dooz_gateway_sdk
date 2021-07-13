@@ -1,21 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_rooms_response.dart';
+part of 'discover_rooms_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GetRoomsResponse _$_$_GetRoomsResponseFromJson(Map<String, dynamic> json) {
-  return _$_GetRoomsResponse(
-    (json['rooms'] as List)?.map((e) => e as String)?.toList(),
+_$_DiscoverRoomsResponse _$_$_DiscoverRoomsResponseFromJson(
+    Map<String, dynamic> json) {
+  return _$_DiscoverRoomsResponse(
+    (json['rooms'] as Map<String, dynamic>)?.map(
+      (k, e) => MapEntry(k, e as Map<String, dynamic>),
+    ),
     json['status'] as String,
     json['timestamp'] as int,
   );
 }
 
-Map<String, dynamic> _$_$_GetRoomsResponseToJson(
-        _$_GetRoomsResponse instance) =>
+Map<String, dynamic> _$_$_DiscoverRoomsResponseToJson(
+        _$_DiscoverRoomsResponse instance) =>
     <String, dynamic>{
       'rooms': instance.rooms,
       'status': instance.status,

@@ -58,7 +58,7 @@ void main() async {
             );
         print(authResult);
         authTries++;
-        if (authResult.status == 'OK' || authResult.timestamp == 0) break;
+        if (authResult.status == 'OK') break;
       } while (authTries < 3);
       if (authResult.status == 'OK') {
         print('Successfully authenticated using gateway creds !');
@@ -78,8 +78,9 @@ void main() async {
 
 Future<void> _testScript(DoozGateway gateway) async {
   await _testLogs(gateway);
-  await _testVersions(gateway);
-  await _testControls(gateway);
+  await _testDiscovers(gateway);
+  // await _testVersions(gateway);
+  // await _testControls(gateway);
 }
 
 Future<void> _testLogs(DoozGateway gateway) async {
@@ -116,6 +117,7 @@ Future<void> _testControls(DoozGateway gateway) async {
 
 Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
   final discover = await gateway.discover();
+  print(discover);
   MapEntry<String, dynamic> firstDooblv;
   for (final discoveredNode in discover.mesh.entries) {
     if (discoveredNode.value['type'] == 0x0A) {
@@ -163,11 +165,11 @@ Future<void> _playWithDooblv(
 
 Future<void> _lightsToX(DoozGateway gateway, String firstLightAddress,
     String secondLightAddress, int level) async {
-  print('send set 50% to $firstLightAddress');
+  print('send set $level% to $firstLightAddress');
   var setResponse = await gateway.sendLevel(firstLightAddress, level);
   print(setResponse);
   await Future<void>.delayed(const Duration(milliseconds: 500));
-  print('send set 50% to $secondLightAddress');
+  print('send set $level% to $secondLightAddress');
   setResponse = await gateway.sendLevel(secondLightAddress, level);
   print(setResponse);
   await Future<void>.delayed(const Duration(milliseconds: 500));

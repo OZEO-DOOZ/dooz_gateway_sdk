@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
+import 'package:dooz_gateway_sdk/src/models/discoveries/discover_groups_response.dart';
 import 'package:dooz_gateway_sdk/src/models/models.dart';
 import 'package:dooz_gateway_sdk/src/utils/utils.dart' as utils;
 import 'package:dooz_gateway_sdk/src/utils/extensions.dart';
@@ -146,6 +147,7 @@ class DoozGateway {
   }
 
   void _onRequestError(Object error) {
+    print('error caught executing last request ! $error');
     if (error is TimeoutException) {
       throw OoplaRequestTimeout();
     } else if (error is RpcException) {
@@ -197,21 +199,23 @@ class DoozGateway {
   Future<DiscoverResponse> discover() async =>
       DiscoverResponse.fromJson(await _sendRequest('discover'));
 
-  /// Get room ids
-  Future<GetRoomsResponse> getRooms() async =>
-      GetRoomsResponse.fromJson(await _sendRequest('get_rooms'));
+  Future<DiscoverGroupsResponse> discoverGroups() async =>
+      DiscoverGroupsResponse.fromJson(await _sendRequest('discover_groups'));
+
+  Future<DiscoverRoomsResponse> discoverRooms() async =>
+      DiscoverRoomsResponse.fromJson(await _sendRequest('discover_rooms'));
 
   /// Get nodes in the given room name
   ///
   /// TODO build response's freezed model
-  Future<Map<String, dynamic>> getNodesInRoomName(String roomName) async {
+  Future<GetNodesInRoomResponse> getNodesInRoomName(String roomName) async {
     if (roomName.isBlank) {
       throw ArgumentError('roomName must not be blank');
     }
-    return await _sendRequest(
+    return GetNodesInRoomResponse.fromJson(await _sendRequest(
       'get_room',
       params: <String, dynamic>{'room_name': roomName},
-    );
+    ));
   }
 
   /// Get nodes in the given room ID
@@ -413,11 +417,8 @@ class DoozGateway {
 
   /// Get ooPLA's **hardware** version
   Future<HardwareVersionResponse> getHardwareVersion() async {
-    // TODO remove this transformation once fix is implemented on ooPLA's side
-    final _hardwareVersionResponse = await _sendRequest('get_hw_version');
     return HardwareVersionResponse.fromJson(
-      <String, dynamic>{'hw_version': _hardwareVersionResponse['hw version']},
-    );
+        await _sendRequest('get_hw_version'));
   }
 
   /// Get ooPLA's modules versions
