@@ -78,8 +78,8 @@ void main() async {
 
 Future<void> _testScript(DoozGateway gateway) async {
   await _testLogs(gateway);
+  await _testVersions(gateway);
   await _testDiscovers(gateway);
-  // await _testVersions(gateway);
   // await _testControls(gateway);
 }
 
@@ -101,6 +101,21 @@ Future<void> _testVersions(DoozGateway gateway) async {
     print(
         'ooPLA\'s ${moduleVersion.keys.first} version is v${moduleVersion.values.first}');
   }
+  print('--------------------------------\n');
+}
+
+Future<void> _testDiscovers(DoozGateway gateway) async {
+  print('----------- DISCOVERS -----------');
+  final rooms = await gateway.discoverRooms();
+  print(rooms);
+  for (final room in rooms.rooms.entries) {
+    print('room id: ${room.key}, room name: ${room.value['name']}');
+    print(await gateway.getNodesInRoomName(room.value['name'] as String));
+  }
+  final groups = await gateway.discoverGroups();
+  print(groups);
+  final discover = await gateway.discover();
+  print(discover);
   print('--------------------------------\n');
 }
 
@@ -157,6 +172,9 @@ Future<void> _playWithDooblv(
   await _lightsRawLevels(gateway, firstLightAddress, secondLightAddress);
   await _shutDownDooblv(gateway, firstLightAddress, secondLightAddress);
   var ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
+  print(ioConfigs);
+  await _revertIoConfigs(ioConfigs, gateway, dooblvUnicast);
+  ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
   print(ioConfigs);
   await _revertIoConfigs(ioConfigs, gateway, dooblvUnicast);
   ioConfigs = await _getIoConfigs(gateway, dooblvUnicast);
