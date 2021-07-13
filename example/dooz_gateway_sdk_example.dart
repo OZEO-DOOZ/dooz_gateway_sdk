@@ -80,7 +80,7 @@ Future<void> _testScript(DoozGateway gateway) async {
   await _testLogs(gateway);
   await _testVersions(gateway);
   await _testDiscovers(gateway);
-  // await _testControls(gateway);
+  await _testControls(gateway);
 }
 
 Future<void> _testLogs(DoozGateway gateway) async {
