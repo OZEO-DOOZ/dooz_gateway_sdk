@@ -16,16 +16,20 @@ import 'package:web_socket_channel/io.dart';
 /// Create an [DoozGateway] which allow you to control your gateway
 /// {@endtemplate}
 class DoozGateway {
-  Peer _peer;
-
-  final _notifyStateController = StreamController<NotifyState>.broadcast();
-
   /// {@macro dooz_gateway_contructor}
   DoozGateway();
 
-  Stream<NotifyState> get notifyState => _notifyStateController.stream;
+  Peer _peer;
+
+  final _connectionStateController = StreamController<bool>.broadcast();
+
+  Stream<bool> get connectionState => _connectionStateController.stream;
 
   bool get isConnected => _peer != null && !_peer.isClosed;
+
+  final _notifyStateController = StreamController<NotifyState>.broadcast();
+
+  Stream<NotifyState> get notifyState => _notifyStateController.stream;
 
   /// Connect to the gateway.
   ///
@@ -98,7 +102,11 @@ class DoozGateway {
 
     unawaited(_peer.listen().catchError((Object e, Object s) {
       print('error in peer stream !\n$e\n\n\n$s');
-    }).whenComplete(() => print('connection terminated')));
+    }).whenComplete(() {
+      _connectionStateController.add(false);
+      print('connection terminated');
+    }));
+    _connectionStateController.add(true);
     print('done ! listening...');
   }
 
