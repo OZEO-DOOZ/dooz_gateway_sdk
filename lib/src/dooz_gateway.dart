@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dooz_gateway_sdk/src/constants.dart';
@@ -144,6 +145,8 @@ class DoozGateway {
     Map<String, dynamic> params = const <String, dynamic>{},
   }) async {
     _checkPeerInitialized();
+    final e = JsonEncoder.withIndent('  ');
+    print('request "$method"\nparams ${e.convert(params)}');
     final stopwatch = Stopwatch()..start();
     final _requestResult = await _peer
         .sendRequest(method, params)
@@ -151,6 +154,7 @@ class DoozGateway {
         .catchError(_onRequestError) as Map<String, dynamic>;
     stopwatch.stop();
     print('request "$method" answered in ${stopwatch.elapsedMilliseconds}ms');
+    print('answer ${e.convert(_requestResult)}');
     return _requestResult;
   }
 
@@ -214,8 +218,6 @@ class DoozGateway {
       DiscoverRoomsResponse.fromJson(await _sendRequest('discover_rooms'));
 
   /// Get nodes in the given room name
-  ///
-  /// TODO build response's freezed model
   Future<GetNodesInRoomResponse> getNodesInRoomName(String roomName) async {
     if (roomName.isBlank) {
       throw ArgumentError('roomName must not be blank');
