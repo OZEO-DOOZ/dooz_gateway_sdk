@@ -37,8 +37,7 @@ void main() async {
     } while (authTries < 3);
     final authSuccess = authResult.status == 'OK';
     if (authSuccess) {
-      print(
-          'Successfully authenticated using user\'s creds after $authTries tries!');
+      print('Successfully authenticated using user\'s creds after $authTries tries!');
       print('--------------------------------\n');
       await _testScript(gateway);
     } else {
@@ -98,8 +97,7 @@ Future<void> _testVersions(DoozGateway gateway) async {
   print('ooPLA\'s hardware version is v${hardwareVersionResponse.hw_version}');
   final modulesVersionsResponse = await gateway.getModulesVersion();
   for (final moduleVersion in modulesVersionsResponse.versions) {
-    print(
-        'ooPLA\'s ${moduleVersion.keys.first} version is v${moduleVersion.values.first}');
+    print('ooPLA\'s ${moduleVersion.keys.first} version is v${moduleVersion.values.first}');
   }
   print('--------------------------------\n');
 }
@@ -139,31 +137,24 @@ Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
       print('found a DooBLV in network !');
       dynamic confState = discoveredNode.value['conf state'];
       if (confState != 'CONFIGURED') {
-        print(
-            'but it is not reported as configured...(conf state : ${confState})');
+        print('but it is not reported as configured...(conf state : ${confState})');
       } else {
         firstDooblv = discoveredNode;
       }
     } else {
-      print(
-          'found node with id ${discoveredNode.value['type']} at address ${discoveredNode.key}');
+      print('found node with id ${discoveredNode.value['type']} at address ${discoveredNode.key}');
     }
   }
   return firstDooblv;
 }
 
-Future<void> _playWithDooblv(
-    MapEntry<String, dynamic> firstDooblv, DoozGateway gateway) async {
+Future<void> _playWithDooblv(MapEntry<String, dynamic> firstDooblv, DoozGateway gateway) async {
   final dooblvUnicast = firstDooblv.key;
-  print(
-      'discover returned a dooblv at unicast $dooblvUnicast ! Let\'s play :D');
+  print('discover returned a dooblv at unicast $dooblvUnicast ! Let\'s play :D');
   final elements = firstDooblv.value['nodes'] as List;
-  assert(elements.length == 4,
-      'the json structure for dooblv\'s elements is not as expected');
+  assert(elements.length == 4, 'the json structure for dooblv\'s elements is not as expected');
   final lightElements = elements.getRange(0, 2);
-  assert(
-      lightElements.every((dynamic element) =>
-          element['output conf'] == 0 || element['output conf'] == 1),
+  assert(lightElements.every((dynamic element) => element['output conf'] == 0 || element['output conf'] == 1),
       'the elements are not configured as lights...');
   final firstLightAddress = lightElements.first['address'] as String;
   final secondLightAddress = lightElements.last['address'] as String;
@@ -181,8 +172,7 @@ Future<void> _playWithDooblv(
   print(ioConfigs);
 }
 
-Future<void> _lightsToX(DoozGateway gateway, String firstLightAddress,
-    String secondLightAddress, int level) async {
+Future<void> _lightsToX(DoozGateway gateway, String firstLightAddress, String secondLightAddress, int level) async {
   print('send set $level% to $firstLightAddress');
   var setResponse = await gateway.sendLevel(firstLightAddress, level);
   print(setResponse);
@@ -193,8 +183,7 @@ Future<void> _lightsToX(DoozGateway gateway, String firstLightAddress,
   await Future<void>.delayed(const Duration(milliseconds: 500));
 }
 
-Future<void> _shutDownDooblv(DoozGateway gateway, String firstLightAddress,
-    String secondLightAddress) async {
+Future<void> _shutDownDooblv(DoozGateway gateway, String firstLightAddress, String secondLightAddress) async {
   print('send off to $firstLightAddress');
   var setResponse = await gateway.sendLevel(firstLightAddress, 'off');
   print(setResponse);
@@ -205,8 +194,7 @@ Future<void> _shutDownDooblv(DoozGateway gateway, String firstLightAddress,
   await Future<void>.delayed(const Duration(milliseconds: 500));
 }
 
-Future<void> _lightsRawLevels(DoozGateway gateway, String firstLightAddress,
-    String secondLightAddress) async {
+Future<void> _lightsRawLevels(DoozGateway gateway, String firstLightAddress, String secondLightAddress) async {
   final max = 32767.toRadixString(16);
   final min = (-32000).toRadixString(16);
   print('send set ${max}h to $firstLightAddress');
@@ -227,62 +215,53 @@ Future<void> _lightsRawLevels(DoozGateway gateway, String firstLightAddress,
   await Future<void>.delayed(const Duration(milliseconds: 500));
 }
 
-Future<Map<int, Map<String, int>>> _getIoConfigs(
-    DoozGateway gateway, String dooblvUnicast) async {
+Future<Map<int, Map<String, int>>> _getIoConfigs(DoozGateway gateway, String dooblvUnicast) async {
   final ioConfigs = {
     0: <String, int>{'input': -1, 'output': -1},
     1: <String, int>{'input': -1, 'output': -1},
   };
   final r = Random();
-  var getConfig = await gateway.getConfig(dooblvUnicast, 0, 1,
-      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  var getConfig =
+      await gateway.getConfig(dooblvUnicast, 0, 1, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
   ioConfigs[0]['output'] = getConfig.value;
-  getConfig = await gateway.getConfig(dooblvUnicast, 0, 2,
-      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  getConfig = await gateway.getConfig(dooblvUnicast, 0, 2, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
   ioConfigs[0]['input'] = getConfig.value;
-  getConfig = await gateway.getConfig(dooblvUnicast, 1, 1,
-      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  getConfig = await gateway.getConfig(dooblvUnicast, 1, 1, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
   ioConfigs[1]['output'] = getConfig.value;
-  getConfig = await gateway.getConfig(dooblvUnicast, 1, 2,
-      int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
+  getConfig = await gateway.getConfig(dooblvUnicast, 1, 2, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
   ioConfigs[1]['input'] = getConfig.value;
   return ioConfigs;
 }
 
-Future<void> _revertIoConfigs(Map<int, Map<String, int>> ioConfigs,
-    DoozGateway gateway, String dooblvUnicast) async {
+Future<void> _revertIoConfigs(Map<int, Map<String, int>> ioConfigs, DoozGateway gateway, String dooblvUnicast) async {
   final r = Random();
   for (final ioConfig in ioConfigs.entries) {
     switch (ioConfig.value['input']) {
       case 0:
-        print(
-            'input ${ioConfig.key} is configured as switch, changing to push...');
-        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 2, 1,
-            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        print('input ${ioConfig.key} is configured as switch, changing to push...');
+        print(await gateway.setConfig(
+            dooblvUnicast, ioConfig.key, 2, 1, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
         break;
       case 1:
-        print(
-            'input ${ioConfig.key} is configured as push, changing to switch...');
-        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 2, 0,
-            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        print('input ${ioConfig.key} is configured as push, changing to switch...');
+        print(await gateway.setConfig(
+            dooblvUnicast, ioConfig.key, 2, 0, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
         break;
     }
     switch (ioConfig.value['output']) {
       case 0:
-        print(
-            'output ${ioConfig.key} is configured as onoff, changing to dimmer...');
-        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 1, 1,
-            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        print('output ${ioConfig.key} is configured as onoff, changing to dimmer...');
+        print(await gateway.setConfig(
+            dooblvUnicast, ioConfig.key, 1, 1, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
         break;
       case 1:
-        print(
-            'output ${ioConfig.key} is configured as dimmer, changing to onoff...');
-        print(await gateway.setConfig(dooblvUnicast, ioConfig.key, 1, 0,
-            int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
+        print('output ${ioConfig.key} is configured as dimmer, changing to onoff...');
+        print(await gateway.setConfig(
+            dooblvUnicast, ioConfig.key, 1, 0, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
         break;
     }
   }

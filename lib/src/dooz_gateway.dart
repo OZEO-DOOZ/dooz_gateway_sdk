@@ -208,8 +208,7 @@ class DoozGateway {
   // ------------- Discoveries -----------
 
   /// Get ooPLA's network topology
-  Future<DiscoverResponse> discover() async =>
-      DiscoverResponse.fromJson(await _sendRequest('discover'));
+  Future<DiscoverResponse> discover() async => DiscoverResponse.fromJson(await _sendRequest('discover'));
 
   Future<DiscoverGroupsResponse> discoverGroups() async =>
       DiscoverGroupsResponse.fromJson(await _sendRequest('discover_groups'));
@@ -233,8 +232,7 @@ class DoozGateway {
     if (roomID.isBlank) {
       throw ArgumentError('roomID must not be blank');
     }
-    throw UnimplementedError(
-        'as of SDK v0.0.4 and ooPLA v1.0.77, this method is not supported');
+    throw UnimplementedError('as of SDK v0.0.4 and ooPLA v1.0.77, this method is not supported');
     return await _sendRequest(
       'get_room',
       params: <String, dynamic>{'room_id': roomID},
@@ -259,8 +257,7 @@ class DoozGateway {
       throw ArgumentError('address must be a four digit hexadecimal String');
     }
     final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress))) {
+    if (!(utils.isValidUnicastAddress(parsedAddress) || utils.isValidGroupAddress(parsedAddress))) {
       throw ArgumentError('address must be a valid unicast or group address');
     }
     if (level == null) {
@@ -302,8 +299,7 @@ class DoozGateway {
       throw ArgumentError('address must be a four digit hexadecimal String');
     }
     final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress))) {
+    if (!(utils.isValidUnicastAddress(parsedAddress) || utils.isValidGroupAddress(parsedAddress))) {
       throw ArgumentError('address must be a valid unicast or group address');
     }
     if (raw == null) {
@@ -323,8 +319,7 @@ class DoozGateway {
         throw ArgumentError('raw must be between -32768 and 32767');
       }
       if (parsedRaw < 0) {
-        print(
-            'cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
+        print('cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
         _raw = parsedRaw;
       }
     } else {
@@ -348,8 +343,7 @@ class DoozGateway {
       throw ArgumentError('address must be a four digit hexadecimal String');
     }
     final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress))) {
+    if (!(utils.isValidUnicastAddress(parsedAddress) || utils.isValidGroupAddress(parsedAddress))) {
       throw ArgumentError('address must be a valid unicast or group address');
     }
     return GetStateResponse.fromJson(await _sendRequest(
@@ -368,8 +362,7 @@ class DoozGateway {
     }
     final parsedAddress = int.parse(address, radix: 16);
     if (!utils.isValidUnicastAddress(parsedAddress)) {
-      throw ArgumentError(
-          'address must be a valid unicast address (groups not supported)');
+      throw ArgumentError('address must be a valid unicast address (groups not supported)');
     }
     return SetToggleResponse.fromJson(await _sendRequest(
       'toggle',
@@ -427,8 +420,7 @@ class DoozGateway {
 
   /// Get ooPLA's **hardware** version
   Future<HardwareVersionResponse> getHardwareVersion() async {
-    return HardwareVersionResponse.fromJson(
-        await _sendRequest('get_hw_version'));
+    return HardwareVersionResponse.fromJson(await _sendRequest('get_hw_version'));
   }
 
   /// Get ooPLA's modules versions

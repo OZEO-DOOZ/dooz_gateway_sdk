@@ -5,15 +5,11 @@ part 'get_versions_response.g.dart';
 
 @freezed
 abstract class GetVersionsResponse with _$GetVersionsResponse {
-  const factory GetVersionsResponse.software(String version) =
-      SoftwareVersionResponse;
+  const factory GetVersionsResponse.software(String version) = SoftwareVersionResponse;
 
-  const factory GetVersionsResponse.hardware(String hw_version) =
-      HardwareVersionResponse;
+  const factory GetVersionsResponse.hardware(String hw_version) = HardwareVersionResponse;
 
-  const factory GetVersionsResponse.modules(
-      List<Map<String, String>> versions) = ModulesVersionsResponse;
+  const factory GetVersionsResponse.modules(List<Map<String, String>> versions) = ModulesVersionsResponse;
 
-  factory GetVersionsResponse.fromJson(Map<String, dynamic> json) =>
-      _$GetVersionsResponseFromJson(json);
+  factory GetVersionsResponse.fromJson(Map<String, dynamic> json) => _$GetVersionsResponseFromJson(json);
 }

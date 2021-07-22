@@ -11,6 +11,5 @@ abstract class DiscoverResponse with _$DiscoverResponse {
     String status,
     int timestamp,
   ) = _DiscoverResponse;
-  factory DiscoverResponse.fromJson(Map<String, dynamic> json) =>
-      _$DiscoverResponseFromJson(json);
+  factory DiscoverResponse.fromJson(Map<String, dynamic> json) => _$DiscoverResponseFromJson(json);
 }
