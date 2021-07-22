@@ -8,8 +8,7 @@ part of 'get_nodes_in_room_response.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-GetNodesInRoomResponse _$GetNodesInRoomResponseFromJson(
-    Map<String, dynamic> json) {
+GetNodesInRoomResponse _$GetNodesInRoomResponseFromJson(Map<String, dynamic> json) {
   return _GetNodesInRoomResponse.fromJson(json);
 }
 
@@ -18,8 +17,7 @@ class _$GetNodesInRoomResponseTearOff {
   const _$GetNodesInRoomResponseTearOff();
 
 // ignore: unused_element
-  _GetNodesInRoomResponse call(
-      Map<String, dynamic> mesh, String status, int timestamp) {
+  _GetNodesInRoomResponse call(Map<String, dynamic> mesh, String status, int timestamp) {
     return _GetNodesInRoomResponse(
       mesh,
       status,
@@ -50,15 +48,13 @@ mixin _$GetNodesInRoomResponse {
 
 /// @nodoc
 abstract class $GetNodesInRoomResponseCopyWith<$Res> {
-  factory $GetNodesInRoomResponseCopyWith(GetNodesInRoomResponse value,
-          $Res Function(GetNodesInRoomResponse) then) =
+  factory $GetNodesInRoomResponseCopyWith(GetNodesInRoomResponse value, $Res Function(GetNodesInRoomResponse) then) =
       _$GetNodesInRoomResponseCopyWithImpl<$Res>;
   $Res call({Map<String, dynamic> mesh, String status, int timestamp});
 }
 
 /// @nodoc
-class _$GetNodesInRoomResponseCopyWithImpl<$Res>
-    implements $GetNodesInRoomResponseCopyWith<$Res> {
+class _$GetNodesInRoomResponseCopyWithImpl<$Res> implements $GetNodesInRoomResponseCopyWith<$Res> {
   _$GetNodesInRoomResponseCopyWithImpl(this._value, this._then);
 
   final GetNodesInRoomResponse _value;
@@ -80,21 +76,17 @@ class _$GetNodesInRoomResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$GetNodesInRoomResponseCopyWith<$Res>
-    implements $GetNodesInRoomResponseCopyWith<$Res> {
-  factory _$GetNodesInRoomResponseCopyWith(_GetNodesInRoomResponse value,
-          $Res Function(_GetNodesInRoomResponse) then) =
+abstract class _$GetNodesInRoomResponseCopyWith<$Res> implements $GetNodesInRoomResponseCopyWith<$Res> {
+  factory _$GetNodesInRoomResponseCopyWith(_GetNodesInRoomResponse value, $Res Function(_GetNodesInRoomResponse) then) =
       __$GetNodesInRoomResponseCopyWithImpl<$Res>;
   @override
   $Res call({Map<String, dynamic> mesh, String status, int timestamp});
 }
 
 /// @nodoc
-class __$GetNodesInRoomResponseCopyWithImpl<$Res>
-    extends _$GetNodesInRoomResponseCopyWithImpl<$Res>
+class __$GetNodesInRoomResponseCopyWithImpl<$Res> extends _$GetNodesInRoomResponseCopyWithImpl<$Res>
     implements _$GetNodesInRoomResponseCopyWith<$Res> {
-  __$GetNodesInRoomResponseCopyWithImpl(_GetNodesInRoomResponse _value,
-      $Res Function(_GetNodesInRoomResponse) _then)
+  __$GetNodesInRoomResponseCopyWithImpl(_GetNodesInRoomResponse _value, $Res Function(_GetNodesInRoomResponse) _then)
       : super(_value, (v) => _then(v as _GetNodesInRoomResponse));
 
   @override
@@ -123,8 +115,7 @@ class _$_GetNodesInRoomResponse implements _GetNodesInRoomResponse {
         assert(status != null),
         assert(timestamp != null);
 
-  factory _$_GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_GetNodesInRoomResponseFromJson(json);
+  factory _$_GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) => _$_$_GetNodesInRoomResponseFromJson(json);
 
   @override
   final Map<String, dynamic> mesh;
@@ -142,13 +133,10 @@ class _$_GetNodesInRoomResponse implements _GetNodesInRoomResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _GetNodesInRoomResponse &&
-            (identical(other.mesh, mesh) ||
-                const DeepCollectionEquality().equals(other.mesh, mesh)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.mesh, mesh) || const DeepCollectionEquality().equals(other.mesh, mesh)) &&
+            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -161,8 +149,7 @@ class _$_GetNodesInRoomResponse implements _GetNodesInRoomResponse {
   @JsonKey(ignore: true)
   @override
   _$GetNodesInRoomResponseCopyWith<_GetNodesInRoomResponse> get copyWith =>
-      __$GetNodesInRoomResponseCopyWithImpl<_GetNodesInRoomResponse>(
-          this, _$identity);
+      __$GetNodesInRoomResponseCopyWithImpl<_GetNodesInRoomResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -171,12 +158,10 @@ class _$_GetNodesInRoomResponse implements _GetNodesInRoomResponse {
 }
 
 abstract class _GetNodesInRoomResponse implements GetNodesInRoomResponse {
-  const factory _GetNodesInRoomResponse(
-          Map<String, dynamic> mesh, String status, int timestamp) =
+  const factory _GetNodesInRoomResponse(Map<String, dynamic> mesh, String status, int timestamp) =
       _$_GetNodesInRoomResponse;
 
-  factory _GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) =
-      _$_GetNodesInRoomResponse.fromJson;
+  factory _GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) = _$_GetNodesInRoomResponse.fromJson;
 
   @override
   Map<String, dynamic> get mesh;

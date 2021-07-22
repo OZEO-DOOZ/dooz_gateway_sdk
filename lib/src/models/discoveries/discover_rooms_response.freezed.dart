@@ -8,8 +8,7 @@ part of 'discover_rooms_response.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-DiscoverRoomsResponse _$DiscoverRoomsResponseFromJson(
-    Map<String, dynamic> json) {
+DiscoverRoomsResponse _$DiscoverRoomsResponseFromJson(Map<String, dynamic> json) {
   return _DiscoverRoomsResponse.fromJson(json);
 }
 
@@ -18,8 +17,7 @@ class _$DiscoverRoomsResponseTearOff {
   const _$DiscoverRoomsResponseTearOff();
 
 // ignore: unused_element
-  _DiscoverRoomsResponse call(
-      Map<String, Map<String, dynamic>> rooms, String status, int timestamp) {
+  _DiscoverRoomsResponse call(Map<String, Map<String, dynamic>> rooms, String status, int timestamp) {
     return _DiscoverRoomsResponse(
       rooms,
       status,
@@ -50,16 +48,13 @@ mixin _$DiscoverRoomsResponse {
 
 /// @nodoc
 abstract class $DiscoverRoomsResponseCopyWith<$Res> {
-  factory $DiscoverRoomsResponseCopyWith(DiscoverRoomsResponse value,
-          $Res Function(DiscoverRoomsResponse) then) =
+  factory $DiscoverRoomsResponseCopyWith(DiscoverRoomsResponse value, $Res Function(DiscoverRoomsResponse) then) =
       _$DiscoverRoomsResponseCopyWithImpl<$Res>;
-  $Res call(
-      {Map<String, Map<String, dynamic>> rooms, String status, int timestamp});
+  $Res call({Map<String, Map<String, dynamic>> rooms, String status, int timestamp});
 }
 
 /// @nodoc
-class _$DiscoverRoomsResponseCopyWithImpl<$Res>
-    implements $DiscoverRoomsResponseCopyWith<$Res> {
+class _$DiscoverRoomsResponseCopyWithImpl<$Res> implements $DiscoverRoomsResponseCopyWith<$Res> {
   _$DiscoverRoomsResponseCopyWithImpl(this._value, this._then);
 
   final DiscoverRoomsResponse _value;
@@ -73,9 +68,7 @@ class _$DiscoverRoomsResponseCopyWithImpl<$Res>
     Object timestamp = freezed,
   }) {
     return _then(_value.copyWith(
-      rooms: rooms == freezed
-          ? _value.rooms
-          : rooms as Map<String, Map<String, dynamic>>,
+      rooms: rooms == freezed ? _value.rooms : rooms as Map<String, Map<String, dynamic>>,
       status: status == freezed ? _value.status : status as String,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
@@ -83,22 +76,17 @@ class _$DiscoverRoomsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DiscoverRoomsResponseCopyWith<$Res>
-    implements $DiscoverRoomsResponseCopyWith<$Res> {
-  factory _$DiscoverRoomsResponseCopyWith(_DiscoverRoomsResponse value,
-          $Res Function(_DiscoverRoomsResponse) then) =
+abstract class _$DiscoverRoomsResponseCopyWith<$Res> implements $DiscoverRoomsResponseCopyWith<$Res> {
+  factory _$DiscoverRoomsResponseCopyWith(_DiscoverRoomsResponse value, $Res Function(_DiscoverRoomsResponse) then) =
       __$DiscoverRoomsResponseCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {Map<String, Map<String, dynamic>> rooms, String status, int timestamp});
+  $Res call({Map<String, Map<String, dynamic>> rooms, String status, int timestamp});
 }
 
 /// @nodoc
-class __$DiscoverRoomsResponseCopyWithImpl<$Res>
-    extends _$DiscoverRoomsResponseCopyWithImpl<$Res>
+class __$DiscoverRoomsResponseCopyWithImpl<$Res> extends _$DiscoverRoomsResponseCopyWithImpl<$Res>
     implements _$DiscoverRoomsResponseCopyWith<$Res> {
-  __$DiscoverRoomsResponseCopyWithImpl(_DiscoverRoomsResponse _value,
-      $Res Function(_DiscoverRoomsResponse) _then)
+  __$DiscoverRoomsResponseCopyWithImpl(_DiscoverRoomsResponse _value, $Res Function(_DiscoverRoomsResponse) _then)
       : super(_value, (v) => _then(v as _DiscoverRoomsResponse));
 
   @override
@@ -111,9 +99,7 @@ class __$DiscoverRoomsResponseCopyWithImpl<$Res>
     Object timestamp = freezed,
   }) {
     return _then(_DiscoverRoomsResponse(
-      rooms == freezed
-          ? _value.rooms
-          : rooms as Map<String, Map<String, dynamic>>,
+      rooms == freezed ? _value.rooms : rooms as Map<String, Map<String, dynamic>>,
       status == freezed ? _value.status : status as String,
       timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
@@ -129,8 +115,7 @@ class _$_DiscoverRoomsResponse implements _DiscoverRoomsResponse {
         assert(status != null),
         assert(timestamp != null);
 
-  factory _$_DiscoverRoomsResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_DiscoverRoomsResponseFromJson(json);
+  factory _$_DiscoverRoomsResponse.fromJson(Map<String, dynamic> json) => _$_$_DiscoverRoomsResponseFromJson(json);
 
   @override
   final Map<String, Map<String, dynamic>> rooms;
@@ -148,13 +133,10 @@ class _$_DiscoverRoomsResponse implements _DiscoverRoomsResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _DiscoverRoomsResponse &&
-            (identical(other.rooms, rooms) ||
-                const DeepCollectionEquality().equals(other.rooms, rooms)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.rooms, rooms) || const DeepCollectionEquality().equals(other.rooms, rooms)) &&
+            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -167,8 +149,7 @@ class _$_DiscoverRoomsResponse implements _DiscoverRoomsResponse {
   @JsonKey(ignore: true)
   @override
   _$DiscoverRoomsResponseCopyWith<_DiscoverRoomsResponse> get copyWith =>
-      __$DiscoverRoomsResponseCopyWithImpl<_DiscoverRoomsResponse>(
-          this, _$identity);
+      __$DiscoverRoomsResponseCopyWithImpl<_DiscoverRoomsResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -177,11 +158,10 @@ class _$_DiscoverRoomsResponse implements _DiscoverRoomsResponse {
 }
 
 abstract class _DiscoverRoomsResponse implements DiscoverRoomsResponse {
-  const factory _DiscoverRoomsResponse(Map<String, Map<String, dynamic>> rooms,
-      String status, int timestamp) = _$_DiscoverRoomsResponse;
+  const factory _DiscoverRoomsResponse(Map<String, Map<String, dynamic>> rooms, String status, int timestamp) =
+      _$_DiscoverRoomsResponse;
 
-  factory _DiscoverRoomsResponse.fromJson(Map<String, dynamic> json) =
-      _$_DiscoverRoomsResponse.fromJson;
+  factory _DiscoverRoomsResponse.fromJson(Map<String, dynamic> json) = _$_DiscoverRoomsResponse.fromJson;
 
   @override
   Map<String, Map<String, dynamic>> get rooms;

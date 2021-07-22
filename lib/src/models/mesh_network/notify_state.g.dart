@@ -17,8 +17,7 @@ _$_NotifyState _$_$_NotifyStateFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_NotifyStateToJson(_$_NotifyState instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_NotifyStateToJson(_$_NotifyState instance) => <String, dynamic>{
       'address': instance.address,
       'destination': instance.destination,
       'level': instance.level,

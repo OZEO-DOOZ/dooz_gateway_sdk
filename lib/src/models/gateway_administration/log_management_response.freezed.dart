@@ -8,8 +8,7 @@ part of 'log_management_response.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-LogManagementResponse _$LogManagementResponseFromJson(
-    Map<String, dynamic> json) {
+LogManagementResponse _$LogManagementResponseFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
     case 'setLogPriority':
       return SetLogPriorityResponse.fromJson(json);
@@ -98,15 +97,13 @@ mixin _$LogManagementResponse {
 
 /// @nodoc
 abstract class $LogManagementResponseCopyWith<$Res> {
-  factory $LogManagementResponseCopyWith(LogManagementResponse value,
-          $Res Function(LogManagementResponse) then) =
+  factory $LogManagementResponseCopyWith(LogManagementResponse value, $Res Function(LogManagementResponse) then) =
       _$LogManagementResponseCopyWithImpl<$Res>;
   $Res call({int timestamp});
 }
 
 /// @nodoc
-class _$LogManagementResponseCopyWithImpl<$Res>
-    implements $LogManagementResponseCopyWith<$Res> {
+class _$LogManagementResponseCopyWithImpl<$Res> implements $LogManagementResponseCopyWith<$Res> {
   _$LogManagementResponseCopyWithImpl(this._value, this._then);
 
   final LogManagementResponse _value;
@@ -124,21 +121,17 @@ class _$LogManagementResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $SetLogPriorityResponseCopyWith<$Res>
-    implements $LogManagementResponseCopyWith<$Res> {
-  factory $SetLogPriorityResponseCopyWith(SetLogPriorityResponse value,
-          $Res Function(SetLogPriorityResponse) then) =
+abstract class $SetLogPriorityResponseCopyWith<$Res> implements $LogManagementResponseCopyWith<$Res> {
+  factory $SetLogPriorityResponseCopyWith(SetLogPriorityResponse value, $Res Function(SetLogPriorityResponse) then) =
       _$SetLogPriorityResponseCopyWithImpl<$Res>;
   @override
   $Res call({String status, int timestamp});
 }
 
 /// @nodoc
-class _$SetLogPriorityResponseCopyWithImpl<$Res>
-    extends _$LogManagementResponseCopyWithImpl<$Res>
+class _$SetLogPriorityResponseCopyWithImpl<$Res> extends _$LogManagementResponseCopyWithImpl<$Res>
     implements $SetLogPriorityResponseCopyWith<$Res> {
-  _$SetLogPriorityResponseCopyWithImpl(SetLogPriorityResponse _value,
-      $Res Function(SetLogPriorityResponse) _then)
+  _$SetLogPriorityResponseCopyWithImpl(SetLogPriorityResponse _value, $Res Function(SetLogPriorityResponse) _then)
       : super(_value, (v) => _then(v as SetLogPriorityResponse));
 
   @override
@@ -164,8 +157,7 @@ class _$SetLogPriorityResponse implements SetLogPriorityResponse {
       : assert(status != null),
         assert(timestamp != null);
 
-  factory _$SetLogPriorityResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$SetLogPriorityResponseFromJson(json);
+  factory _$SetLogPriorityResponse.fromJson(Map<String, dynamic> json) => _$_$SetLogPriorityResponseFromJson(json);
 
   @override
   final String status;
@@ -181,11 +173,9 @@ class _$SetLogPriorityResponse implements SetLogPriorityResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SetLogPriorityResponse &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -197,8 +187,7 @@ class _$SetLogPriorityResponse implements SetLogPriorityResponse {
   @JsonKey(ignore: true)
   @override
   $SetLogPriorityResponseCopyWith<SetLogPriorityResponse> get copyWith =>
-      _$SetLogPriorityResponseCopyWithImpl<SetLogPriorityResponse>(
-          this, _$identity);
+      _$SetLogPriorityResponseCopyWithImpl<SetLogPriorityResponse>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -258,17 +247,14 @@ class _$SetLogPriorityResponse implements SetLogPriorityResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$SetLogPriorityResponseToJson(this)
-      ..['runtimeType'] = 'setLogPriority';
+    return _$_$SetLogPriorityResponseToJson(this)..['runtimeType'] = 'setLogPriority';
   }
 }
 
 abstract class SetLogPriorityResponse implements LogManagementResponse {
-  const factory SetLogPriorityResponse(String status, int timestamp) =
-      _$SetLogPriorityResponse;
+  const factory SetLogPriorityResponse(String status, int timestamp) = _$SetLogPriorityResponse;
 
-  factory SetLogPriorityResponse.fromJson(Map<String, dynamic> json) =
-      _$SetLogPriorityResponse.fromJson;
+  factory SetLogPriorityResponse.fromJson(Map<String, dynamic> json) = _$SetLogPriorityResponse.fromJson;
 
   String get status;
   @override
@@ -279,21 +265,17 @@ abstract class SetLogPriorityResponse implements LogManagementResponse {
 }
 
 /// @nodoc
-abstract class $GetLogsResponseCopyWith<$Res>
-    implements $LogManagementResponseCopyWith<$Res> {
-  factory $GetLogsResponseCopyWith(
-          GetLogsResponse value, $Res Function(GetLogsResponse) then) =
+abstract class $GetLogsResponseCopyWith<$Res> implements $LogManagementResponseCopyWith<$Res> {
+  factory $GetLogsResponseCopyWith(GetLogsResponse value, $Res Function(GetLogsResponse) then) =
       _$GetLogsResponseCopyWithImpl<$Res>;
   @override
   $Res call({List<Map<String, dynamic>> logs, int timestamp});
 }
 
 /// @nodoc
-class _$GetLogsResponseCopyWithImpl<$Res>
-    extends _$LogManagementResponseCopyWithImpl<$Res>
+class _$GetLogsResponseCopyWithImpl<$Res> extends _$LogManagementResponseCopyWithImpl<$Res>
     implements $GetLogsResponseCopyWith<$Res> {
-  _$GetLogsResponseCopyWithImpl(
-      GetLogsResponse _value, $Res Function(GetLogsResponse) _then)
+  _$GetLogsResponseCopyWithImpl(GetLogsResponse _value, $Res Function(GetLogsResponse) _then)
       : super(_value, (v) => _then(v as GetLogsResponse));
 
   @override
@@ -319,8 +301,7 @@ class _$GetLogsResponse implements GetLogsResponse {
       : assert(logs != null),
         assert(timestamp != null);
 
-  factory _$GetLogsResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$GetLogsResponseFromJson(json);
+  factory _$GetLogsResponse.fromJson(Map<String, dynamic> json) => _$_$GetLogsResponseFromJson(json);
 
   @override
   final List<Map<String, dynamic>> logs;
@@ -336,18 +317,14 @@ class _$GetLogsResponse implements GetLogsResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GetLogsResponse &&
-            (identical(other.logs, logs) ||
-                const DeepCollectionEquality().equals(other.logs, logs)) &&
+            (identical(other.logs, logs) || const DeepCollectionEquality().equals(other.logs, logs)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(logs) ^
-      const DeepCollectionEquality().hash(timestamp);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(logs) ^ const DeepCollectionEquality().hash(timestamp);
 
   @JsonKey(ignore: true)
   @override
@@ -417,11 +394,9 @@ class _$GetLogsResponse implements GetLogsResponse {
 }
 
 abstract class GetLogsResponse implements LogManagementResponse {
-  const factory GetLogsResponse(
-      List<Map<String, dynamic>> logs, int timestamp) = _$GetLogsResponse;
+  const factory GetLogsResponse(List<Map<String, dynamic>> logs, int timestamp) = _$GetLogsResponse;
 
-  factory GetLogsResponse.fromJson(Map<String, dynamic> json) =
-      _$GetLogsResponse.fromJson;
+  factory GetLogsResponse.fromJson(Map<String, dynamic> json) = _$GetLogsResponse.fromJson;
 
   List<Map<String, dynamic>> get logs;
   @override
@@ -432,21 +407,17 @@ abstract class GetLogsResponse implements LogManagementResponse {
 }
 
 /// @nodoc
-abstract class $ClearLogsResponseCopyWith<$Res>
-    implements $LogManagementResponseCopyWith<$Res> {
-  factory $ClearLogsResponseCopyWith(
-          ClearLogsResponse value, $Res Function(ClearLogsResponse) then) =
+abstract class $ClearLogsResponseCopyWith<$Res> implements $LogManagementResponseCopyWith<$Res> {
+  factory $ClearLogsResponseCopyWith(ClearLogsResponse value, $Res Function(ClearLogsResponse) then) =
       _$ClearLogsResponseCopyWithImpl<$Res>;
   @override
   $Res call({String status, int timestamp});
 }
 
 /// @nodoc
-class _$ClearLogsResponseCopyWithImpl<$Res>
-    extends _$LogManagementResponseCopyWithImpl<$Res>
+class _$ClearLogsResponseCopyWithImpl<$Res> extends _$LogManagementResponseCopyWithImpl<$Res>
     implements $ClearLogsResponseCopyWith<$Res> {
-  _$ClearLogsResponseCopyWithImpl(
-      ClearLogsResponse _value, $Res Function(ClearLogsResponse) _then)
+  _$ClearLogsResponseCopyWithImpl(ClearLogsResponse _value, $Res Function(ClearLogsResponse) _then)
       : super(_value, (v) => _then(v as ClearLogsResponse));
 
   @override
@@ -472,8 +443,7 @@ class _$ClearLogsResponse implements ClearLogsResponse {
       : assert(status != null),
         assert(timestamp != null);
 
-  factory _$ClearLogsResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$ClearLogsResponseFromJson(json);
+  factory _$ClearLogsResponse.fromJson(Map<String, dynamic> json) => _$_$ClearLogsResponseFromJson(json);
 
   @override
   final String status;
@@ -489,11 +459,9 @@ class _$ClearLogsResponse implements ClearLogsResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ClearLogsResponse &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -570,11 +538,9 @@ class _$ClearLogsResponse implements ClearLogsResponse {
 }
 
 abstract class ClearLogsResponse implements LogManagementResponse {
-  const factory ClearLogsResponse(String status, int timestamp) =
-      _$ClearLogsResponse;
+  const factory ClearLogsResponse(String status, int timestamp) = _$ClearLogsResponse;
 
-  factory ClearLogsResponse.fromJson(Map<String, dynamic> json) =
-      _$ClearLogsResponse.fromJson;
+  factory ClearLogsResponse.fromJson(Map<String, dynamic> json) = _$ClearLogsResponse.fromJson;
 
   String get status;
   @override

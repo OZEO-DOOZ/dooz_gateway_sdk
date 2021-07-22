@@ -26,8 +26,7 @@ _$_DiscoveredNode _$_$_DiscoveredNodeFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_DiscoveredNodeToJson(_$_DiscoveredNode instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_DiscoveredNodeToJson(_$_DiscoveredNode instance) => <String, dynamic>{
       'name': instance.name,
       'mac_address': instance.mac_address,
       'output_number': instance.output_number,

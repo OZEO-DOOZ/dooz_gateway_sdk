@@ -44,15 +44,13 @@ mixin _$RebootResponse {
 
 /// @nodoc
 abstract class $RebootResponseCopyWith<$Res> {
-  factory $RebootResponseCopyWith(
-          RebootResponse value, $Res Function(RebootResponse) then) =
+  factory $RebootResponseCopyWith(RebootResponse value, $Res Function(RebootResponse) then) =
       _$RebootResponseCopyWithImpl<$Res>;
   $Res call({String status});
 }
 
 /// @nodoc
-class _$RebootResponseCopyWithImpl<$Res>
-    implements $RebootResponseCopyWith<$Res> {
+class _$RebootResponseCopyWithImpl<$Res> implements $RebootResponseCopyWith<$Res> {
   _$RebootResponseCopyWithImpl(this._value, this._then);
 
   final RebootResponse _value;
@@ -70,21 +68,17 @@ class _$RebootResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$RebootResponseCopyWith<$Res>
-    implements $RebootResponseCopyWith<$Res> {
-  factory _$RebootResponseCopyWith(
-          _RebootResponse value, $Res Function(_RebootResponse) then) =
+abstract class _$RebootResponseCopyWith<$Res> implements $RebootResponseCopyWith<$Res> {
+  factory _$RebootResponseCopyWith(_RebootResponse value, $Res Function(_RebootResponse) then) =
       __$RebootResponseCopyWithImpl<$Res>;
   @override
   $Res call({String status});
 }
 
 /// @nodoc
-class __$RebootResponseCopyWithImpl<$Res>
-    extends _$RebootResponseCopyWithImpl<$Res>
+class __$RebootResponseCopyWithImpl<$Res> extends _$RebootResponseCopyWithImpl<$Res>
     implements _$RebootResponseCopyWith<$Res> {
-  __$RebootResponseCopyWithImpl(
-      _RebootResponse _value, $Res Function(_RebootResponse) _then)
+  __$RebootResponseCopyWithImpl(_RebootResponse _value, $Res Function(_RebootResponse) _then)
       : super(_value, (v) => _then(v as _RebootResponse));
 
   @override
@@ -106,8 +100,7 @@ class __$RebootResponseCopyWithImpl<$Res>
 class _$_RebootResponse implements _RebootResponse {
   const _$_RebootResponse(this.status) : assert(status != null);
 
-  factory _$_RebootResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_RebootResponseFromJson(json);
+  factory _$_RebootResponse.fromJson(Map<String, dynamic> json) => _$_$_RebootResponseFromJson(json);
 
   @override
   final String status;
@@ -121,13 +114,11 @@ class _$_RebootResponse implements _RebootResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _RebootResponse &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)));
+            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
 
   @JsonKey(ignore: true)
   @override
@@ -143,8 +134,7 @@ class _$_RebootResponse implements _RebootResponse {
 abstract class _RebootResponse implements RebootResponse {
   const factory _RebootResponse(String status) = _$_RebootResponse;
 
-  factory _RebootResponse.fromJson(Map<String, dynamic> json) =
-      _$_RebootResponse.fromJson;
+  factory _RebootResponse.fromJson(Map<String, dynamic> json) = _$_RebootResponse.fromJson;
 
   @override
   String get status;
