@@ -48,6 +48,7 @@ _$GetStateResponse _$_$GetStateResponseFromJson(Map<String, dynamic> json) {
     json['address'] as String,
     json['level'],
     json['target'],
+    json['status'] as String,
     json['remaining'] as int,
     json['timestamp'] as int,
   );
@@ -58,6 +59,7 @@ Map<String, dynamic> _$_$GetStateResponseToJson(_$GetStateResponse instance) =>
       'address': instance.address,
       'level': instance.level,
       'target': instance.target,
+      'status': instance.status,
       'remaining': instance.remaining,
       'timestamp': instance.timestamp,
     };

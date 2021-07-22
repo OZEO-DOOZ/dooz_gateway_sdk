@@ -12,8 +12,14 @@ abstract class GatewayResponse with _$GatewayResponse {
           String address, dynamic raw, dynamic target_raw, int timestamp) =
       SendRawResponse;
 
-  const factory GatewayResponse.getState(String address, dynamic level,
-      dynamic target, int remaining, int timestamp) = GetStateResponse;
+  const factory GatewayResponse.getState(
+    String address,
+    @nullable dynamic level,
+    @nullable dynamic target,
+    @nullable String status,
+    @nullable int remaining,
+    int timestamp,
+  ) = GetStateResponse;
 
   const factory GatewayResponse.toggle(String address, dynamic level,
       dynamic target, int remaining, int timestamp) = SetToggleResponse;
