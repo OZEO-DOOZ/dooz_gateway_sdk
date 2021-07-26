@@ -299,11 +299,113 @@ class DoozGateway {
   }
 
   // TODO check answer
-  Future<GetEpochResponse> getEpoch(String address, {int timeout = 20}) async {
+  /// A method to set a scenario on device at [address].
+  ///
+  /// [daysInWeek] is the list of days as lower case english words. `Example: monday, tuesday, wednesday, etc.`
+  ///
+  /// [transition] should be one of :
+  /// * unsigned integer: minimum: 0, maximum: 63,
+  /// * json: {
+  ///           "mode": pattern "$minutes|seconds^",
+  ///           "duration: unsigned integer: minimum: 0, maximum: 31,
+  ///         }
+  ///
+  /// [startAt] and [duration] should be one of:
+  ///
+  /// * string pattern: "^([0-9]{1,2}h[0-9]{1,2})$"
+  /// * unsigned integer, minimum: 0, maximum: 127
+  Future<SetScenarioResponse> setScenario(
+    String address,
+    int sceneID,
+    int level, {
+    dynamic transition = 0,
+    int command = 0,
+    int output = 0,
+    dynamic startAt = 127,
+    dynamic duration = 127,
+    List<String> daysInWeek = const <String>[],
+    bool isActive = true,
+    int timeout = 20,
+  }) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
+    if (daysInWeek == null) {
+      throw ArgumentError.notNull('daysInWeek');
+    }
+    final dayPattern = RegExp(r'[a-z]');
+    if (daysInWeek.any((day) => !dayPattern.hasMatch(day))) {
+      throw ArgumentError('daysInWeek must hold lower case english days');
+    }
+    if (startAt is String) {
+      final startAtPattern = RegExp(r'^([0-9]{1,2}h[0-9]{1,2})$');
+      if (!startAtPattern.hasMatch(startAt)) {
+        throw ArgumentError('startAt must hold lower case 24h representation (ex: 18h47)');
+      }
+    } else if (startAt is int) {
+      if (startAt < 0 || startAt > 127) {
+        throw RangeError.range(startAt, 0, 127, 'startAt');
+      }
+    } else {
+      throw ArgumentError('startAt must be either of type String or int');
+    }
+    if (duration is String) {
+      final durationPattern = RegExp(r'^([0-9]{1,2}h[0-9]{1,2})$');
+      if (!durationPattern.hasMatch(duration)) {
+        throw ArgumentError('duration must hold lower case 24h representation (ex: 18h47)');
+      }
+    } else if (duration is int) {
+      if (duration < 0 || duration > 127) {
+        throw RangeError.range(duration, 0, 127, 'duration');
+      }
+    } else {
+      throw ArgumentError('duration must be either of type String or int');
+    }
+    if (transition is String) {
+      final transitionAsJson = json.decode(transition) as Map<String, dynamic>;
+      if (!(transitionAsJson.containsKey('mode') &&
+          transitionAsJson.containsKey('duration') &&
+          transitionAsJson.entries.length == 2)) {
+        throw ArgumentError('transition must be a JSON string');
+      }
+    } else if (transition is int) {
+      if (transition < 0 || transition > 63) {
+        throw RangeError.range(transition, 0, 63, 'transition');
+      }
+    } else {
+      throw ArgumentError('transition must be either of type String or int');
+    }
+    if (command < 0 || command > 15) {
+      throw RangeError.range(command, 0, 15, 'command');
+    }
+    if (output < 0 || output > 1) {
+      throw RangeError.range(output, 0, 1, 'output');
+    }
+    final r = Random();
+    final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
+    return SetScenarioResponse.fromJson(await _sendRequest(
+      'set_scenario',
+      params: <String, dynamic>{
+        'node_address': address,
+        'io': output,
+        'is_active': isActive,
+        'scenario_id': sceneID,
+        'command': command,
+        'level': level,
+        'transition': transition,
+        'start_at': startAt,
+        'duration': duration,
+        'days_in_week': daysInWeek,
+        'correlation': correlation,
+        'timeout': timeout,
+      },
+    ));
+  }
+
+  // TODO check answer
+  Future<SetEpochResponse> getEpoch(String address, {int timeout = 20}) async {
     _checkValidAddress(address, shouldCheckGroupFormat: false);
     final r = Random();
     final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
-    return GetEpochResponse.fromJson(await _sendRequest(
+    return SetEpochResponse.fromJson(await _sendRequest(
       'set_epoch',
       params: <String, dynamic>{
         'node_address': address,
@@ -333,7 +435,7 @@ class DoozGateway {
     }
     if (level is int) {
       if (level < 0 || level > 100) {
-        throw ArgumentError('level must be between 0 and 100');
+        throw RangeError.range(level, 0, 100, 'level');
       }
     } else if (level is String) {
       if (level != 'on' && level != 'off') {

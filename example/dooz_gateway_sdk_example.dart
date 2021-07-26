@@ -287,8 +287,10 @@ Future<void> _testScenarios(DoozGateway gateway) async {
     print('--------------------------');
   }
   if (nodeIDs.isNotEmpty) {
+    // will target the first node found, assuming it's a DooBLV and so targetting root unicast + 3, which is the element that contains the scenario server
+    final firstScenarioServerAddress = (nodeIDs.first + 3).toRadixString(16).toUpperCase().padLeft(4, '0');
     try {
-      await gateway.getEpoch(nodeIDs.first.toRadixString(16).toUpperCase().padLeft(4, '0'));
+      await gateway.getEpoch(firstScenarioServerAddress);
     } on OoplaApiError catch (e) {
       if ('$e'.contains('timed out')) {
         print('operation failed...');
@@ -298,9 +300,45 @@ Future<void> _testScenarios(DoozGateway gateway) async {
     }
     try {
       await gateway.getScenario(
-        nodeIDs.first.toRadixString(16).toUpperCase().padLeft(4, '0'),
+        firstScenarioServerAddress,
         scenes.scenes.values.first.scenes.first.sceneId,
       );
+    } on OoplaApiError catch (e) {
+      if ('$e'.contains('timed out')) {
+        print('operation failed...');
+      } else {
+        rethrow;
+      }
+    }
+    final daysInWeek = <String>[
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+    ];
+    try {
+      await gateway.setScenario(
+        firstScenarioServerAddress,
+        3,
+        75,
+        daysInWeek: daysInWeek,
+        startAt: '14h00',
+        duration: 1,
+      );
+      await gateway.setScenario(
+        firstScenarioServerAddress,
+        3,
+        75,
+        output: 1,
+        daysInWeek: daysInWeek,
+        startAt: '14h00',
+        duration: 1,
+      );
+      await gateway.startScenario(3);
+      await Future<void>.delayed(const Duration(seconds: 1));
+      await gateway.startScenario(0);
     } on OoplaApiError catch (e) {
       if ('$e'.contains('timed out')) {
         print('operation failed...');
