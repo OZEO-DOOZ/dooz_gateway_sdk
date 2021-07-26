@@ -265,14 +265,17 @@ class DoozGateway {
 
   // -------- Scenarios management -------
 
-  Future<Map<String, dynamic>> startScenario(int sceneID, {int timeout = 20}) async {
-    return await _sendRequest('set_scenario', params: <String, dynamic>{
-      'request': {
-        'command': 'start scenario',
-        'scenario_id': sceneID,
+  Future<SetScenarioResponse> startScenario(int sceneID, {int timeout = 20}) async {
+    return SetScenarioResponse.fromJson(await _sendRequest(
+      'set_scenario',
+      params: <String, dynamic>{
+        'request': {
+          'command': 'start scenario',
+          'scenario_id': sceneID,
+        },
+        'timeout': timeout,
       },
-      'timeout': timeout,
-    });
+    ));
   }
 
   // -------------------------------------
