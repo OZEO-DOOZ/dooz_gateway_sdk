@@ -26,5 +26,29 @@ abstract class GatewayResponse with _$GatewayResponse {
   const factory GatewayResponse.magicConfig(
       String address, int io, int index, int value, int correlation, int timestamp) = MagicConfigResponse;
 
+  const factory GatewayResponse.setScenario(
+    String node,
+    int io,
+    int scenario_id,
+    int command,
+    bool is_active,
+    int level,
+    int transition,
+    int duration,
+    int start_at,
+    int days_in_week,
+    int correlation,
+    @nullable int timestamp,
+  ) = SetScenarioResponse;
+
+  const factory GatewayResponse.setEpoch(
+    String node,
+    int io,
+    int epoch,
+    int command,
+    int time_zone,
+    int correlation,
+  ) = SetEpochResponse;
+
   factory GatewayResponse.fromJson(Map<String, dynamic> json) => _$GatewayResponseFromJson(json);
 }

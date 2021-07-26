@@ -1,3 +1,21 @@
+## 0.2.0
+
+This release introduces :
+
+- update library file
+- add check only spaces String to `isBlank` String extension method
+- the `get` method now supports answer when sent to a group
+- the `discover_groups` method
+- the `discover_rooms` method
+- the `discover_scenes` method
+- the `set_scenario` method with request `set scenario`
+- the `set_scenario` method with request `get scenario`
+- the `set_scenario` method with request `start scenario`
+- the `set_epoch` method with request `set epoch`
+- the `set_epoch` method with request `get time`
+- a new `bool` that can tell if a socket is opened
+- a new `Stream<bool>` that will let a listener know that socket is opened or closed
+
 ## 0.1.0
 
 This release introduces :

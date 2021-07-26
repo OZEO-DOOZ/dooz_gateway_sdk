@@ -80,6 +80,7 @@ Future<void> _testScript(DoozGateway gateway) async {
   await _testVersions(gateway);
   await _testDiscovers(gateway);
   await _testControls(gateway);
+  await _testScenarios(gateway);
 }
 
 Future<void> _testLogs(DoozGateway gateway) async {
@@ -104,48 +105,50 @@ Future<void> _testVersions(DoozGateway gateway) async {
 
 Future<void> _testDiscovers(DoozGateway gateway) async {
   print('----------- DISCOVERS -----------');
+  await gateway.discoverScenes();
   final rooms = await gateway.discoverRooms();
-  print(rooms);
   for (final room in rooms.rooms.entries) {
     print('room id: ${room.key}, room name: ${room.value['name']}');
-    print(await gateway.getNodesInRoomName(room.value['name'] as String));
+    await gateway.getNodesInRoomName(room.value['name'] as String);
   }
-  final groups = await gateway.discoverGroups();
-  print(groups);
-  final discover = await gateway.discover();
-  print(discover);
+  await gateway.discoverGroups();
+  await gateway.discover();
   print('--------------------------------\n');
 }
 
 Future<void> _testControls(DoozGateway gateway) async {
   print('------------ CONTROLS ------------');
-  final firstDooblv = await _searchADooblv(gateway);
-  if (firstDooblv != null) {
-    await _playWithDooblv(firstDooblv, gateway);
+  final dooblvs = await _searchDooblvs(gateway, getAll: true);
+  if (dooblvs.isNotEmpty) {
+    print(dooblvs);
+    // await _playWithDooblv(dooblvs.first, gateway);
   } else {
     print('did not find any configured dooblv in the current discovered n/w');
   }
   print('--------------------------------\n');
 }
 
-Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
+Future<List<MapEntry<String, dynamic>>> _searchDooblvs(DoozGateway gateway, {bool getAll = false}) async {
   final discover = await gateway.discover();
-  print(discover);
-  MapEntry<String, dynamic> firstDooblv;
+  final dooblvs = <MapEntry<String, dynamic>>[];
   for (final discoveredNode in discover.mesh.entries) {
-    if (discoveredNode.value['type'] == 0x0A) {
+    if (discoveredNode.value['type'] == 0x0A &&
+        dooblvs.every((dooblv) => dooblv.key != discoveredNode.value['mac_address'])) {
       print('found a DooBLV in network !');
       dynamic confState = discoveredNode.value['conf state'];
       if (confState != 'CONFIGURED') {
         print('but it is not reported as configured...(conf state : ${confState})');
       } else {
-        firstDooblv = discoveredNode;
+        dooblvs.add(discoveredNode);
+        if (!getAll) {
+          break;
+        }
       }
     } else {
       print('found node with id ${discoveredNode.value['type']} at address ${discoveredNode.key}');
     }
   }
-  return firstDooblv;
+  return dooblvs;
 }
 
 Future<void> _playWithDooblv(MapEntry<String, dynamic> firstDooblv, DoozGateway gateway) async {
@@ -264,5 +267,68 @@ Future<void> _revertIoConfigs(Map<int, Map<String, int>> ioConfigs, DoozGateway 
             dooblvUnicast, ioConfig.key, 1, 0, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
         break;
     }
+  }
+}
+
+Future<void> _testScenarios(DoozGateway gateway) async {
+  print('----------- SCENARIOS -----------');
+  final scenes = await gateway.discoverScenes();
+  final nodeIDs = <int>[];
+  for (final scene in scenes.scenes.values.first.scenes) {
+    print('-------- SCENE #${scene.sceneId} --------');
+    if (scene.sceneId == 0 || scene.sceneId == 1) {
+      nodeIDs.addAll(scene.steps.map((s) => s.equipment.nodeId));
+    }
+    print(scene.name);
+    print(scene.steps.length);
+    print(scene.start);
+    print(scene.end);
+    // await gateway.startScenario(scene.sceneId);
+    print('--------------------------');
+  }
+  if (nodeIDs.isNotEmpty) {
+    // will target the first node found, assuming it's a DooBLV and so targetting root unicast + 3, which is the element that contains the scenario server
+    final firstScenarioServerAddress = (nodeIDs.first + 3).toRadixString(16).toUpperCase().padLeft(4, '0');
+    // get current stored epoch
+    await gateway.getEpoch(firstScenarioServerAddress);
+    // update stored epoch time
+    await gateway.setEpoch(firstScenarioServerAddress, io: 0);
+    await gateway.setEpoch(firstScenarioServerAddress, io: 1);
+    // check current stored epoch
+    await gateway.getEpoch(firstScenarioServerAddress);
+    // set a new scenario on the detected dooblv
+    final daysInWeek = <String>[
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+      'sunday',
+    ];
+    await gateway.setScenario(
+      firstScenarioServerAddress,
+      3,
+      75,
+      daysInWeek: daysInWeek,
+      startAt: '16h15',
+      duration: '0h15',
+    );
+    await gateway.setScenario(
+      firstScenarioServerAddress,
+      3,
+      75,
+      output: 1,
+      daysInWeek: daysInWeek,
+      startAt: '16h15',
+      duration: '0h15',
+    );
+    // check scenario desc
+    await gateway.getScenario(firstScenarioServerAddress, 3);
+    // start the newly created scenario
+    await gateway.startScenario(3);
+    // shut down lights
+    await gateway.sendLevel((nodeIDs.first + 1).toRadixString(16).toUpperCase().padLeft(4, '0'), 'off');
+    await gateway.sendLevel((nodeIDs.first + 2).toRadixString(16).toUpperCase().padLeft(4, '0'), 'off');
   }
 }

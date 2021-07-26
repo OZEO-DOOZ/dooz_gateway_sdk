@@ -2,6 +2,7 @@
 const String localGatewayHost = 'DOOZ-OOPLA.local';
 const int defaultGatewayPort = 55055;
 const Duration kGatewayRequestTimeout = Duration(seconds: 30);
+const int kScenarioCmdTimeout = 20;
 // ----------------------------------
 
 // -- Custom JSON-RPC error codes --

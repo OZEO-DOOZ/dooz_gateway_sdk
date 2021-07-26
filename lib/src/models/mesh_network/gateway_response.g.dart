@@ -97,3 +97,55 @@ Map<String, dynamic> _$_$MagicConfigResponseToJson(_$MagicConfigResponse instanc
       'correlation': instance.correlation,
       'timestamp': instance.timestamp,
     };
+
+_$SetScenarioResponse _$_$SetScenarioResponseFromJson(Map<String, dynamic> json) {
+  return _$SetScenarioResponse(
+    json['node'] as String,
+    json['io'] as int,
+    json['scenario_id'] as int,
+    json['command'] as int,
+    json['is_active'] as bool,
+    json['level'] as int,
+    json['transition'] as int,
+    json['duration'] as int,
+    json['start_at'] as int,
+    json['days_in_week'] as int,
+    json['correlation'] as int,
+    json['timestamp'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$SetScenarioResponseToJson(_$SetScenarioResponse instance) => <String, dynamic>{
+      'node': instance.node,
+      'io': instance.io,
+      'scenario_id': instance.scenario_id,
+      'command': instance.command,
+      'is_active': instance.is_active,
+      'level': instance.level,
+      'transition': instance.transition,
+      'duration': instance.duration,
+      'start_at': instance.start_at,
+      'days_in_week': instance.days_in_week,
+      'correlation': instance.correlation,
+      'timestamp': instance.timestamp,
+    };
+
+_$SetEpochResponse _$_$SetEpochResponseFromJson(Map<String, dynamic> json) {
+  return _$SetEpochResponse(
+    json['node'] as String,
+    json['io'] as int,
+    json['epoch'] as int,
+    json['command'] as int,
+    json['time_zone'] as int,
+    json['correlation'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$SetEpochResponseToJson(_$SetEpochResponse instance) => <String, dynamic>{
+      'node': instance.node,
+      'io': instance.io,
+      'epoch': instance.epoch,
+      'command': instance.command,
+      'time_zone': instance.time_zone,
+      'correlation': instance.correlation,
+    };
