@@ -51,3 +51,21 @@ Map<String, dynamic> _$_$DiscoverGroupsResponseToJson(_$DiscoverGroupsResponse i
       'status': instance.status,
       'timestamp': instance.timestamp,
     };
+
+_$DiscoverScenesResponse _$_$DiscoverScenesResponseFromJson(Map<String, dynamic> json) {
+  return _$DiscoverScenesResponse(
+    (json['scenes'] as Map<String, dynamic>)?.map(
+      (k, e) => MapEntry(k, e == null ? null : ScenarioGroup.fromJson(e as Map<String, dynamic>)),
+    ),
+    json['group'] as String,
+    json['status'] as String,
+    json['timestamp'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$DiscoverScenesResponseToJson(_$DiscoverScenesResponse instance) => <String, dynamic>{
+      'scenes': instance.scenes,
+      'group': instance.group,
+      'status': instance.status,
+      'timestamp': instance.timestamp,
+    };

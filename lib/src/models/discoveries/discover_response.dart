@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'package:dooz_gateway_sdk/src/models/discoveries/discovered_scene/scenario_group.dart';
 part 'discover_response.freezed.dart';
 part 'discover_response.g.dart';
 
@@ -16,6 +17,8 @@ abstract class DiscoverResponse with _$DiscoverResponse {
       DiscoverRoomsResponse;
   const factory DiscoverResponse.groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp) =
       DiscoverGroupsResponse;
+  const factory DiscoverResponse.scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp) =
+      DiscoverScenesResponse;
 
   factory DiscoverResponse.fromJson(Map<String, dynamic> json) => _$DiscoverResponseFromJson(json);
 }

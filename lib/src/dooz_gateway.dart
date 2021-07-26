@@ -215,7 +215,8 @@ class DoozGateway {
   Future<DiscoverRoomsResponse> discoverRooms() async =>
       DiscoverRoomsResponse.fromJson(await _sendRequest('discover_rooms'));
 
-  Future<Map<String, dynamic>> discoverScenes() async => await _sendRequest('discover_scenes');
+  Future<DiscoverScenesResponse> discoverScenes() async =>
+      DiscoverScenesResponse.fromJson(await _sendRequest('discover_scenes'));
 
   /// Get nodes in the given room name
   Future<GetNodesInRoomResponse> getNodesInRoomName(String roomName) async {

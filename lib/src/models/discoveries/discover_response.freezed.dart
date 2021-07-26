@@ -16,6 +16,8 @@ DiscoverResponse _$DiscoverResponseFromJson(Map<String, dynamic> json) {
       return DiscoverRoomsResponse.fromJson(json);
     case 'groups':
       return DiscoverGroupsResponse.fromJson(json);
+    case 'scenes':
+      return DiscoverScenesResponse.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -54,6 +56,16 @@ class _$DiscoverResponseTearOff {
   }
 
 // ignore: unused_element
+  DiscoverScenesResponse scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp) {
+    return DiscoverScenesResponse(
+      scenes,
+      group,
+      status,
+      timestamp,
+    );
+  }
+
+// ignore: unused_element
   DiscoverResponse fromJson(Map<String, Object> json) {
     return DiscoverResponse.fromJson(json);
   }
@@ -73,12 +85,14 @@ mixin _$DiscoverResponse {
     @required TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
     @required TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
     @required TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    @required TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
     TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
     TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -86,12 +100,14 @@ mixin _$DiscoverResponse {
     @required TResult network(DiscoverNetworkResponse value),
     @required TResult rooms(DiscoverRoomsResponse value),
     @required TResult groups(DiscoverGroupsResponse value),
+    @required TResult scenes(DiscoverScenesResponse value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult network(DiscoverNetworkResponse value),
     TResult rooms(DiscoverRoomsResponse value),
     TResult groups(DiscoverGroupsResponse value),
+    TResult scenes(DiscoverScenesResponse value),
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
@@ -208,10 +224,12 @@ class _$DiscoverNetworkResponse implements DiscoverNetworkResponse {
     @required TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
     @required TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
     @required TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    @required TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
   }) {
     assert(network != null);
     assert(rooms != null);
     assert(groups != null);
+    assert(scenes != null);
     return network(mesh, status, timestamp);
   }
 
@@ -221,6 +239,7 @@ class _$DiscoverNetworkResponse implements DiscoverNetworkResponse {
     TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
     TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
     TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -236,10 +255,12 @@ class _$DiscoverNetworkResponse implements DiscoverNetworkResponse {
     @required TResult network(DiscoverNetworkResponse value),
     @required TResult rooms(DiscoverRoomsResponse value),
     @required TResult groups(DiscoverGroupsResponse value),
+    @required TResult scenes(DiscoverScenesResponse value),
   }) {
     assert(network != null);
     assert(rooms != null);
     assert(groups != null);
+    assert(scenes != null);
     return network(this);
   }
 
@@ -249,6 +270,7 @@ class _$DiscoverNetworkResponse implements DiscoverNetworkResponse {
     TResult network(DiscoverNetworkResponse value),
     TResult rooms(DiscoverRoomsResponse value),
     TResult groups(DiscoverGroupsResponse value),
+    TResult scenes(DiscoverScenesResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -362,10 +384,12 @@ class _$DiscoverRoomsResponse implements DiscoverRoomsResponse {
     @required TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
     @required TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
     @required TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    @required TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
   }) {
     assert(network != null);
     assert(rooms != null);
     assert(groups != null);
+    assert(scenes != null);
     return rooms(this.rooms, status, timestamp);
   }
 
@@ -375,6 +399,7 @@ class _$DiscoverRoomsResponse implements DiscoverRoomsResponse {
     TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
     TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
     TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -390,10 +415,12 @@ class _$DiscoverRoomsResponse implements DiscoverRoomsResponse {
     @required TResult network(DiscoverNetworkResponse value),
     @required TResult rooms(DiscoverRoomsResponse value),
     @required TResult groups(DiscoverGroupsResponse value),
+    @required TResult scenes(DiscoverScenesResponse value),
   }) {
     assert(network != null);
     assert(rooms != null);
     assert(groups != null);
+    assert(scenes != null);
     return rooms(this);
   }
 
@@ -403,6 +430,7 @@ class _$DiscoverRoomsResponse implements DiscoverRoomsResponse {
     TResult network(DiscoverNetworkResponse value),
     TResult rooms(DiscoverRoomsResponse value),
     TResult groups(DiscoverGroupsResponse value),
+    TResult scenes(DiscoverScenesResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -516,10 +544,12 @@ class _$DiscoverGroupsResponse implements DiscoverGroupsResponse {
     @required TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
     @required TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
     @required TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    @required TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
   }) {
     assert(network != null);
     assert(rooms != null);
     assert(groups != null);
+    assert(scenes != null);
     return groups(this.groups, status, timestamp);
   }
 
@@ -529,6 +559,7 @@ class _$DiscoverGroupsResponse implements DiscoverGroupsResponse {
     TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
     TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
     TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -544,10 +575,12 @@ class _$DiscoverGroupsResponse implements DiscoverGroupsResponse {
     @required TResult network(DiscoverNetworkResponse value),
     @required TResult rooms(DiscoverRoomsResponse value),
     @required TResult groups(DiscoverGroupsResponse value),
+    @required TResult scenes(DiscoverScenesResponse value),
   }) {
     assert(network != null);
     assert(rooms != null);
     assert(groups != null);
+    assert(scenes != null);
     return groups(this);
   }
 
@@ -557,6 +590,7 @@ class _$DiscoverGroupsResponse implements DiscoverGroupsResponse {
     TResult network(DiscoverNetworkResponse value),
     TResult rooms(DiscoverRoomsResponse value),
     TResult groups(DiscoverGroupsResponse value),
+    TResult scenes(DiscoverScenesResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -586,4 +620,172 @@ abstract class DiscoverGroupsResponse implements DiscoverResponse {
   @override
   @JsonKey(ignore: true)
   $DiscoverGroupsResponseCopyWith<DiscoverGroupsResponse> get copyWith;
+}
+
+/// @nodoc
+abstract class $DiscoverScenesResponseCopyWith<$Res> implements $DiscoverResponseCopyWith<$Res> {
+  factory $DiscoverScenesResponseCopyWith(DiscoverScenesResponse value, $Res Function(DiscoverScenesResponse) then) =
+      _$DiscoverScenesResponseCopyWithImpl<$Res>;
+  @override
+  $Res call({Map<String, ScenarioGroup> scenes, String group, String status, int timestamp});
+}
+
+/// @nodoc
+class _$DiscoverScenesResponseCopyWithImpl<$Res> extends _$DiscoverResponseCopyWithImpl<$Res>
+    implements $DiscoverScenesResponseCopyWith<$Res> {
+  _$DiscoverScenesResponseCopyWithImpl(DiscoverScenesResponse _value, $Res Function(DiscoverScenesResponse) _then)
+      : super(_value, (v) => _then(v as DiscoverScenesResponse));
+
+  @override
+  DiscoverScenesResponse get _value => super._value as DiscoverScenesResponse;
+
+  @override
+  $Res call({
+    Object scenes = freezed,
+    Object group = freezed,
+    Object status = freezed,
+    Object timestamp = freezed,
+  }) {
+    return _then(DiscoverScenesResponse(
+      scenes == freezed ? _value.scenes : scenes as Map<String, ScenarioGroup>,
+      group == freezed ? _value.group : group as String,
+      status == freezed ? _value.status : status as String,
+      timestamp == freezed ? _value.timestamp : timestamp as int,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$DiscoverScenesResponse implements DiscoverScenesResponse {
+  const _$DiscoverScenesResponse(this.scenes, this.group, this.status, this.timestamp)
+      : assert(scenes != null),
+        assert(group != null),
+        assert(status != null),
+        assert(timestamp != null);
+
+  factory _$DiscoverScenesResponse.fromJson(Map<String, dynamic> json) => _$_$DiscoverScenesResponseFromJson(json);
+
+  @override
+  final Map<String, ScenarioGroup> scenes;
+  @override
+  final String group;
+  @override
+  final String status;
+  @override
+  final int timestamp;
+
+  @override
+  String toString() {
+    return 'DiscoverResponse.scenes(scenes: $scenes, group: $group, status: $status, timestamp: $timestamp)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DiscoverScenesResponse &&
+            (identical(other.scenes, scenes) || const DeepCollectionEquality().equals(other.scenes, scenes)) &&
+            (identical(other.group, group) || const DeepCollectionEquality().equals(other.group, group)) &&
+            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.timestamp, timestamp) ||
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(scenes) ^
+      const DeepCollectionEquality().hash(group) ^
+      const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(timestamp);
+
+  @JsonKey(ignore: true)
+  @override
+  $DiscoverScenesResponseCopyWith<DiscoverScenesResponse> get copyWith =>
+      _$DiscoverScenesResponseCopyWithImpl<DiscoverScenesResponse>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
+    @required TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
+    @required TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    @required TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
+  }) {
+    assert(network != null);
+    assert(rooms != null);
+    assert(groups != null);
+    assert(scenes != null);
+    return scenes(this.scenes, group, status, timestamp);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult network(Map<String, /* DiscoveredNode */ dynamic> mesh, String status, int timestamp),
+    TResult rooms(Map<String, Map<String, dynamic>> rooms, String status, int timestamp),
+    TResult groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp),
+    TResult scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (scenes != null) {
+      return scenes(this.scenes, group, status, timestamp);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult network(DiscoverNetworkResponse value),
+    @required TResult rooms(DiscoverRoomsResponse value),
+    @required TResult groups(DiscoverGroupsResponse value),
+    @required TResult scenes(DiscoverScenesResponse value),
+  }) {
+    assert(network != null);
+    assert(rooms != null);
+    assert(groups != null);
+    assert(scenes != null);
+    return scenes(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult network(DiscoverNetworkResponse value),
+    TResult rooms(DiscoverRoomsResponse value),
+    TResult groups(DiscoverGroupsResponse value),
+    TResult scenes(DiscoverScenesResponse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (scenes != null) {
+      return scenes(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$DiscoverScenesResponseToJson(this)..['runtimeType'] = 'scenes';
+  }
+}
+
+abstract class DiscoverScenesResponse implements DiscoverResponse {
+  const factory DiscoverScenesResponse(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp) =
+      _$DiscoverScenesResponse;
+
+  factory DiscoverScenesResponse.fromJson(Map<String, dynamic> json) = _$DiscoverScenesResponse.fromJson;
+
+  Map<String, ScenarioGroup> get scenes;
+  String get group;
+  @override
+  String get status;
+  @override
+  int get timestamp;
+  @override
+  @JsonKey(ignore: true)
+  $DiscoverScenesResponseCopyWith<DiscoverScenesResponse> get copyWith;
 }

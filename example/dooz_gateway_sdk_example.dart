@@ -104,16 +104,22 @@ Future<void> _testVersions(DoozGateway gateway) async {
 
 Future<void> _testDiscovers(DoozGateway gateway) async {
   print('----------- DISCOVERS -----------');
+  final scenes = await gateway.discoverScenes();
+  for (final scene in scenes.scenes.values.first.scenes) {
+    print('-------- SCENE #${scene.sceneId} --------');
+    print(scene.name);
+    print(scene.steps.length);
+    print(scene.start);
+    print(scene.end);
+    print('--------------------------');
+  }
   final rooms = await gateway.discoverRooms();
-  print(rooms);
   for (final room in rooms.rooms.entries) {
     print('room id: ${room.key}, room name: ${room.value['name']}');
-    print(await gateway.getNodesInRoomName(room.value['name'] as String));
+    await gateway.getNodesInRoomName(room.value['name'] as String);
   }
-  final groups = await gateway.discoverGroups();
-  print(groups);
-  final discover = await gateway.discover();
-  print(discover);
+  await gateway.discoverGroups();
+  await gateway.discover();
   print('--------------------------------\n');
 }
 
