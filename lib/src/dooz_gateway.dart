@@ -266,7 +266,7 @@ class DoozGateway {
 
   // -------- Scenarios management -------
 
-  Future<SetScenarioResponse> startScenario(int sceneID, {int timeout = 20}) async {
+  Future<SetScenarioResponse> startScenario(int sceneID, {int timeout = kScenarioCmdTimeout}) async {
     return SetScenarioResponse.fromJson(await _sendRequest(
       'set_scenario',
       params: <String, dynamic>{
@@ -279,8 +279,7 @@ class DoozGateway {
     ));
   }
 
-  // TODO check answer
-  Future<SetScenarioResponse> getScenario(String address, int sceneID, {int timeout = 20}) async {
+  Future<SetScenarioResponse> getScenario(String address, int sceneID, {int timeout = kScenarioCmdTimeout}) async {
     _checkValidAddress(address, shouldCheckGroupFormat: false);
     final r = Random();
     final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
@@ -323,7 +322,7 @@ class DoozGateway {
     dynamic duration = 127,
     List<String> daysInWeek = const <String>[],
     bool isActive = true,
-    int timeout = 20,
+    int timeout = kScenarioCmdTimeout,
   }) async {
     _checkValidAddress(address, shouldCheckGroupFormat: false);
     if (daysInWeek == null) {
@@ -397,8 +396,7 @@ class DoozGateway {
     ));
   }
 
-  // TODO check answer
-  Future<SetEpochResponse> getEpoch(String address, {int timeout = 20}) async {
+  Future<SetEpochResponse> getEpoch(String address, {int timeout = kScenarioCmdTimeout}) async {
     _checkValidAddress(address, shouldCheckGroupFormat: false);
     final r = Random();
     final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
