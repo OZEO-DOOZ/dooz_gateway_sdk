@@ -7,8 +7,7 @@ bool isAddressInRange(final int address) {
 
 /// Returns true if the address is a valid unicast address.
 bool isValidUnicastAddress(final int address) {
-  return isAddressInRange(address) &&
-      (address >= meshStartUnicastAddress && address <= meshEndUnicastAddress);
+  return isAddressInRange(address) && (address >= meshStartUnicastAddress && address <= meshEndUnicastAddress);
 }
 
 /// Returns true if the address is a valid group address.

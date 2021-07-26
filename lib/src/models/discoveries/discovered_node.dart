@@ -22,6 +22,5 @@ abstract class DiscoveredNode with _$DiscoveredNode {
     List<Map<String, dynamic>> nodes,
     int type,
   ) = _DiscoveredNode;
-  factory DiscoveredNode.fromJson(Map<String, dynamic> json) =>
-      _$DiscoveredNodeFromJson(json);
+  factory DiscoveredNode.fromJson(Map<String, dynamic> json) => _$DiscoveredNodeFromJson(json);
 }

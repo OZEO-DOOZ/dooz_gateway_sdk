@@ -6,6 +6,5 @@ part 'reboot_response.g.dart';
 @freezed
 abstract class RebootResponse with _$RebootResponse {
   const factory RebootResponse(String status) = _RebootResponse;
-  factory RebootResponse.fromJson(Map<String, dynamic> json) =>
-      _$RebootResponseFromJson(json);
+  factory RebootResponse.fromJson(Map<String, dynamic> json) => _$RebootResponseFromJson(json);
 }

@@ -27,6 +27,5 @@ class RpcUnknownError implements Exception {
   });
 
   @override
-  String toString() =>
-      'RpcUnknownError(code: $code, messsage: $msg, data: $data)';
+  String toString() => 'RpcUnknownError(code: $code, messsage: $msg, data: $data)';
 }

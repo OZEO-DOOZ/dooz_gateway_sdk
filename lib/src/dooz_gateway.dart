@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
@@ -15,12 +17,18 @@ import 'package:web_socket_channel/io.dart';
 /// Create an [DoozGateway] which allow you to control your gateway
 /// {@endtemplate}
 class DoozGateway {
-  Peer _peer;
-
-  final _notifyStateController = StreamController<NotifyState>.broadcast();
-
   /// {@macro dooz_gateway_contructor}
   DoozGateway();
+
+  Peer _peer;
+
+  final _connectionStateController = StreamController<bool>.broadcast();
+
+  Stream<bool> get connectionState => _connectionStateController.stream;
+
+  bool get isConnected => _peer != null && !_peer.isClosed;
+
+  final _notifyStateController = StreamController<NotifyState>.broadcast();
 
   Stream<NotifyState> get notifyState => _notifyStateController.stream;
 
@@ -95,7 +103,11 @@ class DoozGateway {
 
     unawaited(_peer.listen().catchError((Object e, Object s) {
       print('error in peer stream !\n$e\n\n\n$s');
-    }).whenComplete(() => print('connection terminated')));
+    }).whenComplete(() {
+      _connectionStateController.add(false);
+      print('connection terminated');
+    }));
+    _connectionStateController.add(true);
     print('done ! listening...');
   }
 
@@ -118,9 +130,12 @@ class DoozGateway {
         _notifyStateController.add(
           NotifyState.fromJson(parameters.asMap as Map<String, dynamic>),
         );
+        return null;
       },
     );
   }
+
+  // -------------- COMMON ---------------
 
   void _checkPeerInitialized() {
     if (_peer == null) {
@@ -133,6 +148,8 @@ class DoozGateway {
     Map<String, dynamic> params = const <String, dynamic>{},
   }) async {
     _checkPeerInitialized();
+    final e = JsonEncoder.withIndent('  ');
+    print('request "$method"\nparams ${e.convert(params)}');
     final stopwatch = Stopwatch()..start();
     final _requestResult = await _peer
         .sendRequest(method, params)
@@ -140,10 +157,12 @@ class DoozGateway {
         .catchError(_onRequestError) as Map<String, dynamic>;
     stopwatch.stop();
     print('request "$method" answered in ${stopwatch.elapsedMilliseconds}ms');
+    print('answer ${e.convert(_requestResult)}');
     return _requestResult;
   }
 
   void _onRequestError(Object error) {
+    print('error caught executing last request ! $error');
     if (error is TimeoutException) {
       throw OoplaRequestTimeout();
     } else if (error is RpcException) {
@@ -168,6 +187,23 @@ class DoozGateway {
     }
   }
 
+  void _checkValidAddress(String address, {bool shouldCheckGroupFormat = true}) {
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
+    }
+    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
+      throw ArgumentError('address must be a four digit hexadecimal String');
+    }
+    final parsedAddress = int.parse(address, radix: 16);
+    if (!(utils.isValidUnicastAddress(parsedAddress) ||
+        (shouldCheckGroupFormat && utils.isValidGroupAddress(parsedAddress)))) {
+      throw ArgumentError('address must be a valid unicast ${shouldCheckGroupFormat ? 'or group ' : ''}address'
+          '${shouldCheckGroupFormat ? '' : ' (groups not supported)'}');
+    }
+  }
+
+  // -------------------------------------
+
   /// Use this to authenticate yourself on the gateway by using the given credentials.
   ///
   /// [login] is either the user's login for the DooZ app or the gateway user login (available on the product's notice) and [password] is the corresponding password.
@@ -189,27 +225,30 @@ class DoozGateway {
       },
     ));
   }
+
   // ------------- Discoveries -----------
 
   /// Get ooPLA's network topology
-  Future<DiscoverResponse> discover() async =>
-      DiscoverResponse.fromJson(await _sendRequest('discover'));
+  Future<DiscoverNetworkResponse> discover() async => DiscoverNetworkResponse.fromJson(await _sendRequest('discover'));
 
-  /// Get room ids
-  Future<GetRoomsResponse> getRooms() async =>
-      GetRoomsResponse.fromJson(await _sendRequest('get_rooms'));
+  Future<DiscoverGroupsResponse> discoverGroups() async =>
+      DiscoverGroupsResponse.fromJson(await _sendRequest('discover_groups'));
+
+  Future<DiscoverRoomsResponse> discoverRooms() async =>
+      DiscoverRoomsResponse.fromJson(await _sendRequest('discover_rooms'));
+
+  Future<DiscoverScenesResponse> discoverScenes() async =>
+      DiscoverScenesResponse.fromJson(await _sendRequest('discover_scenes'));
 
   /// Get nodes in the given room name
-  ///
-  /// TODO build response's freezed model
-  Future<Map<String, dynamic>> getNodesInRoomName(String roomName) async {
+  Future<GetNodesInRoomResponse> getNodesInRoomName(String roomName) async {
     if (roomName.isBlank) {
       throw ArgumentError('roomName must not be blank');
     }
-    return await _sendRequest(
+    return GetNodesInRoomResponse.fromJson(await _sendRequest(
       'get_room',
       params: <String, dynamic>{'room_name': roomName},
-    );
+    ));
   }
 
   /// Get nodes in the given room ID
@@ -217,12 +256,186 @@ class DoozGateway {
     if (roomID.isBlank) {
       throw ArgumentError('roomID must not be blank');
     }
-    throw UnimplementedError(
-        'as of SDK v0.0.4 and ooPLA v1.0.77, this method is not supported');
+    throw UnimplementedError('as of SDK v0.0.4 and ooPLA v1.0.77, this method is not supported');
     return await _sendRequest(
       'get_room',
       params: <String, dynamic>{'room_id': roomID},
     );
+  }
+
+  // -------------------------------------
+
+  // -------- Scenarios management -------
+
+  Future<SetScenarioResponse> startScenario(int sceneID, {int timeout = kScenarioCmdTimeout}) async {
+    return SetScenarioResponse.fromJson(await _sendRequest(
+      'set_scenario',
+      params: <String, dynamic>{
+        'request': {
+          'command': 'start scenario',
+          'scenario_id': sceneID,
+        },
+        'timeout': timeout,
+      },
+    ));
+  }
+
+  Future<SetScenarioResponse> getScenario(String address, int sceneID, {int timeout = kScenarioCmdTimeout}) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
+    final r = Random();
+    final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
+    return SetScenarioResponse.fromJson(await _sendRequest(
+      'set_scenario',
+      params: <String, dynamic>{
+        'node_address': address,
+        'request': {
+          'command': 'get scenario',
+          'scenario_id': sceneID,
+          'correlation': correlation,
+        },
+        'timeout': timeout,
+      },
+    ));
+  }
+
+  /// A method to set a scenario on device at [address].
+  ///
+  /// [daysInWeek] is the list of days as lower case english words. `Example: monday, tuesday, wednesday, etc.`
+  ///
+  /// [transition] should be one of :
+  /// * unsigned integer: minimum: 0, maximum: 63,
+  /// * json: {
+  ///           "mode": pattern "$minutes|seconds^",
+  ///           "duration: unsigned integer: minimum: 0, maximum: 31,
+  ///         }
+  ///
+  /// [startAt] and [duration] should be one of:
+  ///
+  /// * string pattern: "^([0-9]{1,2}h[0-9]{1,2})$"
+  /// * unsigned integer, minimum: 0, maximum: 127
+  Future<SetScenarioResponse> setScenario(
+    String address,
+    int sceneID,
+    int level, {
+    dynamic transition = 0,
+    int output = 0,
+    dynamic startAt = 127,
+    dynamic duration = 127,
+    List<String> daysInWeek = const <String>[],
+    bool isActive = true,
+    int timeout = kScenarioCmdTimeout,
+  }) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
+    if (daysInWeek == null) {
+      throw ArgumentError.notNull('daysInWeek');
+    }
+    final dayPattern = RegExp(r'[a-z]');
+    if (daysInWeek.any((day) => !dayPattern.hasMatch(day))) {
+      throw ArgumentError('daysInWeek must hold lower case english days');
+    }
+    if (startAt is String) {
+      final startAtPattern = RegExp(r'^([0-9]{1,2}h[0-9]{1,2})$');
+      if (!startAtPattern.hasMatch(startAt)) {
+        throw ArgumentError('startAt must hold lower case 24h representation (ex: 18h47)');
+      }
+    } else if (startAt is int) {
+      if (startAt < 0 || startAt > 127) {
+        throw RangeError.range(startAt, 0, 127, 'startAt');
+      }
+    } else {
+      throw ArgumentError('startAt must be either of type String or int');
+    }
+    if (duration is String) {
+      final durationPattern = RegExp(r'^([0-9]{1,2}h[0-9]{1,2})$');
+      if (!durationPattern.hasMatch(duration)) {
+        throw ArgumentError('duration must hold lower case 24h representation (ex: 18h47)');
+      }
+    } else if (duration is int) {
+      if (duration < 0 || duration > 127) {
+        throw RangeError.range(duration, 0, 127, 'duration');
+      }
+    } else {
+      throw ArgumentError('duration must be either of type String or int');
+    }
+    if (transition is String) {
+      final transitionAsJson = json.decode(transition) as Map<String, dynamic>;
+      if (!(transitionAsJson.containsKey('mode') &&
+          transitionAsJson.containsKey('duration') &&
+          transitionAsJson.entries.length == 2)) {
+        throw ArgumentError('transition must be a JSON string');
+      }
+    } else if (transition is int) {
+      if (transition < 0 || transition > 63) {
+        throw RangeError.range(transition, 0, 63, 'transition');
+      }
+    } else {
+      throw ArgumentError('transition must be either of type String or int');
+    }
+    if (output < 0 || output > 1) {
+      throw RangeError.range(output, 0, 1, 'output');
+    }
+    final r = Random();
+    final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
+    return SetScenarioResponse.fromJson(await _sendRequest(
+      'set_scenario',
+      params: <String, dynamic>{
+        'node_address': address,
+        'request': <String, dynamic>{
+          'command': 'set scenario',
+          'correlation': correlation,
+          'scenario_id': sceneID,
+          'io': output,
+          'level': level,
+          'transition': transition,
+          'start_at': startAt,
+          'duration': duration,
+          'days_in_week': daysInWeek,
+          'is_active': isActive,
+        },
+        'timeout': timeout,
+      },
+    ));
+  }
+
+  Future<SetEpochResponse> getEpoch(String address, {int timeout = kScenarioCmdTimeout}) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
+    final r = Random();
+    final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
+    return SetEpochResponse.fromJson(await _sendRequest(
+      'set_epoch',
+      params: <String, dynamic>{
+        'node_address': address,
+        'request': {
+          'command': 'get time',
+          'correlation': correlation,
+        },
+        'timeout': timeout,
+      },
+    ));
+  }
+
+  Future<SetEpochResponse> setEpoch(String address,
+      {int io = 0, bool isActive = true, int timeout = kScenarioCmdTimeout}) async {
+    _checkValidAddress(address);
+    final r = Random();
+    final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
+    final now = DateTime.now();
+    final epoch = now.millisecondsSinceEpoch ~/ 1000;
+    return SetEpochResponse.fromJson(await _sendRequest(
+      'set_epoch',
+      params: <String, dynamic>{
+        'node_address': address,
+        'request': {
+          'command': 'set epoch',
+          'correlation': correlation,
+          'io': io,
+          'is_active': isActive,
+          'time_zone': 0, // for now, unused
+          'epoch': epoch,
+        },
+        'timeout': timeout * 2,
+      },
+    ));
   }
 
   // -------------------------------------
@@ -236,23 +449,13 @@ class DoozGateway {
     final int delay = 0,
     final int transition = 0,
   }) async {
-    if (address.isBlank) {
-      throw ArgumentError('address must not be blank');
-    }
-    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
-      throw ArgumentError('address must be a four digit hexadecimal String');
-    }
-    final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress))) {
-      throw ArgumentError('address must be a valid unicast or group address');
-    }
+    _checkValidAddress(address);
     if (level == null) {
       throw ArgumentError.notNull('level');
     }
     if (level is int) {
       if (level < 0 || level > 100) {
-        throw ArgumentError('level must be between 0 and 100');
+        throw RangeError.range(level, 0, 100, 'level');
       }
     } else if (level is String) {
       if (level != 'on' && level != 'off') {
@@ -279,17 +482,7 @@ class DoozGateway {
     final int delay = 0,
     final int transition = 0,
   }) async {
-    if (address.isBlank) {
-      throw ArgumentError('address must not be blank');
-    }
-    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
-      throw ArgumentError('address must be a four digit hexadecimal String');
-    }
-    final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress))) {
-      throw ArgumentError('address must be a valid unicast or group address');
-    }
+    _checkValidAddress(address);
     if (raw == null) {
       throw ArgumentError.notNull('raw');
     }
@@ -307,8 +500,7 @@ class DoozGateway {
         throw ArgumentError('raw must be between -32768 and 32767');
       }
       if (parsedRaw < 0) {
-        print(
-            'cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
+        print('cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
         _raw = parsedRaw;
       }
     } else {
@@ -325,17 +517,7 @@ class DoozGateway {
 
   /// Get the state of a device from its [address]
   Future<GetStateResponse> getState(final String address) async {
-    if (address.isBlank) {
-      throw ArgumentError('address must not be blank');
-    }
-    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
-      throw ArgumentError('address must be a four digit hexadecimal String');
-    }
-    final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress))) {
-      throw ArgumentError('address must be a valid unicast or group address');
-    }
+    _checkValidAddress(address);
     return GetStateResponse.fromJson(await _sendRequest(
       'get',
       params: <String, dynamic>{'address': address},
@@ -344,17 +526,7 @@ class DoozGateway {
 
   /// Toggle a device
   Future<SetToggleResponse> toggle(final String address) async {
-    if (address.isBlank) {
-      throw ArgumentError('address must not be blank');
-    }
-    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
-      throw ArgumentError('address must be a four digit hexadecimal String');
-    }
-    final parsedAddress = int.parse(address, radix: 16);
-    if (!utils.isValidUnicastAddress(parsedAddress)) {
-      throw ArgumentError(
-          'address must be a valid unicast address (groups not supported)');
-    }
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
     return SetToggleResponse.fromJson(await _sendRequest(
       'toggle',
       params: <String, dynamic>{'address': address},
@@ -370,6 +542,7 @@ class DoozGateway {
     final int correlation, {
     int version = 2,
   }) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
     return MagicConfigResponse.fromJson(await _sendRequest(
       'set_config',
       params: <String, dynamic>{
@@ -390,6 +563,7 @@ class DoozGateway {
     final int index,
     final int correlation,
   ) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
     return MagicConfigResponse.fromJson(await _sendRequest(
       'get_config',
       params: <String, dynamic>{
@@ -411,11 +585,7 @@ class DoozGateway {
 
   /// Get ooPLA's **hardware** version
   Future<HardwareVersionResponse> getHardwareVersion() async {
-    // TODO remove this transformation once fix is implemented on ooPLA's side
-    final _hardwareVersionResponse = await _sendRequest('get_hw_version');
-    return HardwareVersionResponse.fromJson(
-      <String, dynamic>{'hw_version': _hardwareVersionResponse['hw version']},
-    );
+    return HardwareVersionResponse.fromJson(await _sendRequest('get_hw_version'));
   }
 
   /// Get ooPLA's modules versions

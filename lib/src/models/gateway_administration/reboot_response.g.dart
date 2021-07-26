@@ -12,7 +12,6 @@ _$_RebootResponse _$_$_RebootResponseFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_RebootResponseToJson(_$_RebootResponse instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_RebootResponseToJson(_$_RebootResponse instance) => <String, dynamic>{
       'status': instance.status,
     };
