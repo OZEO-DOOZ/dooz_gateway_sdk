@@ -289,27 +289,7 @@ Future<void> _testScenarios(DoozGateway gateway) async {
   if (nodeIDs.isNotEmpty) {
     // will target the first node found, assuming it's a DooBLV and so targetting root unicast + 3, which is the element that contains the scenario server
     final firstScenarioServerAddress = (nodeIDs.first + 3).toRadixString(16).toUpperCase().padLeft(4, '0');
-    try {
-      await gateway.getEpoch(firstScenarioServerAddress);
-    } on OoplaApiError catch (e) {
-      if ('$e'.contains('timed out')) {
-        print('operation failed...');
-      } else {
-        rethrow;
-      }
-    }
-    try {
-      await gateway.getScenario(
-        firstScenarioServerAddress,
-        scenes.scenes.values.first.scenes.first.sceneId,
-      );
-    } on OoplaApiError catch (e) {
-      if ('$e'.contains('timed out')) {
-        print('operation failed...');
-      } else {
-        rethrow;
-      }
-    }
+    await gateway.getEpoch(firstScenarioServerAddress);
     final daysInWeek = <String>[
       'monday',
       'tuesday',
@@ -317,34 +297,26 @@ Future<void> _testScenarios(DoozGateway gateway) async {
       'thursday',
       'friday',
       'saturday',
+      'sunday',
     ];
-    try {
-      await gateway.setScenario(
-        firstScenarioServerAddress,
-        3,
-        75,
-        daysInWeek: daysInWeek,
-        startAt: '14h00',
-        duration: 1,
-      );
-      await gateway.setScenario(
-        firstScenarioServerAddress,
-        3,
-        75,
-        output: 1,
-        daysInWeek: daysInWeek,
-        startAt: '14h00',
-        duration: 1,
-      );
-      await gateway.startScenario(3);
-      await Future<void>.delayed(const Duration(seconds: 1));
-      await gateway.startScenario(0);
-    } on OoplaApiError catch (e) {
-      if ('$e'.contains('timed out')) {
-        print('operation failed...');
-      } else {
-        rethrow;
-      }
-    }
+    await gateway.setScenario(
+      firstScenarioServerAddress,
+      3,
+      75,
+      daysInWeek: daysInWeek,
+      startAt: '15h45',
+      duration: '0h15',
+    );
+    await gateway.setScenario(
+      firstScenarioServerAddress,
+      3,
+      75,
+      output: 1,
+      daysInWeek: daysInWeek,
+      startAt: '15h45',
+      duration: '0h15',
+    );
+    await gateway.getScenario(firstScenarioServerAddress, 3);
+    await gateway.startScenario(3);
   }
 }
