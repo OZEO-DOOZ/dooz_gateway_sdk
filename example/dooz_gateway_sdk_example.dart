@@ -80,6 +80,7 @@ Future<void> _testScript(DoozGateway gateway) async {
   await _testVersions(gateway);
   await _testDiscovers(gateway);
   await _testControls(gateway);
+  await _testScenarios(gateway);
 }
 
 Future<void> _testLogs(DoozGateway gateway) async {
@@ -104,16 +105,7 @@ Future<void> _testVersions(DoozGateway gateway) async {
 
 Future<void> _testDiscovers(DoozGateway gateway) async {
   print('----------- DISCOVERS -----------');
-  final scenes = await gateway.discoverScenes();
-  for (final scene in scenes.scenes.values.first.scenes) {
-    print('-------- SCENE #${scene.sceneId} --------');
-    print(scene.name);
-    print(scene.steps.length);
-    print(scene.start);
-    print(scene.end);
-    await gateway.startScenario(scene.sceneId);
-    print('--------------------------');
-  }
+  await gateway.discoverScenes();
   final rooms = await gateway.discoverRooms();
   for (final room in rooms.rooms.entries) {
     print('room id: ${room.key}, room name: ${room.value['name']}');
@@ -275,5 +267,19 @@ Future<void> _revertIoConfigs(Map<int, Map<String, int>> ioConfigs, DoozGateway 
             dooblvUnicast, ioConfig.key, 1, 0, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15)));
         break;
     }
+  }
+}
+
+Future<void> _testScenarios(DoozGateway gateway) async {
+  print('----------- SCENARIOS -----------');
+  final scenes = await gateway.discoverScenes();
+  for (final scene in scenes.scenes.values.first.scenes) {
+    print('-------- SCENE #${scene.sceneId} --------');
+    print(scene.name);
+    print(scene.steps.length);
+    print(scene.start);
+    print(scene.end);
+    await gateway.startScenario(scene.sceneId);
+    print('--------------------------');
   }
 }
