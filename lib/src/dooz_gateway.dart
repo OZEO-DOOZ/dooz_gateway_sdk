@@ -133,6 +133,8 @@ class DoozGateway {
     );
   }
 
+  // -------------- COMMON ---------------
+
   void _checkPeerInitialized() {
     if (_peer == null) {
       throw OoplaNotConnectedError();
@@ -183,6 +185,23 @@ class DoozGateway {
     }
   }
 
+  void _checkValidAddress(String address, {bool shouldCheckGroupFormat = true}) {
+    if (address.isBlank) {
+      throw ArgumentError('address must not be blank');
+    }
+    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
+      throw ArgumentError('address must be a four digit hexadecimal String');
+    }
+    final parsedAddress = int.parse(address, radix: 16);
+    if (!(utils.isValidUnicastAddress(parsedAddress) ||
+        (shouldCheckGroupFormat && utils.isValidGroupAddress(parsedAddress)))) {
+      throw ArgumentError('address must be a valid unicast ${shouldCheckGroupFormat ? 'or group ' : ''}address'
+          '${shouldCheckGroupFormat ? '' : ' (groups not supported)'}');
+    }
+  }
+
+  // -------------------------------------
+
   /// Use this to authenticate yourself on the gateway by using the given credentials.
   ///
   /// [login] is either the user's login for the DooZ app or the gateway user login (available on the product's notice) and [password] is the corresponding password.
@@ -204,6 +223,7 @@ class DoozGateway {
       },
     ));
   }
+
   // ------------- Discoveries -----------
 
   /// Get ooPLA's network topology
@@ -243,6 +263,22 @@ class DoozGateway {
 
   // -------------------------------------
 
+  // -------- Scenarios management -------
+
+  Future<Map<String, dynamic>> startScenario(String address, int sceneID, {int timeout = 10}) async {
+    _checkValidAddress(address);
+    return await _sendRequest('set_scenario', params: <String, dynamic>{
+      'node_address': address,
+      'request': {
+        'command': 'start scenario',
+        'scenario_id': sceneID,
+      },
+      'timeout': timeout,
+    });
+  }
+
+  // -------------------------------------
+
   // -------- Control the network --------
 
   /// Send the [level] to the device at [address]
@@ -252,16 +288,7 @@ class DoozGateway {
     final int delay = 0,
     final int transition = 0,
   }) async {
-    if (address.isBlank) {
-      throw ArgumentError('address must not be blank');
-    }
-    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
-      throw ArgumentError('address must be a four digit hexadecimal String');
-    }
-    final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) || utils.isValidGroupAddress(parsedAddress))) {
-      throw ArgumentError('address must be a valid unicast or group address');
-    }
+    _checkValidAddress(address);
     if (level == null) {
       throw ArgumentError.notNull('level');
     }
@@ -294,16 +321,7 @@ class DoozGateway {
     final int delay = 0,
     final int transition = 0,
   }) async {
-    if (address.isBlank) {
-      throw ArgumentError('address must not be blank');
-    }
-    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
-      throw ArgumentError('address must be a four digit hexadecimal String');
-    }
-    final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) || utils.isValidGroupAddress(parsedAddress))) {
-      throw ArgumentError('address must be a valid unicast or group address');
-    }
+    _checkValidAddress(address);
     if (raw == null) {
       throw ArgumentError.notNull('raw');
     }
@@ -338,16 +356,7 @@ class DoozGateway {
 
   /// Get the state of a device from its [address]
   Future<GetStateResponse> getState(final String address) async {
-    if (address.isBlank) {
-      throw ArgumentError('address must not be blank');
-    }
-    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
-      throw ArgumentError('address must be a four digit hexadecimal String');
-    }
-    final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) || utils.isValidGroupAddress(parsedAddress))) {
-      throw ArgumentError('address must be a valid unicast or group address');
-    }
+    _checkValidAddress(address);
     return GetStateResponse.fromJson(await _sendRequest(
       'get',
       params: <String, dynamic>{'address': address},
@@ -356,16 +365,7 @@ class DoozGateway {
 
   /// Toggle a device
   Future<SetToggleResponse> toggle(final String address) async {
-    if (address.isBlank) {
-      throw ArgumentError('address must not be blank');
-    }
-    if (!RegExp(r'[0-9A-Fa-f]{4}').hasMatch(address)) {
-      throw ArgumentError('address must be a four digit hexadecimal String');
-    }
-    final parsedAddress = int.parse(address, radix: 16);
-    if (!utils.isValidUnicastAddress(parsedAddress)) {
-      throw ArgumentError('address must be a valid unicast address (groups not supported)');
-    }
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
     return SetToggleResponse.fromJson(await _sendRequest(
       'toggle',
       params: <String, dynamic>{'address': address},
@@ -381,6 +381,7 @@ class DoozGateway {
     final int correlation, {
     int version = 2,
   }) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
     return MagicConfigResponse.fromJson(await _sendRequest(
       'set_config',
       params: <String, dynamic>{
@@ -401,6 +402,7 @@ class DoozGateway {
     final int index,
     final int correlation,
   ) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
     return MagicConfigResponse.fromJson(await _sendRequest(
       'get_config',
       params: <String, dynamic>{
