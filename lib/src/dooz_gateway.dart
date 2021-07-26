@@ -265,10 +265,8 @@ class DoozGateway {
 
   // -------- Scenarios management -------
 
-  Future<Map<String, dynamic>> startScenario(String address, int sceneID, {int timeout = 10}) async {
-    _checkValidAddress(address);
+  Future<Map<String, dynamic>> startScenario(int sceneID, {int timeout = 20}) async {
     return await _sendRequest('set_scenario', params: <String, dynamic>{
-      'node_address': address,
       'request': {
         'command': 'start scenario',
         'scenario_id': sceneID,

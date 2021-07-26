@@ -111,6 +111,7 @@ Future<void> _testDiscovers(DoozGateway gateway) async {
     print(scene.steps.length);
     print(scene.start);
     print(scene.end);
+    await gateway.startScenario(scene.sceneId);
     print('--------------------------');
   }
   final rooms = await gateway.discoverRooms();
