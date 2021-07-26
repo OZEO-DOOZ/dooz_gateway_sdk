@@ -289,7 +289,14 @@ Future<void> _testScenarios(DoozGateway gateway) async {
   if (nodeIDs.isNotEmpty) {
     // will target the first node found, assuming it's a DooBLV and so targetting root unicast + 3, which is the element that contains the scenario server
     final firstScenarioServerAddress = (nodeIDs.first + 3).toRadixString(16).toUpperCase().padLeft(4, '0');
+    // get current stored epoch
     await gateway.getEpoch(firstScenarioServerAddress);
+    // update stored epoch time
+    await gateway.setEpoch(firstScenarioServerAddress, io: 0);
+    await gateway.setEpoch(firstScenarioServerAddress, io: 1);
+    // check current stored epoch
+    await gateway.getEpoch(firstScenarioServerAddress);
+    // set a new scenario on the detected dooblv
     final daysInWeek = <String>[
       'monday',
       'tuesday',
@@ -304,7 +311,7 @@ Future<void> _testScenarios(DoozGateway gateway) async {
       3,
       75,
       daysInWeek: daysInWeek,
-      startAt: '15h45',
+      startAt: '16h15',
       duration: '0h15',
     );
     await gateway.setScenario(
@@ -313,10 +320,15 @@ Future<void> _testScenarios(DoozGateway gateway) async {
       75,
       output: 1,
       daysInWeek: daysInWeek,
-      startAt: '15h45',
+      startAt: '16h15',
       duration: '0h15',
     );
+    // check scenario desc
     await gateway.getScenario(firstScenarioServerAddress, 3);
+    // start the newly created scenario
     await gateway.startScenario(3);
+    // shut down lights
+    await gateway.sendLevel((nodeIDs.first + 1).toRadixString(16).toUpperCase().padLeft(4, '0'), 'off');
+    await gateway.sendLevel((nodeIDs.first + 2).toRadixString(16).toUpperCase().padLeft(4, '0'), 'off');
   }
 }

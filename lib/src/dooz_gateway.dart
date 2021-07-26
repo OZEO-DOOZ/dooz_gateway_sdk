@@ -413,6 +413,30 @@ class DoozGateway {
     ));
   }
 
+  Future<SetEpochResponse> setEpoch(String address,
+      {int io = 0, bool isActive = true, int timeout = kScenarioCmdTimeout}) async {
+    _checkValidAddress(address);
+    final r = Random();
+    final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
+    final now = DateTime.now();
+    final epoch = now.millisecondsSinceEpoch ~/ 1000;
+    return SetEpochResponse.fromJson(await _sendRequest(
+      'set_epoch',
+      params: <String, dynamic>{
+        'node_address': address,
+        'request': {
+          'command': 'set epoch',
+          'correlation': correlation,
+          'io': io,
+          'is_active': isActive,
+          'time_zone': 0, // for now, unused
+          'epoch': epoch,
+        },
+        'timeout': timeout * 2,
+      },
+    ));
+  }
+
   // -------------------------------------
 
   // -------- Control the network --------
