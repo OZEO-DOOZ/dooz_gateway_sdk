@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
-import 'package:dooz_gateway_sdk/src/models/discoveries/discover_groups_response.dart';
 import 'package:dooz_gateway_sdk/src/models/models.dart';
 import 'package:dooz_gateway_sdk/src/utils/utils.dart' as utils;
 import 'package:dooz_gateway_sdk/src/utils/extensions.dart';
@@ -208,13 +207,15 @@ class DoozGateway {
   // ------------- Discoveries -----------
 
   /// Get ooPLA's network topology
-  Future<DiscoverResponse> discover() async => DiscoverResponse.fromJson(await _sendRequest('discover'));
+  Future<DiscoverNetworkResponse> discover() async => DiscoverNetworkResponse.fromJson(await _sendRequest('discover'));
 
   Future<DiscoverGroupsResponse> discoverGroups() async =>
       DiscoverGroupsResponse.fromJson(await _sendRequest('discover_groups'));
 
   Future<DiscoverRoomsResponse> discoverRooms() async =>
       DiscoverRoomsResponse.fromJson(await _sendRequest('discover_rooms'));
+
+  Future<Map<String, dynamic>> discoverScenes() async => await _sendRequest('discover_scenes');
 
   /// Get nodes in the given room name
   Future<GetNodesInRoomResponse> getNodesInRoomName(String roomName) async {

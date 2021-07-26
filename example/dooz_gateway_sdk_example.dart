@@ -119,33 +119,37 @@ Future<void> _testDiscovers(DoozGateway gateway) async {
 
 Future<void> _testControls(DoozGateway gateway) async {
   print('------------ CONTROLS ------------');
-  final firstDooblv = await _searchADooblv(gateway);
-  if (firstDooblv != null) {
-    await _playWithDooblv(firstDooblv, gateway);
+  final dooblvs = await _searchDooblvs(gateway, getAll: true);
+  if (dooblvs.isNotEmpty) {
+    print(dooblvs);
+    // await _playWithDooblv(dooblvs.first, gateway);
   } else {
     print('did not find any configured dooblv in the current discovered n/w');
   }
   print('--------------------------------\n');
 }
 
-Future<MapEntry<String, dynamic>> _searchADooblv(DoozGateway gateway) async {
+Future<List<MapEntry<String, dynamic>>> _searchDooblvs(DoozGateway gateway, {bool getAll = false}) async {
   final discover = await gateway.discover();
-  print(discover);
-  MapEntry<String, dynamic> firstDooblv;
+  final dooblvs = <MapEntry<String, dynamic>>[];
   for (final discoveredNode in discover.mesh.entries) {
-    if (discoveredNode.value['type'] == 0x0A) {
+    if (discoveredNode.value['type'] == 0x0A &&
+        dooblvs.every((dooblv) => dooblv.key != discoveredNode.value['mac_address'])) {
       print('found a DooBLV in network !');
       dynamic confState = discoveredNode.value['conf state'];
       if (confState != 'CONFIGURED') {
         print('but it is not reported as configured...(conf state : ${confState})');
       } else {
-        firstDooblv = discoveredNode;
+        dooblvs.add(discoveredNode);
+        if (!getAll) {
+          break;
+        }
       }
     } else {
       print('found node with id ${discoveredNode.value['type']} at address ${discoveredNode.key}');
     }
   }
-  return firstDooblv;
+  return dooblvs;
 }
 
 Future<void> _playWithDooblv(MapEntry<String, dynamic> firstDooblv, DoozGateway gateway) async {
