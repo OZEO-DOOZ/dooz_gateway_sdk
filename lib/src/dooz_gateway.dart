@@ -130,6 +130,7 @@ class DoozGateway {
         _notifyStateController.add(
           NotifyState.fromJson(parameters.asMap as Map<String, dynamic>),
         );
+        return null;
       },
     );
   }
