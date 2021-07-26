@@ -35,8 +35,7 @@ class _$GatewayResponseTearOff {
   const _$GatewayResponseTearOff();
 
 // ignore: unused_element
-  SendLevelResponse sendLevel(String address, dynamic level, dynamic target,
-      int remaining, int timestamp) {
+  SendLevelResponse sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp) {
     return SendLevelResponse(
       address,
       level,
@@ -47,8 +46,7 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  SendRawResponse sendRaw(
-      String address, dynamic raw, dynamic target_raw, int timestamp) {
+  SendRawResponse sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp) {
     return SendRawResponse(
       address,
       raw,
@@ -58,13 +56,8 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  GetStateResponse getState(
-      String address,
-      @nullable dynamic level,
-      @nullable dynamic target,
-      @nullable String status,
-      @nullable int remaining,
-      int timestamp) {
+  GetStateResponse getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+      @nullable int remaining, int timestamp) {
     return GetStateResponse(
       address,
       level,
@@ -76,8 +69,7 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  SetToggleResponse toggle(String address, dynamic level, dynamic target,
-      int remaining, int timestamp) {
+  SetToggleResponse toggle(String address, dynamic level, dynamic target, int remaining, int timestamp) {
     return SetToggleResponse(
       address,
       level,
@@ -88,8 +80,7 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  MagicConfigResponse magicConfig(String address, int io, int index, int value,
-      int correlation, int timestamp) {
+  MagicConfigResponse magicConfig(String address, int io, int index, int value, int correlation, int timestamp) {
     return MagicConfigResponse(
       address,
       io,
@@ -101,19 +92,8 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  SetScenarioResponse setScenario(
-      String node,
-      int io,
-      int scenario_id,
-      int command,
-      bool is_active,
-      int level,
-      int transition,
-      int duration,
-      int start_at,
-      int days_in_week,
-      int correlation,
-      @nullable int timestamp) {
+  SetScenarioResponse setScenario(String node, int io, int scenario_id, int command, bool is_active, int level,
+      int transition, int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp) {
     return SetScenarioResponse(
       node,
       io,
@@ -131,8 +111,7 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
-  SetEpochResponse setEpoch(String node, int io, int epoch, int command,
-      int time_zone, int correlation) {
+  SetEpochResponse setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation) {
     return SetEpochResponse(
       node,
       io,
@@ -157,76 +136,29 @@ const $GatewayResponse = _$GatewayResponseTearOff();
 mixin _$GatewayResponse {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
     @required
-        TResult sendLevel(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+        TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+            @nullable int remaining, int timestamp),
+    @required TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
     @required
-        TResult sendRaw(
-            String address, dynamic raw, dynamic target_raw, int timestamp),
-    @required
-        TResult getState(
-            String address,
-            @nullable dynamic level,
-            @nullable dynamic target,
-            @nullable String status,
-            @nullable int remaining,
-            int timestamp),
-    @required
-        TResult toggle(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
-    @required
-        TResult magicConfig(String address, int io, int index, int value,
-            int correlation, int timestamp),
-    @required
-        TResult setScenario(
-            String node,
-            int io,
-            int scenario_id,
-            int command,
-            bool is_active,
-            int level,
-            int transition,
-            int duration,
-            int start_at,
-            int days_in_week,
-            int correlation,
-            @nullable int timestamp),
-    @required
-        TResult setEpoch(String node, int io, int epoch, int command,
-            int time_zone, int correlation),
+        TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level,
+            int transition, int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    @required TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult sendLevel(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
-    TResult sendRaw(
-        String address, dynamic raw, dynamic target_raw, int timestamp),
-    TResult getState(
-        String address,
-        @nullable dynamic level,
-        @nullable dynamic target,
-        @nullable String status,
-        @nullable int remaining,
-        int timestamp),
-    TResult toggle(String address, dynamic level, dynamic target, int remaining,
-        int timestamp),
-    TResult magicConfig(String address, int io, int index, int value,
-        int correlation, int timestamp),
-    TResult setScenario(
-        String node,
-        int io,
-        int scenario_id,
-        int command,
-        bool is_active,
-        int level,
-        int transition,
-        int duration,
-        int start_at,
-        int days_in_week,
-        int correlation,
-        @nullable int timestamp),
-    TResult setEpoch(String node, int io, int epoch, int command, int time_zone,
-        int correlation),
+    TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+        @nullable int remaining, int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
+    TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
+        int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -255,14 +187,12 @@ mixin _$GatewayResponse {
 
 /// @nodoc
 abstract class $GatewayResponseCopyWith<$Res> {
-  factory $GatewayResponseCopyWith(
-          GatewayResponse value, $Res Function(GatewayResponse) then) =
+  factory $GatewayResponseCopyWith(GatewayResponse value, $Res Function(GatewayResponse) then) =
       _$GatewayResponseCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GatewayResponseCopyWithImpl<$Res>
-    implements $GatewayResponseCopyWith<$Res> {
+class _$GatewayResponseCopyWithImpl<$Res> implements $GatewayResponseCopyWith<$Res> {
   _$GatewayResponseCopyWithImpl(this._value, this._then);
 
   final GatewayResponse _value;
@@ -272,23 +202,15 @@ class _$GatewayResponseCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $SendLevelResponseCopyWith<$Res> {
-  factory $SendLevelResponseCopyWith(
-          SendLevelResponse value, $Res Function(SendLevelResponse) then) =
+  factory $SendLevelResponseCopyWith(SendLevelResponse value, $Res Function(SendLevelResponse) then) =
       _$SendLevelResponseCopyWithImpl<$Res>;
-  $Res call(
-      {String address,
-      dynamic level,
-      dynamic target,
-      int remaining,
-      int timestamp});
+  $Res call({String address, dynamic level, dynamic target, int remaining, int timestamp});
 }
 
 /// @nodoc
-class _$SendLevelResponseCopyWithImpl<$Res>
-    extends _$GatewayResponseCopyWithImpl<$Res>
+class _$SendLevelResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl<$Res>
     implements $SendLevelResponseCopyWith<$Res> {
-  _$SendLevelResponseCopyWithImpl(
-      SendLevelResponse _value, $Res Function(SendLevelResponse) _then)
+  _$SendLevelResponseCopyWithImpl(SendLevelResponse _value, $Res Function(SendLevelResponse) _then)
       : super(_value, (v) => _then(v as SendLevelResponse));
 
   @override
@@ -316,16 +238,14 @@ class _$SendLevelResponseCopyWithImpl<$Res>
 
 /// @nodoc
 class _$SendLevelResponse implements SendLevelResponse {
-  const _$SendLevelResponse(
-      this.address, this.level, this.target, this.remaining, this.timestamp)
+  const _$SendLevelResponse(this.address, this.level, this.target, this.remaining, this.timestamp)
       : assert(address != null),
         assert(level != null),
         assert(target != null),
         assert(remaining != null),
         assert(timestamp != null);
 
-  factory _$SendLevelResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$SendLevelResponseFromJson(json);
+  factory _$SendLevelResponse.fromJson(Map<String, dynamic> json) => _$_$SendLevelResponseFromJson(json);
 
   @override
   final String address;
@@ -347,19 +267,13 @@ class _$SendLevelResponse implements SendLevelResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SendLevelResponse &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.level, level) ||
-                const DeepCollectionEquality().equals(other.level, level)) &&
-            (identical(other.target, target) ||
-                const DeepCollectionEquality().equals(other.target, target)) &&
+            (identical(other.address, address) || const DeepCollectionEquality().equals(other.address, address)) &&
+            (identical(other.level, level) || const DeepCollectionEquality().equals(other.level, level)) &&
+            (identical(other.target, target) || const DeepCollectionEquality().equals(other.target, target)) &&
             (identical(other.remaining, remaining) ||
-                const DeepCollectionEquality()
-                    .equals(other.remaining, remaining)) &&
+                const DeepCollectionEquality().equals(other.remaining, remaining)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -379,43 +293,17 @@ class _$SendLevelResponse implements SendLevelResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
     @required
-        TResult sendLevel(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+        TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+            @nullable int remaining, int timestamp),
+    @required TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
     @required
-        TResult sendRaw(
-            String address, dynamic raw, dynamic target_raw, int timestamp),
-    @required
-        TResult getState(
-            String address,
-            @nullable dynamic level,
-            @nullable dynamic target,
-            @nullable String status,
-            @nullable int remaining,
-            int timestamp),
-    @required
-        TResult toggle(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
-    @required
-        TResult magicConfig(String address, int io, int index, int value,
-            int correlation, int timestamp),
-    @required
-        TResult setScenario(
-            String node,
-            int io,
-            int scenario_id,
-            int command,
-            bool is_active,
-            int level,
-            int transition,
-            int duration,
-            int start_at,
-            int days_in_week,
-            int correlation,
-            @nullable int timestamp),
-    @required
-        TResult setEpoch(String node, int io, int epoch, int command,
-            int time_zone, int correlation),
+        TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level,
+            int transition, int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    @required TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -430,36 +318,15 @@ class _$SendLevelResponse implements SendLevelResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult sendLevel(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
-    TResult sendRaw(
-        String address, dynamic raw, dynamic target_raw, int timestamp),
-    TResult getState(
-        String address,
-        @nullable dynamic level,
-        @nullable dynamic target,
-        @nullable String status,
-        @nullable int remaining,
-        int timestamp),
-    TResult toggle(String address, dynamic level, dynamic target, int remaining,
-        int timestamp),
-    TResult magicConfig(String address, int io, int index, int value,
-        int correlation, int timestamp),
-    TResult setScenario(
-        String node,
-        int io,
-        int scenario_id,
-        int command,
-        bool is_active,
-        int level,
-        int transition,
-        int duration,
-        int start_at,
-        int days_in_week,
-        int correlation,
-        @nullable int timestamp),
-    TResult setEpoch(String node, int io, int epoch, int command, int time_zone,
-        int correlation),
+    TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+        @nullable int remaining, int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
+    TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
+        int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -516,11 +383,10 @@ class _$SendLevelResponse implements SendLevelResponse {
 }
 
 abstract class SendLevelResponse implements GatewayResponse {
-  const factory SendLevelResponse(String address, dynamic level, dynamic target,
-      int remaining, int timestamp) = _$SendLevelResponse;
+  const factory SendLevelResponse(String address, dynamic level, dynamic target, int remaining, int timestamp) =
+      _$SendLevelResponse;
 
-  factory SendLevelResponse.fromJson(Map<String, dynamic> json) =
-      _$SendLevelResponse.fromJson;
+  factory SendLevelResponse.fromJson(Map<String, dynamic> json) = _$SendLevelResponse.fromJson;
 
   String get address;
   dynamic get level;
@@ -533,18 +399,15 @@ abstract class SendLevelResponse implements GatewayResponse {
 
 /// @nodoc
 abstract class $SendRawResponseCopyWith<$Res> {
-  factory $SendRawResponseCopyWith(
-          SendRawResponse value, $Res Function(SendRawResponse) then) =
+  factory $SendRawResponseCopyWith(SendRawResponse value, $Res Function(SendRawResponse) then) =
       _$SendRawResponseCopyWithImpl<$Res>;
   $Res call({String address, dynamic raw, dynamic target_raw, int timestamp});
 }
 
 /// @nodoc
-class _$SendRawResponseCopyWithImpl<$Res>
-    extends _$GatewayResponseCopyWithImpl<$Res>
+class _$SendRawResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl<$Res>
     implements $SendRawResponseCopyWith<$Res> {
-  _$SendRawResponseCopyWithImpl(
-      SendRawResponse _value, $Res Function(SendRawResponse) _then)
+  _$SendRawResponseCopyWithImpl(SendRawResponse _value, $Res Function(SendRawResponse) _then)
       : super(_value, (v) => _then(v as SendRawResponse));
 
   @override
@@ -570,15 +433,13 @@ class _$SendRawResponseCopyWithImpl<$Res>
 
 /// @nodoc
 class _$SendRawResponse implements SendRawResponse {
-  const _$SendRawResponse(
-      this.address, this.raw, this.target_raw, this.timestamp)
+  const _$SendRawResponse(this.address, this.raw, this.target_raw, this.timestamp)
       : assert(address != null),
         assert(raw != null),
         assert(target_raw != null),
         assert(timestamp != null);
 
-  factory _$SendRawResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$SendRawResponseFromJson(json);
+  factory _$SendRawResponse.fromJson(Map<String, dynamic> json) => _$_$SendRawResponseFromJson(json);
 
   @override
   final String address;
@@ -598,17 +459,12 @@ class _$SendRawResponse implements SendRawResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SendRawResponse &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.raw, raw) ||
-                const DeepCollectionEquality().equals(other.raw, raw)) &&
+            (identical(other.address, address) || const DeepCollectionEquality().equals(other.address, address)) &&
+            (identical(other.raw, raw) || const DeepCollectionEquality().equals(other.raw, raw)) &&
             (identical(other.target_raw, target_raw) ||
-                const DeepCollectionEquality()
-                    .equals(other.target_raw, target_raw)) &&
+                const DeepCollectionEquality().equals(other.target_raw, target_raw)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -627,43 +483,17 @@ class _$SendRawResponse implements SendRawResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
     @required
-        TResult sendLevel(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+        TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+            @nullable int remaining, int timestamp),
+    @required TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
     @required
-        TResult sendRaw(
-            String address, dynamic raw, dynamic target_raw, int timestamp),
-    @required
-        TResult getState(
-            String address,
-            @nullable dynamic level,
-            @nullable dynamic target,
-            @nullable String status,
-            @nullable int remaining,
-            int timestamp),
-    @required
-        TResult toggle(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
-    @required
-        TResult magicConfig(String address, int io, int index, int value,
-            int correlation, int timestamp),
-    @required
-        TResult setScenario(
-            String node,
-            int io,
-            int scenario_id,
-            int command,
-            bool is_active,
-            int level,
-            int transition,
-            int duration,
-            int start_at,
-            int days_in_week,
-            int correlation,
-            @nullable int timestamp),
-    @required
-        TResult setEpoch(String node, int io, int epoch, int command,
-            int time_zone, int correlation),
+        TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level,
+            int transition, int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    @required TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -678,36 +508,15 @@ class _$SendRawResponse implements SendRawResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult sendLevel(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
-    TResult sendRaw(
-        String address, dynamic raw, dynamic target_raw, int timestamp),
-    TResult getState(
-        String address,
-        @nullable dynamic level,
-        @nullable dynamic target,
-        @nullable String status,
-        @nullable int remaining,
-        int timestamp),
-    TResult toggle(String address, dynamic level, dynamic target, int remaining,
-        int timestamp),
-    TResult magicConfig(String address, int io, int index, int value,
-        int correlation, int timestamp),
-    TResult setScenario(
-        String node,
-        int io,
-        int scenario_id,
-        int command,
-        bool is_active,
-        int level,
-        int transition,
-        int duration,
-        int start_at,
-        int days_in_week,
-        int correlation,
-        @nullable int timestamp),
-    TResult setEpoch(String node, int io, int epoch, int command, int time_zone,
-        int correlation),
+    TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+        @nullable int remaining, int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
+    TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
+        int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -764,12 +573,9 @@ class _$SendRawResponse implements SendRawResponse {
 }
 
 abstract class SendRawResponse implements GatewayResponse {
-  const factory SendRawResponse(
-          String address, dynamic raw, dynamic target_raw, int timestamp) =
-      _$SendRawResponse;
+  const factory SendRawResponse(String address, dynamic raw, dynamic target_raw, int timestamp) = _$SendRawResponse;
 
-  factory SendRawResponse.fromJson(Map<String, dynamic> json) =
-      _$SendRawResponse.fromJson;
+  factory SendRawResponse.fromJson(Map<String, dynamic> json) = _$SendRawResponse.fromJson;
 
   String get address;
   dynamic get raw;
@@ -781,8 +587,7 @@ abstract class SendRawResponse implements GatewayResponse {
 
 /// @nodoc
 abstract class $GetStateResponseCopyWith<$Res> {
-  factory $GetStateResponseCopyWith(
-          GetStateResponse value, $Res Function(GetStateResponse) then) =
+  factory $GetStateResponseCopyWith(GetStateResponse value, $Res Function(GetStateResponse) then) =
       _$GetStateResponseCopyWithImpl<$Res>;
   $Res call(
       {String address,
@@ -794,11 +599,9 @@ abstract class $GetStateResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GetStateResponseCopyWithImpl<$Res>
-    extends _$GatewayResponseCopyWithImpl<$Res>
+class _$GetStateResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl<$Res>
     implements $GetStateResponseCopyWith<$Res> {
-  _$GetStateResponseCopyWithImpl(
-      GetStateResponse _value, $Res Function(GetStateResponse) _then)
+  _$GetStateResponseCopyWithImpl(GetStateResponse _value, $Res Function(GetStateResponse) _then)
       : super(_value, (v) => _then(v as GetStateResponse));
 
   @override
@@ -828,18 +631,12 @@ class _$GetStateResponseCopyWithImpl<$Res>
 
 /// @nodoc
 class _$GetStateResponse implements GetStateResponse {
-  const _$GetStateResponse(
-      this.address,
-      @nullable this.level,
-      @nullable this.target,
-      @nullable this.status,
-      @nullable this.remaining,
-      this.timestamp)
+  const _$GetStateResponse(this.address, @nullable this.level, @nullable this.target, @nullable this.status,
+      @nullable this.remaining, this.timestamp)
       : assert(address != null),
         assert(timestamp != null);
 
-  factory _$GetStateResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$GetStateResponseFromJson(json);
+  factory _$GetStateResponse.fromJson(Map<String, dynamic> json) => _$_$GetStateResponseFromJson(json);
 
   @override
   final String address;
@@ -867,21 +664,14 @@ class _$GetStateResponse implements GetStateResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GetStateResponse &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.level, level) ||
-                const DeepCollectionEquality().equals(other.level, level)) &&
-            (identical(other.target, target) ||
-                const DeepCollectionEquality().equals(other.target, target)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.address, address) || const DeepCollectionEquality().equals(other.address, address)) &&
+            (identical(other.level, level) || const DeepCollectionEquality().equals(other.level, level)) &&
+            (identical(other.target, target) || const DeepCollectionEquality().equals(other.target, target)) &&
+            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.remaining, remaining) ||
-                const DeepCollectionEquality()
-                    .equals(other.remaining, remaining)) &&
+                const DeepCollectionEquality().equals(other.remaining, remaining)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -902,43 +692,17 @@ class _$GetStateResponse implements GetStateResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
     @required
-        TResult sendLevel(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+        TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+            @nullable int remaining, int timestamp),
+    @required TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
     @required
-        TResult sendRaw(
-            String address, dynamic raw, dynamic target_raw, int timestamp),
-    @required
-        TResult getState(
-            String address,
-            @nullable dynamic level,
-            @nullable dynamic target,
-            @nullable String status,
-            @nullable int remaining,
-            int timestamp),
-    @required
-        TResult toggle(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
-    @required
-        TResult magicConfig(String address, int io, int index, int value,
-            int correlation, int timestamp),
-    @required
-        TResult setScenario(
-            String node,
-            int io,
-            int scenario_id,
-            int command,
-            bool is_active,
-            int level,
-            int transition,
-            int duration,
-            int start_at,
-            int days_in_week,
-            int correlation,
-            @nullable int timestamp),
-    @required
-        TResult setEpoch(String node, int io, int epoch, int command,
-            int time_zone, int correlation),
+        TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level,
+            int transition, int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    @required TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -953,36 +717,15 @@ class _$GetStateResponse implements GetStateResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult sendLevel(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
-    TResult sendRaw(
-        String address, dynamic raw, dynamic target_raw, int timestamp),
-    TResult getState(
-        String address,
-        @nullable dynamic level,
-        @nullable dynamic target,
-        @nullable String status,
-        @nullable int remaining,
-        int timestamp),
-    TResult toggle(String address, dynamic level, dynamic target, int remaining,
-        int timestamp),
-    TResult magicConfig(String address, int io, int index, int value,
-        int correlation, int timestamp),
-    TResult setScenario(
-        String node,
-        int io,
-        int scenario_id,
-        int command,
-        bool is_active,
-        int level,
-        int transition,
-        int duration,
-        int start_at,
-        int days_in_week,
-        int correlation,
-        @nullable int timestamp),
-    TResult setEpoch(String node, int io, int epoch, int command, int time_zone,
-        int correlation),
+    TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+        @nullable int remaining, int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
+    TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
+        int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1039,16 +782,10 @@ class _$GetStateResponse implements GetStateResponse {
 }
 
 abstract class GetStateResponse implements GatewayResponse {
-  const factory GetStateResponse(
-      String address,
-      @nullable dynamic level,
-      @nullable dynamic target,
-      @nullable String status,
-      @nullable int remaining,
-      int timestamp) = _$GetStateResponse;
+  const factory GetStateResponse(String address, @nullable dynamic level, @nullable dynamic target,
+      @nullable String status, @nullable int remaining, int timestamp) = _$GetStateResponse;
 
-  factory GetStateResponse.fromJson(Map<String, dynamic> json) =
-      _$GetStateResponse.fromJson;
+  factory GetStateResponse.fromJson(Map<String, dynamic> json) = _$GetStateResponse.fromJson;
 
   String get address;
   @nullable
@@ -1066,23 +803,15 @@ abstract class GetStateResponse implements GatewayResponse {
 
 /// @nodoc
 abstract class $SetToggleResponseCopyWith<$Res> {
-  factory $SetToggleResponseCopyWith(
-          SetToggleResponse value, $Res Function(SetToggleResponse) then) =
+  factory $SetToggleResponseCopyWith(SetToggleResponse value, $Res Function(SetToggleResponse) then) =
       _$SetToggleResponseCopyWithImpl<$Res>;
-  $Res call(
-      {String address,
-      dynamic level,
-      dynamic target,
-      int remaining,
-      int timestamp});
+  $Res call({String address, dynamic level, dynamic target, int remaining, int timestamp});
 }
 
 /// @nodoc
-class _$SetToggleResponseCopyWithImpl<$Res>
-    extends _$GatewayResponseCopyWithImpl<$Res>
+class _$SetToggleResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl<$Res>
     implements $SetToggleResponseCopyWith<$Res> {
-  _$SetToggleResponseCopyWithImpl(
-      SetToggleResponse _value, $Res Function(SetToggleResponse) _then)
+  _$SetToggleResponseCopyWithImpl(SetToggleResponse _value, $Res Function(SetToggleResponse) _then)
       : super(_value, (v) => _then(v as SetToggleResponse));
 
   @override
@@ -1110,16 +839,14 @@ class _$SetToggleResponseCopyWithImpl<$Res>
 
 /// @nodoc
 class _$SetToggleResponse implements SetToggleResponse {
-  const _$SetToggleResponse(
-      this.address, this.level, this.target, this.remaining, this.timestamp)
+  const _$SetToggleResponse(this.address, this.level, this.target, this.remaining, this.timestamp)
       : assert(address != null),
         assert(level != null),
         assert(target != null),
         assert(remaining != null),
         assert(timestamp != null);
 
-  factory _$SetToggleResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$SetToggleResponseFromJson(json);
+  factory _$SetToggleResponse.fromJson(Map<String, dynamic> json) => _$_$SetToggleResponseFromJson(json);
 
   @override
   final String address;
@@ -1141,19 +868,13 @@ class _$SetToggleResponse implements SetToggleResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SetToggleResponse &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.level, level) ||
-                const DeepCollectionEquality().equals(other.level, level)) &&
-            (identical(other.target, target) ||
-                const DeepCollectionEquality().equals(other.target, target)) &&
+            (identical(other.address, address) || const DeepCollectionEquality().equals(other.address, address)) &&
+            (identical(other.level, level) || const DeepCollectionEquality().equals(other.level, level)) &&
+            (identical(other.target, target) || const DeepCollectionEquality().equals(other.target, target)) &&
             (identical(other.remaining, remaining) ||
-                const DeepCollectionEquality()
-                    .equals(other.remaining, remaining)) &&
+                const DeepCollectionEquality().equals(other.remaining, remaining)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -1173,43 +894,17 @@ class _$SetToggleResponse implements SetToggleResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
     @required
-        TResult sendLevel(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+        TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+            @nullable int remaining, int timestamp),
+    @required TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
     @required
-        TResult sendRaw(
-            String address, dynamic raw, dynamic target_raw, int timestamp),
-    @required
-        TResult getState(
-            String address,
-            @nullable dynamic level,
-            @nullable dynamic target,
-            @nullable String status,
-            @nullable int remaining,
-            int timestamp),
-    @required
-        TResult toggle(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
-    @required
-        TResult magicConfig(String address, int io, int index, int value,
-            int correlation, int timestamp),
-    @required
-        TResult setScenario(
-            String node,
-            int io,
-            int scenario_id,
-            int command,
-            bool is_active,
-            int level,
-            int transition,
-            int duration,
-            int start_at,
-            int days_in_week,
-            int correlation,
-            @nullable int timestamp),
-    @required
-        TResult setEpoch(String node, int io, int epoch, int command,
-            int time_zone, int correlation),
+        TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level,
+            int transition, int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    @required TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -1224,36 +919,15 @@ class _$SetToggleResponse implements SetToggleResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult sendLevel(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
-    TResult sendRaw(
-        String address, dynamic raw, dynamic target_raw, int timestamp),
-    TResult getState(
-        String address,
-        @nullable dynamic level,
-        @nullable dynamic target,
-        @nullable String status,
-        @nullable int remaining,
-        int timestamp),
-    TResult toggle(String address, dynamic level, dynamic target, int remaining,
-        int timestamp),
-    TResult magicConfig(String address, int io, int index, int value,
-        int correlation, int timestamp),
-    TResult setScenario(
-        String node,
-        int io,
-        int scenario_id,
-        int command,
-        bool is_active,
-        int level,
-        int transition,
-        int duration,
-        int start_at,
-        int days_in_week,
-        int correlation,
-        @nullable int timestamp),
-    TResult setEpoch(String node, int io, int epoch, int command, int time_zone,
-        int correlation),
+    TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+        @nullable int remaining, int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
+    TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
+        int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1310,11 +984,10 @@ class _$SetToggleResponse implements SetToggleResponse {
 }
 
 abstract class SetToggleResponse implements GatewayResponse {
-  const factory SetToggleResponse(String address, dynamic level, dynamic target,
-      int remaining, int timestamp) = _$SetToggleResponse;
+  const factory SetToggleResponse(String address, dynamic level, dynamic target, int remaining, int timestamp) =
+      _$SetToggleResponse;
 
-  factory SetToggleResponse.fromJson(Map<String, dynamic> json) =
-      _$SetToggleResponse.fromJson;
+  factory SetToggleResponse.fromJson(Map<String, dynamic> json) = _$SetToggleResponse.fromJson;
 
   String get address;
   dynamic get level;
@@ -1327,24 +1000,15 @@ abstract class SetToggleResponse implements GatewayResponse {
 
 /// @nodoc
 abstract class $MagicConfigResponseCopyWith<$Res> {
-  factory $MagicConfigResponseCopyWith(
-          MagicConfigResponse value, $Res Function(MagicConfigResponse) then) =
+  factory $MagicConfigResponseCopyWith(MagicConfigResponse value, $Res Function(MagicConfigResponse) then) =
       _$MagicConfigResponseCopyWithImpl<$Res>;
-  $Res call(
-      {String address,
-      int io,
-      int index,
-      int value,
-      int correlation,
-      int timestamp});
+  $Res call({String address, int io, int index, int value, int correlation, int timestamp});
 }
 
 /// @nodoc
-class _$MagicConfigResponseCopyWithImpl<$Res>
-    extends _$GatewayResponseCopyWithImpl<$Res>
+class _$MagicConfigResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl<$Res>
     implements $MagicConfigResponseCopyWith<$Res> {
-  _$MagicConfigResponseCopyWithImpl(
-      MagicConfigResponse _value, $Res Function(MagicConfigResponse) _then)
+  _$MagicConfigResponseCopyWithImpl(MagicConfigResponse _value, $Res Function(MagicConfigResponse) _then)
       : super(_value, (v) => _then(v as MagicConfigResponse));
 
   @override
@@ -1374,8 +1038,7 @@ class _$MagicConfigResponseCopyWithImpl<$Res>
 
 /// @nodoc
 class _$MagicConfigResponse implements MagicConfigResponse {
-  const _$MagicConfigResponse(this.address, this.io, this.index, this.value,
-      this.correlation, this.timestamp)
+  const _$MagicConfigResponse(this.address, this.io, this.index, this.value, this.correlation, this.timestamp)
       : assert(address != null),
         assert(io != null),
         assert(index != null),
@@ -1383,8 +1046,7 @@ class _$MagicConfigResponse implements MagicConfigResponse {
         assert(correlation != null),
         assert(timestamp != null);
 
-  factory _$MagicConfigResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$MagicConfigResponseFromJson(json);
+  factory _$MagicConfigResponse.fromJson(Map<String, dynamic> json) => _$_$MagicConfigResponseFromJson(json);
 
   @override
   final String address;
@@ -1408,21 +1070,14 @@ class _$MagicConfigResponse implements MagicConfigResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is MagicConfigResponse &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
-            (identical(other.io, io) ||
-                const DeepCollectionEquality().equals(other.io, io)) &&
-            (identical(other.index, index) ||
-                const DeepCollectionEquality().equals(other.index, index)) &&
-            (identical(other.value, value) ||
-                const DeepCollectionEquality().equals(other.value, value)) &&
+            (identical(other.address, address) || const DeepCollectionEquality().equals(other.address, address)) &&
+            (identical(other.io, io) || const DeepCollectionEquality().equals(other.io, io)) &&
+            (identical(other.index, index) || const DeepCollectionEquality().equals(other.index, index)) &&
+            (identical(other.value, value) || const DeepCollectionEquality().equals(other.value, value)) &&
             (identical(other.correlation, correlation) ||
-                const DeepCollectionEquality()
-                    .equals(other.correlation, correlation)) &&
+                const DeepCollectionEquality().equals(other.correlation, correlation)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -1443,43 +1098,17 @@ class _$MagicConfigResponse implements MagicConfigResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
     @required
-        TResult sendLevel(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+        TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+            @nullable int remaining, int timestamp),
+    @required TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
     @required
-        TResult sendRaw(
-            String address, dynamic raw, dynamic target_raw, int timestamp),
-    @required
-        TResult getState(
-            String address,
-            @nullable dynamic level,
-            @nullable dynamic target,
-            @nullable String status,
-            @nullable int remaining,
-            int timestamp),
-    @required
-        TResult toggle(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
-    @required
-        TResult magicConfig(String address, int io, int index, int value,
-            int correlation, int timestamp),
-    @required
-        TResult setScenario(
-            String node,
-            int io,
-            int scenario_id,
-            int command,
-            bool is_active,
-            int level,
-            int transition,
-            int duration,
-            int start_at,
-            int days_in_week,
-            int correlation,
-            @nullable int timestamp),
-    @required
-        TResult setEpoch(String node, int io, int epoch, int command,
-            int time_zone, int correlation),
+        TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level,
+            int transition, int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    @required TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -1494,36 +1123,15 @@ class _$MagicConfigResponse implements MagicConfigResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult sendLevel(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
-    TResult sendRaw(
-        String address, dynamic raw, dynamic target_raw, int timestamp),
-    TResult getState(
-        String address,
-        @nullable dynamic level,
-        @nullable dynamic target,
-        @nullable String status,
-        @nullable int remaining,
-        int timestamp),
-    TResult toggle(String address, dynamic level, dynamic target, int remaining,
-        int timestamp),
-    TResult magicConfig(String address, int io, int index, int value,
-        int correlation, int timestamp),
-    TResult setScenario(
-        String node,
-        int io,
-        int scenario_id,
-        int command,
-        bool is_active,
-        int level,
-        int transition,
-        int duration,
-        int start_at,
-        int days_in_week,
-        int correlation,
-        @nullable int timestamp),
-    TResult setEpoch(String node, int io, int epoch, int command, int time_zone,
-        int correlation),
+    TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+        @nullable int remaining, int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
+    TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
+        int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1580,11 +1188,10 @@ class _$MagicConfigResponse implements MagicConfigResponse {
 }
 
 abstract class MagicConfigResponse implements GatewayResponse {
-  const factory MagicConfigResponse(String address, int io, int index,
-      int value, int correlation, int timestamp) = _$MagicConfigResponse;
+  const factory MagicConfigResponse(String address, int io, int index, int value, int correlation, int timestamp) =
+      _$MagicConfigResponse;
 
-  factory MagicConfigResponse.fromJson(Map<String, dynamic> json) =
-      _$MagicConfigResponse.fromJson;
+  factory MagicConfigResponse.fromJson(Map<String, dynamic> json) = _$MagicConfigResponse.fromJson;
 
   String get address;
   int get io;
@@ -1598,8 +1205,7 @@ abstract class MagicConfigResponse implements GatewayResponse {
 
 /// @nodoc
 abstract class $SetScenarioResponseCopyWith<$Res> {
-  factory $SetScenarioResponseCopyWith(
-          SetScenarioResponse value, $Res Function(SetScenarioResponse) then) =
+  factory $SetScenarioResponseCopyWith(SetScenarioResponse value, $Res Function(SetScenarioResponse) then) =
       _$SetScenarioResponseCopyWithImpl<$Res>;
   $Res call(
       {String node,
@@ -1617,11 +1223,9 @@ abstract class $SetScenarioResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SetScenarioResponseCopyWithImpl<$Res>
-    extends _$GatewayResponseCopyWithImpl<$Res>
+class _$SetScenarioResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl<$Res>
     implements $SetScenarioResponseCopyWith<$Res> {
-  _$SetScenarioResponseCopyWithImpl(
-      SetScenarioResponse _value, $Res Function(SetScenarioResponse) _then)
+  _$SetScenarioResponseCopyWithImpl(SetScenarioResponse _value, $Res Function(SetScenarioResponse) _then)
       : super(_value, (v) => _then(v as SetScenarioResponse));
 
   @override
@@ -1663,19 +1267,8 @@ class _$SetScenarioResponseCopyWithImpl<$Res>
 
 /// @nodoc
 class _$SetScenarioResponse implements SetScenarioResponse {
-  const _$SetScenarioResponse(
-      this.node,
-      this.io,
-      this.scenario_id,
-      this.command,
-      this.is_active,
-      this.level,
-      this.transition,
-      this.duration,
-      this.start_at,
-      this.days_in_week,
-      this.correlation,
-      @nullable this.timestamp)
+  const _$SetScenarioResponse(this.node, this.io, this.scenario_id, this.command, this.is_active, this.level,
+      this.transition, this.duration, this.start_at, this.days_in_week, this.correlation, @nullable this.timestamp)
       : assert(node != null),
         assert(io != null),
         assert(scenario_id != null),
@@ -1688,8 +1281,7 @@ class _$SetScenarioResponse implements SetScenarioResponse {
         assert(days_in_week != null),
         assert(correlation != null);
 
-  factory _$SetScenarioResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$SetScenarioResponseFromJson(json);
+  factory _$SetScenarioResponse.fromJson(Map<String, dynamic> json) => _$_$SetScenarioResponseFromJson(json);
 
   @override
   final String node;
@@ -1726,39 +1318,24 @@ class _$SetScenarioResponse implements SetScenarioResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SetScenarioResponse &&
-            (identical(other.node, node) ||
-                const DeepCollectionEquality().equals(other.node, node)) &&
-            (identical(other.io, io) ||
-                const DeepCollectionEquality().equals(other.io, io)) &&
+            (identical(other.node, node) || const DeepCollectionEquality().equals(other.node, node)) &&
+            (identical(other.io, io) || const DeepCollectionEquality().equals(other.io, io)) &&
             (identical(other.scenario_id, scenario_id) ||
-                const DeepCollectionEquality()
-                    .equals(other.scenario_id, scenario_id)) &&
-            (identical(other.command, command) ||
-                const DeepCollectionEquality()
-                    .equals(other.command, command)) &&
+                const DeepCollectionEquality().equals(other.scenario_id, scenario_id)) &&
+            (identical(other.command, command) || const DeepCollectionEquality().equals(other.command, command)) &&
             (identical(other.is_active, is_active) ||
-                const DeepCollectionEquality()
-                    .equals(other.is_active, is_active)) &&
-            (identical(other.level, level) ||
-                const DeepCollectionEquality().equals(other.level, level)) &&
+                const DeepCollectionEquality().equals(other.is_active, is_active)) &&
+            (identical(other.level, level) || const DeepCollectionEquality().equals(other.level, level)) &&
             (identical(other.transition, transition) ||
-                const DeepCollectionEquality()
-                    .equals(other.transition, transition)) &&
-            (identical(other.duration, duration) ||
-                const DeepCollectionEquality()
-                    .equals(other.duration, duration)) &&
-            (identical(other.start_at, start_at) ||
-                const DeepCollectionEquality()
-                    .equals(other.start_at, start_at)) &&
+                const DeepCollectionEquality().equals(other.transition, transition)) &&
+            (identical(other.duration, duration) || const DeepCollectionEquality().equals(other.duration, duration)) &&
+            (identical(other.start_at, start_at) || const DeepCollectionEquality().equals(other.start_at, start_at)) &&
             (identical(other.days_in_week, days_in_week) ||
-                const DeepCollectionEquality()
-                    .equals(other.days_in_week, days_in_week)) &&
+                const DeepCollectionEquality().equals(other.days_in_week, days_in_week)) &&
             (identical(other.correlation, correlation) ||
-                const DeepCollectionEquality()
-                    .equals(other.correlation, correlation)) &&
+                const DeepCollectionEquality().equals(other.correlation, correlation)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -1785,43 +1362,17 @@ class _$SetScenarioResponse implements SetScenarioResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
     @required
-        TResult sendLevel(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+        TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+            @nullable int remaining, int timestamp),
+    @required TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
     @required
-        TResult sendRaw(
-            String address, dynamic raw, dynamic target_raw, int timestamp),
-    @required
-        TResult getState(
-            String address,
-            @nullable dynamic level,
-            @nullable dynamic target,
-            @nullable String status,
-            @nullable int remaining,
-            int timestamp),
-    @required
-        TResult toggle(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
-    @required
-        TResult magicConfig(String address, int io, int index, int value,
-            int correlation, int timestamp),
-    @required
-        TResult setScenario(
-            String node,
-            int io,
-            int scenario_id,
-            int command,
-            bool is_active,
-            int level,
-            int transition,
-            int duration,
-            int start_at,
-            int days_in_week,
-            int correlation,
-            @nullable int timestamp),
-    @required
-        TResult setEpoch(String node, int io, int epoch, int command,
-            int time_zone, int correlation),
+        TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level,
+            int transition, int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    @required TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -1830,49 +1381,28 @@ class _$SetScenarioResponse implements SetScenarioResponse {
     assert(magicConfig != null);
     assert(setScenario != null);
     assert(setEpoch != null);
-    return setScenario(node, io, scenario_id, command, is_active, level,
-        transition, duration, start_at, days_in_week, correlation, timestamp);
+    return setScenario(node, io, scenario_id, command, is_active, level, transition, duration, start_at, days_in_week,
+        correlation, timestamp);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult sendLevel(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
-    TResult sendRaw(
-        String address, dynamic raw, dynamic target_raw, int timestamp),
-    TResult getState(
-        String address,
-        @nullable dynamic level,
-        @nullable dynamic target,
-        @nullable String status,
-        @nullable int remaining,
-        int timestamp),
-    TResult toggle(String address, dynamic level, dynamic target, int remaining,
-        int timestamp),
-    TResult magicConfig(String address, int io, int index, int value,
-        int correlation, int timestamp),
-    TResult setScenario(
-        String node,
-        int io,
-        int scenario_id,
-        int command,
-        bool is_active,
-        int level,
-        int transition,
-        int duration,
-        int start_at,
-        int days_in_week,
-        int correlation,
-        @nullable int timestamp),
-    TResult setEpoch(String node, int io, int epoch, int command, int time_zone,
-        int correlation),
+    TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+        @nullable int remaining, int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
+    TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
+        int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (setScenario != null) {
-      return setScenario(node, io, scenario_id, command, is_active, level,
-          transition, duration, start_at, days_in_week, correlation, timestamp);
+      return setScenario(node, io, scenario_id, command, is_active, level, transition, duration, start_at, days_in_week,
+          correlation, timestamp);
     }
     return orElse();
   }
@@ -1938,8 +1468,7 @@ abstract class SetScenarioResponse implements GatewayResponse {
       int correlation,
       @nullable int timestamp) = _$SetScenarioResponse;
 
-  factory SetScenarioResponse.fromJson(Map<String, dynamic> json) =
-      _$SetScenarioResponse.fromJson;
+  factory SetScenarioResponse.fromJson(Map<String, dynamic> json) = _$SetScenarioResponse.fromJson;
 
   String get node;
   int get io;
@@ -1960,24 +1489,15 @@ abstract class SetScenarioResponse implements GatewayResponse {
 
 /// @nodoc
 abstract class $SetEpochResponseCopyWith<$Res> {
-  factory $SetEpochResponseCopyWith(
-          SetEpochResponse value, $Res Function(SetEpochResponse) then) =
+  factory $SetEpochResponseCopyWith(SetEpochResponse value, $Res Function(SetEpochResponse) then) =
       _$SetEpochResponseCopyWithImpl<$Res>;
-  $Res call(
-      {String node,
-      int io,
-      int epoch,
-      int command,
-      int time_zone,
-      int correlation});
+  $Res call({String node, int io, int epoch, int command, int time_zone, int correlation});
 }
 
 /// @nodoc
-class _$SetEpochResponseCopyWithImpl<$Res>
-    extends _$GatewayResponseCopyWithImpl<$Res>
+class _$SetEpochResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl<$Res>
     implements $SetEpochResponseCopyWith<$Res> {
-  _$SetEpochResponseCopyWithImpl(
-      SetEpochResponse _value, $Res Function(SetEpochResponse) _then)
+  _$SetEpochResponseCopyWithImpl(SetEpochResponse _value, $Res Function(SetEpochResponse) _then)
       : super(_value, (v) => _then(v as SetEpochResponse));
 
   @override
@@ -2007,8 +1527,7 @@ class _$SetEpochResponseCopyWithImpl<$Res>
 
 /// @nodoc
 class _$SetEpochResponse implements SetEpochResponse {
-  const _$SetEpochResponse(this.node, this.io, this.epoch, this.command,
-      this.time_zone, this.correlation)
+  const _$SetEpochResponse(this.node, this.io, this.epoch, this.command, this.time_zone, this.correlation)
       : assert(node != null),
         assert(io != null),
         assert(epoch != null),
@@ -2016,8 +1535,7 @@ class _$SetEpochResponse implements SetEpochResponse {
         assert(time_zone != null),
         assert(correlation != null);
 
-  factory _$SetEpochResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$SetEpochResponseFromJson(json);
+  factory _$SetEpochResponse.fromJson(Map<String, dynamic> json) => _$_$SetEpochResponseFromJson(json);
 
   @override
   final String node;
@@ -2041,21 +1559,14 @@ class _$SetEpochResponse implements SetEpochResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SetEpochResponse &&
-            (identical(other.node, node) ||
-                const DeepCollectionEquality().equals(other.node, node)) &&
-            (identical(other.io, io) ||
-                const DeepCollectionEquality().equals(other.io, io)) &&
-            (identical(other.epoch, epoch) ||
-                const DeepCollectionEquality().equals(other.epoch, epoch)) &&
-            (identical(other.command, command) ||
-                const DeepCollectionEquality()
-                    .equals(other.command, command)) &&
+            (identical(other.node, node) || const DeepCollectionEquality().equals(other.node, node)) &&
+            (identical(other.io, io) || const DeepCollectionEquality().equals(other.io, io)) &&
+            (identical(other.epoch, epoch) || const DeepCollectionEquality().equals(other.epoch, epoch)) &&
+            (identical(other.command, command) || const DeepCollectionEquality().equals(other.command, command)) &&
             (identical(other.time_zone, time_zone) ||
-                const DeepCollectionEquality()
-                    .equals(other.time_zone, time_zone)) &&
+                const DeepCollectionEquality().equals(other.time_zone, time_zone)) &&
             (identical(other.correlation, correlation) ||
-                const DeepCollectionEquality()
-                    .equals(other.correlation, correlation)));
+                const DeepCollectionEquality().equals(other.correlation, correlation)));
   }
 
   @override
@@ -2076,43 +1587,17 @@ class _$SetEpochResponse implements SetEpochResponse {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
     @required
-        TResult sendLevel(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
+        TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+            @nullable int remaining, int timestamp),
+    @required TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    @required TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
     @required
-        TResult sendRaw(
-            String address, dynamic raw, dynamic target_raw, int timestamp),
-    @required
-        TResult getState(
-            String address,
-            @nullable dynamic level,
-            @nullable dynamic target,
-            @nullable String status,
-            @nullable int remaining,
-            int timestamp),
-    @required
-        TResult toggle(String address, dynamic level, dynamic target,
-            int remaining, int timestamp),
-    @required
-        TResult magicConfig(String address, int io, int index, int value,
-            int correlation, int timestamp),
-    @required
-        TResult setScenario(
-            String node,
-            int io,
-            int scenario_id,
-            int command,
-            bool is_active,
-            int level,
-            int transition,
-            int duration,
-            int start_at,
-            int days_in_week,
-            int correlation,
-            @nullable int timestamp),
-    @required
-        TResult setEpoch(String node, int io, int epoch, int command,
-            int time_zone, int correlation),
+        TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level,
+            int transition, int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    @required TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -2127,36 +1612,15 @@ class _$SetEpochResponse implements SetEpochResponse {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult sendLevel(String address, dynamic level, dynamic target,
-        int remaining, int timestamp),
-    TResult sendRaw(
-        String address, dynamic raw, dynamic target_raw, int timestamp),
-    TResult getState(
-        String address,
-        @nullable dynamic level,
-        @nullable dynamic target,
-        @nullable String status,
-        @nullable int remaining,
-        int timestamp),
-    TResult toggle(String address, dynamic level, dynamic target, int remaining,
-        int timestamp),
-    TResult magicConfig(String address, int io, int index, int value,
-        int correlation, int timestamp),
-    TResult setScenario(
-        String node,
-        int io,
-        int scenario_id,
-        int command,
-        bool is_active,
-        int level,
-        int transition,
-        int duration,
-        int start_at,
-        int days_in_week,
-        int correlation,
-        @nullable int timestamp),
-    TResult setEpoch(String node, int io, int epoch, int command, int time_zone,
-        int correlation),
+    TResult sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult sendRaw(String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(String address, @nullable dynamic level, @nullable dynamic target, @nullable String status,
+        @nullable int remaining, int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining, int timestamp),
+    TResult magicConfig(String address, int io, int index, int value, int correlation, int timestamp),
+    TResult setScenario(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
+        int duration, int start_at, int days_in_week, int correlation, @nullable int timestamp),
+    TResult setEpoch(String node, int io, int epoch, int command, int time_zone, int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -2213,11 +1677,10 @@ class _$SetEpochResponse implements SetEpochResponse {
 }
 
 abstract class SetEpochResponse implements GatewayResponse {
-  const factory SetEpochResponse(String node, int io, int epoch, int command,
-      int time_zone, int correlation) = _$SetEpochResponse;
+  const factory SetEpochResponse(String node, int io, int epoch, int command, int time_zone, int correlation) =
+      _$SetEpochResponse;
 
-  factory SetEpochResponse.fromJson(Map<String, dynamic> json) =
-      _$SetEpochResponse.fromJson;
+  factory SetEpochResponse.fromJson(Map<String, dynamic> json) = _$SetEpochResponse.fromJson;
 
   String get node;
   int get io;
