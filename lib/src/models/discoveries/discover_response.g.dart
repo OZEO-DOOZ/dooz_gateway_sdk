@@ -14,9 +14,7 @@ _$_DiscoverResponse _$_$_DiscoverResponseFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_DiscoverResponseToJson(
-        _$_DiscoverResponse instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_DiscoverResponseToJson(_$_DiscoverResponse instance) => <String, dynamic>{
       'mesh': instance.mesh,
       'status': instance.status,
       'timestamp': instance.timestamp,

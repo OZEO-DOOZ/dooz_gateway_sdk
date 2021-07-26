@@ -8,8 +8,7 @@ part of 'discover_groups_response.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
-DiscoverGroupsResponse _$DiscoverGroupsResponseFromJson(
-    Map<String, dynamic> json) {
+DiscoverGroupsResponse _$DiscoverGroupsResponseFromJson(Map<String, dynamic> json) {
   return _DiscoverGroupsResponse.fromJson(json);
 }
 
@@ -18,8 +17,7 @@ class _$DiscoverGroupsResponseTearOff {
   const _$DiscoverGroupsResponseTearOff();
 
 // ignore: unused_element
-  _DiscoverGroupsResponse call(
-      Map<String, Map<String, dynamic>> groups, String status, int timestamp) {
+  _DiscoverGroupsResponse call(Map<String, Map<String, dynamic>> groups, String status, int timestamp) {
     return _DiscoverGroupsResponse(
       groups,
       status,
@@ -50,16 +48,13 @@ mixin _$DiscoverGroupsResponse {
 
 /// @nodoc
 abstract class $DiscoverGroupsResponseCopyWith<$Res> {
-  factory $DiscoverGroupsResponseCopyWith(DiscoverGroupsResponse value,
-          $Res Function(DiscoverGroupsResponse) then) =
+  factory $DiscoverGroupsResponseCopyWith(DiscoverGroupsResponse value, $Res Function(DiscoverGroupsResponse) then) =
       _$DiscoverGroupsResponseCopyWithImpl<$Res>;
-  $Res call(
-      {Map<String, Map<String, dynamic>> groups, String status, int timestamp});
+  $Res call({Map<String, Map<String, dynamic>> groups, String status, int timestamp});
 }
 
 /// @nodoc
-class _$DiscoverGroupsResponseCopyWithImpl<$Res>
-    implements $DiscoverGroupsResponseCopyWith<$Res> {
+class _$DiscoverGroupsResponseCopyWithImpl<$Res> implements $DiscoverGroupsResponseCopyWith<$Res> {
   _$DiscoverGroupsResponseCopyWithImpl(this._value, this._then);
 
   final DiscoverGroupsResponse _value;
@@ -73,9 +68,7 @@ class _$DiscoverGroupsResponseCopyWithImpl<$Res>
     Object timestamp = freezed,
   }) {
     return _then(_value.copyWith(
-      groups: groups == freezed
-          ? _value.groups
-          : groups as Map<String, Map<String, dynamic>>,
+      groups: groups == freezed ? _value.groups : groups as Map<String, Map<String, dynamic>>,
       status: status == freezed ? _value.status : status as String,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
@@ -83,22 +76,17 @@ class _$DiscoverGroupsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DiscoverGroupsResponseCopyWith<$Res>
-    implements $DiscoverGroupsResponseCopyWith<$Res> {
-  factory _$DiscoverGroupsResponseCopyWith(_DiscoverGroupsResponse value,
-          $Res Function(_DiscoverGroupsResponse) then) =
+abstract class _$DiscoverGroupsResponseCopyWith<$Res> implements $DiscoverGroupsResponseCopyWith<$Res> {
+  factory _$DiscoverGroupsResponseCopyWith(_DiscoverGroupsResponse value, $Res Function(_DiscoverGroupsResponse) then) =
       __$DiscoverGroupsResponseCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {Map<String, Map<String, dynamic>> groups, String status, int timestamp});
+  $Res call({Map<String, Map<String, dynamic>> groups, String status, int timestamp});
 }
 
 /// @nodoc
-class __$DiscoverGroupsResponseCopyWithImpl<$Res>
-    extends _$DiscoverGroupsResponseCopyWithImpl<$Res>
+class __$DiscoverGroupsResponseCopyWithImpl<$Res> extends _$DiscoverGroupsResponseCopyWithImpl<$Res>
     implements _$DiscoverGroupsResponseCopyWith<$Res> {
-  __$DiscoverGroupsResponseCopyWithImpl(_DiscoverGroupsResponse _value,
-      $Res Function(_DiscoverGroupsResponse) _then)
+  __$DiscoverGroupsResponseCopyWithImpl(_DiscoverGroupsResponse _value, $Res Function(_DiscoverGroupsResponse) _then)
       : super(_value, (v) => _then(v as _DiscoverGroupsResponse));
 
   @override
@@ -111,9 +99,7 @@ class __$DiscoverGroupsResponseCopyWithImpl<$Res>
     Object timestamp = freezed,
   }) {
     return _then(_DiscoverGroupsResponse(
-      groups == freezed
-          ? _value.groups
-          : groups as Map<String, Map<String, dynamic>>,
+      groups == freezed ? _value.groups : groups as Map<String, Map<String, dynamic>>,
       status == freezed ? _value.status : status as String,
       timestamp == freezed ? _value.timestamp : timestamp as int,
     ));
@@ -129,8 +115,7 @@ class _$_DiscoverGroupsResponse implements _DiscoverGroupsResponse {
         assert(status != null),
         assert(timestamp != null);
 
-  factory _$_DiscoverGroupsResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_DiscoverGroupsResponseFromJson(json);
+  factory _$_DiscoverGroupsResponse.fromJson(Map<String, dynamic> json) => _$_$_DiscoverGroupsResponseFromJson(json);
 
   @override
   final Map<String, Map<String, dynamic>> groups;
@@ -148,13 +133,10 @@ class _$_DiscoverGroupsResponse implements _DiscoverGroupsResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _DiscoverGroupsResponse &&
-            (identical(other.groups, groups) ||
-                const DeepCollectionEquality().equals(other.groups, groups)) &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.groups, groups) || const DeepCollectionEquality().equals(other.groups, groups)) &&
+            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -167,8 +149,7 @@ class _$_DiscoverGroupsResponse implements _DiscoverGroupsResponse {
   @JsonKey(ignore: true)
   @override
   _$DiscoverGroupsResponseCopyWith<_DiscoverGroupsResponse> get copyWith =>
-      __$DiscoverGroupsResponseCopyWithImpl<_DiscoverGroupsResponse>(
-          this, _$identity);
+      __$DiscoverGroupsResponseCopyWithImpl<_DiscoverGroupsResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -177,13 +158,10 @@ class _$_DiscoverGroupsResponse implements _DiscoverGroupsResponse {
 }
 
 abstract class _DiscoverGroupsResponse implements DiscoverGroupsResponse {
-  const factory _DiscoverGroupsResponse(
-      Map<String, Map<String, dynamic>> groups,
-      String status,
-      int timestamp) = _$_DiscoverGroupsResponse;
+  const factory _DiscoverGroupsResponse(Map<String, Map<String, dynamic>> groups, String status, int timestamp) =
+      _$_DiscoverGroupsResponse;
 
-  factory _DiscoverGroupsResponse.fromJson(Map<String, dynamic> json) =
-      _$_DiscoverGroupsResponse.fromJson;
+  factory _DiscoverGroupsResponse.fromJson(Map<String, dynamic> json) = _$_DiscoverGroupsResponse.fromJson;
 
   @override
   Map<String, Map<String, dynamic>> get groups;

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dooz_gateway_sdk/src/constants.dart';
@@ -16,16 +17,20 @@ import 'package:web_socket_channel/io.dart';
 /// Create an [DoozGateway] which allow you to control your gateway
 /// {@endtemplate}
 class DoozGateway {
-  Peer _peer;
-
-  final _notifyStateController = StreamController<NotifyState>.broadcast();
-
   /// {@macro dooz_gateway_contructor}
   DoozGateway();
 
-  Stream<NotifyState> get notifyState => _notifyStateController.stream;
+  Peer _peer;
+
+  final _connectionStateController = StreamController<bool>.broadcast();
+
+  Stream<bool> get connectionState => _connectionStateController.stream;
 
   bool get isConnected => _peer != null && !_peer.isClosed;
+
+  final _notifyStateController = StreamController<NotifyState>.broadcast();
+
+  Stream<NotifyState> get notifyState => _notifyStateController.stream;
 
   /// Connect to the gateway.
   ///
@@ -98,7 +103,11 @@ class DoozGateway {
 
     unawaited(_peer.listen().catchError((Object e, Object s) {
       print('error in peer stream !\n$e\n\n\n$s');
-    }).whenComplete(() => print('connection terminated')));
+    }).whenComplete(() {
+      _connectionStateController.add(false);
+      print('connection terminated');
+    }));
+    _connectionStateController.add(true);
     print('done ! listening...');
   }
 
@@ -136,6 +145,8 @@ class DoozGateway {
     Map<String, dynamic> params = const <String, dynamic>{},
   }) async {
     _checkPeerInitialized();
+    final e = JsonEncoder.withIndent('  ');
+    print('request "$method"\nparams ${e.convert(params)}');
     final stopwatch = Stopwatch()..start();
     final _requestResult = await _peer
         .sendRequest(method, params)
@@ -143,6 +154,7 @@ class DoozGateway {
         .catchError(_onRequestError) as Map<String, dynamic>;
     stopwatch.stop();
     print('request "$method" answered in ${stopwatch.elapsedMilliseconds}ms');
+    print('answer ${e.convert(_requestResult)}');
     return _requestResult;
   }
 
@@ -196,8 +208,7 @@ class DoozGateway {
   // ------------- Discoveries -----------
 
   /// Get ooPLA's network topology
-  Future<DiscoverResponse> discover() async =>
-      DiscoverResponse.fromJson(await _sendRequest('discover'));
+  Future<DiscoverResponse> discover() async => DiscoverResponse.fromJson(await _sendRequest('discover'));
 
   Future<DiscoverGroupsResponse> discoverGroups() async =>
       DiscoverGroupsResponse.fromJson(await _sendRequest('discover_groups'));
@@ -206,8 +217,6 @@ class DoozGateway {
       DiscoverRoomsResponse.fromJson(await _sendRequest('discover_rooms'));
 
   /// Get nodes in the given room name
-  ///
-  /// TODO build response's freezed model
   Future<GetNodesInRoomResponse> getNodesInRoomName(String roomName) async {
     if (roomName.isBlank) {
       throw ArgumentError('roomName must not be blank');
@@ -223,8 +232,7 @@ class DoozGateway {
     if (roomID.isBlank) {
       throw ArgumentError('roomID must not be blank');
     }
-    throw UnimplementedError(
-        'as of SDK v0.0.4 and ooPLA v1.0.77, this method is not supported');
+    throw UnimplementedError('as of SDK v0.0.4 and ooPLA v1.0.77, this method is not supported');
     return await _sendRequest(
       'get_room',
       params: <String, dynamic>{'room_id': roomID},
@@ -249,8 +257,7 @@ class DoozGateway {
       throw ArgumentError('address must be a four digit hexadecimal String');
     }
     final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress))) {
+    if (!(utils.isValidUnicastAddress(parsedAddress) || utils.isValidGroupAddress(parsedAddress))) {
       throw ArgumentError('address must be a valid unicast or group address');
     }
     if (level == null) {
@@ -292,8 +299,7 @@ class DoozGateway {
       throw ArgumentError('address must be a four digit hexadecimal String');
     }
     final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress))) {
+    if (!(utils.isValidUnicastAddress(parsedAddress) || utils.isValidGroupAddress(parsedAddress))) {
       throw ArgumentError('address must be a valid unicast or group address');
     }
     if (raw == null) {
@@ -313,8 +319,7 @@ class DoozGateway {
         throw ArgumentError('raw must be between -32768 and 32767');
       }
       if (parsedRaw < 0) {
-        print(
-            'cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
+        print('cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
         _raw = parsedRaw;
       }
     } else {
@@ -338,8 +343,7 @@ class DoozGateway {
       throw ArgumentError('address must be a four digit hexadecimal String');
     }
     final parsedAddress = int.parse(address, radix: 16);
-    if (!(utils.isValidUnicastAddress(parsedAddress) ||
-        utils.isValidGroupAddress(parsedAddress))) {
+    if (!(utils.isValidUnicastAddress(parsedAddress) || utils.isValidGroupAddress(parsedAddress))) {
       throw ArgumentError('address must be a valid unicast or group address');
     }
     return GetStateResponse.fromJson(await _sendRequest(
@@ -358,8 +362,7 @@ class DoozGateway {
     }
     final parsedAddress = int.parse(address, radix: 16);
     if (!utils.isValidUnicastAddress(parsedAddress)) {
-      throw ArgumentError(
-          'address must be a valid unicast address (groups not supported)');
+      throw ArgumentError('address must be a valid unicast address (groups not supported)');
     }
     return SetToggleResponse.fromJson(await _sendRequest(
       'toggle',
@@ -417,8 +420,7 @@ class DoozGateway {
 
   /// Get ooPLA's **hardware** version
   Future<HardwareVersionResponse> getHardwareVersion() async {
-    return HardwareVersionResponse.fromJson(
-        await _sendRequest('get_hw_version'));
+    return HardwareVersionResponse.fromJson(await _sendRequest('get_hw_version'));
   }
 
   /// Get ooPLA's modules versions

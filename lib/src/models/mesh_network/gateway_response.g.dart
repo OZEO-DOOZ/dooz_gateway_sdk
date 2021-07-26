@@ -16,9 +16,7 @@ _$SendLevelResponse _$_$SendLevelResponseFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$SendLevelResponseToJson(
-        _$SendLevelResponse instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$SendLevelResponseToJson(_$SendLevelResponse instance) => <String, dynamic>{
       'address': instance.address,
       'level': instance.level,
       'target': instance.target,
@@ -35,8 +33,7 @@ _$SendRawResponse _$_$SendRawResponseFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$SendRawResponseToJson(_$SendRawResponse instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$SendRawResponseToJson(_$SendRawResponse instance) => <String, dynamic>{
       'address': instance.address,
       'raw': instance.raw,
       'target_raw': instance.target_raw,
@@ -48,16 +45,17 @@ _$GetStateResponse _$_$GetStateResponseFromJson(Map<String, dynamic> json) {
     json['address'] as String,
     json['level'],
     json['target'],
+    json['status'] as String,
     json['remaining'] as int,
     json['timestamp'] as int,
   );
 }
 
-Map<String, dynamic> _$_$GetStateResponseToJson(_$GetStateResponse instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$GetStateResponseToJson(_$GetStateResponse instance) => <String, dynamic>{
       'address': instance.address,
       'level': instance.level,
       'target': instance.target,
+      'status': instance.status,
       'remaining': instance.remaining,
       'timestamp': instance.timestamp,
     };
@@ -72,9 +70,7 @@ _$SetToggleResponse _$_$SetToggleResponseFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$SetToggleResponseToJson(
-        _$SetToggleResponse instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$SetToggleResponseToJson(_$SetToggleResponse instance) => <String, dynamic>{
       'address': instance.address,
       'level': instance.level,
       'target': instance.target,
@@ -82,8 +78,7 @@ Map<String, dynamic> _$_$SetToggleResponseToJson(
       'timestamp': instance.timestamp,
     };
 
-_$MagicConfigResponse _$_$MagicConfigResponseFromJson(
-    Map<String, dynamic> json) {
+_$MagicConfigResponse _$_$MagicConfigResponseFromJson(Map<String, dynamic> json) {
   return _$MagicConfigResponse(
     json['address'] as String,
     json['io'] as int,
@@ -94,9 +89,7 @@ _$MagicConfigResponse _$_$MagicConfigResponseFromJson(
   );
 }
 
-Map<String, dynamic> _$_$MagicConfigResponseToJson(
-        _$MagicConfigResponse instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$MagicConfigResponseToJson(_$MagicConfigResponse instance) => <String, dynamic>{
       'address': instance.address,
       'io': instance.io,
       'index': instance.index,

@@ -17,8 +17,7 @@ class _$NotifyStateTearOff {
   const _$NotifyStateTearOff();
 
 // ignore: unused_element
-  _NotifyState call(String address, String destination, dynamic level,
-      dynamic target, int remaining, int timestamp) {
+  _NotifyState call(String address, String destination, dynamic level, dynamic target, int remaining, int timestamp) {
     return _NotifyState(
       address,
       destination,
@@ -55,16 +54,8 @@ mixin _$NotifyState {
 
 /// @nodoc
 abstract class $NotifyStateCopyWith<$Res> {
-  factory $NotifyStateCopyWith(
-          NotifyState value, $Res Function(NotifyState) then) =
-      _$NotifyStateCopyWithImpl<$Res>;
-  $Res call(
-      {String address,
-      String destination,
-      dynamic level,
-      dynamic target,
-      int remaining,
-      int timestamp});
+  factory $NotifyStateCopyWith(NotifyState value, $Res Function(NotifyState) then) = _$NotifyStateCopyWithImpl<$Res>;
+  $Res call({String address, String destination, dynamic level, dynamic target, int remaining, int timestamp});
 }
 
 /// @nodoc
@@ -86,8 +77,7 @@ class _$NotifyStateCopyWithImpl<$Res> implements $NotifyStateCopyWith<$Res> {
   }) {
     return _then(_value.copyWith(
       address: address == freezed ? _value.address : address as String,
-      destination:
-          destination == freezed ? _value.destination : destination as String,
+      destination: destination == freezed ? _value.destination : destination as String,
       level: level == freezed ? _value.level : level as dynamic,
       target: target == freezed ? _value.target : target as dynamic,
       remaining: remaining == freezed ? _value.remaining : remaining as int,
@@ -97,26 +87,16 @@ class _$NotifyStateCopyWithImpl<$Res> implements $NotifyStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$NotifyStateCopyWith<$Res>
-    implements $NotifyStateCopyWith<$Res> {
-  factory _$NotifyStateCopyWith(
-          _NotifyState value, $Res Function(_NotifyState) then) =
+abstract class _$NotifyStateCopyWith<$Res> implements $NotifyStateCopyWith<$Res> {
+  factory _$NotifyStateCopyWith(_NotifyState value, $Res Function(_NotifyState) then) =
       __$NotifyStateCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String address,
-      String destination,
-      dynamic level,
-      dynamic target,
-      int remaining,
-      int timestamp});
+  $Res call({String address, String destination, dynamic level, dynamic target, int remaining, int timestamp});
 }
 
 /// @nodoc
-class __$NotifyStateCopyWithImpl<$Res> extends _$NotifyStateCopyWithImpl<$Res>
-    implements _$NotifyStateCopyWith<$Res> {
-  __$NotifyStateCopyWithImpl(
-      _NotifyState _value, $Res Function(_NotifyState) _then)
+class __$NotifyStateCopyWithImpl<$Res> extends _$NotifyStateCopyWithImpl<$Res> implements _$NotifyStateCopyWith<$Res> {
+  __$NotifyStateCopyWithImpl(_NotifyState _value, $Res Function(_NotifyState) _then)
       : super(_value, (v) => _then(v as _NotifyState));
 
   @override
@@ -146,8 +126,7 @@ class __$NotifyStateCopyWithImpl<$Res> extends _$NotifyStateCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_NotifyState implements _NotifyState {
-  const _$_NotifyState(this.address, this.destination, this.level, this.target,
-      this.remaining, this.timestamp)
+  const _$_NotifyState(this.address, this.destination, this.level, this.target, this.remaining, this.timestamp)
       : assert(address != null),
         assert(destination != null),
         assert(level != null),
@@ -155,8 +134,7 @@ class _$_NotifyState implements _NotifyState {
         assert(remaining != null),
         assert(timestamp != null);
 
-  factory _$_NotifyState.fromJson(Map<String, dynamic> json) =>
-      _$_$_NotifyStateFromJson(json);
+  factory _$_NotifyState.fromJson(Map<String, dynamic> json) => _$_$_NotifyStateFromJson(json);
 
   @override
   final String address;
@@ -180,22 +158,15 @@ class _$_NotifyState implements _NotifyState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _NotifyState &&
-            (identical(other.address, address) ||
-                const DeepCollectionEquality()
-                    .equals(other.address, address)) &&
+            (identical(other.address, address) || const DeepCollectionEquality().equals(other.address, address)) &&
             (identical(other.destination, destination) ||
-                const DeepCollectionEquality()
-                    .equals(other.destination, destination)) &&
-            (identical(other.level, level) ||
-                const DeepCollectionEquality().equals(other.level, level)) &&
-            (identical(other.target, target) ||
-                const DeepCollectionEquality().equals(other.target, target)) &&
+                const DeepCollectionEquality().equals(other.destination, destination)) &&
+            (identical(other.level, level) || const DeepCollectionEquality().equals(other.level, level)) &&
+            (identical(other.target, target) || const DeepCollectionEquality().equals(other.target, target)) &&
             (identical(other.remaining, remaining) ||
-                const DeepCollectionEquality()
-                    .equals(other.remaining, remaining)) &&
+                const DeepCollectionEquality().equals(other.remaining, remaining)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -210,8 +181,7 @@ class _$_NotifyState implements _NotifyState {
 
   @JsonKey(ignore: true)
   @override
-  _$NotifyStateCopyWith<_NotifyState> get copyWith =>
-      __$NotifyStateCopyWithImpl<_NotifyState>(this, _$identity);
+  _$NotifyStateCopyWith<_NotifyState> get copyWith => __$NotifyStateCopyWithImpl<_NotifyState>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -220,11 +190,10 @@ class _$_NotifyState implements _NotifyState {
 }
 
 abstract class _NotifyState implements NotifyState {
-  const factory _NotifyState(String address, String destination, dynamic level,
-      dynamic target, int remaining, int timestamp) = _$_NotifyState;
+  const factory _NotifyState(
+      String address, String destination, dynamic level, dynamic target, int remaining, int timestamp) = _$_NotifyState;
 
-  factory _NotifyState.fromJson(Map<String, dynamic> json) =
-      _$_NotifyState.fromJson;
+  factory _NotifyState.fromJson(Map<String, dynamic> json) = _$_NotifyState.fromJson;
 
   @override
   String get address;
