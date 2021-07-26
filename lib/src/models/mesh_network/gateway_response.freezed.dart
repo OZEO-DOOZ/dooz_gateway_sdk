@@ -22,6 +22,8 @@ GatewayResponse _$GatewayResponseFromJson(Map<String, dynamic> json) {
       return MagicConfigResponse.fromJson(json);
     case 'setScenario':
       return SetScenarioResponse.fromJson(json);
+    case 'getEpoch':
+      return GetEpochResponse.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -127,6 +129,19 @@ class _$GatewayResponseTearOff {
   }
 
 // ignore: unused_element
+  GetEpochResponse getEpoch(String node, int io, int epoch, int command,
+      int time_zone, int correlation) {
+    return GetEpochResponse(
+      node,
+      io,
+      epoch,
+      command,
+      time_zone,
+      correlation,
+    );
+  }
+
+// ignore: unused_element
   GatewayResponse fromJson(Map<String, Object> json) {
     return GatewayResponse.fromJson(json);
   }
@@ -173,6 +188,9 @@ mixin _$GatewayResponse {
             int start_at,
             int days_in_week,
             int correlation),
+    @required
+        TResult getEpoch(String node, int io, int epoch, int command,
+            int time_zone, int correlation),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -203,6 +221,8 @@ mixin _$GatewayResponse {
         int start_at,
         int days_in_week,
         int correlation),
+    TResult getEpoch(String node, int io, int epoch, int command, int time_zone,
+        int correlation),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -213,6 +233,7 @@ mixin _$GatewayResponse {
     @required TResult toggle(SetToggleResponse value),
     @required TResult magicConfig(MagicConfigResponse value),
     @required TResult setScenario(SetScenarioResponse value),
+    @required TResult getEpoch(GetEpochResponse value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -222,6 +243,7 @@ mixin _$GatewayResponse {
     TResult toggle(SetToggleResponse value),
     TResult magicConfig(MagicConfigResponse value),
     TResult setScenario(SetScenarioResponse value),
+    TResult getEpoch(GetEpochResponse value),
     @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
@@ -386,6 +408,9 @@ class _$SendLevelResponse implements SendLevelResponse {
             int start_at,
             int days_in_week,
             int correlation),
+    @required
+        TResult getEpoch(String node, int io, int epoch, int command,
+            int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -393,6 +418,7 @@ class _$SendLevelResponse implements SendLevelResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return sendLevel(address, level, target, remaining, timestamp);
   }
 
@@ -426,6 +452,8 @@ class _$SendLevelResponse implements SendLevelResponse {
         int start_at,
         int days_in_week,
         int correlation),
+    TResult getEpoch(String node, int io, int epoch, int command, int time_zone,
+        int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -444,6 +472,7 @@ class _$SendLevelResponse implements SendLevelResponse {
     @required TResult toggle(SetToggleResponse value),
     @required TResult magicConfig(MagicConfigResponse value),
     @required TResult setScenario(SetScenarioResponse value),
+    @required TResult getEpoch(GetEpochResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -451,6 +480,7 @@ class _$SendLevelResponse implements SendLevelResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return sendLevel(this);
   }
 
@@ -463,6 +493,7 @@ class _$SendLevelResponse implements SendLevelResponse {
     TResult toggle(SetToggleResponse value),
     TResult magicConfig(MagicConfigResponse value),
     TResult setScenario(SetScenarioResponse value),
+    TResult getEpoch(GetEpochResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -623,6 +654,9 @@ class _$SendRawResponse implements SendRawResponse {
             int start_at,
             int days_in_week,
             int correlation),
+    @required
+        TResult getEpoch(String node, int io, int epoch, int command,
+            int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -630,6 +664,7 @@ class _$SendRawResponse implements SendRawResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return sendRaw(address, raw, target_raw, timestamp);
   }
 
@@ -663,6 +698,8 @@ class _$SendRawResponse implements SendRawResponse {
         int start_at,
         int days_in_week,
         int correlation),
+    TResult getEpoch(String node, int io, int epoch, int command, int time_zone,
+        int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -681,6 +718,7 @@ class _$SendRawResponse implements SendRawResponse {
     @required TResult toggle(SetToggleResponse value),
     @required TResult magicConfig(MagicConfigResponse value),
     @required TResult setScenario(SetScenarioResponse value),
+    @required TResult getEpoch(GetEpochResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -688,6 +726,7 @@ class _$SendRawResponse implements SendRawResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return sendRaw(this);
   }
 
@@ -700,6 +739,7 @@ class _$SendRawResponse implements SendRawResponse {
     TResult toggle(SetToggleResponse value),
     TResult magicConfig(MagicConfigResponse value),
     TResult setScenario(SetScenarioResponse value),
+    TResult getEpoch(GetEpochResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -887,6 +927,9 @@ class _$GetStateResponse implements GetStateResponse {
             int start_at,
             int days_in_week,
             int correlation),
+    @required
+        TResult getEpoch(String node, int io, int epoch, int command,
+            int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -894,6 +937,7 @@ class _$GetStateResponse implements GetStateResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return getState(address, level, target, status, remaining, timestamp);
   }
 
@@ -927,6 +971,8 @@ class _$GetStateResponse implements GetStateResponse {
         int start_at,
         int days_in_week,
         int correlation),
+    TResult getEpoch(String node, int io, int epoch, int command, int time_zone,
+        int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -945,6 +991,7 @@ class _$GetStateResponse implements GetStateResponse {
     @required TResult toggle(SetToggleResponse value),
     @required TResult magicConfig(MagicConfigResponse value),
     @required TResult setScenario(SetScenarioResponse value),
+    @required TResult getEpoch(GetEpochResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -952,6 +999,7 @@ class _$GetStateResponse implements GetStateResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return getState(this);
   }
 
@@ -964,6 +1012,7 @@ class _$GetStateResponse implements GetStateResponse {
     TResult toggle(SetToggleResponse value),
     TResult magicConfig(MagicConfigResponse value),
     TResult setScenario(SetScenarioResponse value),
+    TResult getEpoch(GetEpochResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1147,6 +1196,9 @@ class _$SetToggleResponse implements SetToggleResponse {
             int start_at,
             int days_in_week,
             int correlation),
+    @required
+        TResult getEpoch(String node, int io, int epoch, int command,
+            int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -1154,6 +1206,7 @@ class _$SetToggleResponse implements SetToggleResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return toggle(address, level, target, remaining, timestamp);
   }
 
@@ -1187,6 +1240,8 @@ class _$SetToggleResponse implements SetToggleResponse {
         int start_at,
         int days_in_week,
         int correlation),
+    TResult getEpoch(String node, int io, int epoch, int command, int time_zone,
+        int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1205,6 +1260,7 @@ class _$SetToggleResponse implements SetToggleResponse {
     @required TResult toggle(SetToggleResponse value),
     @required TResult magicConfig(MagicConfigResponse value),
     @required TResult setScenario(SetScenarioResponse value),
+    @required TResult getEpoch(GetEpochResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -1212,6 +1268,7 @@ class _$SetToggleResponse implements SetToggleResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return toggle(this);
   }
 
@@ -1224,6 +1281,7 @@ class _$SetToggleResponse implements SetToggleResponse {
     TResult toggle(SetToggleResponse value),
     TResult magicConfig(MagicConfigResponse value),
     TResult setScenario(SetScenarioResponse value),
+    TResult getEpoch(GetEpochResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1406,6 +1464,9 @@ class _$MagicConfigResponse implements MagicConfigResponse {
             int start_at,
             int days_in_week,
             int correlation),
+    @required
+        TResult getEpoch(String node, int io, int epoch, int command,
+            int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -1413,6 +1474,7 @@ class _$MagicConfigResponse implements MagicConfigResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return magicConfig(address, io, index, value, correlation, timestamp);
   }
 
@@ -1446,6 +1508,8 @@ class _$MagicConfigResponse implements MagicConfigResponse {
         int start_at,
         int days_in_week,
         int correlation),
+    TResult getEpoch(String node, int io, int epoch, int command, int time_zone,
+        int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1464,6 +1528,7 @@ class _$MagicConfigResponse implements MagicConfigResponse {
     @required TResult toggle(SetToggleResponse value),
     @required TResult magicConfig(MagicConfigResponse value),
     @required TResult setScenario(SetScenarioResponse value),
+    @required TResult getEpoch(GetEpochResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -1471,6 +1536,7 @@ class _$MagicConfigResponse implements MagicConfigResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return magicConfig(this);
   }
 
@@ -1483,6 +1549,7 @@ class _$MagicConfigResponse implements MagicConfigResponse {
     TResult toggle(SetToggleResponse value),
     TResult magicConfig(MagicConfigResponse value),
     TResult setScenario(SetScenarioResponse value),
+    TResult getEpoch(GetEpochResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1726,6 +1793,9 @@ class _$SetScenarioResponse implements SetScenarioResponse {
             int start_at,
             int days_in_week,
             int correlation),
+    @required
+        TResult getEpoch(String node, int io, int epoch, int command,
+            int time_zone, int correlation),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -1733,6 +1803,7 @@ class _$SetScenarioResponse implements SetScenarioResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return setScenario(node, io, scenario_id, command, is_active, level,
         transition, duration, start_at, days_in_week, correlation);
   }
@@ -1767,6 +1838,8 @@ class _$SetScenarioResponse implements SetScenarioResponse {
         int start_at,
         int days_in_week,
         int correlation),
+    TResult getEpoch(String node, int io, int epoch, int command, int time_zone,
+        int correlation),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1786,6 +1859,7 @@ class _$SetScenarioResponse implements SetScenarioResponse {
     @required TResult toggle(SetToggleResponse value),
     @required TResult magicConfig(MagicConfigResponse value),
     @required TResult setScenario(SetScenarioResponse value),
+    @required TResult getEpoch(GetEpochResponse value),
   }) {
     assert(sendLevel != null);
     assert(sendRaw != null);
@@ -1793,6 +1867,7 @@ class _$SetScenarioResponse implements SetScenarioResponse {
     assert(toggle != null);
     assert(magicConfig != null);
     assert(setScenario != null);
+    assert(getEpoch != null);
     return setScenario(this);
   }
 
@@ -1805,6 +1880,7 @@ class _$SetScenarioResponse implements SetScenarioResponse {
     TResult toggle(SetToggleResponse value),
     TResult magicConfig(MagicConfigResponse value),
     TResult setScenario(SetScenarioResponse value),
+    TResult getEpoch(GetEpochResponse value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1850,4 +1926,273 @@ abstract class SetScenarioResponse implements GatewayResponse {
   int get correlation;
   @JsonKey(ignore: true)
   $SetScenarioResponseCopyWith<SetScenarioResponse> get copyWith;
+}
+
+/// @nodoc
+abstract class $GetEpochResponseCopyWith<$Res> {
+  factory $GetEpochResponseCopyWith(
+          GetEpochResponse value, $Res Function(GetEpochResponse) then) =
+      _$GetEpochResponseCopyWithImpl<$Res>;
+  $Res call(
+      {String node,
+      int io,
+      int epoch,
+      int command,
+      int time_zone,
+      int correlation});
+}
+
+/// @nodoc
+class _$GetEpochResponseCopyWithImpl<$Res>
+    extends _$GatewayResponseCopyWithImpl<$Res>
+    implements $GetEpochResponseCopyWith<$Res> {
+  _$GetEpochResponseCopyWithImpl(
+      GetEpochResponse _value, $Res Function(GetEpochResponse) _then)
+      : super(_value, (v) => _then(v as GetEpochResponse));
+
+  @override
+  GetEpochResponse get _value => super._value as GetEpochResponse;
+
+  @override
+  $Res call({
+    Object node = freezed,
+    Object io = freezed,
+    Object epoch = freezed,
+    Object command = freezed,
+    Object time_zone = freezed,
+    Object correlation = freezed,
+  }) {
+    return _then(GetEpochResponse(
+      node == freezed ? _value.node : node as String,
+      io == freezed ? _value.io : io as int,
+      epoch == freezed ? _value.epoch : epoch as int,
+      command == freezed ? _value.command : command as int,
+      time_zone == freezed ? _value.time_zone : time_zone as int,
+      correlation == freezed ? _value.correlation : correlation as int,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$GetEpochResponse implements GetEpochResponse {
+  const _$GetEpochResponse(this.node, this.io, this.epoch, this.command,
+      this.time_zone, this.correlation)
+      : assert(node != null),
+        assert(io != null),
+        assert(epoch != null),
+        assert(command != null),
+        assert(time_zone != null),
+        assert(correlation != null);
+
+  factory _$GetEpochResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$GetEpochResponseFromJson(json);
+
+  @override
+  final String node;
+  @override
+  final int io;
+  @override
+  final int epoch;
+  @override
+  final int command;
+  @override
+  final int time_zone;
+  @override
+  final int correlation;
+
+  @override
+  String toString() {
+    return 'GatewayResponse.getEpoch(node: $node, io: $io, epoch: $epoch, command: $command, time_zone: $time_zone, correlation: $correlation)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GetEpochResponse &&
+            (identical(other.node, node) ||
+                const DeepCollectionEquality().equals(other.node, node)) &&
+            (identical(other.io, io) ||
+                const DeepCollectionEquality().equals(other.io, io)) &&
+            (identical(other.epoch, epoch) ||
+                const DeepCollectionEquality().equals(other.epoch, epoch)) &&
+            (identical(other.command, command) ||
+                const DeepCollectionEquality()
+                    .equals(other.command, command)) &&
+            (identical(other.time_zone, time_zone) ||
+                const DeepCollectionEquality()
+                    .equals(other.time_zone, time_zone)) &&
+            (identical(other.correlation, correlation) ||
+                const DeepCollectionEquality()
+                    .equals(other.correlation, correlation)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(node) ^
+      const DeepCollectionEquality().hash(io) ^
+      const DeepCollectionEquality().hash(epoch) ^
+      const DeepCollectionEquality().hash(command) ^
+      const DeepCollectionEquality().hash(time_zone) ^
+      const DeepCollectionEquality().hash(correlation);
+
+  @JsonKey(ignore: true)
+  @override
+  $GetEpochResponseCopyWith<GetEpochResponse> get copyWith =>
+      _$GetEpochResponseCopyWithImpl<GetEpochResponse>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult sendLevel(String address, dynamic level, dynamic target,
+            int remaining, int timestamp),
+    @required
+        TResult sendRaw(
+            String address, dynamic raw, dynamic target_raw, int timestamp),
+    @required
+        TResult getState(
+            String address,
+            @nullable dynamic level,
+            @nullable dynamic target,
+            @nullable String status,
+            @nullable int remaining,
+            int timestamp),
+    @required
+        TResult toggle(String address, dynamic level, dynamic target,
+            int remaining, int timestamp),
+    @required
+        TResult magicConfig(String address, int io, int index, int value,
+            int correlation, int timestamp),
+    @required
+        TResult setScenario(
+            String node,
+            int io,
+            int scenario_id,
+            int command,
+            bool is_active,
+            int level,
+            int transition,
+            int duration,
+            int start_at,
+            int days_in_week,
+            int correlation),
+    @required
+        TResult getEpoch(String node, int io, int epoch, int command,
+            int time_zone, int correlation),
+  }) {
+    assert(sendLevel != null);
+    assert(sendRaw != null);
+    assert(getState != null);
+    assert(toggle != null);
+    assert(magicConfig != null);
+    assert(setScenario != null);
+    assert(getEpoch != null);
+    return getEpoch(node, io, epoch, command, time_zone, correlation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult sendLevel(String address, dynamic level, dynamic target,
+        int remaining, int timestamp),
+    TResult sendRaw(
+        String address, dynamic raw, dynamic target_raw, int timestamp),
+    TResult getState(
+        String address,
+        @nullable dynamic level,
+        @nullable dynamic target,
+        @nullable String status,
+        @nullable int remaining,
+        int timestamp),
+    TResult toggle(String address, dynamic level, dynamic target, int remaining,
+        int timestamp),
+    TResult magicConfig(String address, int io, int index, int value,
+        int correlation, int timestamp),
+    TResult setScenario(
+        String node,
+        int io,
+        int scenario_id,
+        int command,
+        bool is_active,
+        int level,
+        int transition,
+        int duration,
+        int start_at,
+        int days_in_week,
+        int correlation),
+    TResult getEpoch(String node, int io, int epoch, int command, int time_zone,
+        int correlation),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getEpoch != null) {
+      return getEpoch(node, io, epoch, command, time_zone, correlation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult sendLevel(SendLevelResponse value),
+    @required TResult sendRaw(SendRawResponse value),
+    @required TResult getState(GetStateResponse value),
+    @required TResult toggle(SetToggleResponse value),
+    @required TResult magicConfig(MagicConfigResponse value),
+    @required TResult setScenario(SetScenarioResponse value),
+    @required TResult getEpoch(GetEpochResponse value),
+  }) {
+    assert(sendLevel != null);
+    assert(sendRaw != null);
+    assert(getState != null);
+    assert(toggle != null);
+    assert(magicConfig != null);
+    assert(setScenario != null);
+    assert(getEpoch != null);
+    return getEpoch(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult sendLevel(SendLevelResponse value),
+    TResult sendRaw(SendRawResponse value),
+    TResult getState(GetStateResponse value),
+    TResult toggle(SetToggleResponse value),
+    TResult magicConfig(MagicConfigResponse value),
+    TResult setScenario(SetScenarioResponse value),
+    TResult getEpoch(GetEpochResponse value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (getEpoch != null) {
+      return getEpoch(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$GetEpochResponseToJson(this)..['runtimeType'] = 'getEpoch';
+  }
+}
+
+abstract class GetEpochResponse implements GatewayResponse {
+  const factory GetEpochResponse(String node, int io, int epoch, int command,
+      int time_zone, int correlation) = _$GetEpochResponse;
+
+  factory GetEpochResponse.fromJson(Map<String, dynamic> json) =
+      _$GetEpochResponse.fromJson;
+
+  String get node;
+  int get io;
+  int get epoch;
+  int get command;
+  int get time_zone;
+  int get correlation;
+  @JsonKey(ignore: true)
+  $GetEpochResponseCopyWith<GetEpochResponse> get copyWith;
 }

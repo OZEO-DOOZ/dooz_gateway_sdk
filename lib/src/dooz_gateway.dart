@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dooz_gateway_sdk/src/constants.dart';
 import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
@@ -272,6 +273,43 @@ class DoozGateway {
         'request': {
           'command': 'start scenario',
           'scenario_id': sceneID,
+        },
+        'timeout': timeout,
+      },
+    ));
+  }
+
+  // TODO check answer
+  Future<SetScenarioResponse> getScenario(String address, int sceneID, {int timeout = 20}) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
+    final r = Random();
+    final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
+    return SetScenarioResponse.fromJson(await _sendRequest(
+      'set_scenario',
+      params: <String, dynamic>{
+        'node_address': address,
+        'request': {
+          'command': 'get scenario',
+          'scenario_id': sceneID,
+          'correlation': correlation,
+        },
+        'timeout': timeout,
+      },
+    ));
+  }
+
+  // TODO check answer
+  Future<GetEpochResponse> getEpoch(String address, {int timeout = 20}) async {
+    _checkValidAddress(address, shouldCheckGroupFormat: false);
+    final r = Random();
+    final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
+    return GetEpochResponse.fromJson(await _sendRequest(
+      'set_epoch',
+      params: <String, dynamic>{
+        'node_address': address,
+        'request': {
+          'command': 'get time',
+          'correlation': correlation,
         },
         'timeout': timeout,
       },

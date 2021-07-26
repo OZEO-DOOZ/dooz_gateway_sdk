@@ -40,5 +40,14 @@ abstract class GatewayResponse with _$GatewayResponse {
     int correlation,
   ) = SetScenarioResponse;
 
+  const factory GatewayResponse.getEpoch(
+    String node,
+    int io,
+    int epoch,
+    int command,
+    int time_zone,
+    int correlation,
+  ) = GetEpochResponse;
+
   factory GatewayResponse.fromJson(Map<String, dynamic> json) => _$GatewayResponseFromJson(json);
 }

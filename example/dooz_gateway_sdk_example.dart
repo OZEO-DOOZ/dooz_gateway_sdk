@@ -273,13 +273,40 @@ Future<void> _revertIoConfigs(Map<int, Map<String, int>> ioConfigs, DoozGateway 
 Future<void> _testScenarios(DoozGateway gateway) async {
   print('----------- SCENARIOS -----------');
   final scenes = await gateway.discoverScenes();
+  final nodeIDs = <int>[];
   for (final scene in scenes.scenes.values.first.scenes) {
     print('-------- SCENE #${scene.sceneId} --------');
+    if (scene.sceneId == 0 || scene.sceneId == 1) {
+      nodeIDs.addAll(scene.steps.map((s) => s.equipment.nodeId));
+    }
     print(scene.name);
     print(scene.steps.length);
     print(scene.start);
     print(scene.end);
-    await gateway.startScenario(scene.sceneId);
+    // await gateway.startScenario(scene.sceneId);
     print('--------------------------');
+  }
+  if (nodeIDs.isNotEmpty) {
+    try {
+      await gateway.getEpoch(nodeIDs.first.toRadixString(16).toUpperCase().padLeft(4, '0'));
+    } on OoplaApiError catch (e) {
+      if ('$e'.contains('timed out')) {
+        print('operation failed...');
+      } else {
+        rethrow;
+      }
+    }
+    try {
+      await gateway.getScenario(
+        nodeIDs.first.toRadixString(16).toUpperCase().padLeft(4, '0'),
+        scenes.scenes.values.first.scenes.first.sceneId,
+      );
+    } on OoplaApiError catch (e) {
+      if ('$e'.contains('timed out')) {
+        print('operation failed...');
+      } else {
+        rethrow;
+      }
+    }
   }
 }

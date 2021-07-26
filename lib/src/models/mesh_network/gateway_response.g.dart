@@ -139,3 +139,24 @@ Map<String, dynamic> _$_$SetScenarioResponseToJson(
       'days_in_week': instance.days_in_week,
       'correlation': instance.correlation,
     };
+
+_$GetEpochResponse _$_$GetEpochResponseFromJson(Map<String, dynamic> json) {
+  return _$GetEpochResponse(
+    json['node'] as String,
+    json['io'] as int,
+    json['epoch'] as int,
+    json['command'] as int,
+    json['time_zone'] as int,
+    json['correlation'] as int,
+  );
+}
+
+Map<String, dynamic> _$_$GetEpochResponseToJson(_$GetEpochResponse instance) =>
+    <String, dynamic>{
+      'node': instance.node,
+      'io': instance.io,
+      'epoch': instance.epoch,
+      'command': instance.command,
+      'time_zone': instance.time_zone,
+      'correlation': instance.correlation,
+    };
