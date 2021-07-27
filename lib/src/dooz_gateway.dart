@@ -319,8 +319,8 @@ class DoozGateway {
     int level, {
     dynamic transition = 0,
     int output = 0,
-    dynamic startAt = 127,
-    dynamic duration = 127,
+    dynamic startAt = 0,
+    dynamic duration = 0,
     List<String> daysInWeek = const <String>[],
     bool isActive = true,
     int timeout = kScenarioCmdTimeout,
