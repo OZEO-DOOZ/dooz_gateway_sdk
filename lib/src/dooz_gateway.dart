@@ -363,7 +363,7 @@ class DoozGateway {
       if (!(transitionAsJson.containsKey('mode') &&
           transitionAsJson.containsKey('duration') &&
           transitionAsJson.entries.length == 2)) {
-        throw ArgumentError('transition must be a JSON string');
+        throw ArgumentError('transition must be a JSON string with only "mode" and "duration" keys');
       } else {
         _transition = transitionAsJson;
       }
