@@ -357,16 +357,19 @@ class DoozGateway {
     } else {
       throw ArgumentError('duration must be either of type String or int');
     }
-    if (transition is String) {
-      final transitionAsJson = json.decode(transition) as Map<String, dynamic>;
+    dynamic _transition = transition;
+    if (_transition is String) {
+      final transitionAsJson = json.decode(_transition as String) as Map<String, dynamic>;
       if (!(transitionAsJson.containsKey('mode') &&
           transitionAsJson.containsKey('duration') &&
           transitionAsJson.entries.length == 2)) {
         throw ArgumentError('transition must be a JSON string');
+      } else {
+        _transition = transitionAsJson;
       }
-    } else if (transition is int) {
-      if (transition < 0 || transition > 63) {
-        throw RangeError.range(transition, 0, 63, 'transition');
+    } else if (_transition is int) {
+      if (_transition < 0 || _transition > 63) {
+        throw RangeError.range(_transition, 0, 63, 'transition');
       }
     } else {
       throw ArgumentError('transition must be either of type String or int');
@@ -386,7 +389,7 @@ class DoozGateway {
           'scenario_id': sceneID,
           'io': output,
           'level': level,
-          'transition': transition,
+          'transition': _transition,
           'start_at': startAt,
           'duration': duration,
           'days_in_week': daysInWeek,
