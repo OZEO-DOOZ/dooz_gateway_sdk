@@ -1,3 +1,10 @@
+## 0.2.1
+
+This release introduces :
+ - a change in default values for startAt and duration for setScenario method, now set to 0 (should disable time triggers)
+ - a bug fix in transition param parsing/validation for setScenario method
+ - a tag on all print statements to easily identify package logs
+
 ## 0.2.0
 
 This release introduces :
