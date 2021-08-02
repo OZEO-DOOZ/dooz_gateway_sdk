@@ -20,6 +20,8 @@ class DoozGateway {
   /// {@macro dooz_gateway_contructor}
   DoozGateway();
 
+  static const String tag = 'DoozGateway';
+
   Peer _peer;
 
   final _connectionStateController = StreamController<bool>.broadcast();
@@ -52,7 +54,7 @@ class DoozGateway {
     }
     final _host = overWAN ? host : localGatewayHost;
 
-    print('attempting connection on $_host:${port ?? defaultGatewayPort}');
+    _log('attempting connection on $_host:${port ?? defaultGatewayPort}');
     WebSocket gatewaySocket;
     if (overWAN) {
       gatewaySocket = await WebSocket.connect(
@@ -66,21 +68,21 @@ class DoozGateway {
       //   _host,
       //   port ?? defaultGatewayPort,
       //   onBadCertificate: (certificate) {
-      //     print('bad cert !');
-      //     print('------- CERT DATA -------');
-      //     print('startValidity ${certificate.startValidity}');
-      //     print('endValidity ${certificate.endValidity}');
-      //     print('issuer ${certificate.issuer}');
-      //     print('subject ${certificate.subject}');
-      //     print('--------------------------');
-      //     print('attempting LAN access: ${!overWAN}');
+      //     _log('bad cert !');
+      //     _log('------- CERT DATA -------');
+      //     _log('startValidity ${certificate.startValidity}');
+      //     _log('endValidity ${certificate.endValidity}');
+      //     _log('issuer ${certificate.issuer}');
+      //     _log('subject ${certificate.subject}');
+      //     _log('--------------------------');
+      //     _log('attempting LAN access: ${!overWAN}');
       //     if (!overWAN) {
-      //       print('ignoring because LAN connection...');
+      //       _log('ignoring because LAN connection...');
       //     }
       //     return !overWAN;
       //   },
       // );
-      // print('remoteAddress ${s.remoteAddress}');
+      // _log('remoteAddress ${s.remoteAddress}');
 
       // gatewaySocket = WebSocket.fromUpgradedSocket(
       //   s,
@@ -96,30 +98,30 @@ class DoozGateway {
 
     _peer.registerFallback(
       (parameters) {
-        print('${parameters.method} ${parameters.value}');
+        _log('${parameters.method} ${parameters.value}');
         throw RpcException.methodNotFound(parameters.method);
       },
     );
 
     unawaited(_peer.listen().catchError((Object e, Object s) {
-      print('error in peer stream !\n$e\n\n\n$s');
+      _log('error in peer stream !\n$e\n\n\n$s');
     }).whenComplete(() {
       _connectionStateController.add(false);
-      print('connection terminated');
+      _log('connection terminated');
     }));
     _connectionStateController.add(true);
-    print('done ! listening...');
+    _log('done ! listening...');
   }
 
   /// Destroy the WSS connection by calling `close` method on the [Peer] object.
   Future<void> disconnect() async {
     if (_peer != null) {
-      print('closing connection...');
+      _log('closing connection...');
       await _peer.close();
       _peer = null;
-      print('done !');
+      _log('done !');
     } else {
-      print('socket is not opened');
+      _log('socket is not opened');
     }
   }
 
@@ -137,6 +139,8 @@ class DoozGateway {
 
   // -------------- COMMON ---------------
 
+  void _log(String msg) => print('[$tag] $msg');
+
   void _checkPeerInitialized() {
     if (_peer == null) {
       throw OoplaNotConnectedError();
@@ -149,20 +153,20 @@ class DoozGateway {
   }) async {
     _checkPeerInitialized();
     final e = JsonEncoder.withIndent('  ');
-    print('request "$method"\nparams ${e.convert(params)}');
+    _log('request "$method"\nparams ${e.convert(params)}');
     final stopwatch = Stopwatch()..start();
     final _requestResult = await _peer
         .sendRequest(method, params)
         .timeout(kGatewayRequestTimeout)
         .catchError(_onRequestError) as Map<String, dynamic>;
     stopwatch.stop();
-    print('request "$method" answered in ${stopwatch.elapsedMilliseconds}ms');
-    print('answer ${e.convert(_requestResult)}');
+    _log('request "$method" answered in ${stopwatch.elapsedMilliseconds}ms');
+    _log('answer ${e.convert(_requestResult)}');
     return _requestResult;
   }
 
   void _onRequestError(Object error) {
-    print('error caught executing last request ! $error');
+    _log('error caught executing last request ! $error');
     if (error is TimeoutException) {
       throw OoplaRequestTimeout();
     } else if (error is RpcException) {
@@ -503,7 +507,7 @@ class DoozGateway {
         throw ArgumentError('raw must be between -32768 and 32767');
       }
       if (parsedRaw < 0) {
-        print('cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
+        _log('cannot send negative hex string ($_raw), converting to int ($parsedRaw)');
         _raw = parsedRaw;
       }
     } else {
