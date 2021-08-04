@@ -121,7 +121,7 @@ Future<void> _testControls(DoozGateway gateway) async {
   final dooblvs = await _searchDooblvs(gateway, getAll: true);
   if (dooblvs.isNotEmpty) {
     print(dooblvs);
-    // await _playWithDooblv(dooblvs.first, gateway);
+    await _playWithDooblv(dooblvs.first, gateway);
   } else {
     print('did not find any configured dooblv in the current discovered n/w');
   }
