@@ -78,9 +78,9 @@ void main() async {
 Future<void> _testScript(DoozGateway gateway) async {
   await _testLogs(gateway);
   await _testVersions(gateway);
-  // await _testDiscovers(gateway);
-  // await _testControls(gateway);
-  // await _testScenarios(gateway);
+  await _testDiscovers(gateway);
+  await _testControls(gateway);
+  await _testScenarios(gateway);
 }
 
 Future<void> _testLogs(DoozGateway gateway) async {
@@ -332,12 +332,3 @@ Future<void> _testScenarios(DoozGateway gateway) async {
     await gateway.sendLevel((nodeIDs.first + 2).toRadixString(16).toUpperCase().padLeft(4, '0'), 'off');
   }
 }
-
-const _host = 'doozredmine.hopto.org';
-const _gatewayID = 'AED34821-1DE5-58B0-BC06-3EFF363785F4' /* '7B596482-9193-5E33-BF25-8DCA363C0DF6' */;
-const _gatewayUser = 'dooz-oopla';
-const _gatewayPassword = 'TQl?tCS1l;';
-// const _serverUser = 'romain@dooz-domotique.com';
-// const _serverPassword = 'test123';
-const _serverUser = 'oponant2@dooz.com';
-const _serverPassword = 'oponant2';
