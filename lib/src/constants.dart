@@ -1,7 +1,7 @@
 // ------ Connection constants ------
 const String localGatewayHost = 'DOOZ-OOPLA.local';
 const int defaultGatewayPort = 55055;
-const Duration kGatewayRequestTimeout = Duration(seconds: 10);
+const Duration kGatewayRequestTimeout = Duration(seconds: 20);
 const int kScenarioCmdTimeout = 20;
 // ----------------------------------
 
