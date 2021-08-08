@@ -1,3 +1,8 @@
+## 0.2.2
+
+This release introduces :
+ - null-safety support
+
 ## 0.2.1
 
 This release introduces :
