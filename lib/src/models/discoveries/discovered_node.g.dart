@@ -6,8 +6,7 @@ part of 'discovered_node.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DiscoveredNode _$$_DiscoveredNodeFromJson(Map<String, dynamic> json) =>
-    _$_DiscoveredNode(
+_$_DiscoveredNode _$$_DiscoveredNodeFromJson(Map<String, dynamic> json) => _$_DiscoveredNode(
       json['name'] as String,
       json['mac_address'] as String,
       json['output_number'] as int,
@@ -21,14 +20,11 @@ _$_DiscoveredNode _$$_DiscoveredNodeFromJson(Map<String, dynamic> json) =>
       json['ongoing_conf'] as bool,
       json['configuration_protocol_version'] as int,
       json['current_correlation'] as int,
-      (json['nodes'] as List<dynamic>)
-          .map((e) => e as Map<String, dynamic>)
-          .toList(),
+      (json['nodes'] as List<dynamic>).map((e) => e as Map<String, dynamic>).toList(),
       json['type'] as int,
     );
 
-Map<String, dynamic> _$$_DiscoveredNodeToJson(_$_DiscoveredNode instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_DiscoveredNodeToJson(_$_DiscoveredNode instance) => <String, dynamic>{
       'name': instance.name,
       'mac_address': instance.mac_address,
       'output_number': instance.output_number,

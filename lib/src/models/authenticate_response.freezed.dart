@@ -43,14 +43,12 @@ mixin _$AuthResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthResponseCopyWith<AuthResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  $AuthResponseCopyWith<AuthResponse> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthResponseCopyWith<$Res> {
-  factory $AuthResponseCopyWith(
-          AuthResponse value, $Res Function(AuthResponse) then) =
+  factory $AuthResponseCopyWith(AuthResponse value, $Res Function(AuthResponse) then) =
       _$AuthResponseCopyWithImpl<$Res>;
   $Res call({String status, int timestamp});
 }
@@ -82,10 +80,8 @@ class _$AuthResponseCopyWithImpl<$Res> implements $AuthResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AuthResponseCopyWith<$Res>
-    implements $AuthResponseCopyWith<$Res> {
-  factory _$AuthResponseCopyWith(
-          _AuthResponse value, $Res Function(_AuthResponse) then) =
+abstract class _$AuthResponseCopyWith<$Res> implements $AuthResponseCopyWith<$Res> {
+  factory _$AuthResponseCopyWith(_AuthResponse value, $Res Function(_AuthResponse) then) =
       __$AuthResponseCopyWithImpl<$Res>;
   @override
   $Res call({String status, int timestamp});
@@ -94,8 +90,7 @@ abstract class _$AuthResponseCopyWith<$Res>
 /// @nodoc
 class __$AuthResponseCopyWithImpl<$Res> extends _$AuthResponseCopyWithImpl<$Res>
     implements _$AuthResponseCopyWith<$Res> {
-  __$AuthResponseCopyWithImpl(
-      _AuthResponse _value, $Res Function(_AuthResponse) _then)
+  __$AuthResponseCopyWithImpl(_AuthResponse _value, $Res Function(_AuthResponse) _then)
       : super(_value, (v) => _then(v as _AuthResponse));
 
   @override
@@ -124,8 +119,7 @@ class __$AuthResponseCopyWithImpl<$Res> extends _$AuthResponseCopyWithImpl<$Res>
 class _$_AuthResponse implements _AuthResponse {
   const _$_AuthResponse(this.status, this.timestamp);
 
-  factory _$_AuthResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_AuthResponseFromJson(json);
+  factory _$_AuthResponse.fromJson(Map<String, dynamic> json) => _$$_AuthResponseFromJson(json);
 
   @override
   final String status;
@@ -141,11 +135,9 @@ class _$_AuthResponse implements _AuthResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AuthResponse &&
-            (identical(other.status, status) ||
-                const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -156,8 +148,7 @@ class _$_AuthResponse implements _AuthResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$AuthResponseCopyWith<_AuthResponse> get copyWith =>
-      __$AuthResponseCopyWithImpl<_AuthResponse>(this, _$identity);
+  _$AuthResponseCopyWith<_AuthResponse> get copyWith => __$AuthResponseCopyWithImpl<_AuthResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -168,8 +159,7 @@ class _$_AuthResponse implements _AuthResponse {
 abstract class _AuthResponse implements AuthResponse {
   const factory _AuthResponse(String status, int timestamp) = _$_AuthResponse;
 
-  factory _AuthResponse.fromJson(Map<String, dynamic> json) =
-      _$_AuthResponse.fromJson;
+  factory _AuthResponse.fromJson(Map<String, dynamic> json) = _$_AuthResponse.fromJson;
 
   @override
   String get status => throw _privateConstructorUsedError;
@@ -177,6 +167,5 @@ abstract class _AuthResponse implements AuthResponse {
   int get timestamp => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthResponseCopyWith<_AuthResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$AuthResponseCopyWith<_AuthResponse> get copyWith => throw _privateConstructorUsedError;
 }

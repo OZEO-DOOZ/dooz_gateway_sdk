@@ -43,14 +43,12 @@ mixin _$SceneStep {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SceneStepCopyWith<SceneStep> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SceneStepCopyWith<SceneStep> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SceneStepCopyWith<$Res> {
-  factory $SceneStepCopyWith(SceneStep value, $Res Function(SceneStep) then) =
-      _$SceneStepCopyWithImpl<$Res>;
+  factory $SceneStepCopyWith(SceneStep value, $Res Function(SceneStep) then) = _$SceneStepCopyWithImpl<$Res>;
   $Res call({SceneEquipment equipment, int level});
 
   $SceneEquipmentCopyWith<$Res> get equipment;
@@ -91,9 +89,7 @@ class _$SceneStepCopyWithImpl<$Res> implements $SceneStepCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$SceneStepCopyWith<$Res> implements $SceneStepCopyWith<$Res> {
-  factory _$SceneStepCopyWith(
-          _SceneStep value, $Res Function(_SceneStep) then) =
-      __$SceneStepCopyWithImpl<$Res>;
+  factory _$SceneStepCopyWith(_SceneStep value, $Res Function(_SceneStep) then) = __$SceneStepCopyWithImpl<$Res>;
   @override
   $Res call({SceneEquipment equipment, int level});
 
@@ -102,8 +98,7 @@ abstract class _$SceneStepCopyWith<$Res> implements $SceneStepCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SceneStepCopyWithImpl<$Res> extends _$SceneStepCopyWithImpl<$Res>
-    implements _$SceneStepCopyWith<$Res> {
+class __$SceneStepCopyWithImpl<$Res> extends _$SceneStepCopyWithImpl<$Res> implements _$SceneStepCopyWith<$Res> {
   __$SceneStepCopyWithImpl(_SceneStep _value, $Res Function(_SceneStep) _then)
       : super(_value, (v) => _then(v as _SceneStep));
 
@@ -133,8 +128,7 @@ class __$SceneStepCopyWithImpl<$Res> extends _$SceneStepCopyWithImpl<$Res>
 class _$_SceneStep implements _SceneStep {
   const _$_SceneStep(this.equipment, this.level);
 
-  factory _$_SceneStep.fromJson(Map<String, dynamic> json) =>
-      _$$_SceneStepFromJson(json);
+  factory _$_SceneStep.fromJson(Map<String, dynamic> json) => _$$_SceneStepFromJson(json);
 
   @override
   final SceneEquipment equipment;
@@ -151,10 +145,8 @@ class _$_SceneStep implements _SceneStep {
     return identical(this, other) ||
         (other is _SceneStep &&
             (identical(other.equipment, equipment) ||
-                const DeepCollectionEquality()
-                    .equals(other.equipment, equipment)) &&
-            (identical(other.level, level) ||
-                const DeepCollectionEquality().equals(other.level, level)));
+                const DeepCollectionEquality().equals(other.equipment, equipment)) &&
+            (identical(other.level, level) || const DeepCollectionEquality().equals(other.level, level)));
   }
 
   @override
@@ -165,8 +157,7 @@ class _$_SceneStep implements _SceneStep {
 
   @JsonKey(ignore: true)
   @override
-  _$SceneStepCopyWith<_SceneStep> get copyWith =>
-      __$SceneStepCopyWithImpl<_SceneStep>(this, _$identity);
+  _$SceneStepCopyWith<_SceneStep> get copyWith => __$SceneStepCopyWithImpl<_SceneStep>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -177,8 +168,7 @@ class _$_SceneStep implements _SceneStep {
 abstract class _SceneStep implements SceneStep {
   const factory _SceneStep(SceneEquipment equipment, int level) = _$_SceneStep;
 
-  factory _SceneStep.fromJson(Map<String, dynamic> json) =
-      _$_SceneStep.fromJson;
+  factory _SceneStep.fromJson(Map<String, dynamic> json) = _$_SceneStep.fromJson;
 
   @override
   SceneEquipment get equipment => throw _privateConstructorUsedError;
@@ -186,6 +176,5 @@ abstract class _SceneStep implements SceneStep {
   int get level => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SceneStepCopyWith<_SceneStep> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$SceneStepCopyWith<_SceneStep> get copyWith => throw _privateConstructorUsedError;
 }
