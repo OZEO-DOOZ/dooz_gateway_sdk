@@ -1,3 +1,3 @@
 extension StringUtils on String {
-  bool get isBlank => this == null || isEmpty || trim().isEmpty;
+  bool get isBlank => isEmpty || trim().isEmpty;
 }

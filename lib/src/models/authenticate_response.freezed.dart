@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'authenticate_response.dart';
 
@@ -8,6 +9,10 @@ part of 'authenticate_response.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
   return _AuthResponse.fromJson(json);
 }
@@ -16,7 +21,6 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
 class _$AuthResponseTearOff {
   const _$AuthResponseTearOff();
 
-// ignore: unused_element
   _AuthResponse call(String status, int timestamp) {
     return _AuthResponse(
       status,
@@ -24,29 +28,29 @@ class _$AuthResponseTearOff {
     );
   }
 
-// ignore: unused_element
   AuthResponse fromJson(Map<String, Object> json) {
     return AuthResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $AuthResponse = _$AuthResponseTearOff();
 
 /// @nodoc
 mixin _$AuthResponse {
-  String get status;
-  int get timestamp;
+  String get status => throw _privateConstructorUsedError;
+  int get timestamp => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthResponseCopyWith<AuthResponse> get copyWith;
+  $AuthResponseCopyWith<AuthResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthResponseCopyWith<$Res> {
-  factory $AuthResponseCopyWith(AuthResponse value, $Res Function(AuthResponse) then) =
+  factory $AuthResponseCopyWith(
+          AuthResponse value, $Res Function(AuthResponse) then) =
       _$AuthResponseCopyWithImpl<$Res>;
   $Res call({String status, int timestamp});
 }
@@ -61,19 +65,27 @@ class _$AuthResponseCopyWithImpl<$Res> implements $AuthResponseCopyWith<$Res> {
 
   @override
   $Res call({
-    Object status = freezed,
-    Object timestamp = freezed,
+    Object? status = freezed,
+    Object? timestamp = freezed,
   }) {
     return _then(_value.copyWith(
-      status: status == freezed ? _value.status : status as String,
-      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$AuthResponseCopyWith<$Res> implements $AuthResponseCopyWith<$Res> {
-  factory _$AuthResponseCopyWith(_AuthResponse value, $Res Function(_AuthResponse) then) =
+abstract class _$AuthResponseCopyWith<$Res>
+    implements $AuthResponseCopyWith<$Res> {
+  factory _$AuthResponseCopyWith(
+          _AuthResponse value, $Res Function(_AuthResponse) then) =
       __$AuthResponseCopyWithImpl<$Res>;
   @override
   $Res call({String status, int timestamp});
@@ -82,7 +94,8 @@ abstract class _$AuthResponseCopyWith<$Res> implements $AuthResponseCopyWith<$Re
 /// @nodoc
 class __$AuthResponseCopyWithImpl<$Res> extends _$AuthResponseCopyWithImpl<$Res>
     implements _$AuthResponseCopyWith<$Res> {
-  __$AuthResponseCopyWithImpl(_AuthResponse _value, $Res Function(_AuthResponse) _then)
+  __$AuthResponseCopyWithImpl(
+      _AuthResponse _value, $Res Function(_AuthResponse) _then)
       : super(_value, (v) => _then(v as _AuthResponse));
 
   @override
@@ -90,25 +103,29 @@ class __$AuthResponseCopyWithImpl<$Res> extends _$AuthResponseCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object status = freezed,
-    Object timestamp = freezed,
+    Object? status = freezed,
+    Object? timestamp = freezed,
   }) {
     return _then(_AuthResponse(
-      status == freezed ? _value.status : status as String,
-      timestamp == freezed ? _value.timestamp : timestamp as int,
+      status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_AuthResponse implements _AuthResponse {
-  const _$_AuthResponse(this.status, this.timestamp)
-      : assert(status != null),
-        assert(timestamp != null);
+  const _$_AuthResponse(this.status, this.timestamp);
 
-  factory _$_AuthResponse.fromJson(Map<String, dynamic> json) => _$_$_AuthResponseFromJson(json);
+  factory _$_AuthResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_AuthResponseFromJson(json);
 
   @override
   final String status;
@@ -124,9 +141,11 @@ class _$_AuthResponse implements _AuthResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _AuthResponse &&
-            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality()
+                    .equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -137,24 +156,27 @@ class _$_AuthResponse implements _AuthResponse {
 
   @JsonKey(ignore: true)
   @override
-  _$AuthResponseCopyWith<_AuthResponse> get copyWith => __$AuthResponseCopyWithImpl<_AuthResponse>(this, _$identity);
+  _$AuthResponseCopyWith<_AuthResponse> get copyWith =>
+      __$AuthResponseCopyWithImpl<_AuthResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AuthResponseToJson(this);
+    return _$$_AuthResponseToJson(this);
   }
 }
 
 abstract class _AuthResponse implements AuthResponse {
   const factory _AuthResponse(String status, int timestamp) = _$_AuthResponse;
 
-  factory _AuthResponse.fromJson(Map<String, dynamic> json) = _$_AuthResponse.fromJson;
+  factory _AuthResponse.fromJson(Map<String, dynamic> json) =
+      _$_AuthResponse.fromJson;
 
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
-  int get timestamp;
+  int get timestamp => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthResponseCopyWith<_AuthResponse> get copyWith;
+  _$AuthResponseCopyWith<_AuthResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }

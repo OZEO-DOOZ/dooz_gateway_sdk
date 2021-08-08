@@ -22,13 +22,13 @@ class DoozGateway {
 
   static const String tag = 'DoozGateway';
 
-  Peer _peer;
+  late Peer _peer;
 
   final _connectionStateController = StreamController<bool>.broadcast();
 
   Stream<bool> get connectionState => _connectionStateController.stream;
 
-  bool get isConnected => _peer != null && !_peer.isClosed;
+  bool get isConnected => !_peer.isClosed;
 
   final _notifyStateController = StreamController<NotifyState>.broadcast();
 
@@ -43,23 +43,24 @@ class DoozGateway {
   Future<void> connect(
     String id, {
     bool overWAN = false,
-    String host,
-    int port,
+    String? host,
+    int? port,
   }) async {
-    if (id == null || id.isEmpty) {
+    if (id.isBlank) {
       throw ArgumentError('Please provide a gateway ID.');
     }
     if (host == null && overWAN) {
-      throw ArgumentError('host muse not be null when using WAN connection');
+      throw ArgumentError('host must not be null when using WAN connection');
     }
     final _host = overWAN ? host : localGatewayHost;
+    final _port = port ?? defaultGatewayPort;
+    final _gatewayID = id.trim();
+    final _socketURL = 'wss://$_host:$_port/v1/$_gatewayID';
 
-    _log('attempting connection on $_host:${port ?? defaultGatewayPort}');
+    _log('attempting connection on $_host:$_port');
     WebSocket gatewaySocket;
     if (overWAN) {
-      gatewaySocket = await WebSocket.connect(
-        'wss://$_host:${port ?? defaultGatewayPort}/v1/$id',
-      );
+      gatewaySocket = await WebSocket.connect(_socketURL);
     } else {
       // need to use other connection method to be able to handle bad certificate (self-signed)
       throw UnimplementedError('need to find a way to pass the API path');
@@ -115,10 +116,9 @@ class DoozGateway {
 
   /// Destroy the WSS connection by calling `close` method on the [Peer] object.
   Future<void> disconnect() async {
-    if (_peer != null) {
+    if (!_peer.isClosed) {
       _log('closing connection...');
       await _peer.close();
-      _peer = null;
       _log('done !');
     } else {
       _log('socket is not opened');
@@ -142,7 +142,7 @@ class DoozGateway {
   void _log(String msg) => print('[$tag] $msg');
 
   void _checkPeerInitialized() {
-    if (_peer == null) {
+    if (_peer.isClosed) {
       throw OoplaNotConnectedError();
     }
   }
@@ -178,13 +178,10 @@ class DoozGateway {
         case INTERNAL_ERROR:
         case SERVER_ERROR:
           throw RpcSpecError(error.code, error.message, data: error.data);
-          break;
         case defaultErrorCode:
           throw OoplaApiError(error.code, error.message);
-          break;
         default:
           throw RpcUnknownError(error.code, error.message, data: error.data);
-          break;
       }
     } else {
       throw FallThroughError();
@@ -330,9 +327,6 @@ class DoozGateway {
     int timeout = kScenarioCmdTimeout,
   }) async {
     _checkValidAddress(address, shouldCheckGroupFormat: false);
-    if (daysInWeek == null) {
-      throw ArgumentError.notNull('daysInWeek');
-    }
     final dayPattern = RegExp(r'[a-z]');
     if (daysInWeek.any((day) => !dayPattern.hasMatch(day))) {
       throw ArgumentError('daysInWeek must hold lower case english days');
@@ -363,7 +357,7 @@ class DoozGateway {
     }
     dynamic _transition = transition;
     if (_transition is String) {
-      final transitionAsJson = json.decode(_transition as String) as Map<String, dynamic>;
+      final transitionAsJson = json.decode(_transition) as Map<String, dynamic>;
       if (!(transitionAsJson.containsKey('mode') &&
           transitionAsJson.containsKey('duration') &&
           transitionAsJson.entries.length == 2)) {
@@ -617,9 +611,6 @@ class DoozGateway {
     LogLevel priority, {
     String module = 'all',
   }) async {
-    if (priority == null) {
-      throw ArgumentError.notNull('priority');
-    }
     if (module.isBlank) {
       throw ArgumentError('module must not be blank');
     }
@@ -633,9 +624,6 @@ class DoozGateway {
   Future<GetLogsResponse> getLogs({
     LogLevel priority = LogLevel.warning,
   }) async {
-    if (priority == null) {
-      throw ArgumentError.notNull('priority');
-    }
     return GetLogsResponse.fromJson(await _sendRequest(
       'get_logs',
       params: <String, dynamic>{'priority': priority.index},
