@@ -22,13 +22,14 @@ class DoozGateway {
 
   static const String tag = 'DoozGateway';
 
-  late Peer _peer;
+  /// The client/server object used to comunicate through web socket. Will be null until first call to [connect]
+  Peer? _peer;
 
   final _connectionStateController = StreamController<bool>.broadcast();
 
   Stream<bool> get connectionState => _connectionStateController.stream;
 
-  bool get isConnected => !_peer.isClosed;
+  bool get isConnected => _peer != null && !_peer!.isClosed;
 
   final _notifyStateController = StreamController<NotifyState>.broadcast();
 
@@ -97,14 +98,14 @@ class DoozGateway {
 
     _registerMethods();
 
-    _peer.registerFallback(
+    _peer!.registerFallback(
       (parameters) {
         _log('${parameters.method} ${parameters.value}');
         throw RpcException.methodNotFound(parameters.method);
       },
     );
 
-    unawaited(_peer.listen().catchError((Object e, Object s) {
+    unawaited(_peer!.listen().catchError((Object e, Object s) {
       _log('error in peer stream !\n$e\n\n\n$s');
     }).whenComplete(() {
       _connectionStateController.add(false);
@@ -116,9 +117,9 @@ class DoozGateway {
 
   /// Destroy the WSS connection by calling `close` method on the [Peer] object.
   Future<void> disconnect() async {
-    if (!_peer.isClosed) {
+    if (isConnected) {
       _log('closing connection...');
-      await _peer.close();
+      await _peer!.close();
       _log('done !');
     } else {
       _log('socket is not opened');
@@ -126,7 +127,7 @@ class DoozGateway {
   }
 
   void _registerMethods() {
-    _peer.registerMethod(
+    _peer!.registerMethod(
       'notify_state',
       (Parameters parameters) {
         _notifyStateController.add(
@@ -142,7 +143,7 @@ class DoozGateway {
   void _log(String msg) => print('[$tag] $msg');
 
   void _checkPeerInitialized() {
-    if (_peer.isClosed) {
+    if (!isConnected) {
       throw OoplaNotConnectedError();
     }
   }
@@ -155,7 +156,7 @@ class DoozGateway {
     final e = JsonEncoder.withIndent('  ');
     _log('request "$method"\nparams ${e.convert(params)}');
     final stopwatch = Stopwatch()..start();
-    final _requestResult = await _peer
+    final _requestResult = await _peer!
         .sendRequest(method, params)
         .timeout(kGatewayRequestTimeout)
         .catchError(_onRequestError) as Map<String, dynamic>;
