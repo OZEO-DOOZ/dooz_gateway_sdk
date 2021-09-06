@@ -6,18 +6,16 @@ part of 'notify_state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_NotifyState _$_$_NotifyStateFromJson(Map<String, dynamic> json) {
-  return _$_NotifyState(
-    json['address'] as String,
-    json['destination'] as String,
-    json['level'],
-    json['target'],
-    json['remaining'] as int,
-    json['timestamp'] as int,
-  );
-}
+_$_NotifyState _$$_NotifyStateFromJson(Map<String, dynamic> json) => _$_NotifyState(
+      json['address'] as String,
+      json['destination'] as String,
+      json['level'],
+      json['target'],
+      json['remaining'] as int,
+      json['timestamp'] as int,
+    );
 
-Map<String, dynamic> _$_$_NotifyStateToJson(_$_NotifyState instance) => <String, dynamic>{
+Map<String, dynamic> _$$_NotifyStateToJson(_$_NotifyState instance) => <String, dynamic>{
       'address': instance.address,
       'destination': instance.destination,
       'level': instance.level,

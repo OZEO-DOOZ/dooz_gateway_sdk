@@ -121,7 +121,7 @@ Future<void> _testControls(DoozGateway gateway) async {
   final dooblvs = await _searchDooblvs(gateway, getAll: true);
   if (dooblvs.isNotEmpty) {
     print(dooblvs);
-    // await _playWithDooblv(dooblvs.first, gateway);
+    await _playWithDooblv(dooblvs.first, gateway);
   } else {
     print('did not find any configured dooblv in the current discovered n/w');
   }
@@ -227,16 +227,16 @@ Future<Map<int, Map<String, int>>> _getIoConfigs(DoozGateway gateway, String doo
   var getConfig =
       await gateway.getConfig(dooblvUnicast, 0, 1, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[0]['output'] = getConfig.value;
+  ioConfigs[0]!['output'] = getConfig.value;
   getConfig = await gateway.getConfig(dooblvUnicast, 0, 2, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[0]['input'] = getConfig.value;
+  ioConfigs[0]!['input'] = getConfig.value;
   getConfig = await gateway.getConfig(dooblvUnicast, 1, 1, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[1]['output'] = getConfig.value;
+  ioConfigs[1]!['output'] = getConfig.value;
   getConfig = await gateway.getConfig(dooblvUnicast, 1, 2, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[1]['input'] = getConfig.value;
+  ioConfigs[1]!['input'] = getConfig.value;
   return ioConfigs;
 }
 

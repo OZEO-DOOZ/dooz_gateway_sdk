@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'reboot_response.dart';
 
@@ -8,6 +9,10 @@ part of 'reboot_response.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 RebootResponse _$RebootResponseFromJson(Map<String, dynamic> json) {
   return _RebootResponse.fromJson(json);
 }
@@ -16,30 +21,27 @@ RebootResponse _$RebootResponseFromJson(Map<String, dynamic> json) {
 class _$RebootResponseTearOff {
   const _$RebootResponseTearOff();
 
-// ignore: unused_element
   _RebootResponse call(String status) {
     return _RebootResponse(
       status,
     );
   }
 
-// ignore: unused_element
   RebootResponse fromJson(Map<String, Object> json) {
     return RebootResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $RebootResponse = _$RebootResponseTearOff();
 
 /// @nodoc
 mixin _$RebootResponse {
-  String get status;
+  String get status => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RebootResponseCopyWith<RebootResponse> get copyWith;
+  $RebootResponseCopyWith<RebootResponse> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -59,10 +61,13 @@ class _$RebootResponseCopyWithImpl<$Res> implements $RebootResponseCopyWith<$Res
 
   @override
   $Res call({
-    Object status = freezed,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      status: status == freezed ? _value.status : status as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -86,21 +91,23 @@ class __$RebootResponseCopyWithImpl<$Res> extends _$RebootResponseCopyWithImpl<$
 
   @override
   $Res call({
-    Object status = freezed,
+    Object? status = freezed,
   }) {
     return _then(_RebootResponse(
-      status == freezed ? _value.status : status as String,
+      status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_RebootResponse implements _RebootResponse {
-  const _$_RebootResponse(this.status) : assert(status != null);
+  const _$_RebootResponse(this.status);
 
-  factory _$_RebootResponse.fromJson(Map<String, dynamic> json) => _$_$_RebootResponseFromJson(json);
+  factory _$_RebootResponse.fromJson(Map<String, dynamic> json) => _$$_RebootResponseFromJson(json);
 
   @override
   final String status;
@@ -127,7 +134,7 @@ class _$_RebootResponse implements _RebootResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_RebootResponseToJson(this);
+    return _$$_RebootResponseToJson(this);
   }
 }
 
@@ -137,8 +144,8 @@ abstract class _RebootResponse implements RebootResponse {
   factory _RebootResponse.fromJson(Map<String, dynamic> json) = _$_RebootResponse.fromJson;
 
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RebootResponseCopyWith<_RebootResponse> get copyWith;
+  _$RebootResponseCopyWith<_RebootResponse> get copyWith => throw _privateConstructorUsedError;
 }

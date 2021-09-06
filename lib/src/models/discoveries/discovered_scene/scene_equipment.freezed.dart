@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'scene_equipment.dart';
 
@@ -8,6 +9,10 @@ part of 'scene_equipment.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 SceneEquipment _$SceneEquipmentFromJson(Map<String, dynamic> json) {
   return _SceneEquipment.fromJson(json);
 }
@@ -16,7 +21,6 @@ SceneEquipment _$SceneEquipmentFromJson(Map<String, dynamic> json) {
 class _$SceneEquipmentTearOff {
   const _$SceneEquipmentTearOff();
 
-// ignore: unused_element
   _SceneEquipment call(String id, String name, int nodeId) {
     return _SceneEquipment(
       id,
@@ -25,25 +29,23 @@ class _$SceneEquipmentTearOff {
     );
   }
 
-// ignore: unused_element
   SceneEquipment fromJson(Map<String, Object> json) {
     return SceneEquipment.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SceneEquipment = _$SceneEquipmentTearOff();
 
 /// @nodoc
 mixin _$SceneEquipment {
-  String get id;
-  String get name;
-  int get nodeId;
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  int get nodeId => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SceneEquipmentCopyWith<SceneEquipment> get copyWith;
+  $SceneEquipmentCopyWith<SceneEquipment> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -63,14 +65,23 @@ class _$SceneEquipmentCopyWithImpl<$Res> implements $SceneEquipmentCopyWith<$Res
 
   @override
   $Res call({
-    Object id = freezed,
-    Object name = freezed,
-    Object nodeId = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? nodeId = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
-      name: name == freezed ? _value.name : name as String,
-      nodeId: nodeId == freezed ? _value.nodeId : nodeId as int,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      nodeId: nodeId == freezed
+          ? _value.nodeId
+          : nodeId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -94,28 +105,33 @@ class __$SceneEquipmentCopyWithImpl<$Res> extends _$SceneEquipmentCopyWithImpl<$
 
   @override
   $Res call({
-    Object id = freezed,
-    Object name = freezed,
-    Object nodeId = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? nodeId = freezed,
   }) {
     return _then(_SceneEquipment(
-      id == freezed ? _value.id : id as String,
-      name == freezed ? _value.name : name as String,
-      nodeId == freezed ? _value.nodeId : nodeId as int,
+      id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      nodeId == freezed
+          ? _value.nodeId
+          : nodeId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_SceneEquipment implements _SceneEquipment {
-  const _$_SceneEquipment(this.id, this.name, this.nodeId)
-      : assert(id != null),
-        assert(name != null),
-        assert(nodeId != null);
+  const _$_SceneEquipment(this.id, this.name, this.nodeId);
 
-  factory _$_SceneEquipment.fromJson(Map<String, dynamic> json) => _$_$_SceneEquipmentFromJson(json);
+  factory _$_SceneEquipment.fromJson(Map<String, dynamic> json) => _$$_SceneEquipmentFromJson(json);
 
   @override
   final String id;
@@ -152,7 +168,7 @@ class _$_SceneEquipment implements _SceneEquipment {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SceneEquipmentToJson(this);
+    return _$$_SceneEquipmentToJson(this);
   }
 }
 
@@ -162,12 +178,12 @@ abstract class _SceneEquipment implements SceneEquipment {
   factory _SceneEquipment.fromJson(Map<String, dynamic> json) = _$_SceneEquipment.fromJson;
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  int get nodeId;
+  int get nodeId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SceneEquipmentCopyWith<_SceneEquipment> get copyWith;
+  _$SceneEquipmentCopyWith<_SceneEquipment> get copyWith => throw _privateConstructorUsedError;
 }
