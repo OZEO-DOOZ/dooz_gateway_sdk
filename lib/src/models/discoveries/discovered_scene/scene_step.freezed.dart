@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'scene_step.dart';
 
@@ -8,6 +9,10 @@ part of 'scene_step.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 SceneStep _$SceneStepFromJson(Map<String, dynamic> json) {
   return _SceneStep.fromJson(json);
 }
@@ -16,7 +21,6 @@ SceneStep _$SceneStepFromJson(Map<String, dynamic> json) {
 class _$SceneStepTearOff {
   const _$SceneStepTearOff();
 
-// ignore: unused_element
   _SceneStep call(SceneEquipment equipment, int level) {
     return _SceneStep(
       equipment,
@@ -24,24 +28,22 @@ class _$SceneStepTearOff {
     );
   }
 
-// ignore: unused_element
   SceneStep fromJson(Map<String, Object> json) {
     return SceneStep.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SceneStep = _$SceneStepTearOff();
 
 /// @nodoc
 mixin _$SceneStep {
-  SceneEquipment get equipment;
-  int get level;
+  SceneEquipment get equipment => throw _privateConstructorUsedError;
+  int get level => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SceneStepCopyWith<SceneStep> get copyWith;
+  $SceneStepCopyWith<SceneStep> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -62,20 +64,23 @@ class _$SceneStepCopyWithImpl<$Res> implements $SceneStepCopyWith<$Res> {
 
   @override
   $Res call({
-    Object equipment = freezed,
-    Object level = freezed,
+    Object? equipment = freezed,
+    Object? level = freezed,
   }) {
     return _then(_value.copyWith(
-      equipment: equipment == freezed ? _value.equipment : equipment as SceneEquipment,
-      level: level == freezed ? _value.level : level as int,
+      equipment: equipment == freezed
+          ? _value.equipment
+          : equipment // ignore: cast_nullable_to_non_nullable
+              as SceneEquipment,
+      level: level == freezed
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 
   @override
   $SceneEquipmentCopyWith<$Res> get equipment {
-    if (_value.equipment == null) {
-      return null;
-    }
     return $SceneEquipmentCopyWith<$Res>(_value.equipment, (value) {
       return _then(_value.copyWith(equipment: value));
     });
@@ -102,25 +107,28 @@ class __$SceneStepCopyWithImpl<$Res> extends _$SceneStepCopyWithImpl<$Res> imple
 
   @override
   $Res call({
-    Object equipment = freezed,
-    Object level = freezed,
+    Object? equipment = freezed,
+    Object? level = freezed,
   }) {
     return _then(_SceneStep(
-      equipment == freezed ? _value.equipment : equipment as SceneEquipment,
-      level == freezed ? _value.level : level as int,
+      equipment == freezed
+          ? _value.equipment
+          : equipment // ignore: cast_nullable_to_non_nullable
+              as SceneEquipment,
+      level == freezed
+          ? _value.level
+          : level // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_SceneStep implements _SceneStep {
-  const _$_SceneStep(this.equipment, this.level)
-      : assert(equipment != null),
-        assert(level != null);
+  const _$_SceneStep(this.equipment, this.level);
 
-  factory _$_SceneStep.fromJson(Map<String, dynamic> json) => _$_$_SceneStepFromJson(json);
+  factory _$_SceneStep.fromJson(Map<String, dynamic> json) => _$$_SceneStepFromJson(json);
 
   @override
   final SceneEquipment equipment;
@@ -153,7 +161,7 @@ class _$_SceneStep implements _SceneStep {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SceneStepToJson(this);
+    return _$$_SceneStepToJson(this);
   }
 }
 
@@ -163,10 +171,10 @@ abstract class _SceneStep implements SceneStep {
   factory _SceneStep.fromJson(Map<String, dynamic> json) = _$_SceneStep.fromJson;
 
   @override
-  SceneEquipment get equipment;
+  SceneEquipment get equipment => throw _privateConstructorUsedError;
   @override
-  int get level;
+  int get level => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SceneStepCopyWith<_SceneStep> get copyWith;
+  _$SceneStepCopyWith<_SceneStep> get copyWith => throw _privateConstructorUsedError;
 }

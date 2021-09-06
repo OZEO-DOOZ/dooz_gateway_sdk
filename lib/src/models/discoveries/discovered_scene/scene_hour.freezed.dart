@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'scene_hour.dart';
 
@@ -8,6 +9,10 @@ part of 'scene_hour.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 SceneHour _$SceneHourFromJson(Map<String, dynamic> json) {
   return _SceneHour.fromJson(json);
 }
@@ -16,40 +21,35 @@ SceneHour _$SceneHourFromJson(Map<String, dynamic> json) {
 class _$SceneHourTearOff {
   const _$SceneHourTearOff();
 
-// ignore: unused_element
-  _SceneHour call(@nullable int hour, @nullable int minute) {
+  _SceneHour call(int? hour, int? minute) {
     return _SceneHour(
       hour,
       minute,
     );
   }
 
-// ignore: unused_element
   SceneHour fromJson(Map<String, Object> json) {
     return SceneHour.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SceneHour = _$SceneHourTearOff();
 
 /// @nodoc
 mixin _$SceneHour {
-  @nullable
-  int get hour;
-  @nullable
-  int get minute;
+  int? get hour => throw _privateConstructorUsedError;
+  int? get minute => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SceneHourCopyWith<SceneHour> get copyWith;
+  $SceneHourCopyWith<SceneHour> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SceneHourCopyWith<$Res> {
   factory $SceneHourCopyWith(SceneHour value, $Res Function(SceneHour) then) = _$SceneHourCopyWithImpl<$Res>;
-  $Res call({@nullable int hour, @nullable int minute});
+  $Res call({int? hour, int? minute});
 }
 
 /// @nodoc
@@ -62,12 +62,18 @@ class _$SceneHourCopyWithImpl<$Res> implements $SceneHourCopyWith<$Res> {
 
   @override
   $Res call({
-    Object hour = freezed,
-    Object minute = freezed,
+    Object? hour = freezed,
+    Object? minute = freezed,
   }) {
     return _then(_value.copyWith(
-      hour: hour == freezed ? _value.hour : hour as int,
-      minute: minute == freezed ? _value.minute : minute as int,
+      hour: hour == freezed
+          ? _value.hour
+          : hour // ignore: cast_nullable_to_non_nullable
+              as int?,
+      minute: minute == freezed
+          ? _value.minute
+          : minute // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -76,7 +82,7 @@ class _$SceneHourCopyWithImpl<$Res> implements $SceneHourCopyWith<$Res> {
 abstract class _$SceneHourCopyWith<$Res> implements $SceneHourCopyWith<$Res> {
   factory _$SceneHourCopyWith(_SceneHour value, $Res Function(_SceneHour) then) = __$SceneHourCopyWithImpl<$Res>;
   @override
-  $Res call({@nullable int hour, @nullable int minute});
+  $Res call({int? hour, int? minute});
 }
 
 /// @nodoc
@@ -89,30 +95,33 @@ class __$SceneHourCopyWithImpl<$Res> extends _$SceneHourCopyWithImpl<$Res> imple
 
   @override
   $Res call({
-    Object hour = freezed,
-    Object minute = freezed,
+    Object? hour = freezed,
+    Object? minute = freezed,
   }) {
     return _then(_SceneHour(
-      hour == freezed ? _value.hour : hour as int,
-      minute == freezed ? _value.minute : minute as int,
+      hour == freezed
+          ? _value.hour
+          : hour // ignore: cast_nullable_to_non_nullable
+              as int?,
+      minute == freezed
+          ? _value.minute
+          : minute // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_SceneHour implements _SceneHour {
-  const _$_SceneHour(@nullable this.hour, @nullable this.minute);
+  const _$_SceneHour(this.hour, this.minute);
 
-  factory _$_SceneHour.fromJson(Map<String, dynamic> json) => _$_$_SceneHourFromJson(json);
+  factory _$_SceneHour.fromJson(Map<String, dynamic> json) => _$$_SceneHourFromJson(json);
 
   @override
-  @nullable
-  final int hour;
+  final int? hour;
   @override
-  @nullable
-  final int minute;
+  final int? minute;
 
   @override
   String toString() {
@@ -137,22 +146,20 @@ class _$_SceneHour implements _SceneHour {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_SceneHourToJson(this);
+    return _$$_SceneHourToJson(this);
   }
 }
 
 abstract class _SceneHour implements SceneHour {
-  const factory _SceneHour(@nullable int hour, @nullable int minute) = _$_SceneHour;
+  const factory _SceneHour(int? hour, int? minute) = _$_SceneHour;
 
   factory _SceneHour.fromJson(Map<String, dynamic> json) = _$_SceneHour.fromJson;
 
   @override
-  @nullable
-  int get hour;
+  int? get hour => throw _privateConstructorUsedError;
   @override
-  @nullable
-  int get minute;
+  int? get minute => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SceneHourCopyWith<_SceneHour> get copyWith;
+  _$SceneHourCopyWith<_SceneHour> get copyWith => throw _privateConstructorUsedError;
 }

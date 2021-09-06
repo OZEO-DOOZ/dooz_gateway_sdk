@@ -13,10 +13,10 @@ abstract class GatewayResponse with _$GatewayResponse {
 
   const factory GatewayResponse.getState(
     String address,
-    @nullable dynamic level,
-    @nullable dynamic target,
-    @nullable String status,
-    @nullable int remaining,
+    dynamic level,
+    dynamic target,
+    String? status,
+    int? remaining,
     int timestamp,
   ) = GetStateResponse;
 
@@ -38,7 +38,7 @@ abstract class GatewayResponse with _$GatewayResponse {
     int start_at,
     int days_in_week,
     int correlation,
-    @nullable int timestamp,
+    int? timestamp,
   ) = SetScenarioResponse;
 
   const factory GatewayResponse.setEpoch(

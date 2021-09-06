@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'scenario_group.dart';
 
@@ -8,6 +9,10 @@ part of 'scenario_group.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 ScenarioGroup _$ScenarioGroupFromJson(Map<String, dynamic> json) {
   return _ScenarioGroup.fromJson(json);
 }
@@ -16,7 +21,6 @@ ScenarioGroup _$ScenarioGroupFromJson(Map<String, dynamic> json) {
 class _$ScenarioGroupTearOff {
   const _$ScenarioGroupTearOff();
 
-// ignore: unused_element
   _ScenarioGroup call(int group, List<DiscoveredScene> scenes) {
     return _ScenarioGroup(
       group,
@@ -24,24 +28,22 @@ class _$ScenarioGroupTearOff {
     );
   }
 
-// ignore: unused_element
   ScenarioGroup fromJson(Map<String, Object> json) {
     return ScenarioGroup.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ScenarioGroup = _$ScenarioGroupTearOff();
 
 /// @nodoc
 mixin _$ScenarioGroup {
-  int get group;
-  List<DiscoveredScene> get scenes;
+  int get group => throw _privateConstructorUsedError;
+  List<DiscoveredScene> get scenes => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ScenarioGroupCopyWith<ScenarioGroup> get copyWith;
+  $ScenarioGroupCopyWith<ScenarioGroup> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -61,12 +63,18 @@ class _$ScenarioGroupCopyWithImpl<$Res> implements $ScenarioGroupCopyWith<$Res> 
 
   @override
   $Res call({
-    Object group = freezed,
-    Object scenes = freezed,
+    Object? group = freezed,
+    Object? scenes = freezed,
   }) {
     return _then(_value.copyWith(
-      group: group == freezed ? _value.group : group as int,
-      scenes: scenes == freezed ? _value.scenes : scenes as List<DiscoveredScene>,
+      group: group == freezed
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as int,
+      scenes: scenes == freezed
+          ? _value.scenes
+          : scenes // ignore: cast_nullable_to_non_nullable
+              as List<DiscoveredScene>,
     ));
   }
 }
@@ -90,25 +98,28 @@ class __$ScenarioGroupCopyWithImpl<$Res> extends _$ScenarioGroupCopyWithImpl<$Re
 
   @override
   $Res call({
-    Object group = freezed,
-    Object scenes = freezed,
+    Object? group = freezed,
+    Object? scenes = freezed,
   }) {
     return _then(_ScenarioGroup(
-      group == freezed ? _value.group : group as int,
-      scenes == freezed ? _value.scenes : scenes as List<DiscoveredScene>,
+      group == freezed
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as int,
+      scenes == freezed
+          ? _value.scenes
+          : scenes // ignore: cast_nullable_to_non_nullable
+              as List<DiscoveredScene>,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_ScenarioGroup implements _ScenarioGroup {
-  const _$_ScenarioGroup(this.group, this.scenes)
-      : assert(group != null),
-        assert(scenes != null);
+  const _$_ScenarioGroup(this.group, this.scenes);
 
-  factory _$_ScenarioGroup.fromJson(Map<String, dynamic> json) => _$_$_ScenarioGroupFromJson(json);
+  factory _$_ScenarioGroup.fromJson(Map<String, dynamic> json) => _$$_ScenarioGroupFromJson(json);
 
   @override
   final int group;
@@ -139,7 +150,7 @@ class _$_ScenarioGroup implements _ScenarioGroup {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_ScenarioGroupToJson(this);
+    return _$$_ScenarioGroupToJson(this);
   }
 }
 
@@ -149,10 +160,10 @@ abstract class _ScenarioGroup implements ScenarioGroup {
   factory _ScenarioGroup.fromJson(Map<String, dynamic> json) = _$_ScenarioGroup.fromJson;
 
   @override
-  int get group;
+  int get group => throw _privateConstructorUsedError;
   @override
-  List<DiscoveredScene> get scenes;
+  List<DiscoveredScene> get scenes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ScenarioGroupCopyWith<_ScenarioGroup> get copyWith;
+  _$ScenarioGroupCopyWith<_ScenarioGroup> get copyWith => throw _privateConstructorUsedError;
 }

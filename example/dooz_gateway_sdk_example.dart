@@ -227,16 +227,16 @@ Future<Map<int, Map<String, int>>> _getIoConfigs(DoozGateway gateway, String doo
   var getConfig =
       await gateway.getConfig(dooblvUnicast, 0, 1, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[0]['output'] = getConfig.value;
+  ioConfigs[0]!['output'] = getConfig.value;
   getConfig = await gateway.getConfig(dooblvUnicast, 0, 2, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[0]['input'] = getConfig.value;
+  ioConfigs[0]!['input'] = getConfig.value;
   getConfig = await gateway.getConfig(dooblvUnicast, 1, 1, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[1]['output'] = getConfig.value;
+  ioConfigs[1]!['output'] = getConfig.value;
   getConfig = await gateway.getConfig(dooblvUnicast, 1, 2, int.parse(dooblvUnicast, radix: 16) + r.nextInt(1 << 15));
   print(getConfig);
-  ioConfigs[1]['input'] = getConfig.value;
+  ioConfigs[1]!['input'] = getConfig.value;
   return ioConfigs;
 }
 

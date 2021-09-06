@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'discovered_scene.dart';
 
@@ -8,6 +9,10 @@ part of 'discovered_scene.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 DiscoveredScene _$DiscoveredSceneFromJson(Map<String, dynamic> json) {
   return _DiscoveredScene.fromJson(json);
 }
@@ -16,7 +21,6 @@ DiscoveredScene _$DiscoveredSceneFromJson(Map<String, dynamic> json) {
 class _$DiscoveredSceneTearOff {
   const _$DiscoveredSceneTearOff();
 
-// ignore: unused_element
   _DiscoveredScene call(String name, int sceneId, List<SceneStep> steps, SceneHour start, SceneHour end) {
     return _DiscoveredScene(
       name,
@@ -27,27 +31,25 @@ class _$DiscoveredSceneTearOff {
     );
   }
 
-// ignore: unused_element
   DiscoveredScene fromJson(Map<String, Object> json) {
     return DiscoveredScene.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $DiscoveredScene = _$DiscoveredSceneTearOff();
 
 /// @nodoc
 mixin _$DiscoveredScene {
-  String get name;
-  int get sceneId;
-  List<SceneStep> get steps;
-  SceneHour get start;
-  SceneHour get end;
+  String get name => throw _privateConstructorUsedError;
+  int get sceneId => throw _privateConstructorUsedError;
+  List<SceneStep> get steps => throw _privateConstructorUsedError;
+  SceneHour get start => throw _privateConstructorUsedError;
+  SceneHour get end => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DiscoveredSceneCopyWith<DiscoveredScene> get copyWith;
+  $DiscoveredSceneCopyWith<DiscoveredScene> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -70,26 +72,38 @@ class _$DiscoveredSceneCopyWithImpl<$Res> implements $DiscoveredSceneCopyWith<$R
 
   @override
   $Res call({
-    Object name = freezed,
-    Object sceneId = freezed,
-    Object steps = freezed,
-    Object start = freezed,
-    Object end = freezed,
+    Object? name = freezed,
+    Object? sceneId = freezed,
+    Object? steps = freezed,
+    Object? start = freezed,
+    Object? end = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed ? _value.name : name as String,
-      sceneId: sceneId == freezed ? _value.sceneId : sceneId as int,
-      steps: steps == freezed ? _value.steps : steps as List<SceneStep>,
-      start: start == freezed ? _value.start : start as SceneHour,
-      end: end == freezed ? _value.end : end as SceneHour,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      sceneId: sceneId == freezed
+          ? _value.sceneId
+          : sceneId // ignore: cast_nullable_to_non_nullable
+              as int,
+      steps: steps == freezed
+          ? _value.steps
+          : steps // ignore: cast_nullable_to_non_nullable
+              as List<SceneStep>,
+      start: start == freezed
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as SceneHour,
+      end: end == freezed
+          ? _value.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as SceneHour,
     ));
   }
 
   @override
   $SceneHourCopyWith<$Res> get start {
-    if (_value.start == null) {
-      return null;
-    }
     return $SceneHourCopyWith<$Res>(_value.start, (value) {
       return _then(_value.copyWith(start: value));
     });
@@ -97,9 +111,6 @@ class _$DiscoveredSceneCopyWithImpl<$Res> implements $DiscoveredSceneCopyWith<$R
 
   @override
   $SceneHourCopyWith<$Res> get end {
-    if (_value.end == null) {
-      return null;
-    }
     return $SceneHourCopyWith<$Res>(_value.end, (value) {
       return _then(_value.copyWith(end: value));
     });
@@ -130,34 +141,43 @@ class __$DiscoveredSceneCopyWithImpl<$Res> extends _$DiscoveredSceneCopyWithImpl
 
   @override
   $Res call({
-    Object name = freezed,
-    Object sceneId = freezed,
-    Object steps = freezed,
-    Object start = freezed,
-    Object end = freezed,
+    Object? name = freezed,
+    Object? sceneId = freezed,
+    Object? steps = freezed,
+    Object? start = freezed,
+    Object? end = freezed,
   }) {
     return _then(_DiscoveredScene(
-      name == freezed ? _value.name : name as String,
-      sceneId == freezed ? _value.sceneId : sceneId as int,
-      steps == freezed ? _value.steps : steps as List<SceneStep>,
-      start == freezed ? _value.start : start as SceneHour,
-      end == freezed ? _value.end : end as SceneHour,
+      name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      sceneId == freezed
+          ? _value.sceneId
+          : sceneId // ignore: cast_nullable_to_non_nullable
+              as int,
+      steps == freezed
+          ? _value.steps
+          : steps // ignore: cast_nullable_to_non_nullable
+              as List<SceneStep>,
+      start == freezed
+          ? _value.start
+          : start // ignore: cast_nullable_to_non_nullable
+              as SceneHour,
+      end == freezed
+          ? _value.end
+          : end // ignore: cast_nullable_to_non_nullable
+              as SceneHour,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_DiscoveredScene implements _DiscoveredScene {
-  const _$_DiscoveredScene(this.name, this.sceneId, this.steps, this.start, this.end)
-      : assert(name != null),
-        assert(sceneId != null),
-        assert(steps != null),
-        assert(start != null),
-        assert(end != null);
+  const _$_DiscoveredScene(this.name, this.sceneId, this.steps, this.start, this.end);
 
-  factory _$_DiscoveredScene.fromJson(Map<String, dynamic> json) => _$_$_DiscoveredSceneFromJson(json);
+  factory _$_DiscoveredScene.fromJson(Map<String, dynamic> json) => _$$_DiscoveredSceneFromJson(json);
 
   @override
   final String name;
@@ -202,7 +222,7 @@ class _$_DiscoveredScene implements _DiscoveredScene {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_DiscoveredSceneToJson(this);
+    return _$$_DiscoveredSceneToJson(this);
   }
 }
 
@@ -213,16 +233,16 @@ abstract class _DiscoveredScene implements DiscoveredScene {
   factory _DiscoveredScene.fromJson(Map<String, dynamic> json) = _$_DiscoveredScene.fromJson;
 
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  int get sceneId;
+  int get sceneId => throw _privateConstructorUsedError;
   @override
-  List<SceneStep> get steps;
+  List<SceneStep> get steps => throw _privateConstructorUsedError;
   @override
-  SceneHour get start;
+  SceneHour get start => throw _privateConstructorUsedError;
   @override
-  SceneHour get end;
+  SceneHour get end => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DiscoveredSceneCopyWith<_DiscoveredScene> get copyWith;
+  _$DiscoveredSceneCopyWith<_DiscoveredScene> get copyWith => throw _privateConstructorUsedError;
 }

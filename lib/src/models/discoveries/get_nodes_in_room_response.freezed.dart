@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'get_nodes_in_room_response.dart';
 
@@ -8,6 +9,10 @@ part of 'get_nodes_in_room_response.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 GetNodesInRoomResponse _$GetNodesInRoomResponseFromJson(Map<String, dynamic> json) {
   return _GetNodesInRoomResponse.fromJson(json);
 }
@@ -16,7 +21,6 @@ GetNodesInRoomResponse _$GetNodesInRoomResponseFromJson(Map<String, dynamic> jso
 class _$GetNodesInRoomResponseTearOff {
   const _$GetNodesInRoomResponseTearOff();
 
-// ignore: unused_element
   _GetNodesInRoomResponse call(Map<String, dynamic> mesh, String status, int timestamp) {
     return _GetNodesInRoomResponse(
       mesh,
@@ -25,25 +29,23 @@ class _$GetNodesInRoomResponseTearOff {
     );
   }
 
-// ignore: unused_element
   GetNodesInRoomResponse fromJson(Map<String, Object> json) {
     return GetNodesInRoomResponse.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $GetNodesInRoomResponse = _$GetNodesInRoomResponseTearOff();
 
 /// @nodoc
 mixin _$GetNodesInRoomResponse {
-  Map<String, dynamic> get mesh;
-  String get status;
-  int get timestamp;
+  Map<String, dynamic> get mesh => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
+  int get timestamp => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GetNodesInRoomResponseCopyWith<GetNodesInRoomResponse> get copyWith;
+  $GetNodesInRoomResponseCopyWith<GetNodesInRoomResponse> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -63,14 +65,23 @@ class _$GetNodesInRoomResponseCopyWithImpl<$Res> implements $GetNodesInRoomRespo
 
   @override
   $Res call({
-    Object mesh = freezed,
-    Object status = freezed,
-    Object timestamp = freezed,
+    Object? mesh = freezed,
+    Object? status = freezed,
+    Object? timestamp = freezed,
   }) {
     return _then(_value.copyWith(
-      mesh: mesh == freezed ? _value.mesh : mesh as Map<String, dynamic>,
-      status: status == freezed ? _value.status : status as String,
-      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
+      mesh: mesh == freezed
+          ? _value.mesh
+          : mesh // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -94,28 +105,33 @@ class __$GetNodesInRoomResponseCopyWithImpl<$Res> extends _$GetNodesInRoomRespon
 
   @override
   $Res call({
-    Object mesh = freezed,
-    Object status = freezed,
-    Object timestamp = freezed,
+    Object? mesh = freezed,
+    Object? status = freezed,
+    Object? timestamp = freezed,
   }) {
     return _then(_GetNodesInRoomResponse(
-      mesh == freezed ? _value.mesh : mesh as Map<String, dynamic>,
-      status == freezed ? _value.status : status as String,
-      timestamp == freezed ? _value.timestamp : timestamp as int,
+      mesh == freezed
+          ? _value.mesh
+          : mesh // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_GetNodesInRoomResponse implements _GetNodesInRoomResponse {
-  const _$_GetNodesInRoomResponse(this.mesh, this.status, this.timestamp)
-      : assert(mesh != null),
-        assert(status != null),
-        assert(timestamp != null);
+  const _$_GetNodesInRoomResponse(this.mesh, this.status, this.timestamp);
 
-  factory _$_GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) => _$_$_GetNodesInRoomResponseFromJson(json);
+  factory _$_GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) => _$$_GetNodesInRoomResponseFromJson(json);
 
   @override
   final Map<String, dynamic> mesh;
@@ -153,7 +169,7 @@ class _$_GetNodesInRoomResponse implements _GetNodesInRoomResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_GetNodesInRoomResponseToJson(this);
+    return _$$_GetNodesInRoomResponseToJson(this);
   }
 }
 
@@ -164,12 +180,12 @@ abstract class _GetNodesInRoomResponse implements GetNodesInRoomResponse {
   factory _GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) = _$_GetNodesInRoomResponse.fromJson;
 
   @override
-  Map<String, dynamic> get mesh;
+  Map<String, dynamic> get mesh => throw _privateConstructorUsedError;
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
-  int get timestamp;
+  int get timestamp => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GetNodesInRoomResponseCopyWith<_GetNodesInRoomResponse> get copyWith;
+  _$GetNodesInRoomResponseCopyWith<_GetNodesInRoomResponse> get copyWith => throw _privateConstructorUsedError;
 }
