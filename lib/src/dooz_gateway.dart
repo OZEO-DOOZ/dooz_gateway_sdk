@@ -185,7 +185,7 @@ class DoozGateway {
           throw RpcUnknownError(error.code, error.message, data: error.data);
       }
     } else {
-      throw FallThroughError();
+      throw OoplaUnexpectedError(error);
     }
   }
 
@@ -416,8 +416,7 @@ class DoozGateway {
     ));
   }
 
-  Future<SetEpochResponse> setEpoch(String address,
-      {int io = 0, bool isActive = true, int timeout = kScenarioCmdTimeout}) async {
+  Future<SetEpochResponse> setEpoch(String address, {int io = 0, int timeout = kScenarioCmdTimeout}) async {
     _checkValidAddress(address);
     final r = Random();
     final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
@@ -431,7 +430,6 @@ class DoozGateway {
           'command': 'set epoch',
           'correlation': correlation,
           'io': io,
-          'is_active': isActive,
           'time_zone': 0, // for now, unused
           'epoch': epoch,
         },
