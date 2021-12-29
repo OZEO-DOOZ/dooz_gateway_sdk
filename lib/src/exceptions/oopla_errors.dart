@@ -28,3 +28,13 @@ class OoplaRequestTimeout implements Exception {
 
 /// This [Exception] should be thrown if a request is called but the socket with ooPLA is not opened.
 class OoplaNotConnectedError implements Exception {}
+
+/// This [Exception] should be thrown if a RPC request throws an unexpected error.
+class OoplaUnexpectedError implements Exception {
+  final Object? error;
+
+  const OoplaUnexpectedError(this.error);
+
+  @override
+  String toString() => 'OoplaUnexpectedError(error: $error)';
+}
