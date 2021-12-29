@@ -185,7 +185,7 @@ class DoozGateway {
           throw RpcUnknownError(error.code, error.message, data: error.data);
       }
     } else {
-      throw FallThroughError();
+      throw OoplaUnexpectedError(error);
     }
   }
 
