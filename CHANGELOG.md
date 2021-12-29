@@ -1,3 +1,8 @@
+## 0.2.3
+This release introduces :
+ - do not swallow unexpected errors into `FallThroughError` but rather wrap them in a new custom Exception : `OoplaUnexpectedError`
+ - remove the `is_active` parameter from the transaction for `set_epoch` command
+
 ## 0.2.2
 
 This release introduces :
