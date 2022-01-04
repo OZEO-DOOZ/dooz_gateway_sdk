@@ -14,7 +14,7 @@ import 'package:pedantic/pedantic.dart';
 import 'package:web_socket_channel/io.dart';
 
 /// {@template dooz_gateway_contructor}
-/// Create an [DoozGateway] which allow you to control your gateway
+/// Create a [DoozGateway] which allow you to connect to and communicate with your gateway
 /// {@endtemplate}
 class DoozGateway {
   /// {@macro dooz_gateway_contructor}
@@ -27,12 +27,15 @@ class DoozGateway {
 
   final _connectionStateController = StreamController<bool>.broadcast();
 
+  /// A [Stream] that will notify any listener of any socket status update (opened/closed)
   Stream<bool> get connectionState => _connectionStateController.stream;
 
+  /// A [bool] to know whether the [Peer]'s connection is alive
   bool get isConnected => _peer != null && !_peer!.isClosed;
 
   final _notifyStateController = StreamController<NotifyState>.broadcast();
 
+  /// A [Stream] that will notify any listener of any status update (DooZ modules)
   Stream<NotifyState> get notifyState => _notifyStateController.stream;
 
   /// Connect to the gateway.
@@ -233,12 +236,15 @@ class DoozGateway {
   /// Get ooPLA's network topology
   Future<DiscoverNetworkResponse> discover() async => DiscoverNetworkResponse.fromJson(await _sendRequest('discover'));
 
+  /// Get the mesh group(s) defined by DooZ user
   Future<DiscoverGroupsResponse> discoverGroups() async =>
       DiscoverGroupsResponse.fromJson(await _sendRequest('discover_groups'));
 
+  /// Get the room(s) defined by DooZ user
   Future<DiscoverRoomsResponse> discoverRooms() async =>
       DiscoverRoomsResponse.fromJson(await _sendRequest('discover_rooms'));
 
+  /// Get the scene(s) defined by DooZ user
   Future<DiscoverScenesResponse> discoverScenes() async =>
       DiscoverScenesResponse.fromJson(await _sendRequest('discover_scenes'));
 
@@ -253,22 +259,11 @@ class DoozGateway {
     ));
   }
 
-  /// Get nodes in the given room ID
-  Future<Map<String, dynamic>> getNodesInRoomID(String roomID) async {
-    if (roomID.isBlank) {
-      throw ArgumentError('roomID must not be blank');
-    }
-    throw UnimplementedError('as of SDK v0.0.4 and ooPLA v1.0.77, this method is not supported');
-    return await _sendRequest(
-      'get_room',
-      params: <String, dynamic>{'room_id': roomID},
-    );
-  }
-
   // -------------------------------------
 
   // -------- Scenarios management -------
 
+  /// Will start the scenario with the given ID (`0 <= sceneID < 511`)
   Future<SetScenarioResponse> startScenario(int sceneID, {int timeout = kScenarioCmdTimeout}) async {
     if (sceneID < 0 || sceneID > 510) {
       throw RangeError.range(sceneID, 0, 510, 'sceneID');
@@ -285,6 +280,7 @@ class DoozGateway {
     ));
   }
 
+  /// Will request for the description of the scenario that has the given [sceneID]
   Future<SetScenarioResponse> getScenario(
     String address,
     int sceneID, {
@@ -312,7 +308,7 @@ class DoozGateway {
     ));
   }
 
-  /// A method to set a scenario on device at [address].
+  /// A method to set a scenario on the device at [address].
   ///
   /// [daysInWeek] is the list of days as lower case english words. `Example: monday, tuesday, wednesday, etc.`
   ///
@@ -414,6 +410,7 @@ class DoozGateway {
     ));
   }
 
+  /// Will request for the Epoch time stored on the device at [address]
   Future<SetEpochResponse> getEpoch(String address, {int timeout = kScenarioCmdTimeout}) async {
     _checkValidAddress(address, shouldCheckGroupFormat: false);
     final r = Random();
@@ -431,6 +428,7 @@ class DoozGateway {
     ));
   }
 
+  /// Will set the Epoch time stored on the device at [address]
   Future<SetEpochResponse> setEpoch(String address, {int io = 0, int timeout = kScenarioCmdTimeout}) async {
     _checkValidAddress(address);
     final r = Random();
@@ -539,7 +537,7 @@ class DoozGateway {
     ));
   }
 
-  /// Toggle a device
+  /// Toggle the device at [address]
   Future<SetToggleResponse> toggle(final String address) async {
     _checkValidAddress(address, shouldCheckGroupFormat: false);
     return SetToggleResponse.fromJson(await _sendRequest(
@@ -548,7 +546,7 @@ class DoozGateway {
     ));
   }
 
-  /// Set the config value of a device
+  /// Set the config value of the device at [address]
   Future<MagicConfigResponse> setConfig(
     final String address,
     final int io,
@@ -571,7 +569,7 @@ class DoozGateway {
     ));
   }
 
-  /// Get the config value of a device
+  /// Get the config value of the device at [address]
   Future<MagicConfigResponse> getConfig(
     final String address,
     final int io,
