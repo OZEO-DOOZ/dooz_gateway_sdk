@@ -282,7 +282,12 @@ class DoozGateway {
     ));
   }
 
-  Future<SetScenarioResponse> getScenario(String address, int sceneID, {int timeout = kScenarioCmdTimeout}) async {
+  Future<SetScenarioResponse> getScenario(
+    String address,
+    int sceneID, {
+    int output = 0,
+    int timeout = kScenarioCmdTimeout,
+  }) async {
     _checkValidAddress(address, shouldCheckGroupFormat: false);
     final r = Random();
     final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
@@ -293,6 +298,7 @@ class DoozGateway {
         'request': {
           'command': 'get scenario',
           'scenario_id': sceneID,
+          'io': output,
           'correlation': correlation,
         },
         'timeout': timeout,
