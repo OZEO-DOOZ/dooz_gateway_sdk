@@ -270,6 +270,9 @@ class DoozGateway {
   // -------- Scenarios management -------
 
   Future<SetScenarioResponse> startScenario(int sceneID, {int timeout = kScenarioCmdTimeout}) async {
+    if (sceneID < 0 || sceneID > 510) {
+      throw RangeError.range(sceneID, 0, 510, 'sceneID');
+    }
     return SetScenarioResponse.fromJson(await _sendRequest(
       'set_scenario',
       params: <String, dynamic>{
@@ -288,6 +291,9 @@ class DoozGateway {
     int output = 0,
     int timeout = kScenarioCmdTimeout,
   }) async {
+    if (sceneID < 0 || sceneID > 510) {
+      throw RangeError.range(sceneID, 0, 510, 'sceneID');
+    }
     _checkValidAddress(address, shouldCheckGroupFormat: false);
     final r = Random();
     final correlation = int.parse(address, radix: 16) + r.nextInt(1 << 15);
@@ -333,6 +339,9 @@ class DoozGateway {
     bool isActive = true,
     int timeout = kScenarioCmdTimeout,
   }) async {
+    if (sceneID < 0 || sceneID > 510) {
+      throw RangeError.range(sceneID, 0, 510, 'sceneID');
+    }
     _checkValidAddress(address, shouldCheckGroupFormat: false);
     final dayPattern = RegExp(r'[a-z]');
     if (daysInWeek.any((day) => !dayPattern.hasMatch(day))) {
