@@ -2,6 +2,9 @@ name: dooz_gateway_sdk
 description: A Dart SDK to interact with DooZ ooPLA product (IP-BT gateway) and enable control over DooZ mesh n/w
 version: 0.2.3
 homepage: https://www.dooz-domotique.com/
+repository: https://github.com/OZEO-DOOZ/dooz_gateway_sdk
+issue_tracker: https://github.com/OZEO-DOOZ/dooz_gateway_sdk/issues
+documentation: https://pub.dev/documentation/dooz_gateway_sdk/latest/
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
