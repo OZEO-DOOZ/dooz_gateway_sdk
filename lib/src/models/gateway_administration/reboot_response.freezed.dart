@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'reboot_response.dart';
 
@@ -41,18 +40,21 @@ mixin _$RebootResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RebootResponseCopyWith<RebootResponse> get copyWith => throw _privateConstructorUsedError;
+  $RebootResponseCopyWith<RebootResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $RebootResponseCopyWith<$Res> {
-  factory $RebootResponseCopyWith(RebootResponse value, $Res Function(RebootResponse) then) =
+  factory $RebootResponseCopyWith(
+          RebootResponse value, $Res Function(RebootResponse) then) =
       _$RebootResponseCopyWithImpl<$Res>;
   $Res call({String status});
 }
 
 /// @nodoc
-class _$RebootResponseCopyWithImpl<$Res> implements $RebootResponseCopyWith<$Res> {
+class _$RebootResponseCopyWithImpl<$Res>
+    implements $RebootResponseCopyWith<$Res> {
   _$RebootResponseCopyWithImpl(this._value, this._then);
 
   final RebootResponse _value;
@@ -73,17 +75,21 @@ class _$RebootResponseCopyWithImpl<$Res> implements $RebootResponseCopyWith<$Res
 }
 
 /// @nodoc
-abstract class _$RebootResponseCopyWith<$Res> implements $RebootResponseCopyWith<$Res> {
-  factory _$RebootResponseCopyWith(_RebootResponse value, $Res Function(_RebootResponse) then) =
+abstract class _$RebootResponseCopyWith<$Res>
+    implements $RebootResponseCopyWith<$Res> {
+  factory _$RebootResponseCopyWith(
+          _RebootResponse value, $Res Function(_RebootResponse) then) =
       __$RebootResponseCopyWithImpl<$Res>;
   @override
   $Res call({String status});
 }
 
 /// @nodoc
-class __$RebootResponseCopyWithImpl<$Res> extends _$RebootResponseCopyWithImpl<$Res>
+class __$RebootResponseCopyWithImpl<$Res>
+    extends _$RebootResponseCopyWithImpl<$Res>
     implements _$RebootResponseCopyWith<$Res> {
-  __$RebootResponseCopyWithImpl(_RebootResponse _value, $Res Function(_RebootResponse) _then)
+  __$RebootResponseCopyWithImpl(
+      _RebootResponse _value, $Res Function(_RebootResponse) _then)
       : super(_value, (v) => _then(v as _RebootResponse));
 
   @override
@@ -107,7 +113,8 @@ class __$RebootResponseCopyWithImpl<$Res> extends _$RebootResponseCopyWithImpl<$
 class _$_RebootResponse implements _RebootResponse {
   const _$_RebootResponse(this.status);
 
-  factory _$_RebootResponse.fromJson(Map<String, dynamic> json) => _$$_RebootResponseFromJson(json);
+  factory _$_RebootResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_RebootResponseFromJson(json);
 
   @override
   final String status;
@@ -121,11 +128,13 @@ class _$_RebootResponse implements _RebootResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _RebootResponse &&
-            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)));
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(status);
 
   @JsonKey(ignore: true)
   @override
@@ -134,18 +143,20 @@ class _$_RebootResponse implements _RebootResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RebootResponseToJson(this);
+    return _$_$_RebootResponseToJson(this);
   }
 }
 
 abstract class _RebootResponse implements RebootResponse {
   const factory _RebootResponse(String status) = _$_RebootResponse;
 
-  factory _RebootResponse.fromJson(Map<String, dynamic> json) = _$_RebootResponse.fromJson;
+  factory _RebootResponse.fromJson(Map<String, dynamic> json) =
+      _$_RebootResponse.fromJson;
 
   @override
   String get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$RebootResponseCopyWith<_RebootResponse> get copyWith => throw _privateConstructorUsedError;
+  _$RebootResponseCopyWith<_RebootResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -11,7 +11,7 @@ dependencies:
   stream_channel: ^2.1.0
   web_socket_channel: ^2.1.0
   pedantic: ^1.11.1
-  freezed_annotation: ^0.14.0
+  freezed_annotation: ^0.15.0
 
 dev_dependencies:
   test: ^1.17.10

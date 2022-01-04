@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'get_nodes_in_room_response.dart';
 
@@ -13,7 +12,8 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GetNodesInRoomResponse _$GetNodesInRoomResponseFromJson(Map<String, dynamic> json) {
+GetNodesInRoomResponse _$GetNodesInRoomResponseFromJson(
+    Map<String, dynamic> json) {
   return _GetNodesInRoomResponse.fromJson(json);
 }
 
@@ -21,7 +21,8 @@ GetNodesInRoomResponse _$GetNodesInRoomResponseFromJson(Map<String, dynamic> jso
 class _$GetNodesInRoomResponseTearOff {
   const _$GetNodesInRoomResponseTearOff();
 
-  _GetNodesInRoomResponse call(Map<String, dynamic> mesh, String status, int timestamp) {
+  _GetNodesInRoomResponse call(
+      Map<String, dynamic> mesh, String status, int timestamp) {
     return _GetNodesInRoomResponse(
       mesh,
       status,
@@ -45,18 +46,21 @@ mixin _$GetNodesInRoomResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GetNodesInRoomResponseCopyWith<GetNodesInRoomResponse> get copyWith => throw _privateConstructorUsedError;
+  $GetNodesInRoomResponseCopyWith<GetNodesInRoomResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $GetNodesInRoomResponseCopyWith<$Res> {
-  factory $GetNodesInRoomResponseCopyWith(GetNodesInRoomResponse value, $Res Function(GetNodesInRoomResponse) then) =
+  factory $GetNodesInRoomResponseCopyWith(GetNodesInRoomResponse value,
+          $Res Function(GetNodesInRoomResponse) then) =
       _$GetNodesInRoomResponseCopyWithImpl<$Res>;
   $Res call({Map<String, dynamic> mesh, String status, int timestamp});
 }
 
 /// @nodoc
-class _$GetNodesInRoomResponseCopyWithImpl<$Res> implements $GetNodesInRoomResponseCopyWith<$Res> {
+class _$GetNodesInRoomResponseCopyWithImpl<$Res>
+    implements $GetNodesInRoomResponseCopyWith<$Res> {
   _$GetNodesInRoomResponseCopyWithImpl(this._value, this._then);
 
   final GetNodesInRoomResponse _value;
@@ -87,17 +91,21 @@ class _$GetNodesInRoomResponseCopyWithImpl<$Res> implements $GetNodesInRoomRespo
 }
 
 /// @nodoc
-abstract class _$GetNodesInRoomResponseCopyWith<$Res> implements $GetNodesInRoomResponseCopyWith<$Res> {
-  factory _$GetNodesInRoomResponseCopyWith(_GetNodesInRoomResponse value, $Res Function(_GetNodesInRoomResponse) then) =
+abstract class _$GetNodesInRoomResponseCopyWith<$Res>
+    implements $GetNodesInRoomResponseCopyWith<$Res> {
+  factory _$GetNodesInRoomResponseCopyWith(_GetNodesInRoomResponse value,
+          $Res Function(_GetNodesInRoomResponse) then) =
       __$GetNodesInRoomResponseCopyWithImpl<$Res>;
   @override
   $Res call({Map<String, dynamic> mesh, String status, int timestamp});
 }
 
 /// @nodoc
-class __$GetNodesInRoomResponseCopyWithImpl<$Res> extends _$GetNodesInRoomResponseCopyWithImpl<$Res>
+class __$GetNodesInRoomResponseCopyWithImpl<$Res>
+    extends _$GetNodesInRoomResponseCopyWithImpl<$Res>
     implements _$GetNodesInRoomResponseCopyWith<$Res> {
-  __$GetNodesInRoomResponseCopyWithImpl(_GetNodesInRoomResponse _value, $Res Function(_GetNodesInRoomResponse) _then)
+  __$GetNodesInRoomResponseCopyWithImpl(_GetNodesInRoomResponse _value,
+      $Res Function(_GetNodesInRoomResponse) _then)
       : super(_value, (v) => _then(v as _GetNodesInRoomResponse));
 
   @override
@@ -131,7 +139,8 @@ class __$GetNodesInRoomResponseCopyWithImpl<$Res> extends _$GetNodesInRoomRespon
 class _$_GetNodesInRoomResponse implements _GetNodesInRoomResponse {
   const _$_GetNodesInRoomResponse(this.mesh, this.status, this.timestamp);
 
-  factory _$_GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) => _$$_GetNodesInRoomResponseFromJson(json);
+  factory _$_GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$_GetNodesInRoomResponseFromJson(json);
 
   @override
   final Map<String, dynamic> mesh;
@@ -149,10 +158,13 @@ class _$_GetNodesInRoomResponse implements _GetNodesInRoomResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _GetNodesInRoomResponse &&
-            (identical(other.mesh, mesh) || const DeepCollectionEquality().equals(other.mesh, mesh)) &&
-            (identical(other.status, status) || const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.mesh, mesh) ||
+                const DeepCollectionEquality().equals(other.mesh, mesh)) &&
+            (identical(other.status, status) ||
+                const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality()
+                    .equals(other.timestamp, timestamp)));
   }
 
   @override
@@ -165,19 +177,22 @@ class _$_GetNodesInRoomResponse implements _GetNodesInRoomResponse {
   @JsonKey(ignore: true)
   @override
   _$GetNodesInRoomResponseCopyWith<_GetNodesInRoomResponse> get copyWith =>
-      __$GetNodesInRoomResponseCopyWithImpl<_GetNodesInRoomResponse>(this, _$identity);
+      __$GetNodesInRoomResponseCopyWithImpl<_GetNodesInRoomResponse>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetNodesInRoomResponseToJson(this);
+    return _$_$_GetNodesInRoomResponseToJson(this);
   }
 }
 
 abstract class _GetNodesInRoomResponse implements GetNodesInRoomResponse {
-  const factory _GetNodesInRoomResponse(Map<String, dynamic> mesh, String status, int timestamp) =
+  const factory _GetNodesInRoomResponse(
+          Map<String, dynamic> mesh, String status, int timestamp) =
       _$_GetNodesInRoomResponse;
 
-  factory _GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) = _$_GetNodesInRoomResponse.fromJson;
+  factory _GetNodesInRoomResponse.fromJson(Map<String, dynamic> json) =
+      _$_GetNodesInRoomResponse.fromJson;
 
   @override
   Map<String, dynamic> get mesh => throw _privateConstructorUsedError;
@@ -187,5 +202,6 @@ abstract class _GetNodesInRoomResponse implements GetNodesInRoomResponse {
   int get timestamp => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GetNodesInRoomResponseCopyWith<_GetNodesInRoomResponse> get copyWith => throw _privateConstructorUsedError;
+  _$GetNodesInRoomResponseCopyWith<_GetNodesInRoomResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -4,7 +4,7 @@ part 'scene_equipment.freezed.dart';
 part 'scene_equipment.g.dart';
 
 @freezed
-abstract class SceneEquipment with _$SceneEquipment {
+class SceneEquipment with _$SceneEquipment {
   const factory SceneEquipment(
     String id,
     String name,

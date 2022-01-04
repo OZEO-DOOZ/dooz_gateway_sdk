@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'scene_equipment.dart';
 
@@ -45,18 +44,21 @@ mixin _$SceneEquipment {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SceneEquipmentCopyWith<SceneEquipment> get copyWith => throw _privateConstructorUsedError;
+  $SceneEquipmentCopyWith<SceneEquipment> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SceneEquipmentCopyWith<$Res> {
-  factory $SceneEquipmentCopyWith(SceneEquipment value, $Res Function(SceneEquipment) then) =
+  factory $SceneEquipmentCopyWith(
+          SceneEquipment value, $Res Function(SceneEquipment) then) =
       _$SceneEquipmentCopyWithImpl<$Res>;
   $Res call({String id, String name, int nodeId});
 }
 
 /// @nodoc
-class _$SceneEquipmentCopyWithImpl<$Res> implements $SceneEquipmentCopyWith<$Res> {
+class _$SceneEquipmentCopyWithImpl<$Res>
+    implements $SceneEquipmentCopyWith<$Res> {
   _$SceneEquipmentCopyWithImpl(this._value, this._then);
 
   final SceneEquipment _value;
@@ -87,17 +89,21 @@ class _$SceneEquipmentCopyWithImpl<$Res> implements $SceneEquipmentCopyWith<$Res
 }
 
 /// @nodoc
-abstract class _$SceneEquipmentCopyWith<$Res> implements $SceneEquipmentCopyWith<$Res> {
-  factory _$SceneEquipmentCopyWith(_SceneEquipment value, $Res Function(_SceneEquipment) then) =
+abstract class _$SceneEquipmentCopyWith<$Res>
+    implements $SceneEquipmentCopyWith<$Res> {
+  factory _$SceneEquipmentCopyWith(
+          _SceneEquipment value, $Res Function(_SceneEquipment) then) =
       __$SceneEquipmentCopyWithImpl<$Res>;
   @override
   $Res call({String id, String name, int nodeId});
 }
 
 /// @nodoc
-class __$SceneEquipmentCopyWithImpl<$Res> extends _$SceneEquipmentCopyWithImpl<$Res>
+class __$SceneEquipmentCopyWithImpl<$Res>
+    extends _$SceneEquipmentCopyWithImpl<$Res>
     implements _$SceneEquipmentCopyWith<$Res> {
-  __$SceneEquipmentCopyWithImpl(_SceneEquipment _value, $Res Function(_SceneEquipment) _then)
+  __$SceneEquipmentCopyWithImpl(
+      _SceneEquipment _value, $Res Function(_SceneEquipment) _then)
       : super(_value, (v) => _then(v as _SceneEquipment));
 
   @override
@@ -131,7 +137,8 @@ class __$SceneEquipmentCopyWithImpl<$Res> extends _$SceneEquipmentCopyWithImpl<$
 class _$_SceneEquipment implements _SceneEquipment {
   const _$_SceneEquipment(this.id, this.name, this.nodeId);
 
-  factory _$_SceneEquipment.fromJson(Map<String, dynamic> json) => _$$_SceneEquipmentFromJson(json);
+  factory _$_SceneEquipment.fromJson(Map<String, dynamic> json) =>
+      _$_$_SceneEquipmentFromJson(json);
 
   @override
   final String id;
@@ -149,9 +156,12 @@ class _$_SceneEquipment implements _SceneEquipment {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SceneEquipment &&
-            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) || const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.nodeId, nodeId) || const DeepCollectionEquality().equals(other.nodeId, nodeId)));
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.nodeId, nodeId) ||
+                const DeepCollectionEquality().equals(other.nodeId, nodeId)));
   }
 
   @override
@@ -168,14 +178,16 @@ class _$_SceneEquipment implements _SceneEquipment {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SceneEquipmentToJson(this);
+    return _$_$_SceneEquipmentToJson(this);
   }
 }
 
 abstract class _SceneEquipment implements SceneEquipment {
-  const factory _SceneEquipment(String id, String name, int nodeId) = _$_SceneEquipment;
+  const factory _SceneEquipment(String id, String name, int nodeId) =
+      _$_SceneEquipment;
 
-  factory _SceneEquipment.fromJson(Map<String, dynamic> json) = _$_SceneEquipment.fromJson;
+  factory _SceneEquipment.fromJson(Map<String, dynamic> json) =
+      _$_SceneEquipment.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
@@ -185,5 +197,6 @@ abstract class _SceneEquipment implements SceneEquipment {
   int get nodeId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SceneEquipmentCopyWith<_SceneEquipment> get copyWith => throw _privateConstructorUsedError;
+  _$SceneEquipmentCopyWith<_SceneEquipment> get copyWith =>
+      throw _privateConstructorUsedError;
 }

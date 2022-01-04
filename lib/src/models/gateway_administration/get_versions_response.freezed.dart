@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'get_versions_response.dart';
 
@@ -23,8 +22,7 @@ GetVersionsResponse _$GetVersionsResponseFromJson(Map<String, dynamic> json) {
       return ModulesVersionsResponse.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(
-          json, 'runtimeType', 'GetVersionsResponse', 'Invalid union type "${json['runtimeType']}"!');
+      throw FallThroughError();
   }
 }
 
@@ -68,13 +66,6 @@ mixin _$GetVersionsResponse {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String version)? software,
-    TResult Function(String hw_version)? hardware,
-    TResult Function(List<Map<String, String>> versions)? modules,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String version)? software,
     TResult Function(String hw_version)? hardware,
@@ -90,13 +81,6 @@ mixin _$GetVersionsResponse {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SoftwareVersionResponse value)? software,
-    TResult Function(HardwareVersionResponse value)? hardware,
-    TResult Function(ModulesVersionsResponse value)? modules,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SoftwareVersionResponse value)? software,
     TResult Function(HardwareVersionResponse value)? hardware,
@@ -109,12 +93,14 @@ mixin _$GetVersionsResponse {
 
 /// @nodoc
 abstract class $GetVersionsResponseCopyWith<$Res> {
-  factory $GetVersionsResponseCopyWith(GetVersionsResponse value, $Res Function(GetVersionsResponse) then) =
+  factory $GetVersionsResponseCopyWith(
+          GetVersionsResponse value, $Res Function(GetVersionsResponse) then) =
       _$GetVersionsResponseCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GetVersionsResponseCopyWithImpl<$Res> implements $GetVersionsResponseCopyWith<$Res> {
+class _$GetVersionsResponseCopyWithImpl<$Res>
+    implements $GetVersionsResponseCopyWith<$Res> {
   _$GetVersionsResponseCopyWithImpl(this._value, this._then);
 
   final GetVersionsResponse _value;
@@ -124,15 +110,18 @@ class _$GetVersionsResponseCopyWithImpl<$Res> implements $GetVersionsResponseCop
 
 /// @nodoc
 abstract class $SoftwareVersionResponseCopyWith<$Res> {
-  factory $SoftwareVersionResponseCopyWith(SoftwareVersionResponse value, $Res Function(SoftwareVersionResponse) then) =
+  factory $SoftwareVersionResponseCopyWith(SoftwareVersionResponse value,
+          $Res Function(SoftwareVersionResponse) then) =
       _$SoftwareVersionResponseCopyWithImpl<$Res>;
   $Res call({String version});
 }
 
 /// @nodoc
-class _$SoftwareVersionResponseCopyWithImpl<$Res> extends _$GetVersionsResponseCopyWithImpl<$Res>
+class _$SoftwareVersionResponseCopyWithImpl<$Res>
+    extends _$GetVersionsResponseCopyWithImpl<$Res>
     implements $SoftwareVersionResponseCopyWith<$Res> {
-  _$SoftwareVersionResponseCopyWithImpl(SoftwareVersionResponse _value, $Res Function(SoftwareVersionResponse) _then)
+  _$SoftwareVersionResponseCopyWithImpl(SoftwareVersionResponse _value,
+      $Res Function(SoftwareVersionResponse) _then)
       : super(_value, (v) => _then(v as SoftwareVersionResponse));
 
   @override
@@ -156,7 +145,8 @@ class _$SoftwareVersionResponseCopyWithImpl<$Res> extends _$GetVersionsResponseC
 class _$SoftwareVersionResponse implements SoftwareVersionResponse {
   const _$SoftwareVersionResponse(this.version);
 
-  factory _$SoftwareVersionResponse.fromJson(Map<String, dynamic> json) => _$$SoftwareVersionResponseFromJson(json);
+  factory _$SoftwareVersionResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$SoftwareVersionResponseFromJson(json);
 
   @override
   final String version;
@@ -170,16 +160,19 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SoftwareVersionResponse &&
-            (identical(other.version, version) || const DeepCollectionEquality().equals(other.version, version)));
+            (identical(other.version, version) ||
+                const DeepCollectionEquality().equals(other.version, version)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(version);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(version);
 
   @JsonKey(ignore: true)
   @override
   $SoftwareVersionResponseCopyWith<SoftwareVersionResponse> get copyWith =>
-      _$SoftwareVersionResponseCopyWithImpl<SoftwareVersionResponse>(this, _$identity);
+      _$SoftwareVersionResponseCopyWithImpl<SoftwareVersionResponse>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -189,16 +182,6 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
     required TResult Function(List<Map<String, String>> versions) modules,
   }) {
     return software(version);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String version)? software,
-    TResult Function(String hw_version)? hardware,
-    TResult Function(List<Map<String, String>> versions)? modules,
-  }) {
-    return software?.call(version);
   }
 
   @override
@@ -227,16 +210,6 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SoftwareVersionResponse value)? software,
-    TResult Function(HardwareVersionResponse value)? hardware,
-    TResult Function(ModulesVersionsResponse value)? modules,
-  }) {
-    return software?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SoftwareVersionResponse value)? software,
     TResult Function(HardwareVersionResponse value)? hardware,
@@ -251,31 +224,38 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SoftwareVersionResponseToJson(this)..['runtimeType'] = 'software';
+    return _$_$SoftwareVersionResponseToJson(this)
+      ..['runtimeType'] = 'software';
   }
 }
 
 abstract class SoftwareVersionResponse implements GetVersionsResponse {
-  const factory SoftwareVersionResponse(String version) = _$SoftwareVersionResponse;
+  const factory SoftwareVersionResponse(String version) =
+      _$SoftwareVersionResponse;
 
-  factory SoftwareVersionResponse.fromJson(Map<String, dynamic> json) = _$SoftwareVersionResponse.fromJson;
+  factory SoftwareVersionResponse.fromJson(Map<String, dynamic> json) =
+      _$SoftwareVersionResponse.fromJson;
 
   String get version => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SoftwareVersionResponseCopyWith<SoftwareVersionResponse> get copyWith => throw _privateConstructorUsedError;
+  $SoftwareVersionResponseCopyWith<SoftwareVersionResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $HardwareVersionResponseCopyWith<$Res> {
-  factory $HardwareVersionResponseCopyWith(HardwareVersionResponse value, $Res Function(HardwareVersionResponse) then) =
+  factory $HardwareVersionResponseCopyWith(HardwareVersionResponse value,
+          $Res Function(HardwareVersionResponse) then) =
       _$HardwareVersionResponseCopyWithImpl<$Res>;
   $Res call({String hw_version});
 }
 
 /// @nodoc
-class _$HardwareVersionResponseCopyWithImpl<$Res> extends _$GetVersionsResponseCopyWithImpl<$Res>
+class _$HardwareVersionResponseCopyWithImpl<$Res>
+    extends _$GetVersionsResponseCopyWithImpl<$Res>
     implements $HardwareVersionResponseCopyWith<$Res> {
-  _$HardwareVersionResponseCopyWithImpl(HardwareVersionResponse _value, $Res Function(HardwareVersionResponse) _then)
+  _$HardwareVersionResponseCopyWithImpl(HardwareVersionResponse _value,
+      $Res Function(HardwareVersionResponse) _then)
       : super(_value, (v) => _then(v as HardwareVersionResponse));
 
   @override
@@ -299,7 +279,8 @@ class _$HardwareVersionResponseCopyWithImpl<$Res> extends _$GetVersionsResponseC
 class _$HardwareVersionResponse implements HardwareVersionResponse {
   const _$HardwareVersionResponse(this.hw_version);
 
-  factory _$HardwareVersionResponse.fromJson(Map<String, dynamic> json) => _$$HardwareVersionResponseFromJson(json);
+  factory _$HardwareVersionResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$HardwareVersionResponseFromJson(json);
 
   @override
   final String hw_version;
@@ -314,16 +295,19 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
     return identical(this, other) ||
         (other is HardwareVersionResponse &&
             (identical(other.hw_version, hw_version) ||
-                const DeepCollectionEquality().equals(other.hw_version, hw_version)));
+                const DeepCollectionEquality()
+                    .equals(other.hw_version, hw_version)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(hw_version);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(hw_version);
 
   @JsonKey(ignore: true)
   @override
   $HardwareVersionResponseCopyWith<HardwareVersionResponse> get copyWith =>
-      _$HardwareVersionResponseCopyWithImpl<HardwareVersionResponse>(this, _$identity);
+      _$HardwareVersionResponseCopyWithImpl<HardwareVersionResponse>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -333,16 +317,6 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
     required TResult Function(List<Map<String, String>> versions) modules,
   }) {
     return hardware(hw_version);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String version)? software,
-    TResult Function(String hw_version)? hardware,
-    TResult Function(List<Map<String, String>> versions)? modules,
-  }) {
-    return hardware?.call(hw_version);
   }
 
   @override
@@ -371,16 +345,6 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SoftwareVersionResponse value)? software,
-    TResult Function(HardwareVersionResponse value)? hardware,
-    TResult Function(ModulesVersionsResponse value)? modules,
-  }) {
-    return hardware?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SoftwareVersionResponse value)? software,
     TResult Function(HardwareVersionResponse value)? hardware,
@@ -395,31 +359,38 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$HardwareVersionResponseToJson(this)..['runtimeType'] = 'hardware';
+    return _$_$HardwareVersionResponseToJson(this)
+      ..['runtimeType'] = 'hardware';
   }
 }
 
 abstract class HardwareVersionResponse implements GetVersionsResponse {
-  const factory HardwareVersionResponse(String hw_version) = _$HardwareVersionResponse;
+  const factory HardwareVersionResponse(String hw_version) =
+      _$HardwareVersionResponse;
 
-  factory HardwareVersionResponse.fromJson(Map<String, dynamic> json) = _$HardwareVersionResponse.fromJson;
+  factory HardwareVersionResponse.fromJson(Map<String, dynamic> json) =
+      _$HardwareVersionResponse.fromJson;
 
   String get hw_version => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $HardwareVersionResponseCopyWith<HardwareVersionResponse> get copyWith => throw _privateConstructorUsedError;
+  $HardwareVersionResponseCopyWith<HardwareVersionResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ModulesVersionsResponseCopyWith<$Res> {
-  factory $ModulesVersionsResponseCopyWith(ModulesVersionsResponse value, $Res Function(ModulesVersionsResponse) then) =
+  factory $ModulesVersionsResponseCopyWith(ModulesVersionsResponse value,
+          $Res Function(ModulesVersionsResponse) then) =
       _$ModulesVersionsResponseCopyWithImpl<$Res>;
   $Res call({List<Map<String, String>> versions});
 }
 
 /// @nodoc
-class _$ModulesVersionsResponseCopyWithImpl<$Res> extends _$GetVersionsResponseCopyWithImpl<$Res>
+class _$ModulesVersionsResponseCopyWithImpl<$Res>
+    extends _$GetVersionsResponseCopyWithImpl<$Res>
     implements $ModulesVersionsResponseCopyWith<$Res> {
-  _$ModulesVersionsResponseCopyWithImpl(ModulesVersionsResponse _value, $Res Function(ModulesVersionsResponse) _then)
+  _$ModulesVersionsResponseCopyWithImpl(ModulesVersionsResponse _value,
+      $Res Function(ModulesVersionsResponse) _then)
       : super(_value, (v) => _then(v as ModulesVersionsResponse));
 
   @override
@@ -443,7 +414,8 @@ class _$ModulesVersionsResponseCopyWithImpl<$Res> extends _$GetVersionsResponseC
 class _$ModulesVersionsResponse implements ModulesVersionsResponse {
   const _$ModulesVersionsResponse(this.versions);
 
-  factory _$ModulesVersionsResponse.fromJson(Map<String, dynamic> json) => _$$ModulesVersionsResponseFromJson(json);
+  factory _$ModulesVersionsResponse.fromJson(Map<String, dynamic> json) =>
+      _$_$ModulesVersionsResponseFromJson(json);
 
   @override
   final List<Map<String, String>> versions;
@@ -457,16 +429,20 @@ class _$ModulesVersionsResponse implements ModulesVersionsResponse {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ModulesVersionsResponse &&
-            (identical(other.versions, versions) || const DeepCollectionEquality().equals(other.versions, versions)));
+            (identical(other.versions, versions) ||
+                const DeepCollectionEquality()
+                    .equals(other.versions, versions)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(versions);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(versions);
 
   @JsonKey(ignore: true)
   @override
   $ModulesVersionsResponseCopyWith<ModulesVersionsResponse> get copyWith =>
-      _$ModulesVersionsResponseCopyWithImpl<ModulesVersionsResponse>(this, _$identity);
+      _$ModulesVersionsResponseCopyWithImpl<ModulesVersionsResponse>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -476,16 +452,6 @@ class _$ModulesVersionsResponse implements ModulesVersionsResponse {
     required TResult Function(List<Map<String, String>> versions) modules,
   }) {
     return modules(versions);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String version)? software,
-    TResult Function(String hw_version)? hardware,
-    TResult Function(List<Map<String, String>> versions)? modules,
-  }) {
-    return modules?.call(versions);
   }
 
   @override
@@ -514,16 +480,6 @@ class _$ModulesVersionsResponse implements ModulesVersionsResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SoftwareVersionResponse value)? software,
-    TResult Function(HardwareVersionResponse value)? hardware,
-    TResult Function(ModulesVersionsResponse value)? modules,
-  }) {
-    return modules?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SoftwareVersionResponse value)? software,
     TResult Function(HardwareVersionResponse value)? hardware,
@@ -538,16 +494,19 @@ class _$ModulesVersionsResponse implements ModulesVersionsResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ModulesVersionsResponseToJson(this)..['runtimeType'] = 'modules';
+    return _$_$ModulesVersionsResponseToJson(this)..['runtimeType'] = 'modules';
   }
 }
 
 abstract class ModulesVersionsResponse implements GetVersionsResponse {
-  const factory ModulesVersionsResponse(List<Map<String, String>> versions) = _$ModulesVersionsResponse;
+  const factory ModulesVersionsResponse(List<Map<String, String>> versions) =
+      _$ModulesVersionsResponse;
 
-  factory ModulesVersionsResponse.fromJson(Map<String, dynamic> json) = _$ModulesVersionsResponse.fromJson;
+  factory ModulesVersionsResponse.fromJson(Map<String, dynamic> json) =
+      _$ModulesVersionsResponse.fromJson;
 
   List<Map<String, String>> get versions => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ModulesVersionsResponseCopyWith<ModulesVersionsResponse> get copyWith => throw _privateConstructorUsedError;
+  $ModulesVersionsResponseCopyWith<ModulesVersionsResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }

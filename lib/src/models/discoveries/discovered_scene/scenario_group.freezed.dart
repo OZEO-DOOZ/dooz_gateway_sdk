@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'scenario_group.dart';
 
@@ -43,18 +42,21 @@ mixin _$ScenarioGroup {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ScenarioGroupCopyWith<ScenarioGroup> get copyWith => throw _privateConstructorUsedError;
+  $ScenarioGroupCopyWith<ScenarioGroup> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ScenarioGroupCopyWith<$Res> {
-  factory $ScenarioGroupCopyWith(ScenarioGroup value, $Res Function(ScenarioGroup) then) =
+  factory $ScenarioGroupCopyWith(
+          ScenarioGroup value, $Res Function(ScenarioGroup) then) =
       _$ScenarioGroupCopyWithImpl<$Res>;
   $Res call({int group, List<DiscoveredScene> scenes});
 }
 
 /// @nodoc
-class _$ScenarioGroupCopyWithImpl<$Res> implements $ScenarioGroupCopyWith<$Res> {
+class _$ScenarioGroupCopyWithImpl<$Res>
+    implements $ScenarioGroupCopyWith<$Res> {
   _$ScenarioGroupCopyWithImpl(this._value, this._then);
 
   final ScenarioGroup _value;
@@ -80,17 +82,21 @@ class _$ScenarioGroupCopyWithImpl<$Res> implements $ScenarioGroupCopyWith<$Res> 
 }
 
 /// @nodoc
-abstract class _$ScenarioGroupCopyWith<$Res> implements $ScenarioGroupCopyWith<$Res> {
-  factory _$ScenarioGroupCopyWith(_ScenarioGroup value, $Res Function(_ScenarioGroup) then) =
+abstract class _$ScenarioGroupCopyWith<$Res>
+    implements $ScenarioGroupCopyWith<$Res> {
+  factory _$ScenarioGroupCopyWith(
+          _ScenarioGroup value, $Res Function(_ScenarioGroup) then) =
       __$ScenarioGroupCopyWithImpl<$Res>;
   @override
   $Res call({int group, List<DiscoveredScene> scenes});
 }
 
 /// @nodoc
-class __$ScenarioGroupCopyWithImpl<$Res> extends _$ScenarioGroupCopyWithImpl<$Res>
+class __$ScenarioGroupCopyWithImpl<$Res>
+    extends _$ScenarioGroupCopyWithImpl<$Res>
     implements _$ScenarioGroupCopyWith<$Res> {
-  __$ScenarioGroupCopyWithImpl(_ScenarioGroup _value, $Res Function(_ScenarioGroup) _then)
+  __$ScenarioGroupCopyWithImpl(
+      _ScenarioGroup _value, $Res Function(_ScenarioGroup) _then)
       : super(_value, (v) => _then(v as _ScenarioGroup));
 
   @override
@@ -119,7 +125,8 @@ class __$ScenarioGroupCopyWithImpl<$Res> extends _$ScenarioGroupCopyWithImpl<$Re
 class _$_ScenarioGroup implements _ScenarioGroup {
   const _$_ScenarioGroup(this.group, this.scenes);
 
-  factory _$_ScenarioGroup.fromJson(Map<String, dynamic> json) => _$$_ScenarioGroupFromJson(json);
+  factory _$_ScenarioGroup.fromJson(Map<String, dynamic> json) =>
+      _$_$_ScenarioGroupFromJson(json);
 
   @override
   final int group;
@@ -135,13 +142,17 @@ class _$_ScenarioGroup implements _ScenarioGroup {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ScenarioGroup &&
-            (identical(other.group, group) || const DeepCollectionEquality().equals(other.group, group)) &&
-            (identical(other.scenes, scenes) || const DeepCollectionEquality().equals(other.scenes, scenes)));
+            (identical(other.group, group) ||
+                const DeepCollectionEquality().equals(other.group, group)) &&
+            (identical(other.scenes, scenes) ||
+                const DeepCollectionEquality().equals(other.scenes, scenes)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(group) ^ const DeepCollectionEquality().hash(scenes);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(group) ^
+      const DeepCollectionEquality().hash(scenes);
 
   @JsonKey(ignore: true)
   @override
@@ -150,14 +161,16 @@ class _$_ScenarioGroup implements _ScenarioGroup {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ScenarioGroupToJson(this);
+    return _$_$_ScenarioGroupToJson(this);
   }
 }
 
 abstract class _ScenarioGroup implements ScenarioGroup {
-  const factory _ScenarioGroup(int group, List<DiscoveredScene> scenes) = _$_ScenarioGroup;
+  const factory _ScenarioGroup(int group, List<DiscoveredScene> scenes) =
+      _$_ScenarioGroup;
 
-  factory _ScenarioGroup.fromJson(Map<String, dynamic> json) = _$_ScenarioGroup.fromJson;
+  factory _ScenarioGroup.fromJson(Map<String, dynamic> json) =
+      _$_ScenarioGroup.fromJson;
 
   @override
   int get group => throw _privateConstructorUsedError;
@@ -165,5 +178,6 @@ abstract class _ScenarioGroup implements ScenarioGroup {
   List<DiscoveredScene> get scenes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ScenarioGroupCopyWith<_ScenarioGroup> get copyWith => throw _privateConstructorUsedError;
+  _$ScenarioGroupCopyWith<_ScenarioGroup> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -4,7 +4,7 @@ part 'scene_hour.freezed.dart';
 part 'scene_hour.g.dart';
 
 @freezed
-abstract class SceneHour with _$SceneHour {
+class SceneHour with _$SceneHour {
   const factory SceneHour(
     int? hour,
     int? minute,
