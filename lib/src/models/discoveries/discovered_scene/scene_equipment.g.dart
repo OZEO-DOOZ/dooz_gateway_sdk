@@ -14,8 +14,7 @@ _$_SceneEquipment _$_$_SceneEquipmentFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_SceneEquipmentToJson(_$_SceneEquipment instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_SceneEquipmentToJson(_$_SceneEquipment instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'nodeId': instance.nodeId,

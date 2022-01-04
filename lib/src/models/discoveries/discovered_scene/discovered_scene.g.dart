@@ -10,16 +10,13 @@ _$_DiscoveredScene _$_$_DiscoveredSceneFromJson(Map<String, dynamic> json) {
   return _$_DiscoveredScene(
     json['name'] as String,
     json['sceneId'] as int,
-    (json['steps'] as List<dynamic>)
-        .map((e) => SceneStep.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    (json['steps'] as List<dynamic>).map((e) => SceneStep.fromJson(e as Map<String, dynamic>)).toList(),
     SceneHour.fromJson(json['start'] as Map<String, dynamic>),
     SceneHour.fromJson(json['end'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$_$_DiscoveredSceneToJson(_$_DiscoveredScene instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_DiscoveredSceneToJson(_$_DiscoveredScene instance) => <String, dynamic>{
       'name': instance.name,
       'sceneId': instance.sceneId,
       'steps': instance.steps,

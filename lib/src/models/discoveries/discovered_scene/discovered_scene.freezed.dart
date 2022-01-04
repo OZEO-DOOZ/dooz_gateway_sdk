@@ -20,8 +20,7 @@ DiscoveredScene _$DiscoveredSceneFromJson(Map<String, dynamic> json) {
 class _$DiscoveredSceneTearOff {
   const _$DiscoveredSceneTearOff();
 
-  _DiscoveredScene call(String name, int sceneId, List<SceneStep> steps,
-      SceneHour start, SceneHour end) {
+  _DiscoveredScene call(String name, int sceneId, List<SceneStep> steps, SceneHour start, SceneHour end) {
     return _DiscoveredScene(
       name,
       sceneId,
@@ -49,29 +48,21 @@ mixin _$DiscoveredScene {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DiscoveredSceneCopyWith<DiscoveredScene> get copyWith =>
-      throw _privateConstructorUsedError;
+  $DiscoveredSceneCopyWith<DiscoveredScene> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $DiscoveredSceneCopyWith<$Res> {
-  factory $DiscoveredSceneCopyWith(
-          DiscoveredScene value, $Res Function(DiscoveredScene) then) =
+  factory $DiscoveredSceneCopyWith(DiscoveredScene value, $Res Function(DiscoveredScene) then) =
       _$DiscoveredSceneCopyWithImpl<$Res>;
-  $Res call(
-      {String name,
-      int sceneId,
-      List<SceneStep> steps,
-      SceneHour start,
-      SceneHour end});
+  $Res call({String name, int sceneId, List<SceneStep> steps, SceneHour start, SceneHour end});
 
   $SceneHourCopyWith<$Res> get start;
   $SceneHourCopyWith<$Res> get end;
 }
 
 /// @nodoc
-class _$DiscoveredSceneCopyWithImpl<$Res>
-    implements $DiscoveredSceneCopyWith<$Res> {
+class _$DiscoveredSceneCopyWithImpl<$Res> implements $DiscoveredSceneCopyWith<$Res> {
   _$DiscoveredSceneCopyWithImpl(this._value, this._then);
 
   final DiscoveredScene _value;
@@ -126,18 +117,11 @@ class _$DiscoveredSceneCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DiscoveredSceneCopyWith<$Res>
-    implements $DiscoveredSceneCopyWith<$Res> {
-  factory _$DiscoveredSceneCopyWith(
-          _DiscoveredScene value, $Res Function(_DiscoveredScene) then) =
+abstract class _$DiscoveredSceneCopyWith<$Res> implements $DiscoveredSceneCopyWith<$Res> {
+  factory _$DiscoveredSceneCopyWith(_DiscoveredScene value, $Res Function(_DiscoveredScene) then) =
       __$DiscoveredSceneCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String name,
-      int sceneId,
-      List<SceneStep> steps,
-      SceneHour start,
-      SceneHour end});
+  $Res call({String name, int sceneId, List<SceneStep> steps, SceneHour start, SceneHour end});
 
   @override
   $SceneHourCopyWith<$Res> get start;
@@ -146,11 +130,9 @@ abstract class _$DiscoveredSceneCopyWith<$Res>
 }
 
 /// @nodoc
-class __$DiscoveredSceneCopyWithImpl<$Res>
-    extends _$DiscoveredSceneCopyWithImpl<$Res>
+class __$DiscoveredSceneCopyWithImpl<$Res> extends _$DiscoveredSceneCopyWithImpl<$Res>
     implements _$DiscoveredSceneCopyWith<$Res> {
-  __$DiscoveredSceneCopyWithImpl(
-      _DiscoveredScene _value, $Res Function(_DiscoveredScene) _then)
+  __$DiscoveredSceneCopyWithImpl(_DiscoveredScene _value, $Res Function(_DiscoveredScene) _then)
       : super(_value, (v) => _then(v as _DiscoveredScene));
 
   @override
@@ -192,11 +174,9 @@ class __$DiscoveredSceneCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_DiscoveredScene implements _DiscoveredScene {
-  const _$_DiscoveredScene(
-      this.name, this.sceneId, this.steps, this.start, this.end);
+  const _$_DiscoveredScene(this.name, this.sceneId, this.steps, this.start, this.end);
 
-  factory _$_DiscoveredScene.fromJson(Map<String, dynamic> json) =>
-      _$_$_DiscoveredSceneFromJson(json);
+  factory _$_DiscoveredScene.fromJson(Map<String, dynamic> json) => _$_$_DiscoveredSceneFromJson(json);
 
   @override
   final String name;
@@ -218,17 +198,11 @@ class _$_DiscoveredScene implements _DiscoveredScene {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _DiscoveredScene &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.sceneId, sceneId) ||
-                const DeepCollectionEquality()
-                    .equals(other.sceneId, sceneId)) &&
-            (identical(other.steps, steps) ||
-                const DeepCollectionEquality().equals(other.steps, steps)) &&
-            (identical(other.start, start) ||
-                const DeepCollectionEquality().equals(other.start, start)) &&
-            (identical(other.end, end) ||
-                const DeepCollectionEquality().equals(other.end, end)));
+            (identical(other.name, name) || const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.sceneId, sceneId) || const DeepCollectionEquality().equals(other.sceneId, sceneId)) &&
+            (identical(other.steps, steps) || const DeepCollectionEquality().equals(other.steps, steps)) &&
+            (identical(other.start, start) || const DeepCollectionEquality().equals(other.start, start)) &&
+            (identical(other.end, end) || const DeepCollectionEquality().equals(other.end, end)));
   }
 
   @override
@@ -252,15 +226,10 @@ class _$_DiscoveredScene implements _DiscoveredScene {
 }
 
 abstract class _DiscoveredScene implements DiscoveredScene {
-  const factory _DiscoveredScene(
-      String name,
-      int sceneId,
-      List<SceneStep> steps,
-      SceneHour start,
-      SceneHour end) = _$_DiscoveredScene;
+  const factory _DiscoveredScene(String name, int sceneId, List<SceneStep> steps, SceneHour start, SceneHour end) =
+      _$_DiscoveredScene;
 
-  factory _DiscoveredScene.fromJson(Map<String, dynamic> json) =
-      _$_DiscoveredScene.fromJson;
+  factory _DiscoveredScene.fromJson(Map<String, dynamic> json) = _$_DiscoveredScene.fromJson;
 
   @override
   String get name => throw _privateConstructorUsedError;
@@ -274,6 +243,5 @@ abstract class _DiscoveredScene implements DiscoveredScene {
   SceneHour get end => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DiscoveredSceneCopyWith<_DiscoveredScene> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$DiscoveredSceneCopyWith<_DiscoveredScene> get copyWith => throw _privateConstructorUsedError;
 }

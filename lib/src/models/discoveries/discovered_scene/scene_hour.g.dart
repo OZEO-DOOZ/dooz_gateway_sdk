@@ -13,8 +13,7 @@ _$_SceneHour _$_$_SceneHourFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_SceneHourToJson(_$_SceneHour instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_SceneHourToJson(_$_SceneHour instance) => <String, dynamic>{
       'hour': instance.hour,
       'minute': instance.minute,
     };

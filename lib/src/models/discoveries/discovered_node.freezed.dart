@@ -83,14 +83,12 @@ mixin _$DiscoveredNode {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DiscoveredNodeCopyWith<DiscoveredNode> get copyWith =>
-      throw _privateConstructorUsedError;
+  $DiscoveredNodeCopyWith<DiscoveredNode> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $DiscoveredNodeCopyWith<$Res> {
-  factory $DiscoveredNodeCopyWith(
-          DiscoveredNode value, $Res Function(DiscoveredNode) then) =
+  factory $DiscoveredNodeCopyWith(DiscoveredNode value, $Res Function(DiscoveredNode) then) =
       _$DiscoveredNodeCopyWithImpl<$Res>;
   $Res call(
       {String name,
@@ -111,8 +109,7 @@ abstract class $DiscoveredNodeCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DiscoveredNodeCopyWithImpl<$Res>
-    implements $DiscoveredNodeCopyWith<$Res> {
+class _$DiscoveredNodeCopyWithImpl<$Res> implements $DiscoveredNodeCopyWith<$Res> {
   _$DiscoveredNodeCopyWithImpl(this._value, this._then);
 
   final DiscoveredNode _value;
@@ -203,10 +200,8 @@ class _$DiscoveredNodeCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$DiscoveredNodeCopyWith<$Res>
-    implements $DiscoveredNodeCopyWith<$Res> {
-  factory _$DiscoveredNodeCopyWith(
-          _DiscoveredNode value, $Res Function(_DiscoveredNode) then) =
+abstract class _$DiscoveredNodeCopyWith<$Res> implements $DiscoveredNodeCopyWith<$Res> {
+  factory _$DiscoveredNodeCopyWith(_DiscoveredNode value, $Res Function(_DiscoveredNode) then) =
       __$DiscoveredNodeCopyWithImpl<$Res>;
   @override
   $Res call(
@@ -228,11 +223,9 @@ abstract class _$DiscoveredNodeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$DiscoveredNodeCopyWithImpl<$Res>
-    extends _$DiscoveredNodeCopyWithImpl<$Res>
+class __$DiscoveredNodeCopyWithImpl<$Res> extends _$DiscoveredNodeCopyWithImpl<$Res>
     implements _$DiscoveredNodeCopyWith<$Res> {
-  __$DiscoveredNodeCopyWithImpl(
-      _DiscoveredNode _value, $Res Function(_DiscoveredNode) _then)
+  __$DiscoveredNodeCopyWithImpl(_DiscoveredNode _value, $Res Function(_DiscoveredNode) _then)
       : super(_value, (v) => _then(v as _DiscoveredNode));
 
   @override
@@ -341,8 +334,7 @@ class _$_DiscoveredNode implements _DiscoveredNode {
       this.nodes,
       this.type);
 
-  factory _$_DiscoveredNode.fromJson(Map<String, dynamic> json) =>
-      _$_$_DiscoveredNodeFromJson(json);
+  factory _$_DiscoveredNode.fromJson(Map<String, dynamic> json) => _$_$_DiscoveredNodeFromJson(json);
 
   @override
   final String name;
@@ -384,50 +376,33 @@ class _$_DiscoveredNode implements _DiscoveredNode {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _DiscoveredNode &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.name, name) || const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.mac_address, mac_address) ||
-                const DeepCollectionEquality()
-                    .equals(other.mac_address, mac_address)) &&
+                const DeepCollectionEquality().equals(other.mac_address, mac_address)) &&
             (identical(other.output_number, output_number) ||
-                const DeepCollectionEquality()
-                    .equals(other.output_number, output_number)) &&
+                const DeepCollectionEquality().equals(other.output_number, output_number)) &&
             (identical(other.input_number, input_number) ||
-                const DeepCollectionEquality()
-                    .equals(other.input_number, input_number)) &&
+                const DeepCollectionEquality().equals(other.input_number, input_number)) &&
             (identical(other.temperature, temperature) ||
-                const DeepCollectionEquality()
-                    .equals(other.temperature, temperature)) &&
+                const DeepCollectionEquality().equals(other.temperature, temperature)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)) &&
-            (identical(other.checksum, checksum) ||
-                const DeepCollectionEquality()
-                    .equals(other.checksum, checksum)) &&
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)) &&
+            (identical(other.checksum, checksum) || const DeepCollectionEquality().equals(other.checksum, checksum)) &&
             (identical(other.conf_state, conf_state) ||
-                const DeepCollectionEquality()
-                    .equals(other.conf_state, conf_state)) &&
+                const DeepCollectionEquality().equals(other.conf_state, conf_state)) &&
             (identical(other.current_io, current_io) ||
-                const DeepCollectionEquality()
-                    .equals(other.current_io, current_io)) &&
+                const DeepCollectionEquality().equals(other.current_io, current_io)) &&
             (identical(other.conf_nrequest, conf_nrequest) ||
-                const DeepCollectionEquality()
-                    .equals(other.conf_nrequest, conf_nrequest)) &&
+                const DeepCollectionEquality().equals(other.conf_nrequest, conf_nrequest)) &&
             (identical(other.ongoing_conf, ongoing_conf) ||
+                const DeepCollectionEquality().equals(other.ongoing_conf, ongoing_conf)) &&
+            (identical(other.configuration_protocol_version, configuration_protocol_version) ||
                 const DeepCollectionEquality()
-                    .equals(other.ongoing_conf, ongoing_conf)) &&
-            (identical(other.configuration_protocol_version,
-                    configuration_protocol_version) ||
-                const DeepCollectionEquality().equals(
-                    other.configuration_protocol_version,
-                    configuration_protocol_version)) &&
+                    .equals(other.configuration_protocol_version, configuration_protocol_version)) &&
             (identical(other.current_correlation, current_correlation) ||
-                const DeepCollectionEquality()
-                    .equals(other.current_correlation, current_correlation)) &&
-            (identical(other.nodes, nodes) ||
-                const DeepCollectionEquality().equals(other.nodes, nodes)) &&
-            (identical(other.type, type) ||
-                const DeepCollectionEquality().equals(other.type, type)));
+                const DeepCollectionEquality().equals(other.current_correlation, current_correlation)) &&
+            (identical(other.nodes, nodes) || const DeepCollectionEquality().equals(other.nodes, nodes)) &&
+            (identical(other.type, type) || const DeepCollectionEquality().equals(other.type, type)));
   }
 
   @override
@@ -478,8 +453,7 @@ abstract class _DiscoveredNode implements DiscoveredNode {
       List<Map<String, dynamic>> nodes,
       int type) = _$_DiscoveredNode;
 
-  factory _DiscoveredNode.fromJson(Map<String, dynamic> json) =
-      _$_DiscoveredNode.fromJson;
+  factory _DiscoveredNode.fromJson(Map<String, dynamic> json) = _$_DiscoveredNode.fromJson;
 
   @override
   String get name => throw _privateConstructorUsedError;
@@ -513,6 +487,5 @@ abstract class _DiscoveredNode implements DiscoveredNode {
   int get type => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DiscoveredNodeCopyWith<_DiscoveredNode> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$DiscoveredNodeCopyWith<_DiscoveredNode> get copyWith => throw _privateConstructorUsedError;
 }

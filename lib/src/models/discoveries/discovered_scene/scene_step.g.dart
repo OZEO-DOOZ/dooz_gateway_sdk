@@ -13,8 +13,7 @@ _$_SceneStep _$_$_SceneStepFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_SceneStepToJson(_$_SceneStep instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_SceneStepToJson(_$_SceneStep instance) => <String, dynamic>{
       'equipment': instance.equipment,
       'level': instance.level,
     };

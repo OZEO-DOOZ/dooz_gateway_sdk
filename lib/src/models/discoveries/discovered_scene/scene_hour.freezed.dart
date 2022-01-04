@@ -42,14 +42,12 @@ mixin _$SceneHour {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SceneHourCopyWith<SceneHour> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SceneHourCopyWith<SceneHour> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SceneHourCopyWith<$Res> {
-  factory $SceneHourCopyWith(SceneHour value, $Res Function(SceneHour) then) =
-      _$SceneHourCopyWithImpl<$Res>;
+  factory $SceneHourCopyWith(SceneHour value, $Res Function(SceneHour) then) = _$SceneHourCopyWithImpl<$Res>;
   $Res call({int? hour, int? minute});
 }
 
@@ -81,16 +79,13 @@ class _$SceneHourCopyWithImpl<$Res> implements $SceneHourCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$SceneHourCopyWith<$Res> implements $SceneHourCopyWith<$Res> {
-  factory _$SceneHourCopyWith(
-          _SceneHour value, $Res Function(_SceneHour) then) =
-      __$SceneHourCopyWithImpl<$Res>;
+  factory _$SceneHourCopyWith(_SceneHour value, $Res Function(_SceneHour) then) = __$SceneHourCopyWithImpl<$Res>;
   @override
   $Res call({int? hour, int? minute});
 }
 
 /// @nodoc
-class __$SceneHourCopyWithImpl<$Res> extends _$SceneHourCopyWithImpl<$Res>
-    implements _$SceneHourCopyWith<$Res> {
+class __$SceneHourCopyWithImpl<$Res> extends _$SceneHourCopyWithImpl<$Res> implements _$SceneHourCopyWith<$Res> {
   __$SceneHourCopyWithImpl(_SceneHour _value, $Res Function(_SceneHour) _then)
       : super(_value, (v) => _then(v as _SceneHour));
 
@@ -120,8 +115,7 @@ class __$SceneHourCopyWithImpl<$Res> extends _$SceneHourCopyWithImpl<$Res>
 class _$_SceneHour implements _SceneHour {
   const _$_SceneHour(this.hour, this.minute);
 
-  factory _$_SceneHour.fromJson(Map<String, dynamic> json) =>
-      _$_$_SceneHourFromJson(json);
+  factory _$_SceneHour.fromJson(Map<String, dynamic> json) => _$_$_SceneHourFromJson(json);
 
   @override
   final int? hour;
@@ -137,22 +131,17 @@ class _$_SceneHour implements _SceneHour {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _SceneHour &&
-            (identical(other.hour, hour) ||
-                const DeepCollectionEquality().equals(other.hour, hour)) &&
-            (identical(other.minute, minute) ||
-                const DeepCollectionEquality().equals(other.minute, minute)));
+            (identical(other.hour, hour) || const DeepCollectionEquality().equals(other.hour, hour)) &&
+            (identical(other.minute, minute) || const DeepCollectionEquality().equals(other.minute, minute)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(hour) ^
-      const DeepCollectionEquality().hash(minute);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(hour) ^ const DeepCollectionEquality().hash(minute);
 
   @JsonKey(ignore: true)
   @override
-  _$SceneHourCopyWith<_SceneHour> get copyWith =>
-      __$SceneHourCopyWithImpl<_SceneHour>(this, _$identity);
+  _$SceneHourCopyWith<_SceneHour> get copyWith => __$SceneHourCopyWithImpl<_SceneHour>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -163,8 +152,7 @@ class _$_SceneHour implements _SceneHour {
 abstract class _SceneHour implements SceneHour {
   const factory _SceneHour(int? hour, int? minute) = _$_SceneHour;
 
-  factory _SceneHour.fromJson(Map<String, dynamic> json) =
-      _$_SceneHour.fromJson;
+  factory _SceneHour.fromJson(Map<String, dynamic> json) = _$_SceneHour.fromJson;
 
   @override
   int? get hour => throw _privateConstructorUsedError;
@@ -172,6 +160,5 @@ abstract class _SceneHour implements SceneHour {
   int? get minute => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SceneHourCopyWith<_SceneHour> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$SceneHourCopyWith<_SceneHour> get copyWith => throw _privateConstructorUsedError;
 }
