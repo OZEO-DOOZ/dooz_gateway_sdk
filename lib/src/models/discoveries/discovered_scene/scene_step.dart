@@ -5,7 +5,7 @@ part 'scene_step.freezed.dart';
 part 'scene_step.g.dart';
 
 @freezed
-abstract class SceneStep with _$SceneStep {
+class SceneStep with _$SceneStep {
   const factory SceneStep(
     SceneEquipment equipment,
     int level,

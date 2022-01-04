@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'scene_step.dart';
 
@@ -128,7 +127,7 @@ class __$SceneStepCopyWithImpl<$Res> extends _$SceneStepCopyWithImpl<$Res> imple
 class _$_SceneStep implements _SceneStep {
   const _$_SceneStep(this.equipment, this.level);
 
-  factory _$_SceneStep.fromJson(Map<String, dynamic> json) => _$$_SceneStepFromJson(json);
+  factory _$_SceneStep.fromJson(Map<String, dynamic> json) => _$_$_SceneStepFromJson(json);
 
   @override
   final SceneEquipment equipment;
@@ -161,7 +160,7 @@ class _$_SceneStep implements _SceneStep {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_SceneStepToJson(this);
+    return _$_$_SceneStepToJson(this);
   }
 }
 

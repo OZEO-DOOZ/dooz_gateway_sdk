@@ -4,7 +4,7 @@ part 'discovered_node.freezed.dart';
 part 'discovered_node.g.dart';
 
 @freezed
-abstract class DiscoveredNode with _$DiscoveredNode {
+class DiscoveredNode with _$DiscoveredNode {
   const factory DiscoveredNode(
     String name,
     String mac_address,

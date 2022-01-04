@@ -1,11 +1,19 @@
 // ------ Connection constants ------
+/// The default host that should be used for LAN connection
 const String localGatewayHost = 'DOOZ-OOPLA.local';
+
+/// The default port on which the ooPLA API is exposed
 const int defaultGatewayPort = 55055;
+
+/// The default [Duration] for a JSON-RPC request
 const Duration kGatewayRequestTimeout = Duration(seconds: 20);
+
+/// The default duration in seconds used for scenario methods
 const int kScenarioCmdTimeout = 20;
 // ----------------------------------
 
 // -- Custom JSON-RPC error codes --
+/// The default error code returned by ooPLA's software
 const int defaultErrorCode = 1;
 // ----------------------------------
 

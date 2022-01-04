@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'get_versions_response.dart';
 
@@ -23,8 +22,7 @@ GetVersionsResponse _$GetVersionsResponseFromJson(Map<String, dynamic> json) {
       return ModulesVersionsResponse.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(
-          json, 'runtimeType', 'GetVersionsResponse', 'Invalid union type "${json['runtimeType']}"!');
+      throw FallThroughError();
   }
 }
 
@@ -68,13 +66,6 @@ mixin _$GetVersionsResponse {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String version)? software,
-    TResult Function(String hw_version)? hardware,
-    TResult Function(List<Map<String, String>> versions)? modules,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String version)? software,
     TResult Function(String hw_version)? hardware,
@@ -87,13 +78,6 @@ mixin _$GetVersionsResponse {
     required TResult Function(SoftwareVersionResponse value) software,
     required TResult Function(HardwareVersionResponse value) hardware,
     required TResult Function(ModulesVersionsResponse value) modules,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SoftwareVersionResponse value)? software,
-    TResult Function(HardwareVersionResponse value)? hardware,
-    TResult Function(ModulesVersionsResponse value)? modules,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -156,7 +140,7 @@ class _$SoftwareVersionResponseCopyWithImpl<$Res> extends _$GetVersionsResponseC
 class _$SoftwareVersionResponse implements SoftwareVersionResponse {
   const _$SoftwareVersionResponse(this.version);
 
-  factory _$SoftwareVersionResponse.fromJson(Map<String, dynamic> json) => _$$SoftwareVersionResponseFromJson(json);
+  factory _$SoftwareVersionResponse.fromJson(Map<String, dynamic> json) => _$_$SoftwareVersionResponseFromJson(json);
 
   @override
   final String version;
@@ -193,16 +177,6 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String version)? software,
-    TResult Function(String hw_version)? hardware,
-    TResult Function(List<Map<String, String>> versions)? modules,
-  }) {
-    return software?.call(version);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String version)? software,
     TResult Function(String hw_version)? hardware,
@@ -227,16 +201,6 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SoftwareVersionResponse value)? software,
-    TResult Function(HardwareVersionResponse value)? hardware,
-    TResult Function(ModulesVersionsResponse value)? modules,
-  }) {
-    return software?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SoftwareVersionResponse value)? software,
     TResult Function(HardwareVersionResponse value)? hardware,
@@ -251,7 +215,7 @@ class _$SoftwareVersionResponse implements SoftwareVersionResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SoftwareVersionResponseToJson(this)..['runtimeType'] = 'software';
+    return _$_$SoftwareVersionResponseToJson(this)..['runtimeType'] = 'software';
   }
 }
 
@@ -299,7 +263,7 @@ class _$HardwareVersionResponseCopyWithImpl<$Res> extends _$GetVersionsResponseC
 class _$HardwareVersionResponse implements HardwareVersionResponse {
   const _$HardwareVersionResponse(this.hw_version);
 
-  factory _$HardwareVersionResponse.fromJson(Map<String, dynamic> json) => _$$HardwareVersionResponseFromJson(json);
+  factory _$HardwareVersionResponse.fromJson(Map<String, dynamic> json) => _$_$HardwareVersionResponseFromJson(json);
 
   @override
   final String hw_version;
@@ -337,16 +301,6 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String version)? software,
-    TResult Function(String hw_version)? hardware,
-    TResult Function(List<Map<String, String>> versions)? modules,
-  }) {
-    return hardware?.call(hw_version);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String version)? software,
     TResult Function(String hw_version)? hardware,
@@ -371,16 +325,6 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SoftwareVersionResponse value)? software,
-    TResult Function(HardwareVersionResponse value)? hardware,
-    TResult Function(ModulesVersionsResponse value)? modules,
-  }) {
-    return hardware?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SoftwareVersionResponse value)? software,
     TResult Function(HardwareVersionResponse value)? hardware,
@@ -395,7 +339,7 @@ class _$HardwareVersionResponse implements HardwareVersionResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$HardwareVersionResponseToJson(this)..['runtimeType'] = 'hardware';
+    return _$_$HardwareVersionResponseToJson(this)..['runtimeType'] = 'hardware';
   }
 }
 
@@ -443,7 +387,7 @@ class _$ModulesVersionsResponseCopyWithImpl<$Res> extends _$GetVersionsResponseC
 class _$ModulesVersionsResponse implements ModulesVersionsResponse {
   const _$ModulesVersionsResponse(this.versions);
 
-  factory _$ModulesVersionsResponse.fromJson(Map<String, dynamic> json) => _$$ModulesVersionsResponseFromJson(json);
+  factory _$ModulesVersionsResponse.fromJson(Map<String, dynamic> json) => _$_$ModulesVersionsResponseFromJson(json);
 
   @override
   final List<Map<String, String>> versions;
@@ -480,16 +424,6 @@ class _$ModulesVersionsResponse implements ModulesVersionsResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String version)? software,
-    TResult Function(String hw_version)? hardware,
-    TResult Function(List<Map<String, String>> versions)? modules,
-  }) {
-    return modules?.call(versions);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String version)? software,
     TResult Function(String hw_version)? hardware,
@@ -514,16 +448,6 @@ class _$ModulesVersionsResponse implements ModulesVersionsResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SoftwareVersionResponse value)? software,
-    TResult Function(HardwareVersionResponse value)? hardware,
-    TResult Function(ModulesVersionsResponse value)? modules,
-  }) {
-    return modules?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SoftwareVersionResponse value)? software,
     TResult Function(HardwareVersionResponse value)? hardware,
@@ -538,7 +462,7 @@ class _$ModulesVersionsResponse implements ModulesVersionsResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ModulesVersionsResponseToJson(this)..['runtimeType'] = 'modules';
+    return _$_$ModulesVersionsResponseToJson(this)..['runtimeType'] = 'modules';
   }
 }
 

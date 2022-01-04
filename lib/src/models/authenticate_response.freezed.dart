@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'authenticate_response.dart';
 
@@ -119,7 +118,7 @@ class __$AuthResponseCopyWithImpl<$Res> extends _$AuthResponseCopyWithImpl<$Res>
 class _$_AuthResponse implements _AuthResponse {
   const _$_AuthResponse(this.status, this.timestamp);
 
-  factory _$_AuthResponse.fromJson(Map<String, dynamic> json) => _$$_AuthResponseFromJson(json);
+  factory _$_AuthResponse.fromJson(Map<String, dynamic> json) => _$_$_AuthResponseFromJson(json);
 
   @override
   final String status;
@@ -152,7 +151,7 @@ class _$_AuthResponse implements _AuthResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AuthResponseToJson(this);
+    return _$_$_AuthResponseToJson(this);
   }
 }
 

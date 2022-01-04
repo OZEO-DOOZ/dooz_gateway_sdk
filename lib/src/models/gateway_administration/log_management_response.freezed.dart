@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'log_management_response.dart';
 
@@ -23,8 +22,7 @@ LogManagementResponse _$LogManagementResponseFromJson(Map<String, dynamic> json)
       return ClearLogsResponse.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(
-          json, 'runtimeType', 'LogManagementResponse', 'Invalid union type "${json['runtimeType']}"!');
+      throw FallThroughError();
   }
 }
 
@@ -73,13 +71,6 @@ mixin _$LogManagementResponse {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String status, int timestamp)? setLogPriority,
-    TResult Function(List<Map<String, dynamic>> logs, int timestamp)? getLogs,
-    TResult Function(String status, int timestamp)? clearLogs,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String status, int timestamp)? setLogPriority,
     TResult Function(List<Map<String, dynamic>> logs, int timestamp)? getLogs,
@@ -92,13 +83,6 @@ mixin _$LogManagementResponse {
     required TResult Function(SetLogPriorityResponse value) setLogPriority,
     required TResult Function(GetLogsResponse value) getLogs,
     required TResult Function(ClearLogsResponse value) clearLogs,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SetLogPriorityResponse value)? setLogPriority,
-    TResult Function(GetLogsResponse value)? getLogs,
-    TResult Function(ClearLogsResponse value)? clearLogs,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -182,7 +166,7 @@ class _$SetLogPriorityResponseCopyWithImpl<$Res> extends _$LogManagementResponse
 class _$SetLogPriorityResponse implements SetLogPriorityResponse {
   const _$SetLogPriorityResponse(this.status, this.timestamp);
 
-  factory _$SetLogPriorityResponse.fromJson(Map<String, dynamic> json) => _$$SetLogPriorityResponseFromJson(json);
+  factory _$SetLogPriorityResponse.fromJson(Map<String, dynamic> json) => _$_$SetLogPriorityResponseFromJson(json);
 
   @override
   final String status;
@@ -226,16 +210,6 @@ class _$SetLogPriorityResponse implements SetLogPriorityResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String status, int timestamp)? setLogPriority,
-    TResult Function(List<Map<String, dynamic>> logs, int timestamp)? getLogs,
-    TResult Function(String status, int timestamp)? clearLogs,
-  }) {
-    return setLogPriority?.call(status, timestamp);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String status, int timestamp)? setLogPriority,
     TResult Function(List<Map<String, dynamic>> logs, int timestamp)? getLogs,
@@ -260,16 +234,6 @@ class _$SetLogPriorityResponse implements SetLogPriorityResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SetLogPriorityResponse value)? setLogPriority,
-    TResult Function(GetLogsResponse value)? getLogs,
-    TResult Function(ClearLogsResponse value)? clearLogs,
-  }) {
-    return setLogPriority?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SetLogPriorityResponse value)? setLogPriority,
     TResult Function(GetLogsResponse value)? getLogs,
@@ -284,7 +248,7 @@ class _$SetLogPriorityResponse implements SetLogPriorityResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SetLogPriorityResponseToJson(this)..['runtimeType'] = 'setLogPriority';
+    return _$_$SetLogPriorityResponseToJson(this)..['runtimeType'] = 'setLogPriority';
   }
 }
 
@@ -341,7 +305,7 @@ class _$GetLogsResponseCopyWithImpl<$Res> extends _$LogManagementResponseCopyWit
 class _$GetLogsResponse implements GetLogsResponse {
   const _$GetLogsResponse(this.logs, this.timestamp);
 
-  factory _$GetLogsResponse.fromJson(Map<String, dynamic> json) => _$$GetLogsResponseFromJson(json);
+  factory _$GetLogsResponse.fromJson(Map<String, dynamic> json) => _$_$GetLogsResponseFromJson(json);
 
   @override
   final List<Map<String, dynamic>> logs;
@@ -383,16 +347,6 @@ class _$GetLogsResponse implements GetLogsResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String status, int timestamp)? setLogPriority,
-    TResult Function(List<Map<String, dynamic>> logs, int timestamp)? getLogs,
-    TResult Function(String status, int timestamp)? clearLogs,
-  }) {
-    return getLogs?.call(logs, timestamp);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String status, int timestamp)? setLogPriority,
     TResult Function(List<Map<String, dynamic>> logs, int timestamp)? getLogs,
@@ -417,16 +371,6 @@ class _$GetLogsResponse implements GetLogsResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SetLogPriorityResponse value)? setLogPriority,
-    TResult Function(GetLogsResponse value)? getLogs,
-    TResult Function(ClearLogsResponse value)? clearLogs,
-  }) {
-    return getLogs?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SetLogPriorityResponse value)? setLogPriority,
     TResult Function(GetLogsResponse value)? getLogs,
@@ -441,7 +385,7 @@ class _$GetLogsResponse implements GetLogsResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GetLogsResponseToJson(this)..['runtimeType'] = 'getLogs';
+    return _$_$GetLogsResponseToJson(this)..['runtimeType'] = 'getLogs';
   }
 }
 
@@ -498,7 +442,7 @@ class _$ClearLogsResponseCopyWithImpl<$Res> extends _$LogManagementResponseCopyW
 class _$ClearLogsResponse implements ClearLogsResponse {
   const _$ClearLogsResponse(this.status, this.timestamp);
 
-  factory _$ClearLogsResponse.fromJson(Map<String, dynamic> json) => _$$ClearLogsResponseFromJson(json);
+  factory _$ClearLogsResponse.fromJson(Map<String, dynamic> json) => _$_$ClearLogsResponseFromJson(json);
 
   @override
   final String status;
@@ -542,16 +486,6 @@ class _$ClearLogsResponse implements ClearLogsResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String status, int timestamp)? setLogPriority,
-    TResult Function(List<Map<String, dynamic>> logs, int timestamp)? getLogs,
-    TResult Function(String status, int timestamp)? clearLogs,
-  }) {
-    return clearLogs?.call(status, timestamp);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String status, int timestamp)? setLogPriority,
     TResult Function(List<Map<String, dynamic>> logs, int timestamp)? getLogs,
@@ -576,16 +510,6 @@ class _$ClearLogsResponse implements ClearLogsResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SetLogPriorityResponse value)? setLogPriority,
-    TResult Function(GetLogsResponse value)? getLogs,
-    TResult Function(ClearLogsResponse value)? clearLogs,
-  }) {
-    return clearLogs?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SetLogPriorityResponse value)? setLogPriority,
     TResult Function(GetLogsResponse value)? getLogs,
@@ -600,7 +524,7 @@ class _$ClearLogsResponse implements ClearLogsResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ClearLogsResponseToJson(this)..['runtimeType'] = 'clearLogs';
+    return _$_$ClearLogsResponseToJson(this)..['runtimeType'] = 'clearLogs';
   }
 }
 
