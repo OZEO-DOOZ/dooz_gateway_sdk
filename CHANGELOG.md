@@ -1,3 +1,10 @@
+## 0.3.0
+This release introduces :
+ - upgrade freezed_annotation to `0.15.0`
+ - fix `getScenario` method that was missing the `io` parameter in the JSON payload
+ - removed `group` parameter in `DiscoverResponse.scenes` factory as it is not anymore returned in the root of ooPLA's JSON answer but rather in the List of `ScenarioGroup`
+ - fix example script's `_lightsRawLevels` method
+
 ## 0.2.3
 This release introduces :
  - do not swallow unexpected errors into `FallThroughError` but rather wrap them in a new custom Exception : `OoplaUnexpectedError`
