@@ -137,7 +137,7 @@ Future<List<MapEntry<String, dynamic>>> _searchDooblvs(DoozGateway gateway, {boo
       print('found a DooBLV in network !');
       dynamic confState = discoveredNode.value['conf state'];
       if (confState != 'CONFIGURED') {
-        print('but it is not reported as configured...(conf state : ${confState})');
+        print('but it is not reported as configured...(conf state : $confState)');
       } else {
         dooblvs.add(discoveredNode);
         if (!getAll) {
@@ -198,8 +198,8 @@ Future<void> _shutDownDooblv(DoozGateway gateway, String firstLightAddress, Stri
 }
 
 Future<void> _lightsRawLevels(DoozGateway gateway, String firstLightAddress, String secondLightAddress) async {
-  final max = 32767.toRadixString(16);
-  final min = (-32000).toRadixString(16);
+  final max = 32767.toRadixString(16).toUpperCase();
+  final min = (-32000).toRadixString(16).toUpperCase();
   print('send set ${max}h to $firstLightAddress');
   var setRawResponse = await gateway.sendRaw(firstLightAddress, max);
   print(setRawResponse);
