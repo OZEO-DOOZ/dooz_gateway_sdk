@@ -5,7 +5,7 @@ part 'discover_response.freezed.dart';
 part 'discover_response.g.dart';
 
 @freezed
-abstract class DiscoverResponse with _$DiscoverResponse {
+class DiscoverResponse with _$DiscoverResponse {
   //TODO use DiscoveredNode object once ooPLA's software is updated
   const factory DiscoverResponse.network(
     Map<String, /* DiscoveredNode */ dynamic> mesh,
@@ -17,7 +17,7 @@ abstract class DiscoverResponse with _$DiscoverResponse {
       DiscoverRoomsResponse;
   const factory DiscoverResponse.groups(Map<String, Map<String, dynamic>> groups, String status, int timestamp) =
       DiscoverGroupsResponse;
-  const factory DiscoverResponse.scenes(Map<String, ScenarioGroup> scenes, String group, String status, int timestamp) =
+  const factory DiscoverResponse.scenes(Map<String, ScenarioGroup> scenes, String status, int timestamp) =
       DiscoverScenesResponse;
 
   factory DiscoverResponse.fromJson(Map<String, dynamic> json) => _$DiscoverResponseFromJson(json);

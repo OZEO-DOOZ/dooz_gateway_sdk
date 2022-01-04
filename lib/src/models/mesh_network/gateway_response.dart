@@ -4,7 +4,7 @@ part 'gateway_response.freezed.dart';
 part 'gateway_response.g.dart';
 
 @freezed
-abstract class GatewayResponse with _$GatewayResponse {
+class GatewayResponse with _$GatewayResponse {
   const factory GatewayResponse.sendLevel(String address, dynamic level, dynamic target, int remaining, int timestamp) =
       SendLevelResponse;
 

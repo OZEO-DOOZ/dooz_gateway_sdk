@@ -5,7 +5,7 @@ part 'scenario_group.freezed.dart';
 part 'scenario_group.g.dart';
 
 @freezed
-abstract class ScenarioGroup with _$ScenarioGroup {
+class ScenarioGroup with _$ScenarioGroup {
   const factory ScenarioGroup(
     int group,
     List<DiscoveredScene> scenes,

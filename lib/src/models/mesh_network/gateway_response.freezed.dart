@@ -1,6 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'gateway_response.dart';
 
@@ -31,8 +30,7 @@ GatewayResponse _$GatewayResponseFromJson(Map<String, dynamic> json) {
       return SetEpochResponse.fromJson(json);
 
     default:
-      throw CheckedFromJsonException(
-          json, 'runtimeType', 'GatewayResponse', 'Invalid union type "${json['runtimeType']}"!');
+      throw FallThroughError();
   }
 }
 
@@ -147,20 +145,6 @@ mixin _$GatewayResponse {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
-    TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
-    TResult Function(String address, dynamic level, dynamic target, String? status, int? remaining, int timestamp)?
-        getState,
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? toggle,
-    TResult Function(String address, int io, int index, int value, int correlation, int timestamp)? magicConfig,
-    TResult Function(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
-            int duration, int start_at, int days_in_week, int correlation, int? timestamp)?
-        setScenario,
-    TResult Function(String node, int io, int epoch, int command, int time_zone, int correlation)? setEpoch,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
     TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
@@ -184,17 +168,6 @@ mixin _$GatewayResponse {
     required TResult Function(MagicConfigResponse value) magicConfig,
     required TResult Function(SetScenarioResponse value) setScenario,
     required TResult Function(SetEpochResponse value) setEpoch,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SendLevelResponse value)? sendLevel,
-    TResult Function(SendRawResponse value)? sendRaw,
-    TResult Function(GetStateResponse value)? getState,
-    TResult Function(SetToggleResponse value)? toggle,
-    TResult Function(MagicConfigResponse value)? magicConfig,
-    TResult Function(SetScenarioResponse value)? setScenario,
-    TResult Function(SetEpochResponse value)? setEpoch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -281,7 +254,7 @@ class _$SendLevelResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImp
 class _$SendLevelResponse implements SendLevelResponse {
   const _$SendLevelResponse(this.address, this.level, this.target, this.remaining, this.timestamp);
 
-  factory _$SendLevelResponse.fromJson(Map<String, dynamic> json) => _$$SendLevelResponseFromJson(json);
+  factory _$SendLevelResponse.fromJson(Map<String, dynamic> json) => _$_$SendLevelResponseFromJson(json);
 
   @override
   final String address;
@@ -346,23 +319,6 @@ class _$SendLevelResponse implements SendLevelResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
-    TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
-    TResult Function(String address, dynamic level, dynamic target, String? status, int? remaining, int timestamp)?
-        getState,
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? toggle,
-    TResult Function(String address, int io, int index, int value, int correlation, int timestamp)? magicConfig,
-    TResult Function(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
-            int duration, int start_at, int days_in_week, int correlation, int? timestamp)?
-        setScenario,
-    TResult Function(String node, int io, int epoch, int command, int time_zone, int correlation)? setEpoch,
-  }) {
-    return sendLevel?.call(address, level, target, remaining, timestamp);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
     TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
@@ -398,20 +354,6 @@ class _$SendLevelResponse implements SendLevelResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SendLevelResponse value)? sendLevel,
-    TResult Function(SendRawResponse value)? sendRaw,
-    TResult Function(GetStateResponse value)? getState,
-    TResult Function(SetToggleResponse value)? toggle,
-    TResult Function(MagicConfigResponse value)? magicConfig,
-    TResult Function(SetScenarioResponse value)? setScenario,
-    TResult Function(SetEpochResponse value)? setEpoch,
-  }) {
-    return sendLevel?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SendLevelResponse value)? sendLevel,
     TResult Function(SendRawResponse value)? sendRaw,
@@ -430,7 +372,7 @@ class _$SendLevelResponse implements SendLevelResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SendLevelResponseToJson(this)..['runtimeType'] = 'sendLevel';
+    return _$_$SendLevelResponseToJson(this)..['runtimeType'] = 'sendLevel';
   }
 }
 
@@ -498,7 +440,7 @@ class _$SendRawResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl<
 class _$SendRawResponse implements SendRawResponse {
   const _$SendRawResponse(this.address, this.raw, this.target_raw, this.timestamp);
 
-  factory _$SendRawResponse.fromJson(Map<String, dynamic> json) => _$$SendRawResponseFromJson(json);
+  factory _$SendRawResponse.fromJson(Map<String, dynamic> json) => _$_$SendRawResponseFromJson(json);
 
   @override
   final String address;
@@ -559,23 +501,6 @@ class _$SendRawResponse implements SendRawResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
-    TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
-    TResult Function(String address, dynamic level, dynamic target, String? status, int? remaining, int timestamp)?
-        getState,
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? toggle,
-    TResult Function(String address, int io, int index, int value, int correlation, int timestamp)? magicConfig,
-    TResult Function(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
-            int duration, int start_at, int days_in_week, int correlation, int? timestamp)?
-        setScenario,
-    TResult Function(String node, int io, int epoch, int command, int time_zone, int correlation)? setEpoch,
-  }) {
-    return sendRaw?.call(address, raw, target_raw, timestamp);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
     TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
@@ -611,20 +536,6 @@ class _$SendRawResponse implements SendRawResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SendLevelResponse value)? sendLevel,
-    TResult Function(SendRawResponse value)? sendRaw,
-    TResult Function(GetStateResponse value)? getState,
-    TResult Function(SetToggleResponse value)? toggle,
-    TResult Function(MagicConfigResponse value)? magicConfig,
-    TResult Function(SetScenarioResponse value)? setScenario,
-    TResult Function(SetEpochResponse value)? setEpoch,
-  }) {
-    return sendRaw?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SendLevelResponse value)? sendLevel,
     TResult Function(SendRawResponse value)? sendRaw,
@@ -643,7 +554,7 @@ class _$SendRawResponse implements SendRawResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SendRawResponseToJson(this)..['runtimeType'] = 'sendRaw';
+    return _$_$SendRawResponseToJson(this)..['runtimeType'] = 'sendRaw';
   }
 }
 
@@ -719,7 +630,7 @@ class _$GetStateResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl
 class _$GetStateResponse implements GetStateResponse {
   const _$GetStateResponse(this.address, this.level, this.target, this.status, this.remaining, this.timestamp);
 
-  factory _$GetStateResponse.fromJson(Map<String, dynamic> json) => _$$GetStateResponseFromJson(json);
+  factory _$GetStateResponse.fromJson(Map<String, dynamic> json) => _$_$GetStateResponseFromJson(json);
 
   @override
   final String address;
@@ -788,23 +699,6 @@ class _$GetStateResponse implements GetStateResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
-    TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
-    TResult Function(String address, dynamic level, dynamic target, String? status, int? remaining, int timestamp)?
-        getState,
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? toggle,
-    TResult Function(String address, int io, int index, int value, int correlation, int timestamp)? magicConfig,
-    TResult Function(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
-            int duration, int start_at, int days_in_week, int correlation, int? timestamp)?
-        setScenario,
-    TResult Function(String node, int io, int epoch, int command, int time_zone, int correlation)? setEpoch,
-  }) {
-    return getState?.call(address, level, target, status, remaining, timestamp);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
     TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
@@ -840,20 +734,6 @@ class _$GetStateResponse implements GetStateResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SendLevelResponse value)? sendLevel,
-    TResult Function(SendRawResponse value)? sendRaw,
-    TResult Function(GetStateResponse value)? getState,
-    TResult Function(SetToggleResponse value)? toggle,
-    TResult Function(MagicConfigResponse value)? magicConfig,
-    TResult Function(SetScenarioResponse value)? setScenario,
-    TResult Function(SetEpochResponse value)? setEpoch,
-  }) {
-    return getState?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SendLevelResponse value)? sendLevel,
     TResult Function(SendRawResponse value)? sendRaw,
@@ -872,7 +752,7 @@ class _$GetStateResponse implements GetStateResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GetStateResponseToJson(this)..['runtimeType'] = 'getState';
+    return _$_$GetStateResponseToJson(this)..['runtimeType'] = 'getState';
   }
 }
 
@@ -947,7 +827,7 @@ class _$SetToggleResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImp
 class _$SetToggleResponse implements SetToggleResponse {
   const _$SetToggleResponse(this.address, this.level, this.target, this.remaining, this.timestamp);
 
-  factory _$SetToggleResponse.fromJson(Map<String, dynamic> json) => _$$SetToggleResponseFromJson(json);
+  factory _$SetToggleResponse.fromJson(Map<String, dynamic> json) => _$_$SetToggleResponseFromJson(json);
 
   @override
   final String address;
@@ -1012,23 +892,6 @@ class _$SetToggleResponse implements SetToggleResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
-    TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
-    TResult Function(String address, dynamic level, dynamic target, String? status, int? remaining, int timestamp)?
-        getState,
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? toggle,
-    TResult Function(String address, int io, int index, int value, int correlation, int timestamp)? magicConfig,
-    TResult Function(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
-            int duration, int start_at, int days_in_week, int correlation, int? timestamp)?
-        setScenario,
-    TResult Function(String node, int io, int epoch, int command, int time_zone, int correlation)? setEpoch,
-  }) {
-    return toggle?.call(address, level, target, remaining, timestamp);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
     TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
@@ -1064,20 +927,6 @@ class _$SetToggleResponse implements SetToggleResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SendLevelResponse value)? sendLevel,
-    TResult Function(SendRawResponse value)? sendRaw,
-    TResult Function(GetStateResponse value)? getState,
-    TResult Function(SetToggleResponse value)? toggle,
-    TResult Function(MagicConfigResponse value)? magicConfig,
-    TResult Function(SetScenarioResponse value)? setScenario,
-    TResult Function(SetEpochResponse value)? setEpoch,
-  }) {
-    return toggle?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SendLevelResponse value)? sendLevel,
     TResult Function(SendRawResponse value)? sendRaw,
@@ -1096,7 +945,7 @@ class _$SetToggleResponse implements SetToggleResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SetToggleResponseToJson(this)..['runtimeType'] = 'toggle';
+    return _$_$SetToggleResponseToJson(this)..['runtimeType'] = 'toggle';
   }
 }
 
@@ -1174,7 +1023,7 @@ class _$MagicConfigResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithI
 class _$MagicConfigResponse implements MagicConfigResponse {
   const _$MagicConfigResponse(this.address, this.io, this.index, this.value, this.correlation, this.timestamp);
 
-  factory _$MagicConfigResponse.fromJson(Map<String, dynamic> json) => _$$MagicConfigResponseFromJson(json);
+  factory _$MagicConfigResponse.fromJson(Map<String, dynamic> json) => _$_$MagicConfigResponseFromJson(json);
 
   @override
   final String address;
@@ -1243,23 +1092,6 @@ class _$MagicConfigResponse implements MagicConfigResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
-    TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
-    TResult Function(String address, dynamic level, dynamic target, String? status, int? remaining, int timestamp)?
-        getState,
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? toggle,
-    TResult Function(String address, int io, int index, int value, int correlation, int timestamp)? magicConfig,
-    TResult Function(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
-            int duration, int start_at, int days_in_week, int correlation, int? timestamp)?
-        setScenario,
-    TResult Function(String node, int io, int epoch, int command, int time_zone, int correlation)? setEpoch,
-  }) {
-    return magicConfig?.call(address, io, index, value, correlation, timestamp);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
     TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
@@ -1295,20 +1127,6 @@ class _$MagicConfigResponse implements MagicConfigResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SendLevelResponse value)? sendLevel,
-    TResult Function(SendRawResponse value)? sendRaw,
-    TResult Function(GetStateResponse value)? getState,
-    TResult Function(SetToggleResponse value)? toggle,
-    TResult Function(MagicConfigResponse value)? magicConfig,
-    TResult Function(SetScenarioResponse value)? setScenario,
-    TResult Function(SetEpochResponse value)? setEpoch,
-  }) {
-    return magicConfig?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SendLevelResponse value)? sendLevel,
     TResult Function(SendRawResponse value)? sendRaw,
@@ -1327,7 +1145,7 @@ class _$MagicConfigResponse implements MagicConfigResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MagicConfigResponseToJson(this)..['runtimeType'] = 'magicConfig';
+    return _$_$MagicConfigResponseToJson(this)..['runtimeType'] = 'magicConfig';
   }
 }
 
@@ -1449,7 +1267,7 @@ class _$SetScenarioResponse implements SetScenarioResponse {
   const _$SetScenarioResponse(this.node, this.io, this.scenario_id, this.command, this.is_active, this.level,
       this.transition, this.duration, this.start_at, this.days_in_week, this.correlation, this.timestamp);
 
-  factory _$SetScenarioResponse.fromJson(Map<String, dynamic> json) => _$$SetScenarioResponseFromJson(json);
+  factory _$SetScenarioResponse.fromJson(Map<String, dynamic> json) => _$_$SetScenarioResponseFromJson(json);
 
   @override
   final String node;
@@ -1547,24 +1365,6 @@ class _$SetScenarioResponse implements SetScenarioResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
-    TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
-    TResult Function(String address, dynamic level, dynamic target, String? status, int? remaining, int timestamp)?
-        getState,
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? toggle,
-    TResult Function(String address, int io, int index, int value, int correlation, int timestamp)? magicConfig,
-    TResult Function(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
-            int duration, int start_at, int days_in_week, int correlation, int? timestamp)?
-        setScenario,
-    TResult Function(String node, int io, int epoch, int command, int time_zone, int correlation)? setEpoch,
-  }) {
-    return setScenario?.call(node, io, scenario_id, command, is_active, level, transition, duration, start_at,
-        days_in_week, correlation, timestamp);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
     TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
@@ -1601,20 +1401,6 @@ class _$SetScenarioResponse implements SetScenarioResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SendLevelResponse value)? sendLevel,
-    TResult Function(SendRawResponse value)? sendRaw,
-    TResult Function(GetStateResponse value)? getState,
-    TResult Function(SetToggleResponse value)? toggle,
-    TResult Function(MagicConfigResponse value)? magicConfig,
-    TResult Function(SetScenarioResponse value)? setScenario,
-    TResult Function(SetEpochResponse value)? setEpoch,
-  }) {
-    return setScenario?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SendLevelResponse value)? sendLevel,
     TResult Function(SendRawResponse value)? sendRaw,
@@ -1633,7 +1419,7 @@ class _$SetScenarioResponse implements SetScenarioResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SetScenarioResponseToJson(this)..['runtimeType'] = 'setScenario';
+    return _$_$SetScenarioResponseToJson(this)..['runtimeType'] = 'setScenario';
   }
 }
 
@@ -1729,7 +1515,7 @@ class _$SetEpochResponseCopyWithImpl<$Res> extends _$GatewayResponseCopyWithImpl
 class _$SetEpochResponse implements SetEpochResponse {
   const _$SetEpochResponse(this.node, this.io, this.epoch, this.command, this.time_zone, this.correlation);
 
-  factory _$SetEpochResponse.fromJson(Map<String, dynamic> json) => _$$SetEpochResponseFromJson(json);
+  factory _$SetEpochResponse.fromJson(Map<String, dynamic> json) => _$_$SetEpochResponseFromJson(json);
 
   @override
   final String node;
@@ -1798,23 +1584,6 @@ class _$SetEpochResponse implements SetEpochResponse {
 
   @override
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
-    TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
-    TResult Function(String address, dynamic level, dynamic target, String? status, int? remaining, int timestamp)?
-        getState,
-    TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? toggle,
-    TResult Function(String address, int io, int index, int value, int correlation, int timestamp)? magicConfig,
-    TResult Function(String node, int io, int scenario_id, int command, bool is_active, int level, int transition,
-            int duration, int start_at, int days_in_week, int correlation, int? timestamp)?
-        setScenario,
-    TResult Function(String node, int io, int epoch, int command, int time_zone, int correlation)? setEpoch,
-  }) {
-    return setEpoch?.call(node, io, epoch, command, time_zone, correlation);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String address, dynamic level, dynamic target, int remaining, int timestamp)? sendLevel,
     TResult Function(String address, dynamic raw, dynamic target_raw, int timestamp)? sendRaw,
@@ -1850,20 +1619,6 @@ class _$SetEpochResponse implements SetEpochResponse {
 
   @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SendLevelResponse value)? sendLevel,
-    TResult Function(SendRawResponse value)? sendRaw,
-    TResult Function(GetStateResponse value)? getState,
-    TResult Function(SetToggleResponse value)? toggle,
-    TResult Function(MagicConfigResponse value)? magicConfig,
-    TResult Function(SetScenarioResponse value)? setScenario,
-    TResult Function(SetEpochResponse value)? setEpoch,
-  }) {
-    return setEpoch?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SendLevelResponse value)? sendLevel,
     TResult Function(SendRawResponse value)? sendRaw,
@@ -1882,7 +1637,7 @@ class _$SetEpochResponse implements SetEpochResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SetEpochResponseToJson(this)..['runtimeType'] = 'setEpoch';
+    return _$_$SetEpochResponseToJson(this)..['runtimeType'] = 'setEpoch';
   }
 }
 

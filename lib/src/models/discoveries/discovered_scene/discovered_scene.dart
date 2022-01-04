@@ -6,7 +6,7 @@ part 'discovered_scene.freezed.dart';
 part 'discovered_scene.g.dart';
 
 @freezed
-abstract class DiscoveredScene with _$DiscoveredScene {
+class DiscoveredScene with _$DiscoveredScene {
   const factory DiscoveredScene(
     String name,
     int sceneId,
