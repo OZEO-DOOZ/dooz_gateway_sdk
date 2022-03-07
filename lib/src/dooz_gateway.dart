@@ -35,8 +35,13 @@ class DoozGateway {
 
   final _notifyStateController = StreamController<NotifyState>.broadcast();
 
-  /// A [Stream] that will notify any listener of any status update (DooZ modules)
+  /// A [Stream] that will notify any listener of any generic level status update
   Stream<NotifyState> get notifyState => _notifyStateController.stream;
+
+  final _notifySceneController = StreamController<NotifyScene>.broadcast();
+
+  /// A [Stream] that will notify any listener of any scenario status update
+  Stream<NotifyScene> get notifyScene => _notifySceneController.stream;
 
   /// Connect to the gateway.
   ///
@@ -135,6 +140,15 @@ class DoozGateway {
       (Parameters parameters) {
         _notifyStateController.add(
           NotifyState.fromJson(parameters.asMap as Map<String, dynamic>),
+        );
+        return null;
+      },
+    );
+    _peer!.registerMethod(
+      'notify_scene',
+      (Parameters parameters) {
+        _notifySceneController.add(
+          NotifyScene.fromJson(parameters.asMap as Map<String, dynamic>),
         );
         return null;
       },
