@@ -1,9 +1,6 @@
 import 'dart:math';
 
 import 'package:dooz_gateway_sdk/dooz_gateway_sdk.dart';
-import 'package:dooz_gateway_sdk/src/constants.dart';
-import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
-import 'package:dooz_gateway_sdk/src/models/models.dart';
 
 void main() async {
   // instantiate gateway object
