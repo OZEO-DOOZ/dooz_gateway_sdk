@@ -156,7 +156,7 @@ class DoozGateway {
     Map<String, dynamic> params = const <String, dynamic>{},
   }) async {
     _checkPeerInitialized();
-    final e = JsonEncoder.withIndent('  ');
+    const e = JsonEncoder.withIndent('  ');
     _log('request "$method"\nparams ${e.convert(params)}');
     final stopwatch = Stopwatch()..start();
     final _requestResult = await _peer!
@@ -165,14 +165,14 @@ class DoozGateway {
         .catchError(_onRequestError) as Map<String, dynamic>;
     stopwatch.stop();
     _log('request "$method" answered in ${stopwatch.elapsedMilliseconds}ms');
-    _log('answer ${e.convert(_requestResult)}');
+    if (shouldLogRequest) _log('answer ${e.convert(_requestResult)}');
     return _requestResult;
   }
 
   void _onRequestError(Object error) {
     _log('error caught executing last request ! $error');
     if (error is TimeoutException) {
-      throw OoplaRequestTimeout();
+      throw const OoplaRequestTimeout();
     } else if (error is RpcException) {
       switch (error.code) {
         case PARSE_ERROR:
