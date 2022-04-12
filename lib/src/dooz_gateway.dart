@@ -165,7 +165,7 @@ class DoozGateway {
         .catchError(_onRequestError) as Map<String, dynamic>;
     stopwatch.stop();
     _log('request "$method" answered in ${stopwatch.elapsedMilliseconds}ms');
-    if (shouldLogRequest) _log('answer ${e.convert(_requestResult)}');
+    _log('answer ${e.convert(_requestResult)}');
     return _requestResult;
   }
 
