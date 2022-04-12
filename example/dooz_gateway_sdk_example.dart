@@ -1,9 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'dart:math';
 
 import 'package:dooz_gateway_sdk/dooz_gateway_sdk.dart';
-import 'package:dooz_gateway_sdk/src/constants.dart';
-import 'package:dooz_gateway_sdk/src/exceptions/errors.dart';
-import 'package:dooz_gateway_sdk/src/models/models.dart';
 
 void main() async {
   // instantiate gateway object
@@ -28,7 +27,7 @@ void main() async {
             _serverPassword,
           )
           .catchError(
-            (Object e) => AuthResponse('refused', 0),
+            (Object e) => const AuthResponse('refused', 0),
             test: (e) => e is OoplaRequestTimeout,
           );
       authTries++;
@@ -52,7 +51,7 @@ void main() async {
               _gatewayPassword,
             )
             .catchError(
-              (Object e) => AuthResponse('refused', 0),
+              (Object e) => const AuthResponse('refused', 0),
               test: (e) => e is OoplaRequestTimeout,
             );
         print(authResult);
