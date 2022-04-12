@@ -1,6 +1,7 @@
 ## 0.4.0
 This release introduces :
-- upgrade dependencies
+- Upgraded dependencies
+
 ## 0.3.0
 This release introduces :
  - upgrade freezed_annotation to `0.15.0`
